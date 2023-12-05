@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using BaseCureAPI.Data;
+using BaseCureAPI.DB;
 
 var config = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json", false)
@@ -7,7 +7,7 @@ var config = new ConfigurationBuilder()
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
+builder.Services.AddDbContext<BaseCureContext>(options =>
     options.UseSqlServer(config.GetConnectionString("DataBase")));
 
 builder.Services.AddControllers();
