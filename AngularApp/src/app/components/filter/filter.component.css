@@ -1,0 +1,13 @@
+:host {
+    text-align: center;
+}
+.form-control {
+    display: inline;
+    width: 40%;
+    margin: 0 2px;
+}
+.btn-filter {
+    display: block;
+    width: calc(80% + 4px);
+    margin-left: calc(10% - 2px);
+}
