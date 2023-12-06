@@ -1,5 +1,6 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using BaseCureAPI.DB;
+using BaseCureAPI.Endpoints;
 
 var config = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json", false)
