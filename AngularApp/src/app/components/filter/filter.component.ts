@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,5 +9,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './filter.component.css'
 })
 export class FilterComponent {
-
+  @Input() input_text1 = "";
+  @Input() input_text2 = "";
+  @Input() input_link1 = "";
+  @Input() input_link2 = "";
 }

@@ -1,6 +1,6 @@
 :host {
     display: block;
-    height: calc(100vh - 87px);
+    height: calc(100vh - 83px);
     background-image: url("./../../../assets/img/landing-page-background.jpg");
     background-position: center;
     background-size: cover;
@@ -8,17 +8,12 @@
 .login {
     width: 500px;
     height: 330px;
-    border: 1px solid #9C9C9C;
     background-color: #f8f9fa;
     padding: 20px;
-    border-radius: 6px;
     position: relative;
     top: 45%;
     left: 75%;
     transform: translate(-75%, -50%);
-}
-.btn-block {
-    width: 100%;
 }
 
 @media (max-width: 991px) {

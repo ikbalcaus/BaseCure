@@ -1,9 +1,7 @@
 .navbar-brand {
-    font-size: 30px;
-}
-.btn-navbar {
-    padding: 7px 25px;
+    font-size: 27px;
 }
 .navbar-link {
     width: 100%;
+    margin: 0 3px;
 }

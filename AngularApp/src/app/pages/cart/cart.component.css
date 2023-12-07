@@ -6,9 +6,9 @@
 .items {
     width: 60%;
 }
-.details {
+.card-details {
     width: 37%;
-    height: 565px;
+    height: 560px;
 }
 .details-text {
     display: flex;
@@ -20,7 +20,7 @@
     .main {
         flex-direction: column;
     }
-    .items, .details {
+    .items, .card-details {
         width: 100%;
     }
 }

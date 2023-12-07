@@ -1,0 +1,8 @@
+.card {
+    width: 325px;
+    margin: 15px;
+    border: none;
+}
+.card-img-top {
+    aspect-ratio: 16/9;
+}
