@@ -25,5 +25,6 @@ namespace BaseCureAPI.DB.Models
         public virtual ICollection<Ljekari> Ljekaris { get; set; }
         public virtual ICollection<Osoblje> Osobljes { get; set; }
         public virtual ICollection<Pacijenti> Pacijentis { get; set; }
+        public virtual ICollection<AuthToken> AuthTokens { get; set; }
     }
 }

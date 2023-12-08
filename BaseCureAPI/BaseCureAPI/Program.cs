@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using BaseCureAPI.DB;
 using BaseCureAPI.Endpoints;
+using BaseCureAPI.Services;
 
 var config = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json", false)
@@ -14,6 +15,7 @@ builder.Services.AddDbContext<BaseCureContext>(options =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddTransient<MyAuthService>();
 
 var app = builder.Build();
 
