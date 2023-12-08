@@ -32,6 +32,7 @@ namespace BaseCureAPI.DB
         public virtual DbSet<Termini> Terminis { get; set; } = null!;
         public virtual DbSet<UstanoveZdravstva> UstanoveZdravstvas { get; set; } = null!;
         public virtual DbSet<ZdravstveniKartoni> ZdravstveniKartonis { get; set; } = null!;
+        public virtual DbSet<AuthToken> AuthTokens { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
