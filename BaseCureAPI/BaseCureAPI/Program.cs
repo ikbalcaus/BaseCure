@@ -44,4 +44,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.MapUstanoveZdravstvaEndpoints();
+
 app.Run();
