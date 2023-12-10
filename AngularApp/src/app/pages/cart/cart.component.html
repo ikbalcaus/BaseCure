@@ -4,7 +4,7 @@
       <h4>Vaša korpa</h4>
       <p>Trenutno imate X lijekova za poručiti</p>
       <hr>
-      <div class="card mb-3" *ngFor="let i of [0,1,2,3,4,5]">
+      <div class="card mb-3 shadow-sm" *ngFor="let i of [0,1,2,3,4,5]">
         <div class="card-body">
           <div class="details-text">
             <div class="details-text align-items-center">
@@ -25,26 +25,26 @@
         </div>
       </div>
     </div>
-    <div class="details card bg-primary text-white mt-4 "> 
+    <div class="card-details card bg-primary text-white mt-4 shadow-lg"> 
       <form>
         <div class="card-body">
-          <h5 class="mb-0">Detalji narudžbe</h5>
+          <h5>Detalji narudžbe</h5>
           <hr>
           <div class="form-group mb-2">
             <label>Ime i prezime:</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control shadow-sm">
           </div>
           <div class="form-group mb-2">
             <label>Telefonski broj:</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control shadow-sm">
           </div>
           <div class="form-group mb-2">
             <label>Grad:</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control shadow-sm">
           </div>
           <div class="form-group mb-2">
             <label>Adresa stanovanja:</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control shadow-sm">
           </div>
           <hr>
           <div class="details-text">

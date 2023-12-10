@@ -1,11 +1,15 @@
-<app-filter></app-filter>
+<app-filter
+    input_text1="Naziv zdravstvene institucije"
+    input_text2="Naziv grada"
+    input_link1=""
+    input_link2=""
+></app-filter>
 <div class="container cards">
-    <div class="card" *ngFor="let i of [0,1,2,3,4,5]">
-        <img src="./../../../assets/img/landing-page-background.jpg" class="card-img-top" alt="Slika apoteke">
-        <div class="card-body">
-            <h5 class="card-title">Naziv zdravstvene institucije</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a class="btn btn-info btn-details" routerLink="/detalji">Pogledaj detalje</a>
-        </div>
-    </div>
+    <app-card *ngFor="let i of [0,1,2,3,4,5]"
+        img="./../../../assets/img/no-image-avabliable.jpg"
+        title="Naziv zdravstvene institucije"
+        description="Neki opis zdravstvene institucije. Neki opis zdravstvene institucije. Neki opis zdravstvene institucije."
+        btn_text="Pogledaj detalje"
+        btn_link="/detalji"
+    ></app-card>
 </div>
