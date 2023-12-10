@@ -16,6 +16,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<MyAuthService>();
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
@@ -43,7 +44,5 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.MapUstanoveZdravstvaEndpoints();
 
 app.Run();
