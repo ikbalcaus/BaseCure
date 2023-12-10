@@ -16,6 +16,8 @@ namespace BaseCureAPI.DB.Models
         public string? Naziv { get; set; }
         public string? Adresa { get; set; }
         public string? KontaktBroj { get; set; }
+        public string? Email { get; set; }
+        public string? Grad { get; set; }
 
         public virtual ICollection<Ljekari> Ljekaris { get; set; }
         public virtual ICollection<Osoblje> Osobljes { get; set; }
