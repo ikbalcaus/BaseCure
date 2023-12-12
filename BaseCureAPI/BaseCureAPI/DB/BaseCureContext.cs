@@ -6,17 +6,18 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace BaseCureAPI.DB
 {
-    public partial class BaseCureContext : DbContext
+    public partial class BasecureContext : DbContext
     {
-        public BaseCureContext()
+        public BasecureContext()
         {
         }
 
-        public BaseCureContext(DbContextOptions<BaseCureContext> options)
+        public BasecureContext(DbContextOptions<BasecureContext> options)
             : base(options)
         {
         }
 
+        public virtual DbSet<AuthToken> AuthTokens { get; set; } = null!;
         public virtual DbSet<Dijagnoze> Dijagnozes { get; set; } = null!;
         public virtual DbSet<Korisnici> Korisnicis { get; set; } = null!;
         public virtual DbSet<LaboratorijskiRezultati> LaboratorijskiRezultatis { get; set; } = null!;
@@ -32,7 +33,6 @@ namespace BaseCureAPI.DB
         public virtual DbSet<Termini> Terminis { get; set; } = null!;
         public virtual DbSet<UstanoveZdravstva> UstanoveZdravstvas { get; set; } = null!;
         public virtual DbSet<ZdravstveniKartoni> ZdravstveniKartonis { get; set; } = null!;
-        public virtual DbSet<AuthToken> AuthTokens { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -45,6 +45,46 @@ namespace BaseCureAPI.DB
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<AuthToken>(entity =>
+            {
+                entity.ToTable("AuthToken");
+
+                entity.Property(e => e.AuthTokenId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("auth_token_id");
+
+                entity.Property(e => e.Code2f)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("code2f");
+
+                entity.Property(e => e.IpAdresa)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("ip_adresa");
+
+                entity.Property(e => e.Is2fOtkljucan)
+                    .HasMaxLength(2)
+                    .IsUnicode(false)
+                    .HasColumnName("is_2f_otkljucan");
+
+                entity.Property(e => e.KorisnikId).HasColumnName("korisnik_id");
+
+                entity.Property(e => e.Vrijednost)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("vrijednost");
+
+                entity.Property(e => e.VrijemeEvidentiranja)
+                    .HasColumnType("datetime")
+                    .HasColumnName("vrijeme_evidentiranja");
+
+                /*entity.HasOne(d => d.Korisnik)
+                    .WithMany(p => p.AuthTokens)
+                    .HasForeignKey(d => d.KorisnikId)
+                    .HasConstraintName("FK__AuthToken__koris__5CD6CB2B");*/
+            });
+
             modelBuilder.Entity<Dijagnoze>(entity =>
             {
                 entity.HasKey(e => e.DijagnozaId)
@@ -110,6 +150,11 @@ namespace BaseCureAPI.DB
                     .HasMaxLength(255)
                     .IsUnicode(false)
                     .HasColumnName("prezime");
+
+                entity.Property(e => e.Uloga)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("uloga");
             });
 
             modelBuilder.Entity<LaboratorijskiRezultati>(entity =>
@@ -459,6 +504,16 @@ namespace BaseCureAPI.DB
                     .HasMaxLength(255)
                     .IsUnicode(false)
                     .HasColumnName("adresa");
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("email");
+
+                entity.Property(e => e.Grad)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("grad");
 
                 entity.Property(e => e.KontaktBroj)
                     .HasMaxLength(20)

@@ -13,9 +13,9 @@ namespace BaseCureAPI.Endpoints.Korisnik
     public class KorisniciEndpoints : ControllerBase
     {
 
-        private readonly BaseCureContext _context;
+        private readonly BasecureContext _context;
 
-        public KorisniciEndpoints(BaseCureContext context)
+        public KorisniciEndpoints(BasecureContext context)
         {
             _context = context;
         }
@@ -32,10 +32,10 @@ namespace BaseCureAPI.Endpoints.Korisnik
                     HashLozinke = x.HashLozinke,
                     Ime = x.Ime,
                     Prezime = x.Prezime,
-                    Adresa = x.Adresa,
-                    DatumRodjenja = (DateTime)x.DatumRodjenja,
-                    MailAdresa = x.MailAdresa,
-                    Uloga = x.Uloga,
+                    //Adresa = x.Adresa,
+                    //DatumRodjenja = (DateTime)x.DatumRodjenja,
+                    //MailAdresa = x.MailAdresa,
+                    //Uloga = x.Uloga,
                 }).ToList();
 
             return new KorisniciGetAllResponse
@@ -52,15 +52,14 @@ namespace BaseCureAPI.Endpoints.Korisnik
             var korisnik = _context.Korisnicis.OrderByDescending(x => x.KorisnikId)
                 .Select(x => new KorisniciRes()
                 {
-                    KorisnikId = x.KorisnikId,
                     KorisnickoIme = x.KorisnickoIme,
                     HashLozinke = x.HashLozinke,
                     Ime = x.Ime,
                     Prezime = x.Prezime,
-                    Adresa = x.Adresa,
-                    DatumRodjenja = (DateTime)x.DatumRodjenja,
-                    MailAdresa = x.MailAdresa,
-                    Uloga = x.Uloga,
+                    //Adresa = x.Adresa,
+                    //DatumRodjenja = (DateTime)x.DatumRodjenja,
+                    //MailAdresa = x.MailAdresa,
+                    //Uloga = x.Uloga,
                 }).Single(x=>x.KorisnikId == id);
 
             if (korisnik == null)
@@ -74,26 +73,31 @@ namespace BaseCureAPI.Endpoints.Korisnik
         [HttpPost]
         public ActionResult<int> CreateKorisnik([FromBody] KorisniciReq req)
         {
-            Korisnici? korisnik;
+
+            if (req == null)
+                return BadRequest("User data is null");
+            var korisnik = new Korisnici
+            {
+                Ime = req.Ime,
+                Prezime = req.Prezime,
+                KorisnickoIme = req.KorisnickoIme,
+                HashLozinke = req.HashLozinke
+            };
 
             if (req.ID == 0)
             {
-                korisnik = new Korisnici();
-                _context.Add(korisnik);
+                int maxId = _context.Korisnicis.Any() ? _context.Korisnicis.Max(x => x.KorisnikId) + 1 : 1;
+                korisnik.KorisnikId = maxId;
             }
             else
             {
-                korisnik = _context.Korisnicis.FirstOrDefault(x => x.KorisnikId == req.ID);
-                if (korisnik == null)
-                    throw new Exception("wrong ID");
+                korisnik.KorisnikId = req.ID;
             }
-
-            korisnik.Ime = req.Ime.RemoveTags();
-            korisnik.Prezime = req.Prezime.RemoveTags();
+            _context.Korisnicis.Add(korisnik);
 
             _context.SaveChanges();
 
-            return korisnik.KorisnikId;
+            return Ok(korisnik.KorisnikId);
         }
 
         // PUT: korisnici/5
