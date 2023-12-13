@@ -11,9 +11,9 @@ using BaseCureAPI.Helpers;
 [ApiController]
 public class UstanoveZdravstvaController : ControllerBase
 {
-    private readonly BaseCureContext _context; 
+    private readonly BasecureContext _context; 
 
-    public UstanoveZdravstvaController(BaseCureContext context)
+    public UstanoveZdravstvaController(BasecureContext context)
     {
         _context = context;
     }

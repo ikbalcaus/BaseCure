@@ -9,7 +9,7 @@ var config = new ConfigurationBuilder()
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<BaseCureContext>(options =>
+builder.Services.AddDbContext<BasecureContext>(options =>
     options.UseSqlServer(config.GetConnectionString("DataBase")));
 
 builder.Services.AddControllers();

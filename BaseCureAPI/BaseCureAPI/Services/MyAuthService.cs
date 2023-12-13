@@ -8,10 +8,10 @@ namespace BaseCureAPI.Services
 {
     public class MyAuthService
     {
-        private readonly BaseCureContext _context;
+        private readonly BasecureContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public MyAuthService(BaseCureContext applicationDbContext, IHttpContextAccessor httpContextAccessor)
+        public MyAuthService(BasecureContext applicationDbContext, IHttpContextAccessor httpContextAccessor)
         {
             _context = applicationDbContext;
             _httpContextAccessor = httpContextAccessor;

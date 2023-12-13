@@ -12,26 +12,31 @@ namespace BaseCureAPI.Endpoints.Login
     [ApiController]
     public class AuthLoginEndpoints : ControllerBase
     {
-        private readonly BaseCureContext _context;
+        private readonly BasecureContext _context;
 
-        public AuthLoginEndpoints(BaseCureContext context)
+        public AuthLoginEndpoints(BasecureContext context)
         {
             _context = context;
         }
 
         // POST auth/login
         [HttpPost("login")]
-        public async Task<MyAuthInfo> Obradi([FromBody] AuthLoginReq request, CancellationToken cancellationToken)
+        public  ActionResult<AuthToken> Obradi([FromBody] AuthLoginReq request)
         {
+            if (request == null)
+            {
+                return BadRequest("Request data is null");
+            }
+
             //1- provjera logina
-            Korisnici? logiraniKorisnik = await _context.Korisnicis
-                .FirstOrDefaultAsync(k =>
-                    k.KorisnickoIme == request.KorisnickoIme && k.HashLozinke == request.Lozinka, cancellationToken);
+            var logiraniKorisnik =  _context.Korisnicis
+                .FirstOrDefault(k =>
+                    k.KorisnickoIme == request.KorisnickoIme && k.HashLozinke == request.Lozinka);
 
             if (logiraniKorisnik == null)
             {
                 //pogresan username i password
-                return new MyAuthInfo(null);
+                return Unauthorized("Incorrect username or password");
             }
 
             //2- generisati random string
@@ -42,16 +47,27 @@ namespace BaseCureAPI.Endpoints.Login
             {
                 IpAdresa = Request.HttpContext.Connection.RemoteIpAddress?.ToString(),
                 Vrijednost = randomString,
+                KorisnikId = logiraniKorisnik.KorisnikId,
                 Korisnik = logiraniKorisnik,
                 VrijemeEvidentiranja = DateTime.Now,
-                Code2f = Guid.NewGuid().ToString()
+                Code2f = Guid.NewGuid().ToString(),
             };
 
+            noviToken.AuthTokenId = 
+                _context.AuthTokens.Any() ? _context.AuthTokens.Max(x => x.AuthTokenId) + 1 : 1;
+
             _context.Add(noviToken);
-            await _context.SaveChangesAsync(cancellationToken);
+            _context.SaveChanges();
 
             //4- vratiti token string
-            return new MyAuthInfo(noviToken);
+            return Ok(noviToken);
+        }
+
+        public class KorisniciDto
+        {
+            public string IpAdresa { get; set; }
+            public string Vrijednost { get; set; }
+            public Guid Korisnik { get; set; }
         }
 
     }

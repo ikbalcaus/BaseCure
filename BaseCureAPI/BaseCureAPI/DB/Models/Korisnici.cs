@@ -7,7 +7,7 @@ namespace BaseCureAPI.DB.Models
     {
         public Korisnici()
         {
-            AuthTokens = new HashSet<AuthToken>();
+            //AuthTokens = new HashSet<AuthToken>();
             Ljekaris = new HashSet<Ljekari>();
             Osobljes = new HashSet<Osoblje>();
             Pacijentis = new HashSet<Pacijenti>();
@@ -23,7 +23,7 @@ namespace BaseCureAPI.DB.Models
         public string? MailAdresa { get; set; }
         public string? Uloga { get; set; }
 
-        public virtual ICollection<AuthToken> AuthTokens { get; set; }
+        //public virtual ICollection<AuthToken> AuthTokens { get; set; }
         public virtual ICollection<Ljekari> Ljekaris { get; set; }
         public virtual ICollection<Osoblje> Osobljes { get; set; }
         public virtual ICollection<Pacijenti> Pacijentis { get; set; }
