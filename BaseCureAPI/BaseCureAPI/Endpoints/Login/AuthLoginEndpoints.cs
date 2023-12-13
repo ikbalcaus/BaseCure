@@ -25,7 +25,7 @@ namespace BaseCureAPI.Endpoints.Login
         {
             if (request == null)
             {
-                return BadRequest("Request data is null");
+                return BadRequest("Došlo je do greške na serveru");
             }
 
             //1- provjera logina
@@ -36,7 +36,7 @@ namespace BaseCureAPI.Endpoints.Login
             if (logiraniKorisnik == null)
             {
                 //pogresan username i password
-                return Unauthorized("Incorrect username or password");
+                return Ok(null);
             }
 
             //2- generisati random string
@@ -69,6 +69,5 @@ namespace BaseCureAPI.Endpoints.Login
             public string Vrijednost { get; set; }
             public Guid Korisnik { get; set; }
         }
-
     }
 }
