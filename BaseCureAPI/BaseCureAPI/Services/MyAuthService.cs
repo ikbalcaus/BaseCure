@@ -16,10 +16,6 @@ namespace BaseCureAPI.Services
             _context = applicationDbContext;
             _httpContextAccessor = httpContextAccessor;
         }
-        public bool JelLogiran()
-        {
-            return GetAuthInfo().IsLogiran;
-        }
 
         public MyAuthInfo GetAuthInfo()
         {
@@ -42,9 +38,6 @@ namespace BaseCureAPI.Services
             [JsonIgnore]
             public Korisnici? Korisnici => AutentifikacijaToken?.Korisnik;
             public AuthToken? AutentifikacijaToken { get; set; }
-
-            public bool IsLogiran => Korisnici != null;
-
         }
     }
 }

@@ -84,15 +84,8 @@ namespace BaseCureAPI.Endpoints.Korisnik
                 HashLozinke = req.HashLozinke
             };
 
-            if (req.ID == 0)
-            {
-                int maxId = _context.Korisnicis.Any() ? _context.Korisnicis.Max(x => x.KorisnikId) + 1 : 1;
-                korisnik.KorisnikId = maxId;
-            }
-            else
-            {
-                korisnik.KorisnikId = req.ID;
-            }
+            korisnik.KorisnikId = _context.Korisnicis.Any() ? _context.Korisnicis.Max(x => x.KorisnikId) + 1 : 1;
+
             _context.Korisnicis.Add(korisnik);
 
             _context.SaveChanges();
@@ -124,6 +117,11 @@ namespace BaseCureAPI.Endpoints.Korisnik
             {
                 return NotFound();
             }
+
+            foreach (var authToken in _context.AuthTokens.Where(x => x.KorisnikId == id).ToList())
+            {
+                _context.AuthTokens.Remove(authToken);
+            };
 
             _context.Korisnicis.Remove(korisnik);
             _context.SaveChanges();

@@ -10,7 +10,7 @@ body {
 .btn, .login, .form-control, .form-check-input, .card, .card-img-top, .card-body {
     border-radius: 3px;
 }
-.btn: active {
+.btn:active {
     border-color: transparent !important;
 }
 .btn-block {
