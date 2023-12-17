@@ -1,6 +1,5 @@
 .main {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
 }
 .items {
@@ -8,12 +7,13 @@
 }
 .card-details {
     width: 37%;
-    height: 560px;
+    height: 550px;
+    background-color: #6464b4;
 }
 .details-text {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
+    font-weight: 500;
 }
 
 @media (max-width: 991px) {

@@ -1,7 +1,7 @@
-<div class="login shadow-sm">
+<div class="login shadow">
     <form #loginForm="ngForm" (submit)="loginUser(loginForm.value)">
         <h3 class="text-center mt-2">Prijavi se</h3>
-        <div class="form-group mt-2">
+        <div class="form-group first-input">
             <label>Korisničko ime:</label>
             <input type="email" class="form-control" name="korisnickoIme" autocomplete="off" ngModel>
         </div>
@@ -13,6 +13,6 @@
             <input type="checkbox" id="checkbox-input" class="form-check-input" name="rememberme" ngModel>
             <label for="checkbox-input">Zapamti me</label>
         </div>
-        <button class="btn btn-info btn-block mt-3">Nastavi</button>
+        <button class="btn btn-primary btn-block mt-3">Nastavi</button>
     </form>
 </div>
