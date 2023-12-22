@@ -10,10 +10,16 @@
     height: 550px;
     background-color: #6464b4;
 }
-.details-text {
+.card-align, .card-column {
     display: flex;
     justify-content: space-between;
-    font-weight: 500;
+}
+.card-img {
+    width: 100px;
+    aspect-ratio: 4/3;
+}
+.price-button {
+    justify-content: end;
 }
 
 @media (max-width: 991px) {
@@ -22,5 +28,14 @@
     }
     .items, .card-details {
         width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    .card-img {
+        width: 30%;
+    }
+    .card-align {
+        flex-direction: column;
     }
 }
