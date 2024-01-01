@@ -1,20 +1,16 @@
 :host {
     display: block;
     height: calc(100vh - 83px);
-    background-image: url("./../../../assets/img/landing-page-background.jpg");
-    background-position: center;
-    background-size: cover;
 }
 .login {
     width: 500px;
-    height: 330px;
-    background-color: rgba(20, 20, 100, 0.4);
+    height: 305px;
     color: white;
     padding: 20px;
     position: relative;
     top: 45%;
-    left: 75%;
-    transform: translate(-75%, -50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .first-input {
     margin-top: 10px;
@@ -22,14 +18,8 @@
 label {
     font-weight: 500;
 }
-
 @media (max-width: 991px) {
-    :host {
-        background-position: right;
-    }
     .login {
-        width: 100%;
-        position: relative;
         width: 330px;
         top: 30%;
         left: 50%;
@@ -39,3 +29,4 @@ label {
         margin-top: 15px;
     }
 }
+
