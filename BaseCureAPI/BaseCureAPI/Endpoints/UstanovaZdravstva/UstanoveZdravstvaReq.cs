@@ -4,5 +4,6 @@
     {
         public int ID { get; set; }
         public string Naziv { get; set; }
+        public string Grad { get; set; }
     }
 }
