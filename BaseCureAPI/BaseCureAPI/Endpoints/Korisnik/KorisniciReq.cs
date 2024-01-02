@@ -1,6 +1,6 @@
-﻿namespace BaseCureAPI.Endpoints.Korisnik.Delete
+﻿namespace BaseCureAPI.Endpoints.Korisnik
 {
-    public class KorisniciDeleteReq
+    public class KorisniciReq
     {
         public int ID { get; set; }
         public string KorisnickoIme { get; set; }
