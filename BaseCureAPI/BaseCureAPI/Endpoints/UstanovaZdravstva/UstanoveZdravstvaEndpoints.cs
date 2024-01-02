@@ -18,68 +18,29 @@ public class UstanoveZdravstvaController : ControllerBase
         _context = context;
     }
 
-    [HttpPost]
+    [HttpPost("create")]
     public ActionResult<int> CreateUstanova([FromBody] UstanoveZdravstvaReq req)
     {
-        UstanoveZdravstva? ustanova;
-
-        if (req.ID == 0)
-        {
-            ustanova = new UstanoveZdravstva();
-            _context.Add(ustanova);
-        }
-        else
-        {
-            ustanova = _context.UstanoveZdravstvas.FirstOrDefault(x => x.UstanovaId == req.ID);
-            if (ustanova == null)
-                throw new Exception("wrong ID");
-        }
-
+        UstanoveZdravstva ustanova = new UstanoveZdravstva();
+        ustanova.UstanovaId = _context.UstanoveZdravstvas.Any() ? _context.UstanoveZdravstvas.Max(x => x.UstanovaId) + 1 : 1;
         ustanova.Naziv = req.Naziv.RemoveTags();
-
+        ustanova.Grad = req.Grad.RemoveTags();
+        _context.UstanoveZdravstvas.Add(ustanova);
         _context.SaveChanges();
-
         return ustanova.UstanovaId;
     }
 
-    [HttpGet]
-    public ActionResult<UstanoveZdravstvaResponseGetAll> GetAllUstanove()
+    [HttpPost("search")]
+    public ActionResult<UstanoveZdravstvaRes> GetUstanova([FromBody] UstanoveZdravstvaReq req)
     {
         var ustanove = _context.UstanoveZdravstvas.OrderByDescending(x => x.UstanovaId)
-                .Select(x => new UstanoveZdravstvaRes()
-                {
-                    UstanovaId = x.UstanovaId,
-                    Naziv = x.Naziv,
-                    Adresa = x.Adresa,
-                    KontaktBroj = x.KontaktBroj,
-                    Email = x.Email,
-                    Grad = x.Grad,
-                }).ToList();
-        return new UstanoveZdravstvaResponseGetAll()
-        {
-            Ustanove = ustanove
-        };
-    }
-
-    [HttpGet("{id}")]
-    public ActionResult<UstanoveZdravstvaRes> GetUstanova(int id)
-    {
-        var ustanova = _context.UstanoveZdravstvas.OrderByDescending(x => x.UstanovaId)
-                .Select(x => new UstanoveZdravstvaRes()
-                {
-                    UstanovaId = x.UstanovaId,
-                    Naziv = x.Naziv,
-                    Adresa = x.Adresa,
-                    KontaktBroj = x.KontaktBroj,
-                    Email = x.Email,
-                    Grad = x.Grad,
-                }).Single(x=> x.UstanovaId == id);
-        if (ustanova == null)
-        {
-            return NotFound();
-        }
-
-        return ustanova;
+            .Where(x => x.Naziv.Contains(req.Naziv) && x.Grad == req.Grad)
+            .Select(x => new UstanoveZdravstvaRes()
+            {
+                Naziv = x.Naziv,
+                Grad = x.Grad,
+            }).ToList();
+        return Ok(ustanove);
     }
 
     [HttpPut("{id}")]
