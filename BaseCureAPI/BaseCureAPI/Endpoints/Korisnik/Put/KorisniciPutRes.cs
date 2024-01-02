@@ -1,8 +1,8 @@
-﻿namespace BaseCureAPI.Endpoints.Korisnik
+﻿namespace BaseCureAPI.Endpoints.Korisnik.Put
 {
-    public class KorisniciRes
+    public class KorisniciPutRes
     {
-        public int KorisnikId { get; set; }
+        //public int KorisnikId { get; set; }
         public string? KorisnickoIme { get; set; }
         public string? HashLozinke { get; set; }
         public string? Ime { get; set; }
@@ -11,10 +11,5 @@
         public DateTime DatumRodjenja { get; set; }
         public string? MailAdresa { get; set; }
         public string? Uloga { get; set; }
-    }
-
-    public class KorisniciGetAllResponse
-    {
-        public List<KorisniciRes> Korisnici { get; set; }
     }
 }
