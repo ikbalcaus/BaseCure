@@ -30,3 +30,6 @@
 .btn-block {
     width: 100%;
 }
+.bg-secondary {
+    background-color: #6464b4 !important;
+}

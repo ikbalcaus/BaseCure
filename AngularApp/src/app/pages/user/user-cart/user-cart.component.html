@@ -4,28 +4,29 @@
       <h4>Vaša korpa</h4>
       <p>Trenutno imate X lijekova za poručiti</p>
       <hr>
-      <div class="card mb-3 shadow-sm" *ngFor="let i of [0,1,2,3,4,5]">
+      <div class="card border-0" *ngFor="let i of [0,1,2,3,4]">
         <div class="card-body">
-          <div class="details-text">
-            <div class="details-text align-items-center">
-              <div>
-                <button class="btn btn-sm"><i class="bi bi-trash fs-5"></i></button>
-              </div>
-              <div class="ms-3">
+          <div class="card-align">
+            <div class="card-column align-items-center">
+              <img src="./../../../assets/img/no-image-avabliable.jpg" class="card-img">
+              <div class="ms-4">
                 <h5>Naziv Lijeka</h5>
-                <p class="small mb-0">Opis Lijeka</p>
+                <p class="small mb-0">Opis lijeka. Opis lijeka. Opis lijeka. Opis lijeka. Opis lijeka. Opis lijeka. Opis lijeka. Opis lijeka.</p>
               </div>
             </div>
-            <div class="details-text align-items-center">
+            <div class="card-column align-items-center justify-content-end">
               <div>
                 <h5 class="mb-0 me-3">10KM</h5>
+              </div>
+              <div>
+                <button class="btn btn-primary">Ukloni</button>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="card-details card text-white mt-4 shadow-lg"> 
+    <div class="card-details card text-white bg-secondary mt-4 shadow-lg"> 
       <form>
         <div class="card-body">
           <h5>Detalji narudžbe</h5>
@@ -47,15 +48,15 @@
             <input type="text" class="form-control shadow-sm">
           </div>
           <hr>
-          <div class="details-text">
+          <div class="card-column">
             <p class="mb-2">Ukupna cijena lijekova:</p>
             <p class="mb-2">10KM</p>
           </div>
-          <div class="details-text">
+          <div class="card-column">
             <p class="mb-2">Dostava:</p>
             <p class="mb-2">2KM</p>
           </div>
-          <div class="details-text">
+          <div class="card-column">
             <p class="mb-2">Ukupno cijena lijekova i dostave:</p>
             <p class="mb-2">12KM</p>
           </div>
