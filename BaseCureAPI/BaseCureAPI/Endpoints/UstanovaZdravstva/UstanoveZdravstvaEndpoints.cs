@@ -34,7 +34,7 @@ public class UstanoveZdravstvaController : ControllerBase
     public ActionResult<UstanoveZdravstvaRes> GetUstanova([FromBody] UstanoveZdravstvaReq req)
     {
         var ustanove = _context.UstanoveZdravstvas.OrderByDescending(x => x.UstanovaId)
-            .Where(x => x.Naziv.Contains(req.Naziv) && x.Grad == req.Grad)
+            .Where(x => x.Naziv.Contains(req.Naziv) && (x.Grad == req.Grad || req.Grad == ""))
             .Select(x => new UstanoveZdravstvaRes()
             {
                 Naziv = x.Naziv,

@@ -25,14 +25,14 @@ export class AuthService {
     }
   }
 
-  loginUser(data: any) {
-    this.httpClient.post<AuthToken>(myCofnig.backendAddress + "/auth/login", data).subscribe(
-      AuthToken => {
-        if(AuthToken == null) {
+  loginUser(req: any) {
+    this.httpClient.post<AuthToken>(myCofnig.backendAddress + "/auth/login", req).subscribe(
+      res => {
+        if(res == null) {
           alert("Pogresan username ili password");
         }
         else {
-          window.localStorage.setItem("auth-token", JSON.stringify(AuthToken));
+          window.localStorage.setItem("auth-token", JSON.stringify(res));
           this.router.navigate(["/korisnik-info"]);
         }
       }
