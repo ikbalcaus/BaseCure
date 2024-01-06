@@ -10,9 +10,9 @@ import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-das
 export const routes: Routes = [
     { path: "", component: LandingPageComponent },
     { path: "pretrazi", component: UserSearchComponent },
+    { path: "pretrazi/:id", component: UserAboutComponent },
     { path: "korpa", component: UserCartComponent },
     { path: "korisnik-info", component: UserInfoComponent },
-    { path: "detalji", component: UserAboutComponent },
     { path: "basecure-admin", component: AdminLoginComponent },
     { path: "basecure-admin/dashboard", component: AdminDashboardComponent },
 ];

@@ -16,6 +16,7 @@ export class UserSearchComponent {
   constructor(private httpClient: HttpClient) {}
 
   req: SearchResults = {
+    ustanovaId: "",
     naziv: "",
     grad: ""
   };
@@ -38,6 +39,7 @@ export class UserSearchComponent {
 }
 
 export interface SearchResults {
+  ustanovaId: string;
   naziv: string;
   grad: string;
 }

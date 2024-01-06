@@ -32,10 +32,9 @@ namespace BaseCureAPI.Endpoints.Korisnik
                     HashLozinke = x.HashLozinke,
                     Ime = x.Ime,
                     Prezime = x.Prezime,
-                    //Adresa = x.Adresa,
-                    //DatumRodjenja = (DateTime)x.DatumRodjenja,
-                    //MailAdresa = x.MailAdresa,
-                    //Uloga = x.Uloga,
+                    Adresa = x.Adresa,
+                    DatumRodjenja = (DateTime)x.DatumRodjenja,
+                    MailAdresa = x.MailAdresa
                 }).ToList();
 
             return new KorisniciGetAllResponse
@@ -50,17 +49,17 @@ namespace BaseCureAPI.Endpoints.Korisnik
         {
 
             var korisnik = _context.Korisnicis.OrderByDescending(x => x.KorisnikId)
+                .Where(x => x.KorisnikId == id)
                 .Select(x => new KorisniciRes()
                 {
                     KorisnickoIme = x.KorisnickoIme,
                     HashLozinke = x.HashLozinke,
                     Ime = x.Ime,
                     Prezime = x.Prezime,
-                    //Adresa = x.Adresa,
-                    //DatumRodjenja = (DateTime)x.DatumRodjenja,
-                    //MailAdresa = x.MailAdresa,
-                    //Uloga = x.Uloga,
-                }).Single(x=>x.KorisnikId == id);
+                    Adresa = x.Adresa,
+                    DatumRodjenja = (DateTime)x.DatumRodjenja,
+                    MailAdresa = x.MailAdresa
+                }).Single();
 
             if (korisnik == null)
             {
