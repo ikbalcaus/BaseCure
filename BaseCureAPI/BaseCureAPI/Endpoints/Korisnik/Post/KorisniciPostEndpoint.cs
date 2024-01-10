@@ -47,4 +47,8 @@ namespace BaseCureAPI.Endpoints.Korisnik.Post
             return Ok(korisnik.KorisnikId);
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> parent of e1da335 (Revert "Segmented Korisnici API routes into individual files")

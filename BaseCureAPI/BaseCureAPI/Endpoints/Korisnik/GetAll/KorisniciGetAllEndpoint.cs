@@ -11,8 +11,12 @@ namespace BaseCureAPI.Endpoints.Korisnik.GetAll
     {
         private readonly BasecureContext _context;
 
+<<<<<<< HEAD
         public KorisniciGetAllEndpoint(BasecureContext context)
         {
+=======
+        public KorisniciGetAllEndpoint(BasecureContext context) { 
+>>>>>>> parent of e1da335 (Revert "Segmented Korisnici API routes into individual files")
             _context = context;
         }
 
@@ -39,4 +43,8 @@ namespace BaseCureAPI.Endpoints.Korisnik.GetAll
             };
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> parent of e1da335 (Revert "Segmented Korisnici API routes into individual files")
