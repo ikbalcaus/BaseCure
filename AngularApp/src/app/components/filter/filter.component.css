@@ -1,10 +1,26 @@
 :host {
     text-align: center;
 }
-.form-control {
-    display: inline;
+.input-result {
+    position: relative;
+    display: inline-block;
     width: 40%;
     margin: 0 2px;
+}
+.filter-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    cursor: default;
+}
+.filter-list-item {
+    display: block;
+    cursor: pointer;
+}
+.filter-list-item:hover {
+    background-color: #eee;
 }
 .btn-filter {
     display: block;

@@ -1,6 +1,12 @@
 <div class="container my-4">
-    <input type="text" class="form-control" placeholder="{{input_text1}}">
-    <input type="text" class="form-control" placeholder="{{input_text2}}">
-    <button class="btn btn-primary btn-filter mt-2">Nastavi</button>
+    <div class="input-result">
+        <input type="text" id="input1" class="form-control" placeholder="{{placeholder1}}" (keyup)="getAutoComplete(1)" autocomplete="off">
+        <ul id="results1" class="filter-list list-group shadow-sm"></ul>
+    </div>
+    <div class="input-result">
+        <input type="text" id="input2" class="form-control" placeholder="{{placeholder2}}" (keyup)="getAutoComplete(2)" autocomplete="off">
+        <ul id="results2" class="filter-list list-group shadow-sm"></ul>
+    </div>
+    <button class="btn btn-primary btn-filter mt-2" (click)="searchSubmit()">Nastavi</button>
     <hr>
 </div>

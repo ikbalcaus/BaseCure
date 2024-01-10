@@ -3,7 +3,6 @@ using BaseCureAPI.DB.Models;
 using System.Collections.Generic;
 using System.Linq;
 using BaseCureAPI.DB;
-using BaseCureAPI.Endpoints.Korisnik;
 using BaseCureAPI.Endpoints.UstanovaZdravstva;
 using BaseCureAPI.Helpers;
 
@@ -16,6 +15,28 @@ public class UstanoveZdravstvaController : ControllerBase
     public UstanoveZdravstvaController(BasecureContext context)
     {
         _context = context;
+    }
+
+    [HttpGet("{id}")]
+    public ActionResult<UstanoveZdravstvaRes> GetUstanovaZdravstva(int id)
+    {
+        var ustanovaZdravstva = _context.UstanoveZdravstvas.OrderByDescending(x => x.UstanovaId)
+            .Where(x => x.UstanovaId == id)
+            .Select(x => new UstanoveZdravstvaRes()
+            {
+                Naziv = x.Naziv,
+                Adresa = x.Adresa,
+                KontaktBroj = x.KontaktBroj,
+                Email = x.Email,
+                Grad = x.Grad
+            }).Single();
+
+        if (ustanovaZdravstva == null)
+        {
+            return NotFound();
+        }
+
+        return ustanovaZdravstva;
     }
 
     [HttpPost("create")]
@@ -34,9 +55,10 @@ public class UstanoveZdravstvaController : ControllerBase
     public ActionResult<UstanoveZdravstvaRes> GetUstanova([FromBody] UstanoveZdravstvaReq req)
     {
         var ustanove = _context.UstanoveZdravstvas.OrderByDescending(x => x.UstanovaId)
-            .Where(x => x.Naziv.Contains(req.Naziv) && x.Grad == req.Grad)
+            .Where(x => x.Naziv.Contains(req.Naziv) && (x.Grad == req.Grad || req.Grad == ""))
             .Select(x => new UstanoveZdravstvaRes()
             {
+                UstanovaId = x.UstanovaId,
                 Naziv = x.Naziv,
                 Grad = x.Grad,
             }).ToList();

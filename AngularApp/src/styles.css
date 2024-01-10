@@ -24,7 +24,7 @@
     background-color: #1976D2 !important;
     border: 1px solid #1976D2 !important;
 }
-.btn, .login, .form-control, .form-check-input, .card, .card-img-top, .card-body {
+.btn, .login, .form-control, .form-check-input, .card, .card-img-top, .card-body, .list-group {
     border-radius: 3px;
 }
 .btn-block {

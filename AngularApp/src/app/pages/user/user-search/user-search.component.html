@@ -1,15 +1,17 @@
 <app-filter
-    input_text1="Naziv zdravstvene institucije"
-    input_text2="Naziv grada"
-    input_link1=""
-    input_link2=""
+    placeholder1="Naziv zdravstvene institucije"
+    placeholder2="Naziv grada"
+    link1=""
+    link2="/gradovi/search/"
+    searchUrl="/pretrazi"
+    (searchOptions)="getSearchResults($any($event))"
 ></app-filter>
 <div class="container cards">
-    <app-card *ngFor="let i of [0,1,2,3,4,5]"
+    <app-card *ngFor="let i of searchResults"
         img="./../../../assets/img/no-image-avabliable.jpg"
-        title="Naziv zdravstvene institucije"
-        description="Neki opis zdravstvene institucije. Neki opis zdravstvene institucije. Neki opis zdravstvene institucije."
+        title="{{i.naziv}}"
+        description="{{i.grad}}"
         btn_text="Pogledaj detalje"
-        btn_link="/detalji"
+        btn_link="/pretrazi/{{i.ustanovaId}}"
     ></app-card>
 </div>

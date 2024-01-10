@@ -19,14 +19,14 @@ export class AdminLoginComponent {
     private router: Router
   ) {}
 
-  loginAdmin(data: any) {
-    this.httpClient.post<AuthToken>(myCofnig.backendAddress + "/auth/admin-login", data).subscribe(
-      AuthToken => {
-        if(AuthToken == null) {
+  loginAdmin(req: any) {
+    this.httpClient.post<AuthToken>(myCofnig.backendAddress + "/auth/admin-login", req).subscribe(
+      res => {
+        if(res == null) {
           alert("Pogresan username ili password");
         }
         else {
-          window.sessionStorage.setItem("auth-token", JSON.stringify(AuthToken));
+          window.sessionStorage.setItem("auth-token", JSON.stringify(res));
           this.router.navigate(["/basecure-admin/dashboard"]);
         }
       }

@@ -24,6 +24,7 @@ namespace BaseCureAPI.Endpoints.Search
 
             var results = _context.Gradovis
                 .Where(g => g.Naziv.Contains(searchTerm))
+                .Select(g => g.Naziv)
                 .Take(5) // Limit the number of results
                 .ToList();
 

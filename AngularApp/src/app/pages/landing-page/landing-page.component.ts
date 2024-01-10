@@ -21,7 +21,7 @@ export class LandingPageComponent {
         if (this.authService.isLogiran()) this.router.navigate(["/korisnik-info"]);
     }
     
-    loginUser(data: any) {
+    formSubmit(data: any) {
         this.authService.loginUser(data);
     }
 }
