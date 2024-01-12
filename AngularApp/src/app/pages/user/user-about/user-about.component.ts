@@ -18,7 +18,7 @@ export class UserAboutComponent {
     private route: ActivatedRoute
   ) {}
 
-  ustanovaZdravstva: UstanovaZdravstva = {
+  res: UstanovaZdravstva = {
     ustanovaId: 0,
     naziv: "",
     //opis: "",
@@ -31,7 +31,7 @@ export class UserAboutComponent {
   ngOnInit() {
     this.httpClient.get<UstanovaZdravstva>(myCofnig.backendAddress + "/ustanveZdravstva/" + this.route.snapshot.paramMap.get("id")).subscribe(
       res => {
-        this.ustanovaZdravstva = res;
+        this.res = res;
       }
     );
   }

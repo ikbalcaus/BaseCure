@@ -7,7 +7,7 @@
     (searchOptions)="getSearchResults($any($event))"
 ></app-filter>
 <div class="container cards">
-    <app-card *ngFor="let i of searchResults"
+    <app-card *ngFor="let i of res"
         img="./../../../assets/img/no-image-avabliable.jpg"
         title="{{i.naziv}}"
         description="{{i.grad}}"
