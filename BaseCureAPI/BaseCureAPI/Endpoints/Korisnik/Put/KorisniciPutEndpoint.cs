@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-﻿﻿using BaseCureAPI.DB;
-=======
 ﻿using BaseCureAPI.DB;
->>>>>>> parent of e1da335 (Revert "Segmented Korisnici API routes into individual files")
 using BaseCureAPI.DB.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -40,8 +36,4 @@ namespace BaseCureAPI.Endpoints.Korisnik.Put
             return NoContent();
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> parent of e1da335 (Revert "Segmented Korisnici API routes into individual files")

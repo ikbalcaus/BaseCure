@@ -32,8 +32,4 @@ namespace BaseCureAPI.Endpoints.Korisnik.Delete
             return NoContent();
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> parent of e1da335 (Revert "Segmented Korisnici API routes into individual files")
