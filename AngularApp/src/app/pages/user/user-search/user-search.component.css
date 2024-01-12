@@ -1,14 +1,6 @@
 .cards {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     margin-bottom: 30px;
-}
-.card {
-    width: 325px;
-    margin: 15px;
-}
-.btn-details {
-    width: 100%;
 }

@@ -2,7 +2,8 @@
 {
     public class UstanoveZdravstvaReq
     {
-        public int ID { get; set; }
+        public int UstanovaId { get; set; }
         public string Naziv { get; set; }
+        public string Grad { get; set; }
     }
 }

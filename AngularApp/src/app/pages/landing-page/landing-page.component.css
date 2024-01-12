@@ -1,6 +1,6 @@
 :host {
     display: block;
-    height: calc(100vh - 87px);
+    height: calc(100vh - 83px);
     background-image: url("./../../../assets/img/landing-page-background.jpg");
     background-position: center;
     background-size: cover;
@@ -8,17 +8,19 @@
 .login {
     width: 500px;
     height: 330px;
-    border: 1px solid #9C9C9C;
-    background-color: #f8f9fa;
+    background-color: rgba(20, 20, 100, 0.4);
+    color: white;
     padding: 20px;
-    border-radius: 6px;
     position: relative;
     top: 45%;
     left: 75%;
     transform: translate(-75%, -50%);
 }
-.btn-block {
-    width: 100%;
+.first-input {
+    margin-top: 10px;
+}
+label {
+    font-weight: 500;
 }
 
 @media (max-width: 991px) {
@@ -26,11 +28,12 @@
         background-position: right;
     }
     .login {
-        width: 100%;
-        position: relative;
         width: 330px;
         top: 30%;
         left: 50%;
         transform: translate(-50%, -30%);
+    }
+    .first-input {
+        margin-top: 15px;
     }
 }

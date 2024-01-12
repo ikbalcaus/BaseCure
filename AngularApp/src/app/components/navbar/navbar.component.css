@@ -1,9 +1,11 @@
 .navbar-brand {
-    font-size: 30px;
-}
-.btn-navbar {
-    padding: 7px 25px;
+    font-size: 27px;
+    font-weight: 500;
 }
 .navbar-link {
     width: 100%;
+    margin: 0 3px;
+}
+.active-link {
+    font-weight: 500;
 }

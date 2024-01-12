@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="mt-4 row d-flex flex-row justify-content-around">
+        <img class="thumbnail rounded shadow mx-4 col-8" src="./../../../assets/img/no-image-avabliable.jpg" alt="Slika">
+        <div class="mx-4 mt-2 col">
+            <h2>{{ustanovaZdravstva.naziv}}</h2>
+            <h6>Some quick example text to build on the card title and make up the bulk of the card's content.</h6>
+            <p class="mt-4">Grad: {{ustanovaZdravstva.grad}}</p>
+            <p>Adresa: {{ustanovaZdravstva.adresa}}</p>
+            <p>Kontakt telefon: {{ustanovaZdravstva.kontaktBroj}}</p>
+            <p>E-mail: {{ustanovaZdravstva.email}}</p>
+            <button class="btn btn-primary">Funkcionalno dugme</button>
+        </div>
+    </div>
+    <iframe
+        class="container location my-4"
+        height="300px"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps/embed/v1/place?key=API_KEY
+        &q=Space+Needle,Seattle+WA">
+    </iframe>
+</div>

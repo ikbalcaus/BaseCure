@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-about',
+  selector: 'app-user-cart',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './about.component.html',
-  styleUrl: './about.component.css'
+  templateUrl: './user-cart.component.html',
+  styleUrl: './user-cart.component.css'
 })
-export class AboutComponent {
+export class UserCartComponent {
 
 }

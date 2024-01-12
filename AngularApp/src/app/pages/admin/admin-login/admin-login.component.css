@@ -1,0 +1,32 @@
+:host {
+    display: block;
+    height: calc(100vh - 83px);
+}
+.login {
+    width: 500px;
+    height: 305px;
+    color: white;
+    padding: 20px;
+    position: relative;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.first-input {
+    margin-top: 10px;
+}
+label {
+    font-weight: 500;
+}
+@media (max-width: 991px) {
+    .login {
+        width: 330px;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -30%);
+    }
+    .first-input {
+        margin-top: 15px;
+    }
+}
+

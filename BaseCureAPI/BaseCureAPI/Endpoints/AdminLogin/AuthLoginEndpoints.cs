@@ -2,25 +2,23 @@
 using BaseCureAPI.DB.Models;
 using BaseCureAPI.Helpers;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using static BaseCureAPI.Services.MyAuthService;
 
 
 namespace BaseCureAPI.Endpoints.Login
 {
     [Route("auth")]
     [ApiController]
-    public class AuthLoginEndpoints : ControllerBase
+    public class AuthAdminLoginEndpoints : ControllerBase
     {
         private readonly BasecureContext _context;
 
-        public AuthLoginEndpoints(BasecureContext context)
+        public AuthAdminLoginEndpoints(BasecureContext context)
         {
             _context = context;
         }
 
         // POST auth/login
-        [HttpPost("login")]
+        [HttpPost("admin-login")]
         public  ActionResult<AuthToken> Obradi([FromBody] AuthLoginReq request)
         {
             if (request == null)
@@ -31,7 +29,7 @@ namespace BaseCureAPI.Endpoints.Login
             //1- provjera logina
             var logiraniKorisnik =  _context.Korisnicis
                 .FirstOrDefault(k =>
-                    k.KorisnickoIme == request.KorisnickoIme && k.HashLozinke == request.Lozinka);
+                    k.KorisnickoIme == request.KorisnickoIme && k.HashLozinke == request.Lozinka && k.Uloga == "admin");
 
             if (logiraniKorisnik == null)
             {

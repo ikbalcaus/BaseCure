@@ -1,24 +1,24 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary p-3">
+<nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm p-3">
   <div class="container-fluid">
     <a class="navbar-brand px-5" routerLink="/">BaseCure</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
+      <ul class="navbar-nav ms-auto me-5">
         <li class="nav-item">
-          <a class="btn btn-light m-1 navbar-link" routerLink="/apoteke">Apoteke</a>
+          <a class="btn navbar-link" routerLink="/pretrazi" routerLinkActive="active-link">Pretraži apoteke/bolnice</a>
         </li>
         <li class="nav-item">
-          <a class="btn btn-light m-1 navbar-link" routerLink="/bolnice-ambulante">Bolnice i ambulante</a>
-        </li>
+          <a class="btn navbar-link" routerLink="/korpa" routerLinkActive="active-link">Pogledaj korpu</a>
         <li class="nav-item">
-          <a class="btn btn-light m-1 navbar-link" routerLink="/poliklinike-oridnacije">Poliklinike i oridnacije</a>
-        </li>
+        <li class="nav-item">
+          <a class="btn navbar-link" routerLink="/korisnik-info" routerLinkActive="active-link">Moje informacije</a>
+        <li class="nav-item">
+        <li class="nav-item ms-3" *ngIf="isLogiran()">
+          <button class="btn navbar-link btn-primary" (click)="logoutUser()">Odjavi se</button>
+        <li class="nav-item">
       </ul>
-      <div>
-        <a class="btn btn-info m-1 navbar-link" routerLink="/korpa">Pogledaj korpu</a>
-      </div>
     </div>
   </div>
 </nav>

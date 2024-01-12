@@ -1,0 +1,17 @@
+<app-filter
+    placeholder1="Naziv zdravstvene institucije"
+    placeholder2="Naziv grada"
+    link1=""
+    link2="/gradovi/search/"
+    searchUrl="/pretrazi"
+    (searchOptions)="getSearchResults($any($event))"
+></app-filter>
+<div class="container cards">
+    <app-card *ngFor="let i of searchResults"
+        img="./../../../assets/img/no-image-avabliable.jpg"
+        title="{{i.naziv}}"
+        description="{{i.grad}}"
+        btn_text="Pogledaj detalje"
+        btn_link="/pretrazi/{{i.ustanovaId}}"
+    ></app-card>
+</div>

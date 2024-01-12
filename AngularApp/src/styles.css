@@ -1,3 +1,35 @@
-body {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+.shadow, .shadow-sm, .shadow-lg {
+    border: none;
+}
+.btn {
+    font-size: 17px;
+}
+.btn:active {
+    border-color: transparent !important;
+}
+.btn-primary {
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 6px 30px;
+    margin-top: 1px;
+    background-color: #3D8AF7;
+    border: 1px solid #3D8AF7;
+}
+.btn-primary:hover {
+    background-color: #1E88E5;
+    border: 1px solid #1E88E5;
+}
+.btn-primary:active {
+    background-color: #1976D2 !important;
+    border: 1px solid #1976D2 !important;
+}
+.btn, .login, .form-control, .form-check-input, .card, .card-img-top, .card-body, .list-group {
+    border-radius: 3px;
+}
+.btn-block {
+    width: 100%;
+}
+.bg-secondary {
+    background-color: #6464b4 !important;
 }
