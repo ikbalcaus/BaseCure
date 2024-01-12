@@ -18,7 +18,7 @@ namespace BaseCureAPI.Endpoints.Korisnik.Post
         }
 
         [HttpPost]
-        public ActionResult<int> CreateKorisnik([FromBody] KorisniciPostReq req)
+        public IActionResult CreateKorisnik([FromBody] KorisniciPostReq req)
         {
 
             if (req == null)
@@ -44,7 +44,7 @@ namespace BaseCureAPI.Endpoints.Korisnik.Post
 
             _context.SaveChanges();
 
-            return Ok(korisnik.KorisnikId);
+            return NoContent();
         }
     }
 }
