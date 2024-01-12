@@ -1,4 +1,4 @@
-﻿using BaseCureAPI.DB;
+using BaseCureAPI.DB;
 using BaseCureAPI.DB.Models;
 using BaseCureAPI.Helpers;
 using Microsoft.AspNetCore.Mvc;

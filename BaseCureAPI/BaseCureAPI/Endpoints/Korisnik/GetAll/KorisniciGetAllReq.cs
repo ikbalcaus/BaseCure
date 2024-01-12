@@ -1,7 +1,8 @@
-namespace BaseCureAPI.Endpoints.Korisnik
+﻿namespace BaseCureAPI.Endpoints.Korisnik.GetAll
 {
-    public class KorisniciReq
+    public class KorisniciAllReq
     {
+        public int ID { get; set; }
         public string KorisnickoIme { get; set; }
         public string HashLozinke { get; set; }
         public string Ime { get; set; }
