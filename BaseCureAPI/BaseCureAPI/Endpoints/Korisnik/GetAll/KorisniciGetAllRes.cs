@@ -13,7 +13,7 @@
         public string? Uloga { get; set; }
     }
 
-    public class KorisniciGetAllResponse
+    public class KorisniciGetAllResList
     {
         public List<KorisniciGetAllRes> Korisnici { get; set; }
     }

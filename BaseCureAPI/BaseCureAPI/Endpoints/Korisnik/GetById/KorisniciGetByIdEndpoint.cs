@@ -18,11 +18,11 @@ namespace BaseCureAPI.Endpoints.Korisnik.GetById
         }
 
         [HttpGet("{id}")]
-        public ActionResult<KorisniciGetByIdRes> GetKorisnik(int id)
+        public ActionResult<KorisniciGetByIdRes> GetKorisnik([FromRoute] KorisniciGetByIdReq req)
         {
             var korisnikEntity = _context.Korisnicis
                 .OrderByDescending(x => x.KorisnikId)
-                .FirstOrDefault(x => x.KorisnikId == id);
+                .FirstOrDefault(x => x.KorisnikId == req.id);
 
             if (korisnikEntity == null)
             {

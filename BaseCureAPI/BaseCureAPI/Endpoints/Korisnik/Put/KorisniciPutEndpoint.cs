@@ -18,17 +18,17 @@ namespace BaseCureAPI.Endpoints.Korisnik.Put
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateKorisnik(int id, [FromBody] KorisniciPutRes korisnikRes)
+        public IActionResult UpdateKorisnik(int id, [FromBody] KorisniciPutReq korisnikReq)
         {
             var korisnik = _context.Korisnicis.Find(id);
             if (korisnik == null)
             {
                 return NotFound();
             }
-            korisnik.KorisnickoIme = korisnikRes.KorisnickoIme;
-            korisnik.HashLozinke = korisnikRes.HashLozinke;
-            korisnik.Ime = korisnikRes.Ime;
-            korisnik.Prezime = korisnikRes.Prezime;
+            korisnik.KorisnickoIme = korisnikReq.KorisnickoIme;
+            korisnik.HashLozinke = korisnikReq.HashLozinke;
+            korisnik.Ime = korisnikReq.Ime;
+            korisnik.Prezime = korisnikReq.Prezime;
             // Update other properties as needed
 
             _context.SaveChanges();
