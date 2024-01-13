@@ -6,6 +6,7 @@ import { UserAboutComponent } from './pages/user/user-about/user-about.component
 import { UserInfoComponent } from './pages/user/user-info/user-info.component';
 import { AdminLoginComponent } from './pages/admin/admin-login/admin-login.component';
 import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
+import { MedicalInstitutionCartonComponent } from './pages/medical-institution/medical-institution-carton/medical-institution-carton.component';
 
 export const routes: Routes = [
     { path: "", component: LandingPageComponent },
@@ -15,4 +16,5 @@ export const routes: Routes = [
     { path: "korisnik-info", component: UserInfoComponent },
     { path: "basecure-admin", component: AdminLoginComponent },
     { path: "basecure-admin/dashboard", component: AdminDashboardComponent },
+    { path: "medicinska-institucija/karton", component: MedicalInstitutionCartonComponent }
 ];
