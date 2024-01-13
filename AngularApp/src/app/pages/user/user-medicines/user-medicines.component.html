@@ -1,0 +1,20 @@
+<app-filter
+  placeholder1="Naziv lijeka"
+  placeholder2="Opis lijeka"
+></app-filter>
+<div class="items">
+  <app-item-list *ngFor="let i of [0,1,2,3,4]"
+      name="Naziv Lijeka"
+      description="Opis Lijeka. Opis Lijeka. Opis Lijeka. Opis Lijeka."
+      price="10KM"
+  ></app-item-list>
+</div>
+<ul class="pagination mt-3 mb-4">
+  <li class="page-item"><a class="page-link"><span>&laquo;</span></a></li>
+  <li class="page-item"><a class="page-link">1</a></li>
+  <li class="page-item"><a class="page-link">2</a></li>
+  <li class="page-item"><a class="page-link">3</a></li>
+  <li class="page-item"><a class="page-link">4</a></li>
+  <li class="page-item"><a class="page-link">5</a></li>
+  <li class="page-item"><a class="page-link"><span>&raquo;</span></a></li>
+</ul>
