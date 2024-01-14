@@ -26,7 +26,6 @@ export class FilterComponent {
   @Output() searchOptions = new EventEmitter<Array<string>>();
 
   getAutoComplete(filter: number) {
-
     if(filter == 1) this.input="input1", this.link=this.link1, this.resultsList="results1";
     else this.input="input2", this.link=this.link2, this.resultsList="results2";
 

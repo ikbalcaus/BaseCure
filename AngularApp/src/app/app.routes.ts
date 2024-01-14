@@ -7,11 +7,13 @@ import { UserInfoComponent } from './pages/user/user-info/user-info.component';
 import { AdminLoginComponent } from './pages/admin/admin-login/admin-login.component';
 import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
 import { MedicalInstitutionCartonComponent } from './pages/medical-institution/medical-institution-carton/medical-institution-carton.component';
+import { UserMedicinesComponent } from './pages/user/user-medicines/user-medicines.component';
 
 export const routes: Routes = [
     { path: "", component: LandingPageComponent },
     { path: "pretrazi", component: UserSearchComponent },
     { path: "pretrazi/:id", component: UserAboutComponent },
+    { path: "lijekovi", component: UserMedicinesComponent },
     { path: "korpa", component: UserCartComponent },
     { path: "korisnik-info", component: UserInfoComponent },
     { path: "basecure-admin", component: AdminLoginComponent },

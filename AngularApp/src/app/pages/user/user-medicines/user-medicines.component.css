@@ -1,0 +1,14 @@
+.items {
+    width: 80%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.pagination {
+    justify-content: center;
+    cursor: pointer;
+}
+.pagination li a {
+    color: black;
+    text-align: center;
+}

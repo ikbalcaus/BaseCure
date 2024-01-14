@@ -13,6 +13,8 @@ export class CardComponent {
     @Input() img: string = "";
     @Input() title: string = "";
     @Input() description: string = "";
-    @Input() btn_text: string = "";
-    @Input() btn_link: string = "";
+    @Input() btn_text1: string = "";
+    @Input() btn_link1: string = "";
+    @Input() btn_text2: string = "";
+    @Input() btn_link2: string = "";
 }

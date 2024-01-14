@@ -9,16 +9,9 @@
     width: 37%;
     height: 550px;
 }
-.card-align, .card-column {
+.card-column {
     display: flex;
     justify-content: space-between;
-}
-.card-img {
-    width: 100px;
-    aspect-ratio: 4/3;
-}
-.price-button {
-    justify-content: end;
 }
 
 @media (max-width: 991px) {
@@ -27,14 +20,5 @@
     }
     .items, .card-details {
         width: 100%;
-    }
-}
-
-@media (max-width: 767px) {
-    .card-img {
-        width: 30%;
-    }
-    .card-align {
-        flex-direction: column;
     }
 }

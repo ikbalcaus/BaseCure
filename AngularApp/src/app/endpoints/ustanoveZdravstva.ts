@@ -1,5 +1,5 @@
 export interface UstanovaZdravstva {
-    ustanovaId: number;
+    ustanovaId?: number;
     naziv?: string;
     adresa?: string;
     kontaktBroj?: string;

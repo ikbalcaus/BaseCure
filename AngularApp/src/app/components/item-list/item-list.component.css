@@ -1,0 +1,17 @@
+.card-align, .card-column {
+    display: flex;
+    justify-content: space-between;
+}
+.card-img {
+    width: 100px;
+    aspect-ratio: 4/3;
+}
+
+@media (max-width: 767px) {
+    .card-img {
+        width: 30%;
+    }
+    .card-align {
+        flex-direction: column;
+    }
+}
