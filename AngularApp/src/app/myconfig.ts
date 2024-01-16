@@ -1,3 +1,3 @@
 export class myCofnig {
-    static backendAddress = "https://localhost:7174";
+    static backendAddress = "https://localhost:44357";
 }
