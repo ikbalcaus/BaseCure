@@ -27,7 +27,7 @@ export class AdminLoginComponent {
         }
         else {
           window.sessionStorage.setItem("auth-token", JSON.stringify(res));
-          this.router.navigate(["/basecure-admin/dashboard"]);
+          this.router.navigateByUrl("/basecure-admin/dashboard");
         }
       }
     );
