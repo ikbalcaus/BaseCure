@@ -29,7 +29,7 @@
 .btn-secondary {
     background-color: #ebebeb !important;
     border: 1px solid #ebebeb !important;
-    color: #000 !important;
+    color: black !important;
     box-shadow: 0 .06rem .25rem rgba(0, 0, 0, .075) !important;
 }
 .btn-secondary:hover {
@@ -46,6 +46,10 @@
 .btn-block {
     width: 100%;
 }
-.bg-secondary {
+.bg-primary {
     background-color: #6464b4 !important;
+    color: white;
+}
+.bg-secondary{
+    background-color: #ebebeb !important;
 }
