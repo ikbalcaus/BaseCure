@@ -11,4 +11,5 @@ export class ItemListComponent {
   @Input() name = "";
   @Input() description = "";
   @Input() price = "";
+  @Input() btnText = "";
 }

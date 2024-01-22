@@ -18,7 +18,7 @@ export class LandingPageComponent {
     ) {}
 
     ngOnInit() {
-        if (this.authService.isLogiran()) this.router.navigate(["/korisnik-info"]);
+        if (this.authService.isLogiran()) this.router.navigateByUrl("/korisnik-info");
     }
     
     formSubmit(data: any) {

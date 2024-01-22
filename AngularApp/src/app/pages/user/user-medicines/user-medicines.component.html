@@ -2,11 +2,12 @@
   placeholder1="Naziv lijeka"
   placeholder2="Opis lijeka"
 ></app-filter>
-<div class="items">
+<div class="container">
   <app-item-list *ngFor="let i of [0,1,2,3,4]"
       name="Naziv Lijeka"
       description="Opis Lijeka. Opis Lijeka. Opis Lijeka. Opis Lijeka."
       price="10KM"
+      btnText="Dodaj u korpu"
   ></app-item-list>
 </div>
 <ul class="pagination mt-3 mb-4">

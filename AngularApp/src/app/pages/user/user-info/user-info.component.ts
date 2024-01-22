@@ -16,7 +16,7 @@ export class UserInfoComponent {
   ) {}
 
   ngOnInit() {
-    if (!this.authService.isLogiran()) this.router.navigate(["/"]);
+    if (!this.authService.isLogiran()) this.router.navigateByUrl("/");
   }
 
   username: string | undefined = this.authService.getAuthToken()?.korisnik?.korisnickoIme;

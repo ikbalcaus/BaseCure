@@ -12,6 +12,6 @@ export class AdminDashboardComponent {
   constructor(private router: Router) {}
 
   ngOnInit() {
-    if(window.sessionStorage.getItem("auth-token") == null) this.router.navigate(["/basecure-admin"]);
+    if(window.sessionStorage.getItem("auth-token") == null) this.router.navigateByUrl("/basecure-admin");
   }
 }

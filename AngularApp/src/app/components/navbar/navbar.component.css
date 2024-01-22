@@ -1,11 +1,33 @@
+.navbar {
+    padding: 11px 10% 11px 5%;
+}
 .navbar-brand {
     font-size: 27px;
     font-weight: 500;
 }
 .navbar-link {
-    width: 100%;
-    margin: 0 3px;
+    margin: 0 10px;
+    text-transform: uppercase;
+    font-size: 14.3px;
+    font-weight: 500;
 }
 .active-link {
-    font-weight: 500;
+    background-color: #ebebeb;
+    box-shadow: 0 .06rem .25rem rgba(0, 0, 0, .075);
+}
+
+@media (max-width: 1199px) {
+    .navbar {
+        padding: 11px 20px 11px 0;
+    }
+    .navbar-nav {
+        margin-top: 15px;
+    }
+    .navbar-link {
+        width: 100%;
+        max-width: 400px;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%);
+    }
 }

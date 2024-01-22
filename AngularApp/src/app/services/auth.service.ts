@@ -33,7 +33,7 @@ export class AuthService {
         }
         else {
           window.localStorage.setItem("auth-token", JSON.stringify(res));
-          this.router.navigate(["/korisnik-info"]);
+          this.router.navigateByUrl("/korisnik-info");
         }
       }
     );
@@ -41,6 +41,6 @@ export class AuthService {
 
   logoutUser() {
     window.localStorage.removeItem("auth-token");
-    this.router.navigate(["/"]);
+    this.router.navigateByUrl("/");
   }
 }
