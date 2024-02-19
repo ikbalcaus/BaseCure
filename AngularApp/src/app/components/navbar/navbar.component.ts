@@ -13,8 +13,8 @@ import { AuthService } from '../../services/auth.service';
 export class NavbarComponent {
     constructor(private authService: AuthService) {}
 
-    isLogiran() {
-        return this.authService.isLogiran();
+    isLoggedIn() {
+        return this.authService.isLoggedIn();
     }
 
     logoutUser() {

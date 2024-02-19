@@ -14,7 +14,7 @@
       <li class="nav-item">
         <a class="btn navbar-link" routerLink="/korisnik-info" routerLinkActive="active-link">Moje informacije</a>
       <li class="nav-item">
-      <li class="nav-item ms-3" *ngIf="isLogiran()">
+      <li class="nav-item" *ngIf="isLoggedIn()">
         <button class="btn navbar-link btn-primary" (click)="logoutUser()">Odjavi se</button>
       <li class="nav-item">
     </ul>
