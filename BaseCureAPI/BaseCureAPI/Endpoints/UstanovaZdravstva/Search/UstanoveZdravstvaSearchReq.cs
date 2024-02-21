@@ -1,6 +1,6 @@
-﻿namespace BaseCureAPI.Endpoints.UstanovaZdravstva
+﻿namespace BaseCureAPI.Endpoints.UstanovaZdravstva.Search
 {
-    public class UstanoveZdravstvaReq
+    public class UstanoveZdravstvaSearchReq
     {
         public int UstanovaId { get; set; }
         public string Naziv { get; set; }
