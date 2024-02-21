@@ -3,7 +3,6 @@ using BaseCureAPI.DB.Models;
 using BaseCureAPI.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using static BaseCureAPI.Services.MyAuthService;
 
 
 namespace BaseCureAPI.Endpoints.Login

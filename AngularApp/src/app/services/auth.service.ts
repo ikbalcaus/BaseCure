@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { AuthToken } from "../endpoints/authToken";
 import { myCofnig } from "../myconfig";
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 
 export class AuthService {
   constructor(
@@ -18,7 +18,7 @@ export class AuthService {
 
   getAuthToken(): AuthToken | null {
     try {
-      return JSON.parse(window.localStorage.getItem("auth-token") ?? "");
+      return JSON.parse(window.localStorage.getItem("auth-token") || "");
     }
     catch(error) {
       return null;
