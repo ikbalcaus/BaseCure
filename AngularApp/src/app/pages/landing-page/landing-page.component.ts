@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
+import { LoginRedirectService } from '../../services/login-redirect.service';
 
 @Component({
     selector: 'app-landing-page',
@@ -14,13 +15,13 @@ import { AuthService } from '../../services/auth.service';
 export class LandingPageComponent {
     constructor(
         private authService: AuthService,
-        private router: Router
+        private loginRedirectService: LoginRedirectService
     ) {}
 
     ngOnInit() {
-        if (this.authService.isLogiran()) this.router.navigateByUrl("/korisnik-info");
+        this.loginRedirectService.redirect();
     }
-    
+
     formSubmit(data: any) {
         this.authService.loginUser(data);
     }

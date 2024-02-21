@@ -12,7 +12,7 @@ export class AuthService {
     private router: Router
   ) {}
 
-  isLogiran(): boolean {
+  isLoggedIn() {
     return window.localStorage.getItem("auth-token") != null;
   }
 
@@ -26,7 +26,7 @@ export class AuthService {
   }
 
   loginUser(req: any) {
-    this.httpClient.post<AuthToken>(myCofnig.backendAddress + "/auth/login", req).subscribe(
+    this.httpClient.post(myCofnig.backendAddress + "/auth/login", req).subscribe(
       res => {
         if(res == null) {
           alert("Pogresan username ili password");

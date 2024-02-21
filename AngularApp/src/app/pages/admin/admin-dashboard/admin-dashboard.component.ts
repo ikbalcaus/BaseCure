@@ -9,9 +9,6 @@ import { Router } from '@angular/router';
   styleUrl: './admin-dashboard.component.css'
 })
 export class AdminDashboardComponent {
-  constructor(private router: Router) {}
+  constructor() {}
 
-  ngOnInit() {
-    if(window.sessionStorage.getItem("auth-token") == null) this.router.navigateByUrl("/basecure-admin");
-  }
 }

@@ -16,12 +16,12 @@ import { UstanovaZdravstva } from '../../../endpoints/ustanoveZdravstva';
 export class UserSearchComponent {
   constructor(private httpClient: HttpClient) {}
 
+  req: UstanovaZdravstva = { naziv: "", grad: "" };
+  res: Array<UstanovaZdravstva> = [];
+
   ngOnInit() {
     this.getSearchResults(["", ""])
   }
-
-  req: UstanovaZdravstva = { naziv: "", grad: "" };
-  res: Array<UstanovaZdravstva> = [];
 
   getSearchResults($event: Array<string>) {
     this.req.naziv = $event[0];
