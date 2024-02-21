@@ -18,7 +18,7 @@ namespace BaseCureAPI.Endpoints.Korisnik.Post
         }
 
         [HttpPost]
-        public IActionResult CreateKorisnik([FromBody] KorisniciPostReq req)
+        public ActionResult CreateKorisnik([FromBody] KorisniciPostReq req)
         {
 
             if (req == null)

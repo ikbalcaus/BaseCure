@@ -16,7 +16,7 @@ namespace BaseCureAPI.Endpoints.Search
         }
 
         [HttpGet("{searchTerm}")]
-        public IActionResult GetSearchResult(string searchTerm) {
+        public ActionResult GetSearchResult(string searchTerm) {
             if (string.IsNullOrWhiteSpace(searchTerm))
             {
                 return BadRequest("Search term is required.");
