@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { myCofnig } from '../../myconfig';
+import { backendSettings } from '../../backend-settings';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -31,7 +31,7 @@ export class FilterComponent {
 
     if((<HTMLInputElement>document.getElementById(this.input)).value == "") document.getElementById(this.resultsList)!.innerText = "";
     if((<HTMLInputElement>document.getElementById(this.input)).value != "" && this.link != "") {
-      this.httpClient.get<Array<string>>(myCofnig.backendAddress + this.link + (<HTMLInputElement>document.getElementById(this.input)).value).subscribe(
+      this.httpClient.get<Array<string>>(backendSettings.address + this.link + (<HTMLInputElement>document.getElementById(this.input)).value).subscribe(
         res => {
           document.getElementById(this.resultsList)!.innerText = "";
           for(let i of res) {

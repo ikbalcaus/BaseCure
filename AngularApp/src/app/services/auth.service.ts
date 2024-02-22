@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { AuthToken } from "../endpoints/authToken";
-import { myCofnig } from "../myconfig";
+import { backendSettings } from "../backend-settings";
 
 @Injectable({ providedIn: 'root' })
 
@@ -25,8 +25,8 @@ export class AuthService {
     }
   }
 
-  loginUser(req: any) {
-    this.httpClient.post(myCofnig.backendAddress + "/auth/login", req).subscribe(
+  loginUser(authRoute: string, req: any) {
+    this.httpClient.post(backendSettings.address + authRoute, req).subscribe(
       res => {
         if(res == null) {
           alert("Pogresan username ili password");

@@ -9,10 +9,12 @@ export class LoginRedirectService {
     private authService: AuthService,
     private router: Router
   ) {}
-
-  redirect() {
+  
+  canActivate(): boolean {
+    if(!this.authService.isLoggedIn()) {
+      return true;
+    }
     let role = this.authService.getAuthToken()?.korisnik?.uloga;
-
     if(role == "korisnik") {
       this.router.navigateByUrl("/pretrazi");
     }
@@ -22,5 +24,6 @@ export class LoginRedirectService {
     else if(role == "admin") {
       this.router.navigateByUrl("/basecure-admin/dashboard");
     }
+    return false;
   }
 }
