@@ -40,7 +40,7 @@
     background-color: #d0d0d0 !important;
     border: 1px solid #d0d0d0 !important;
 }
-.btn, .login, .form-control, .form-check-input, .card, .card-img-top, .card-body, .list-group, .alert {
+.btn, .login, .form-control, .form-check-input, .card, .card-img-top, .card-body, .alert {
     border-radius: 3px;
 }
 .btn-block {

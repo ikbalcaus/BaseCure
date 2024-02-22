@@ -17,40 +17,40 @@ export class FilterComponent {
 
   @Input() placeholder1 = "";
   @Input() placeholder2 = "";
-  link = "";
   @Input() link1 = "";
   @Input() link2 = "";
   @Input() searchUrl = "";
-  input = "";
-  resultsList = "";
   @Output() searchOptions = new EventEmitter<Array<string>>();
+  inputValue1: string = "";
+  inputValue2: string = "";
+  filteredList1: Array<string> = [];
+  filteredList2: Array<string> = [];
 
-  getAutoComplete(filter: number) {
-    if(filter == 1) this.input="input1", this.link=this.link1, this.resultsList="results1";
-    else this.input="input2", this.link=this.link2, this.resultsList="results2";
+  getAutoComplete1() {
+    if(!this.inputValue1) this.filteredList1 = [];
+    this.httpClient.get<Array<string>>(backendSettings.address + this.link1 + (this.inputValue1)).subscribe(
+      res => { this.filteredList1 = res }
+    );
+  }
 
-    if((<HTMLInputElement>document.getElementById(this.input)).value == "") document.getElementById(this.resultsList)!.innerText = "";
-    if((<HTMLInputElement>document.getElementById(this.input)).value != "" && this.link != "") {
-      this.httpClient.get<Array<string>>(backendSettings.address + this.link + (<HTMLInputElement>document.getElementById(this.input)).value).subscribe(
-        res => {
-          document.getElementById(this.resultsList)!.innerText = "";
-          for(let i of res) {
-            document.getElementById(this.resultsList)!.innerHTML += `
-              <li class='list-group-item p-1' style="cursor: pointer"
-                onmouseover="this.style.backgroundColor='#eee'"
-                onmouseout="this.style.backgroundColor='#fff'"
-                onclick="document.getElementById('${this.resultsList}').innerText=''; document.getElementById('${this.input}').value=this.innerText"
-              >${i}</li>`;
-          }
-        }
-      );
-    }
+  getAutoComplete2() {
+    if(!this.inputValue2) this.filteredList2 = [];
+    this.httpClient.get<Array<string>>(backendSettings.address + this.link2 + (this.inputValue2)).subscribe(
+      res => { this.filteredList2 = res }
+    );
+  }
+
+  setValue1(value: string) {
+    this.inputValue1 = value;
+    this.filteredList1 = [];
+  }
+
+  setValue2(value: string) {
+    this.inputValue2 = value;
+    this.filteredList2 = [];
   }
 
   searchSubmit() {
-    this.searchOptions.emit([
-      (<HTMLInputElement>document.getElementById("input1")).value,
-      (<HTMLInputElement>document.getElementById("input2")).value
-    ]);
+    this.searchOptions.emit([this.inputValue1, this.inputValue2]);
   }
 }

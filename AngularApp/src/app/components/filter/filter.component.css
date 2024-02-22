@@ -7,20 +7,22 @@
     width: 40%;
     margin: 0 2px;
 }
-.filter-list {
+.list-group {
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
     z-index: 1;
-    cursor: default;
+    list-style: none;
+    background-color: white;
+    border-radius: 3px;
 }
-.filter-list-item {
-    display: block;
+.filter-item {
     cursor: pointer;
+    border-radius: 3px;
 }
-.filter-list-item:hover {
-    background-color: #eee;
+.filter-item:hover {
+    background-color: #ebebeb;
 }
 .btn-filter {
     display: block;
