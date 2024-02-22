@@ -1,4 +1,7 @@
 <app-navbar></app-navbar>
+
+<div *ngIf="alert.color && alert.message" class="alert alert-{{alert.color}} shadow-sm">{{alert.message}}</div>
+
 <div [@routerTransition]="prepareRoute(outlet)">
     <router-outlet #outlet="outlet"></router-outlet>
 </div>

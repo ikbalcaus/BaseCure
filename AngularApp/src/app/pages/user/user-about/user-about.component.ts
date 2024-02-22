@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { UstanovaZdravstva } from '../../../endpoints/ustanoveZdravstva';
 import { backendSettings } from '../../../backend-settings';
 
 @Component({

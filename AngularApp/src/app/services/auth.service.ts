@@ -3,13 +3,15 @@ import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { AuthToken } from "../endpoints/authToken";
 import { backendSettings } from "../backend-settings";
+import { AlertService } from "./alert.service";
 
 @Injectable({ providedIn: 'root' })
 
 export class AuthService {
   constructor(
     private httpClient: HttpClient,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService
   ) {}
 
   isLoggedIn() {
@@ -29,7 +31,7 @@ export class AuthService {
     this.httpClient.post(backendSettings.address + authRoute, req).subscribe(
       res => {
         if(res == null) {
-          alert("Pogresan username ili password");
+          this.alertService.setAlert("danger", "Korisnik ne postoji");
         }
         else {
           window.localStorage.setItem("auth-token", JSON.stringify(res));
