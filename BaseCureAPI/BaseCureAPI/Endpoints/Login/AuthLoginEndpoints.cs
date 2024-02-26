@@ -3,7 +3,6 @@ using BaseCureAPI.DB.Models;
 using BaseCureAPI.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using static BaseCureAPI.Services.MyAuthService;
 
 
 namespace BaseCureAPI.Endpoints.Login
@@ -19,30 +18,25 @@ namespace BaseCureAPI.Endpoints.Login
             _context = context;
         }
 
-        // POST auth/login
         [HttpPost("login")]
-        public  ActionResult<AuthToken> Obradi([FromBody] AuthLoginReq request)
+        public ActionResult Obradi([FromBody] AuthLoginReq request)
         {
             if (request == null)
             {
                 return BadRequest("Došlo je do greške na serveru");
             }
 
-            //1- provjera logina
-            var logiraniKorisnik =  _context.Korisnicis
+            var logiraniKorisnik = _context.Korisnicis
                 .FirstOrDefault(k =>
                     k.KorisnickoIme == request.KorisnickoIme && k.HashLozinke == request.Lozinka);
 
             if (logiraniKorisnik == null)
             {
-                //pogresan username i password
                 return Ok(null);
             }
 
-            //2- generisati random string
             string randomString = TokenGen.Generate(10);
 
-            //3- dodati novi zapis u tabelu AutentifikacijaToken za logiraniKorisnikId i randomString
             var noviToken = new AuthToken()
             {
                 IpAdresa = Request.HttpContext.Connection.RemoteIpAddress?.ToString(),
@@ -59,15 +53,7 @@ namespace BaseCureAPI.Endpoints.Login
             _context.Add(noviToken);
             _context.SaveChanges();
 
-            //4- vratiti token string
             return Ok(noviToken);
-        }
-
-        public class KorisniciDto
-        {
-            public string IpAdresa { get; set; }
-            public string Vrijednost { get; set; }
-            public Guid Korisnik { get; set; }
         }
     }
 }

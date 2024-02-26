@@ -16,7 +16,7 @@ namespace BaseCureAPI.Endpoints.Korisnik.GetAll
         }
 
         [HttpGet]
-        public ActionResult<KorisniciGetAllResList> Get()
+        public ActionResult Get()
         {
             var korisnik = _context.Korisnicis.OrderByDescending(x => x.KorisnikId)
                 .Select(x => new KorisniciGetAllRes()
@@ -32,10 +32,10 @@ namespace BaseCureAPI.Endpoints.Korisnik.GetAll
                     //Uloga = x.Uloga,
                 }).ToList();
 
-            return new KorisniciGetAllResList
+            return Ok(new KorisniciGetAllResList
             {
                 Korisnici = korisnik
-            };
+            });
         }
     }
 }

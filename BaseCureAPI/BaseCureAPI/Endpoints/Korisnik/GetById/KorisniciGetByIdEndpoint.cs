@@ -18,7 +18,7 @@ namespace BaseCureAPI.Endpoints.Korisnik.GetById
         }
 
         [HttpGet("{id}")]
-        public ActionResult<KorisniciGetByIdRes> GetKorisnik([FromRoute] KorisniciGetByIdReq req)
+        public ActionResult GetKorisnik([FromRoute] KorisniciGetByIdReq req)
         {
             var korisnikEntity = _context.Korisnicis
                 .OrderByDescending(x => x.KorisnikId)
@@ -46,7 +46,7 @@ namespace BaseCureAPI.Endpoints.Korisnik.GetById
                 return NotFound();
             }
 
-            return korisnik;
+            return Ok(korisnik);
         }
     }
 }

@@ -15,7 +15,7 @@ builder.Services.AddDbContext<BasecureContext>(options =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddTransient<MyAuthService>();
+builder.Services.AddTransient<AuthService>();
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();

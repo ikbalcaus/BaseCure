@@ -1,11 +1,15 @@
 <div class="container my-4">
     <div class="input-result">
-        <input type="text" id="input1" class="form-control" placeholder="{{placeholder1}}" (keyup)="getAutoComplete(1)" autocomplete="off">
-        <ul id="results1" class="filter-list list-group shadow-sm"></ul>
+        <input type="text" class="form-control" [(ngModel)]="inputValue1" placeholder="{{placeholder1}}" (input)="getAutoComplete1()" autocomplete="off">
+        <ul class="list-group p-1 shadow-sm" *ngIf="filteredList1.length > 0">
+            <li *ngFor="let item of filteredList1" class="filter-item p-1" (click)="setValue1(item)">{{item}}</li>
+        </ul>
     </div>
     <div class="input-result">
-        <input type="text" id="input2" class="form-control" placeholder="{{placeholder2}}" (keyup)="getAutoComplete(2)" autocomplete="off">
-        <ul id="results2" class="filter-list list-group shadow-sm"></ul>
+        <input type="text" class="form-control" [(ngModel)]="inputValue2" placeholder="{{placeholder2}}" (input)="getAutoComplete2()" autocomplete="off">
+        <ul class="list-group p-1 shadow-sm" *ngIf="filteredList2.length > 0">
+            <li *ngFor="let item of filteredList2" class="filter-item p-1" (click)="setValue2(item)">{{item}}</li>
+        </ul>
     </div>
     <button class="btn btn-primary btn-filter mt-2" (click)="searchSubmit()">Nastavi</button>
     <hr>

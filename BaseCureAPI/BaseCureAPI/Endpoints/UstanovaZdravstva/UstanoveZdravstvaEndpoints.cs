@@ -18,7 +18,7 @@ public class UstanoveZdravstvaController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public ActionResult<UstanoveZdravstvaRes> GetUstanovaZdravstva(int id)
+    public ActionResult GetUstanovaZdravstva(int id)
     {
         var ustanovaZdravstva = _context.UstanoveZdravstvas.OrderByDescending(x => x.UstanovaId)
             .Where(x => x.UstanovaId == id)
@@ -36,11 +36,11 @@ public class UstanoveZdravstvaController : ControllerBase
             return NotFound();
         }
 
-        return ustanovaZdravstva;
+        return Ok(ustanovaZdravstva);
     }
 
     [HttpPost("create")]
-    public ActionResult<int> CreateUstanova([FromBody] UstanoveZdravstvaReq req)
+    public ActionResult CreateUstanova([FromBody] UstanoveZdravstvaReq req)
     {
         UstanoveZdravstva ustanova = new UstanoveZdravstva();
         ustanova.UstanovaId = _context.UstanoveZdravstvas.Any() ? _context.UstanoveZdravstvas.Max(x => x.UstanovaId) + 1 : 1;
@@ -48,14 +48,14 @@ public class UstanoveZdravstvaController : ControllerBase
         ustanova.Grad = req.Grad.RemoveTags();
         _context.UstanoveZdravstvas.Add(ustanova);
         _context.SaveChanges();
-        return ustanova.UstanovaId;
+        return NoContent();
     }
 
     [HttpPost("search")]
-    public ActionResult<UstanoveZdravstvaRes> GetUstanova([FromBody] UstanoveZdravstvaReq req)
+    public ActionResult GetUstanova([FromBody] UstanoveZdravstvaReq req)
     {
         var ustanove = _context.UstanoveZdravstvas.OrderByDescending(x => x.UstanovaId)
-            .Where(x => x.Naziv.Contains(req.Naziv) && (x.Grad == req.Grad || req.Grad == ""))
+            .Where(x => x.Naziv!.Contains(req.Naziv) && (x.Grad == req.Grad || req.Grad == ""))
             .Select(x => new UstanoveZdravstvaRes()
             {
                 UstanovaId = x.UstanovaId,
@@ -66,7 +66,7 @@ public class UstanoveZdravstvaController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public IActionResult UpdateUstanova(int id, [FromBody] UstanoveZdravstvaRes ustanova)
+    public ActionResult UpdateUstanova(int id, [FromBody] UstanoveZdravstvaRes ustanova)
     {
         if (id != ustanova.UstanovaId)
         {
@@ -80,7 +80,7 @@ public class UstanoveZdravstvaController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public IActionResult DeleteUstanova(int id)
+    public ActionResult DeleteUstanova(int id)
     {
         var ustanova = _context.UstanoveZdravstvas.Find(id);
         if (ustanova == null)

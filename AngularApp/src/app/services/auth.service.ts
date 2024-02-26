@@ -2,14 +2,16 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { AuthToken } from "../endpoints/authToken";
-import { myCofnig } from "../myconfig";
+import { backendSettings } from "../backend-settings";
+import { AlertService } from "./alert.service";
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 
 export class AuthService {
   constructor(
     private httpClient: HttpClient,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService
   ) {}
 
   isLoggedIn() {
@@ -18,18 +20,18 @@ export class AuthService {
 
   getAuthToken(): AuthToken | null {
     try {
-      return JSON.parse(window.localStorage.getItem("auth-token") ?? "");
+      return JSON.parse(window.localStorage.getItem("auth-token") || "");
     }
     catch(error) {
       return null;
     }
   }
 
-  loginUser(req: any) {
-    this.httpClient.post(myCofnig.backendAddress + "/auth/login", req).subscribe(
+  loginUser(authRoute: string, req: any) {
+    this.httpClient.post(backendSettings.address + authRoute, req).subscribe(
       res => {
         if(res == null) {
-          alert("Pogresan username ili password");
+          this.alertService.setAlert("danger", "Korisnik ne postoji");
         }
         else {
           window.localStorage.setItem("auth-token", JSON.stringify(res));
