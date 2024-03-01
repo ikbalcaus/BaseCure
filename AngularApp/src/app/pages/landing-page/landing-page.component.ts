@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -12,16 +11,9 @@ import { AuthService } from '../../services/auth.service';
     styleUrl: './landing-page.component.css',
 })
 export class LandingPageComponent {
-    constructor(
-        private authService: AuthService,
-        private router: Router
-    ) {}
+    constructor(private authService: AuthService) {}
 
-    ngOnInit() {
-        if (this.authService.isLogiran()) this.router.navigate(["/korisnik-info"]);
-    }
-    
     formSubmit(data: any) {
-        this.authService.loginUser(data);
+        this.authService.loginUser("/auth/login", data);
     }
 }

@@ -1,10 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { myCofnig } from '../../../myconfig';
-import { HttpClient } from '@angular/common/http';
-import { AuthToken } from '../../../endpoints/authToken';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-admin-login',
@@ -14,22 +11,9 @@ import { AuthToken } from '../../../endpoints/authToken';
   styleUrl: './admin-login.component.css'
 })
 export class AdminLoginComponent {
-  constructor(
-    private httpClient: HttpClient,
-    private router: Router
-  ) {}
+  constructor(private authService: AuthService) {}
 
-  loginAdmin(req: any) {
-    this.httpClient.post<AuthToken>(myCofnig.backendAddress + "/auth/admin-login", req).subscribe(
-      res => {
-        if(res == null) {
-          alert("Pogresan username ili password");
-        }
-        else {
-          window.sessionStorage.setItem("auth-token", JSON.stringify(res));
-          this.router.navigate(["/basecure-admin/dashboard"]);
-        }
-      }
-    );
+  formSubmit(data: any) {
+    this.authService.loginUser("/auth/admin-login", data);
   }
 }

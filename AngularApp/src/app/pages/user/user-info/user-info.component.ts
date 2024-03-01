@@ -10,14 +10,7 @@ import { AuthService } from '../../../services/auth.service';
   styleUrl: './user-info.component.css'
 })
 export class UserInfoComponent {
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) {}
-
-  ngOnInit() {
-    if (!this.authService.isLogiran()) this.router.navigate(["/"]);
-  }
+  constructor(private authService: AuthService) {}
 
   username: string | undefined = this.authService.getAuthToken()?.korisnik?.korisnickoIme;
 }

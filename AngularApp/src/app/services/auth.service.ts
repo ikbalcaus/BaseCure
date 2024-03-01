@@ -2,38 +2,40 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { AuthToken } from "../endpoints/authToken";
-import { myCofnig } from "../myconfig";
+import { backendSettings } from "../backend-settings";
+import { AlertService } from "./alert.service";
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 
 export class AuthService {
   constructor(
     private httpClient: HttpClient,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService
   ) {}
 
-  isLogiran(): boolean {
+  isLoggedIn() {
     return window.localStorage.getItem("auth-token") != null;
   }
 
   getAuthToken(): AuthToken | null {
     try {
-      return JSON.parse(window.localStorage.getItem("auth-token") ?? "");
+      return JSON.parse(window.localStorage.getItem("auth-token") || "");
     }
     catch(error) {
       return null;
     }
   }
 
-  loginUser(req: any) {
-    this.httpClient.post<AuthToken>(myCofnig.backendAddress + "/auth/login", req).subscribe(
+  loginUser(authRoute: string, req: any) {
+    this.httpClient.post(backendSettings.address + authRoute, req).subscribe(
       res => {
         if(res == null) {
-          alert("Pogresan username ili password");
+          this.alertService.setAlert("danger", "Korisnik ne postoji");
         }
         else {
           window.localStorage.setItem("auth-token", JSON.stringify(res));
-          this.router.navigate(["/korisnik-info"]);
+          this.router.navigateByUrl("/korisnik-info");
         }
       }
     );
@@ -41,6 +43,6 @@ export class AuthService {
 
   logoutUser() {
     window.localStorage.removeItem("auth-token");
-    this.router.navigate(["/"]);
+    this.router.navigateByUrl("/");
   }
 }

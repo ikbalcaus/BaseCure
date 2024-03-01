@@ -1,24 +1,22 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm p-3">
-  <div class="container-fluid">
-    <a class="navbar-brand px-5" routerLink="/">BaseCure</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto me-5">
-        <li class="nav-item">
-          <a class="btn navbar-link" routerLink="/pretrazi" routerLinkActive="active-link">Pretraži apoteke/bolnice</a>
-        </li>
-        <li class="nav-item">
-          <a class="btn navbar-link" routerLink="/korpa" routerLinkActive="active-link">Pogledaj korpu</a>
-        <li class="nav-item">
-        <li class="nav-item">
-          <a class="btn navbar-link" routerLink="/korisnik-info" routerLinkActive="active-link">Moje informacije</a>
-        <li class="nav-item">
-        <li class="nav-item ms-3" *ngIf="isLogiran()">
-          <button class="btn navbar-link btn-primary" (click)="logoutUser()">Odjavi se</button>
-        <li class="nav-item">
-      </ul>
-    </div>
+<nav class="navbar navbar-expand-xl bg-body-tertiary shadow-sm">
+  <a class="navbar-brand px-5" routerLink="/">BaseCure</a>
+  <button class="navbar-toggler btn btn-secondary me-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item">
+        <a class="btn navbar-link" routerLink="/pretrazi" routerLinkActive="active-link">Pretraži ustanove zdravstva</a>
+      </li>
+      <li class="nav-item">
+        <a class="btn navbar-link" routerLink="/korpa" routerLinkActive="active-link">Pogledaj korpu</a>
+      <li class="nav-item">
+      <li class="nav-item">
+        <a class="btn navbar-link" routerLink="/korisnik-info" routerLinkActive="active-link">Moje informacije</a>
+      <li class="nav-item">
+      <li class="nav-item" *ngIf="isLoggedIn()">
+        <button class="btn navbar-link btn-primary" (click)="logoutUser()">Odjavi se</button>
+      <li class="nav-item">
+    </ul>
   </div>
 </nav>

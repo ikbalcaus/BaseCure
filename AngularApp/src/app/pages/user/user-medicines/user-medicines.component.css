@@ -1,9 +1,3 @@
-.items {
-    width: 80%;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-}
 .pagination {
     justify-content: center;
     cursor: pointer;

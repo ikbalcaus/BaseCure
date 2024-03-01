@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { UstanovaZdravstva } from '../../../endpoints/ustanoveZdravstva';
-import { myCofnig } from '../../../myconfig';
+import { backendSettings } from '../../../backend-settings';
 
 @Component({
   selector: 'app-user-about',
@@ -18,18 +17,10 @@ export class UserAboutComponent {
     private route: ActivatedRoute
   ) {}
 
-  res: UstanovaZdravstva = {
-    ustanovaId: 0,
-    naziv: "",
-    //opis: "",
-    grad: "",
-    adresa: "",
-    kontaktBroj: "",
-    email: ""
-  };
+  res: any;
 
   ngOnInit() {
-    this.httpClient.get<UstanovaZdravstva>(myCofnig.backendAddress + "/ustanveZdravstva/" + this.route.snapshot.paramMap.get("id")).subscribe(
+    this.httpClient.get(backendSettings.address + "/ustanveZdravstva/" + this.route.snapshot.paramMap.get("id")).subscribe(
       res => {
         this.res = res;
       }

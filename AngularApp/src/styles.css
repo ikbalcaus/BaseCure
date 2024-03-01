@@ -7,7 +7,7 @@
 .btn:active {
     border-color: transparent !important;
 }
-.btn-primary, .btn-danger {
+.btn-primary, .btn-secondary, .btn-danger {
     box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
     font-weight: 500;
     font-size: 16px;
@@ -27,28 +27,29 @@
     border: 1px solid #1976D2 !important;
 }
 .btn-secondary {
-    background-color: #fff !important;
-    border: 1px solid #eee !important;
-    color: #000 !important;
-    font-weight: 400;
-    padding: 6px 30px 7px 30px;
-    margin-top: 1px;
-    font-size: 16px;
+    background-color: #ebebeb !important;
+    border: 1px solid #ebebeb !important;
+    color: black !important;
+    box-shadow: 0 .06rem .25rem rgba(0, 0, 0, .075) !important;
 }
 .btn-secondary:hover {
-    background-color: #eee !important;
-    border: 1px solid #ddd !important;
+    background-color: #dfdfdf !important;
+    border: 1px solid #dfdfdf !important;
 }
 .btn-secondary:active {
-    background-color: #ddd !important;
-    border: 1px solid #ccc !important;
+    background-color: #d0d0d0 !important;
+    border: 1px solid #d0d0d0 !important;
 }
-.btn, .login, .form-control, .form-check-input, .card, .card-img-top, .card-body, .list-group {
+.btn, .login, .form-control, .form-check-input, .card, .card-img-top, .card-body, .alert {
     border-radius: 3px;
 }
 .btn-block {
     width: 100%;
 }
-.bg-secondary {
+.bg-primary {
     background-color: #6464b4 !important;
+    color: white;
+}
+.bg-secondary{
+    background-color: #ebebeb !important;
 }
