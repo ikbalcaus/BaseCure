@@ -35,7 +35,7 @@ namespace BaseCureAPI.Endpoints.Lijek.Post
 
             if (req.ID == 0)
             {
-                int maxId = _context.Lijekovis.Any() ? _context.Lijekovis.Max(x => x.KorisnikId) + 1 : 1;
+                int maxId = _context.Lijekovis.Any() ? _context.Lijekovis.Max(x => x.LijekId) + 1 : 1;
                 lijek.LijekId = maxId;
             }
             else

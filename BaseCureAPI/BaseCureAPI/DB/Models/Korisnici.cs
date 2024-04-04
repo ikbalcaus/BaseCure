@@ -22,6 +22,7 @@ namespace BaseCureAPI.DB.Models
         public DateTime? DatumRodjenja { get; set; }
         public string? MailAdresa { get; set; }
         public string? Uloga { get; set; }
+        public string? Code2f { get; set; }
 
         //public virtual ICollection<AuthToken> AuthTokens { get; set; }
         public virtual ICollection<Ljekari> Ljekaris { get; set; }

@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { AuthToken } from "../endpoints/authToken";
 import { backendSettings } from "../backend-settings";
 import { AlertService } from "./alert.service";
+import { Observable } from "rxjs";
 
 @Injectable({ providedIn: 'root' })
 
@@ -27,18 +28,12 @@ export class AuthService {
     }
   }
 
-  loginUser(authRoute: string, req: any) {
-    this.httpClient.post(backendSettings.address + authRoute, req).subscribe(
-      res => {
-        if(res == null) {
-          this.alertService.setAlert("danger", "Korisnik ne postoji");
-        }
-        else {
-          window.localStorage.setItem("auth-token", JSON.stringify(res));
-          this.router.navigateByUrl("/korisnik-info");
-        }
-      }
-    );
+  loginUser(authRoute: string, req: any): Observable<any> {
+    return this.httpClient.post(backendSettings.address + authRoute, req);
+  }
+
+  verifyCode(req: any) {
+    return this.httpClient.post<any>(backendSettings.address + "/verify-code", req);
   }
 
   logoutUser() {
