@@ -10,7 +10,6 @@ import { MedicalInstitutionCartonComponent } from './pages/medical-institution/m
 import { UserMedicinesComponent } from './pages/user/user-medicines/user-medicines.component';
 import { GuardService } from './services/guard.service';
 import { LoginRedirectService } from './services/login-redirect.service';
-import { MedicalInstitutionMedicineComponent } from './pages/medical-institution/medical-institution-medicine/medical-institution-medicine.component';
 
 export const routes: Routes = [
     { path: "", component: LandingPageComponent, canActivate: [LoginRedirectService] },
@@ -21,6 +20,5 @@ export const routes: Routes = [
     { path: "korisnik-info", component: UserInfoComponent, canActivate: [GuardService], data: { role: "korisnik" } },
     { path: "ustanova-zdravstva/karton", component: MedicalInstitutionCartonComponent, canActivate: [GuardService], data: { role: "ustanova-zdravstva" } },
     { path: "basecure-admin", component: AdminLoginComponent, canActivate: [LoginRedirectService] },
-    { path: "basecure-admin/dashboard", component: AdminDashboardComponent, canActivate: [GuardService], data: { role: "admin" } },
-    { path: "ustanova-zdravstva/lijekovi", component: MedicalInstitutionMedicineComponent/*, canActivate: [GuardService], data: { role: "ustanova-zdravstva" }*/}
+    { path: "basecure-admin/dashboard", component: AdminDashboardComponent, canActivate: [GuardService], data: { role: "admin" } }
 ];
