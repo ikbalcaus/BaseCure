@@ -19,6 +19,7 @@ namespace BaseCureAPI.DB
 
         public virtual DbSet<AuthToken> AuthTokens { get; set; } = null!;
         public virtual DbSet<Dijagnoze> Dijagnozes { get; set; } = null!;
+        public virtual DbSet<Gradovi> Gradovis { get; set; } = null!;
         public virtual DbSet<Korisnici> Korisnicis { get; set; } = null!;
         public virtual DbSet<LaboratorijskiRezultati> LaboratorijskiRezultatis { get; set; } = null!;
         public virtual DbSet<Lijekovi> Lijekovis { get; set; } = null!;
@@ -33,14 +34,13 @@ namespace BaseCureAPI.DB
         public virtual DbSet<Termini> Terminis { get; set; } = null!;
         public virtual DbSet<UstanoveZdravstva> UstanoveZdravstvas { get; set; } = null!;
         public virtual DbSet<ZdravstveniKartoni> ZdravstveniKartonis { get; set; } = null!;
-        public virtual DbSet<Gradovi> Gradovis { get; set; } = null;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=Basecure;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Data Source=DESKTOP-Q0I34LS;Initial Catalog=Basecure;Persist Security Info=True;User ID=sa;Password=admin;Encrypt=False;Trust Server Certificate=True");
             }
         }
 
@@ -80,10 +80,10 @@ namespace BaseCureAPI.DB
                     .HasColumnType("datetime")
                     .HasColumnName("vrijeme_evidentiranja");
 
-                /*entity.HasOne(d => d.Korisnik)
+                entity.HasOne(d => d.Korisnik)
                     .WithMany(p => p.AuthTokens)
                     .HasForeignKey(d => d.KorisnikId)
-                    .HasConstraintName("FK__AuthToken__koris__5CD6CB2B");*/
+                    .HasConstraintName("FK__AuthToken__koris__160F4887");
             });
 
             modelBuilder.Entity<Dijagnoze>(entity =>
@@ -107,6 +107,28 @@ namespace BaseCureAPI.DB
                     .HasColumnName("naziv_dijagnoze");
             });
 
+            modelBuilder.Entity<Gradovi>(entity =>
+            {
+                entity.HasKey(e => e.GradId)
+                    .HasName("PK__Gradovi__F8C78A45807D5559");
+
+                entity.ToTable("Gradovi");
+
+                entity.Property(e => e.GradId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("grad_id");
+
+                entity.Property(e => e.Entitet)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("entitet");
+
+                entity.Property(e => e.Naziv)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("naziv");
+            });
+
             modelBuilder.Entity<Korisnici>(entity =>
             {
                 entity.HasKey(e => e.KorisnikId)
@@ -122,6 +144,11 @@ namespace BaseCureAPI.DB
                     .HasMaxLength(255)
                     .IsUnicode(false)
                     .HasColumnName("adresa");
+
+                entity.Property(e => e.Code2fa)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("code2fa");
 
                 entity.Property(e => e.DatumRodjenja)
                     .HasColumnType("date")
@@ -207,7 +234,21 @@ namespace BaseCureAPI.DB
                     .IsUnicode(false)
                     .HasColumnName("naziv_lijeka");
 
+                entity.Property(e => e.OpisLijeka)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("opis_lijeka");
+
+                entity.Property(e => e.SlikaLijeka).HasColumnName("slika_lijeka");
+
+                entity.Property(e => e.UstanovaId).HasColumnName("ustanova_id");
+
                 entity.Property(e => e.ZahtijevaRecept).HasColumnName("zahtijeva_recept");
+
+                entity.HasOne(d => d.Ustanova)
+                    .WithMany(p => p.Lijekovis)
+                    .HasForeignKey(d => d.UstanovaId)
+                    .HasConstraintName("FK__Lijekovi__ustano__2739D489");
             });
 
             modelBuilder.Entity<Ljekari>(entity =>
@@ -525,6 +566,11 @@ namespace BaseCureAPI.DB
                     .HasMaxLength(255)
                     .IsUnicode(false)
                     .HasColumnName("naziv");
+
+                entity.Property(e => e.Opis)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("opis");
             });
 
             modelBuilder.Entity<ZdravstveniKartoni>(entity =>
