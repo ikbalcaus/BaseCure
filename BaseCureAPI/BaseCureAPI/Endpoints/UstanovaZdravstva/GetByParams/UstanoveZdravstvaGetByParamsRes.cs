@@ -1,8 +1,8 @@
 ﻿using BaseCureAPI.Endpoints.Korisnik;
 
-namespace BaseCureAPI.Endpoints.UstanovaZdravstva
+namespace BaseCureAPI.Endpoints.UstanovaZdravstva.GetByParams
 {
-    public class UstanoveZdravstvaRes
+    public class UstanoveZdravstvaGetByParamsRes
     {
         public int UstanovaId { get; set; }
         public string? Naziv { get; set; }
@@ -14,6 +14,6 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva
 
     public class UstanoveZdravstvaResponseGetAll
     {
-        public List<UstanoveZdravstvaRes> Ustanove { get; set; }
+        public List<UstanoveZdravstvaGetByParamsRes> Ustanove { get; set; }
     }
 }

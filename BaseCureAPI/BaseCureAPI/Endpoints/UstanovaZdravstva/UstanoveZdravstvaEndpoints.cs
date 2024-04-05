@@ -10,7 +10,7 @@ using BaseCureAPI.Helpers;
 [ApiController]
 public class UstanoveZdravstvaController : ControllerBase
 {
-    private readonly BasecureContext _context; 
+    private readonly BasecureContext _context;
 
     public UstanoveZdravstvaController(BasecureContext context)
     {

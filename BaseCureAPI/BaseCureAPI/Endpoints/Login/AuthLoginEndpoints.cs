@@ -47,7 +47,7 @@ namespace BaseCureAPI.Endpoints.Login
                 Code2f = Guid.NewGuid().ToString(),
             };
 
-            noviToken.AuthTokenId = 
+            noviToken.AuthTokenId =
                 _context.AuthTokens.Any() ? _context.AuthTokens.Max(x => x.AuthTokenId) + 1 : 1;
 
             _context.Add(noviToken);
