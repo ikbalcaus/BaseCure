@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
-import { AuthToken } from "../endpoints/authToken";
 import { backendSettings } from "../backend-settings";
 import { AlertService } from "./alert.service";
 
@@ -18,7 +17,7 @@ export class AuthService {
     return window.localStorage.getItem("auth-token") != null;
   }
 
-  getAuthToken(): AuthToken | null {
+  getAuthToken() {
     try {
       return JSON.parse(window.localStorage.getItem("auth-token") || "");
     }

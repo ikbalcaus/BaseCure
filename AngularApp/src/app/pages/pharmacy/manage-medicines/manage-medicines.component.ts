@@ -1,32 +1,36 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FilterComponent } from '../../../components/filter/filter.component';
-import { CardComponent } from "../../../components/card/card.component";
 import { HttpClient } from '@angular/common/http';
 import { backendSettings } from '../../../backend-settings';
+import { ItemListComponent } from '../../../components/item-list/item-list.component';
 
 @Component({
-  selector: 'app-user-search',
+  selector: 'app-manage-cures',
   standalone: true,
-  templateUrl: './user-search.component.html',
-  styleUrl: './user-search.component.css',
-  imports: [CommonModule, FilterComponent, CardComponent]
+  imports: [CommonModule, FilterComponent, ItemListComponent],
+  templateUrl: './manage-medicines.component.html',
+  styleUrl: './manage-medicines.component.css'
 })
-export class UserSearchComponent {
+export class ManageMedicinesComponent {
   constructor(private httpClient: HttpClient) {}
-
+  
   req: any;
   res: any;
 
   ngOnInit() {
-    this.getSearchResults(["", ""])
+    this.httpClient.get(backendSettings.address + "/lijekovi").subscribe(
+      res => {
+        this.res = res;
+      }
+    )
   }
 
   getSearchResults($event: Array<string>) {
     this.req.naziv = $event[0];
     this.req.grad = $event[1];
     
-    this.httpClient.post(backendSettings.address + "/ustanveZdravstva/search", this.req).subscribe(
+    this.httpClient.post(backendSettings.address + "/lijekovi/search", this.req).subscribe(
       res => {
         this.res = res;
       }

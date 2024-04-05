@@ -53,6 +53,14 @@
 .bg-secondary{
     background-color: #ebebeb !important;
 }
+.pagination {
+    justify-content: center;
+    cursor: pointer;
+}
+.pagination li a {
+    color: black;
+    text-align: center;
+}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

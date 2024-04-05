@@ -12,7 +12,7 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.GetByParams
         public string? Grad { get; set; }
     }
 
-    public class UstanoveZdravstvaResponseGetAll
+    public class UstanoveZdravstvaPostResponseGetAll
     {
         public List<UstanoveZdravstvaGetByParamsRes> Ustanove { get; set; }
     }

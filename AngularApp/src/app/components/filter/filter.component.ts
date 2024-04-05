@@ -20,7 +20,7 @@ export class FilterComponent {
   @Input() link1 = "";
   @Input() link2 = "";
   @Input() searchUrl = "";
-  @Output() searchOptions = new EventEmitter<Array<string>>();
+  @Output() searchOptions = new EventEmitter<any>();
   inputValue1: string = "";
   inputValue2: string = "";
   filteredList1: Array<string> = [];

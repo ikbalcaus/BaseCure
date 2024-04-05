@@ -17,21 +17,17 @@ namespace BaseCureAPI.Endpoints.Lijek.GetAll
         }
 
         [HttpGet]
-        public ActionResult<LijekoviGetAllResList> GetLijekovi()
+        public ActionResult GetLijekovi()
         {
-            var lijek = _context.Lijekovis.OrderByDescending(x => x.LijekId).
+            var lijekovi = _context.Lijekovis.OrderByDescending(x => x.LijekId).
                 Select(x => new LijekoviGetAllRes()
                 {
                     LijekId = x.LijekId,
                     NazivLijeka = x.NazivLijeka,
-                    OpisLijeka = x.OpisLijeka,
-                    SlikaLijeka = x.SlikaLijeka,
                     UstanovaId = x.UstanovaId,
                     ZahtijevaRecept = x.ZahtijevaRecept
                 }).ToList();
-            return new LijekoviGetAllResList {
-                Lijekovi = lijek
-            };
+            return Ok(lijekovi);
         }
     }
 }

@@ -9,9 +9,4 @@
         public int? UstanovaId { get; set; }
         public string? OpisLijeka { get; set; }
     }
-
-    public class LijekoviGetAllResList
-    {
-        public List<LijekoviGetAllRes> Lijekovi { get; set; }
-    }
 }
