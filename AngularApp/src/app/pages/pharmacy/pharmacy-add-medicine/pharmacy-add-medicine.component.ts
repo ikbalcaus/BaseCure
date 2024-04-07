@@ -2,17 +2,21 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { backendSettings } from '../../../backend-settings';
 
 @Component({
-  selector: 'app-add-medicine',
+  selector: 'app-pharmacy-add-medicine',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './add-medicine.component.html',
-  styleUrl: './add-medicine.component.css'
+  templateUrl: './pharmacy-add-medicine.component.html',
+  styleUrl: './pharmacy-add-medicine.component.css'
 })
-export class AddMedicineComponent {
-  constructor(private httpClient: HttpClient) {}
+export class PharmacyAddMedicineComponent {
+  constructor(
+    private httpClient: HttpClient,
+    private router: Router
+  ) {}
 
   req: any;
 
@@ -24,6 +28,10 @@ export class AddMedicineComponent {
       opisLijeka: loginForm.opisLijeka,
       zahtijevaRecept: loginForm.zahtijevaRecept || false
     };
-    this.httpClient.post(backendSettings.address + "/lijekovi", this.req).subscribe();
+    this.httpClient.post(backendSettings.address + "/lijekovi", this.req).subscribe(
+      res => {
+        this.router.navigateByUrl("/apoteka/lijekovi");
+      }
+    );
   }
 }

@@ -10,8 +10,9 @@ import { MedicalInstitutionCartonComponent } from './pages/medical-institution/m
 import { UserMedicinesComponent } from './pages/user/user-medicines/user-medicines.component';
 import { GuardService } from './services/guard.service';
 import { LoginRedirectService } from './services/login-redirect.service';
-import { ManageMedicinesComponent } from './pages/pharmacy/manage-medicines/manage-medicines.component';
-import { AddMedicineComponent } from './pages/pharmacy/add-medicine/add-medicine.component';
+import { PharmacyManageMedicinesComponent } from './pages/pharmacy/pharmacy-manage-medicines/pharmacy-manage-medicines.component';
+import { PharmacyAddMedicineComponent } from './pages/pharmacy/pharmacy-add-medicine/pharmacy-add-medicine.component';
+import { PharmacyEditMedicineComponent } from './pages/pharmacy/pharmacy-edit-medicine/pharmacy-edit-medicine.component';
 
 export const routes: Routes = [
     { path: "", component: LandingPageComponent, canActivate: [LoginRedirectService] },
@@ -21,8 +22,9 @@ export const routes: Routes = [
     { path: "korpa", component: UserCartComponent, canActivate: [GuardService], data: { role: "korisnik" } },
     { path: "korisnik-info", component: UserInfoComponent, canActivate: [GuardService], data: { role: "korisnik" } },
     { path: "ustanova-zdravstva/karton", component: MedicalInstitutionCartonComponent, canActivate: [GuardService], data: { role: "ustanova-zdravstva" } },
-    { path: "apoteka/lijekovi", component: ManageMedicinesComponent, canActivate: [GuardService], data: { role: "apoteka" } },
-    { path: "apoteka/dodaj", component: AddMedicineComponent, canActivate: [GuardService], data: { role: "apoteka" } },
+    { path: "apoteka/lijekovi", component: PharmacyManageMedicinesComponent, canActivate: [GuardService], data: { role: "apoteka" } },
+    { path: "apoteka/dodaj", component: PharmacyAddMedicineComponent, canActivate: [GuardService], data: { role: "apoteka" } },
+    { path: "apoteka/uredi/:id", component: PharmacyEditMedicineComponent, canActivate: [GuardService], data: { role: "apoteka" } },
     { path: "basecure-admin", component: AdminLoginComponent, canActivate: [LoginRedirectService] },
     { path: "basecure-admin/dashboard", component: AdminDashboardComponent, canActivate: [GuardService], data: { role: "admin" } }
 ];

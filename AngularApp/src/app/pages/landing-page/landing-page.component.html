@@ -27,7 +27,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form #verificationForm="ngForm" (submit)="verifyCode(verificationForm.value)">
+                <!-- <form #verificationForm="ngForm" (submit)="verifyCode(verificationForm.value)"> -->
+                <form>
                     <div class="form-group">
                         <label for="verificationCode">Enter the verification code received in your email:</label>
                         <input type="text" class="form-control" id="verificationCode" name="verificationCode" ngModel required>

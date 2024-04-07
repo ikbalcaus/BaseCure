@@ -15,7 +15,7 @@ import { backendSettings } from '../../../backend-settings';
 export class UserSearchComponent {
   constructor(private httpClient: HttpClient) {}
 
-  req: any;
+  req: any = {};
   res: any;
 
   ngOnInit() {

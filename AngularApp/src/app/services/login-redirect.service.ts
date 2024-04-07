@@ -21,6 +21,9 @@ export class LoginRedirectService {
     else if(role == "ustanova-zdravstva") {
       this.router.navigateByUrl("/ustanova-zdravstva/karton");
     }
+    else if(role == "apoteka") {
+      this.router.navigateByUrl("/apoteka/lijekovi");
+    }
     else if(role == "admin") {
       this.router.navigateByUrl("/basecure-admin/dashboard");
     }

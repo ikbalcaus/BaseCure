@@ -4,18 +4,22 @@ import { FilterComponent } from '../../../components/filter/filter.component';
 import { HttpClient } from '@angular/common/http';
 import { backendSettings } from '../../../backend-settings';
 import { ItemListComponent } from '../../../components/item-list/item-list.component';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-manage-cures',
+  selector: 'app-pharmacy-manage-cures',
   standalone: true,
   imports: [CommonModule, FilterComponent, ItemListComponent],
-  templateUrl: './manage-medicines.component.html',
-  styleUrl: './manage-medicines.component.css'
+  templateUrl: './pharmacy-manage-medicines.component.html',
+  styleUrl: './pharmacy-manage-medicines.component.css'
 })
-export class ManageMedicinesComponent {
-  constructor(private httpClient: HttpClient) {}
+export class PharmacyManageMedicinesComponent {
+  constructor(
+    private httpClient: HttpClient,
+    private router: Router
+  ) {}
   
-  req: any;
+  req: any = {};
   res: any;
 
   ngOnInit() {
@@ -30,10 +34,14 @@ export class ManageMedicinesComponent {
     this.req.naziv = $event[0];
     this.req.grad = $event[1];
     
-    this.httpClient.post(backendSettings.address + "/lijekovi/search", this.req).subscribe(
+    this.httpClient.get(backendSettings.address + "/lijekovi/search?NazivLijeka=" + this.req.naziv + "&OpisLijeka=" + this.req.grad + "", this.req).subscribe(
       res => {
         this.res = res;
       }
     );
+  }
+
+  editMedicine(lijekId: number) {
+    this.router.navigateByUrl("/apoteka/uredi/" + lijekId);
   }
 }

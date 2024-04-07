@@ -1,7 +1,8 @@
-﻿namespace BaseCureAPI.Endpoints.Lijek.Put
+﻿namespace BaseCureAPI.Endpoints.Lijek.GetById
 {
-    public class LijekoviPutReq
+    public class LijekoviGetByIdRes
     {
+        public int LijekId { get; set; }
         public string? NazivLijeka { get; set; }
         public bool? ZahtijevaRecept { get; set; }
         public byte[]? SlikaLijeka { get; set; }

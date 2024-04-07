@@ -1,9 +1,6 @@
 <app-filter
     placeholder1="Naziv lijeka"
     placeholder2="Opis lijeka"
-    link1=""
-    link2="/gradovi/search/"
-    searchUrl="/pretrazi"
     (searchOptions)="getSearchResults($any($event))"
 ></app-filter>
 <div class="container">
@@ -12,6 +9,7 @@
         description="{{i.opisLijeka}}"
         price="10KM"
         btnText="Uredi lijek"
+        (btnClick)="editMedicine(i.lijekId)"
     ></app-item-list>
 </div>
 <ul class="pagination mt-3 mb-4">

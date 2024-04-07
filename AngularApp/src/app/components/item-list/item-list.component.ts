@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-item-list',
@@ -12,4 +12,9 @@ export class ItemListComponent {
   @Input() description = "";
   @Input() price = "";
   @Input() btnText = "";
+  @Output() btnClick = new EventEmitter();
+
+  btnClickHandler() {
+    this.btnClick.emit();
+  }
 }

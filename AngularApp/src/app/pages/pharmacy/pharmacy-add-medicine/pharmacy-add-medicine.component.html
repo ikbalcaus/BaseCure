@@ -3,9 +3,9 @@
         <img class="thumbnail rounded shadow mx-4 col-8" src="./../../../assets/img/no-image-avabliable.jpg" alt="Slika">
         <div class="mx-4 mt-2 col">
             <form #loginForm="ngForm" (submit)="formSubmit(loginForm.value)">
-                <input type="file" class="form-control mt-2" name="SlijaLijeka" ngModel>
+                <input type="file" class="form-control mt-2" name="slijaLijeka" ngModel>
                 <input class="form-control mt-2" placeholder="Naziv lijeka" name="nazivLijeka" ngModel autocomplete="off">
-                <Textarea class="form-control mt-2" rows="3" placeholder="Opis lijeka" name="OpisLijeka" ngModel></Textarea>
+                <textarea class="form-control mt-2" rows="3" placeholder="Opis lijeka" name="opisLijeka" ngModel></textarea>
                 <input type="number" class="form-control mt-2" placeholder="Cijena lijeka">
                 <div class="form-check mt-2">
                     <input class="form-check-input" type="checkbox" id="checkbox" name="zahtijevaRecept" ngModel>

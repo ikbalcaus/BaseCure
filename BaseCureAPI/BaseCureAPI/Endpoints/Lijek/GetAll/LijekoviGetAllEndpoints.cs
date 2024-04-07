@@ -11,7 +11,7 @@ namespace BaseCureAPI.Endpoints.Lijek.GetAll
     {
         private readonly BasecureContext _context;
 
-        public LijekoviGetAllEndpoints( BasecureContext context)
+        public LijekoviGetAllEndpoints(BasecureContext context)
         {
             _context = context;
         }
