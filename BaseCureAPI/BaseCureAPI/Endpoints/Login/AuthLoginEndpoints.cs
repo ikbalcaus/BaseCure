@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SendGrid.Helpers.Mail;
 using SendGrid;
-using static BaseCureAPI.Services.MyAuthService;
+
 
 
 namespace BaseCureAPI.Endpoints.Login

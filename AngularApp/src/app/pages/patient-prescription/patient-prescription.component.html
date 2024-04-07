@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Patients</h2>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let patient of patients.slice(0, 10)"
+                  (click)="selectPatient(patient)"
+                  [ngClass]="{ 'selected': patient.patientId=== selectedPatient }">
+                <td>{{ patient.patientId }}</td>
+                <td>{{ patient.patientName }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h2>Medications</h2>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let medicine of medicines">
+                <td>{{ medicine.therapyId }}</td>
+                <td>{{ medicine.therapyName }}</td>
+                <td>{{ medicine.startDate }}</td>
+                <td>{{ medicine.endDate }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
