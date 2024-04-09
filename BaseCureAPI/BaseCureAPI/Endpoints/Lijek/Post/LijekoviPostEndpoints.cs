@@ -30,6 +30,8 @@ namespace BaseCureAPI.Endpoints.Lijek.Post
                 OpisLijeka = req.OpisLijeka,
                 SlikaLijeka = req.SlikaLijeka,
                 UstanovaId = req.UstanovaId,
+                CijenaLijeka = req.CijenaLijeka,
+                Kolicina = req.Kolicina,
                 ZahtijevaRecept = req.ZahtijevaRecept
             };
 

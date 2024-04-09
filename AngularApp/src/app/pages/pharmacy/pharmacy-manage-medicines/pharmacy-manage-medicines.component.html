@@ -7,7 +7,7 @@
     <app-item-list *ngFor="let i of res"
         name="{{i.nazivLijeka}}"
         description="{{i.opisLijeka}}"
-        price="10KM"
+        price="{{i.cijenaLijeka}}KM"
         btnText="Uredi lijek"
         (btnClick)="editMedicine(i.lijekId)"
     ></app-item-list>

@@ -24,8 +24,10 @@ namespace BaseCureAPI.Endpoints.Lijek.GetAll
                 {
                     LijekId = x.LijekId,
                     NazivLijeka = x.NazivLijeka,
-                    UstanovaId = x.UstanovaId,
-                    ZahtijevaRecept = x.ZahtijevaRecept
+                    CijenaLijeka = x.CijenaLijeka,
+                    Kolicina = x.Kolicina,
+                    ZahtijevaRecept = x.ZahtijevaRecept,
+                    OpisLijeka = x.OpisLijeka
                 }).ToList();
             return Ok(lijekovi);
         }

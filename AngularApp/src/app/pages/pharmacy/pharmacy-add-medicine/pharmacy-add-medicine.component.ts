@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { backendSettings } from '../../../backend-settings';
+import { AlertService } from '../../../services/alert.service';
 
 @Component({
   selector: 'app-pharmacy-add-medicine',
@@ -15,7 +16,8 @@ import { backendSettings } from '../../../backend-settings';
 export class PharmacyAddMedicineComponent {
   constructor(
     private httpClient: HttpClient,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService
   ) {}
 
   req: any;
@@ -25,12 +27,15 @@ export class PharmacyAddMedicineComponent {
       id: 0,
       ustanovaId: 0,
       nazivLijeka: loginForm.nazivLijeka,
+      cijenaLijeka: loginForm.cijenaLijeka,
+      kolicina: loginForm.kolicina,
       opisLijeka: loginForm.opisLijeka,
       zahtijevaRecept: loginForm.zahtijevaRecept || false
     };
     this.httpClient.post(backendSettings.address + "/lijekovi", this.req).subscribe(
       res => {
         this.router.navigateByUrl("/apoteka/lijekovi");
+        this.alertService.setAlert("success", "Lijek je uspješno dodan");
       }
     );
   }

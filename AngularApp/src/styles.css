@@ -1,6 +1,9 @@
 .shadow, .shadow-sm, .shadow-lg {
     border: none;
 }
+.btn, .login, .form-control, .form-check-input, .card, .card-img-top, .card-body, .alert, .modal-content {
+    border-radius: 3px;
+}
 .btn {
     font-size: 17px;
 }
@@ -40,12 +43,6 @@
     background-color: #d0d0d0 !important;
     border: 1px solid #d0d0d0 !important;
 }
-.btn, .login, .form-control, .form-check-input, .card, .card-img-top, .card-body, .alert {
-    border-radius: 3px;
-}
-.btn-block {
-    width: 100%;
-}
 .bg-primary {
     background-color: #6464b4 !important;
     color: white;
@@ -53,14 +50,17 @@
 .bg-secondary{
     background-color: #ebebeb !important;
 }
+.btn-block {
+    width: 100%;
+}
 .pagination {
     justify-content: center;
+}
+.pagination li {
     cursor: pointer;
 }
-.pagination li a {
+.pagination li a, .pagination li a:hover {
     color: black;
-    text-align: center;
 }
 
-html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

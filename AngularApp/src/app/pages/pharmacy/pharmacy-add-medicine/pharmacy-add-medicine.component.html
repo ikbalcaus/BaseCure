@@ -6,7 +6,12 @@
                 <input type="file" class="form-control mt-2" name="slijaLijeka" ngModel>
                 <input class="form-control mt-2" placeholder="Naziv lijeka" name="nazivLijeka" ngModel autocomplete="off">
                 <textarea class="form-control mt-2" rows="3" placeholder="Opis lijeka" name="opisLijeka" ngModel></textarea>
-                <input type="number" class="form-control mt-2" placeholder="Cijena lijeka">
+                <div class="inline-input-group mt-2">
+                    <label>Cijena Lijeka (KM): </label>
+                    <input type="number" class="form-control inline-input" name="cijenaLijeka" ngModel>
+                    <label>Količina: </label>
+                    <input type="number" class="form-control inline-input" name="kolicina" ngModel>
+                </div>
                 <div class="form-check mt-2">
                     <input class="form-check-input" type="checkbox" id="checkbox" name="zahtijevaRecept" ngModel>
                     <label class="form-check-label" for="checkbox">Zahtijeva recept?</label>

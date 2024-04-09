@@ -3,6 +3,14 @@
     aspect-ratio: 16/9;
     padding: 0;
 }
+.inline-input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.inline-input {
+    width: 100px;
+}
 .btn-half-block {
     width: calc(50% - 20px);
     margin: 0 10px;
