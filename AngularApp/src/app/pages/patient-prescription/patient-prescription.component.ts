@@ -14,9 +14,9 @@ import { Therapy, Uputnica } from '../../endpoints/uputnica';
 })
 export class PatientPrescriptionComponent {
   patients: Uputnica[] = [];
-  selectedPatient: number = 1; 
-  selectedPatientName: string = ''; 
-  medicines: Therapy[] = []; 
+  selectedPatient: Uputnica | null = null;
+  selectedPatientName: string = '';
+  selectedTherapy: Therapy | null = null;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -34,8 +34,43 @@ export class PatientPrescriptionComponent {
   }
 
   selectPatient(patient: Uputnica) {
-    this.selectedPatient = patient.patientId;
+    this.selectedPatient = patient;
     this.selectedPatientName = patient.patientName || '';
-    this.medicines = patient.therapies || [];
+    this.selectedTherapy = null;
+  }
+
+  selectTherapy(therapy: Therapy) {
+    this.selectedTherapy = therapy;
+  }
+
+  editTherapy() {
+    if (!this.selectedTherapy || !this.selectedPatient) {
+      return;
+    }
+    const therapyId = this.selectedTherapy.therapyId;
+    const apiUrl = `${backendSettings.address}/uputnice/${this.selectedPatient.patientId}/terapije/${therapyId}`;
+    this.httpClient.put(apiUrl, this.selectedTherapy).subscribe(() => {
+      // Assuming therapy is updated successfully
+      console.log('Therapy updated successfully.');
+    });
+  }
+
+  deleteTherapy() {
+    if (!this.selectedTherapy || !this.selectedPatient) {
+      return;
+    }
+    const therapyId = this.selectedTherapy.therapyId;
+    const apiUrl = `${backendSettings.address}/uputnice/${this.selectedPatient.patientId}/terapije/${therapyId}`;
+    this.httpClient.delete(apiUrl).subscribe(() => {
+      // Assuming therapy is deleted successfully
+      console.log('Therapy deleted successfully.');
+      if (this.selectedPatient && this.selectedPatient.therapies) {
+        const index = this.selectedPatient.therapies.findIndex(t => t.therapyId === therapyId);
+        if (index !== -1) {
+          this.selectedPatient.therapies.splice(index, 1);
+        }
+      }
+      this.selectedTherapy = null;
+    });
   }
 }
