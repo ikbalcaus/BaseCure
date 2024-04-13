@@ -1,48 +1,54 @@
 <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <h2>Patients</h2>
-        <div class="table-responsive">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Name</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let patient of patients.slice(0, 10)"
-                  (click)="selectPatient(patient)"
-                  [ngClass]="{ 'selected': patient.patientId=== selectedPatient }">
-                <td>{{ patient.patientId }}</td>
-                <td>{{ patient.patientName }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Patients</h2>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let patient of patients.slice(0, 10)"
+                (click)="selectPatient(patient)"
+                [ngClass]="{ 'selected': patient.patientId === selectedPatient?.patientId }">
+              <td>{{ patient.patientId }}</td>
+              <td>{{ patient.patientName }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="col-md-6">
-        <h2>Medications</h2>
-        <div class="table-responsive">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let medicine of medicines">
-                <td>{{ medicine.therapyId }}</td>
-                <td>{{ medicine.therapyName }}</td>
-                <td>{{ medicine.startDate }}</td>
-                <td>{{ medicine.endDate }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+    </div>
+    <div class="col-md-6">
+      <h2>Therapies</h2>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let therapy of selectedPatient?.therapies" (click)="selectTherapy(therapy)"
+                [ngClass]="{ 'selected': therapy.therapyId === selectedTherapy?.therapyId }">
+              <td>{{ therapy.therapyId }}</td>
+              <td>{{ therapy.therapyName }}</td>
+              <td>{{ therapy.startDate }}</td>
+              <td>{{ therapy.endDate }}</td>
+              <td>
+                <button class="btn btn-primary" (click)="editTherapy()">Edit</button>
+                <button class="btn btn-danger" (click)="deleteTherapy()">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
-  
+</div>
