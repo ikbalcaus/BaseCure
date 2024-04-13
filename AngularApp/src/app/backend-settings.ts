@@ -1,3 +1,3 @@
 export class backendSettings {
-    static address = "https://localhost:7174";
+    static address = "https://localhost:44357";
 }

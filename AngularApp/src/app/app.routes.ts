@@ -13,6 +13,7 @@ import { LoginRedirectService } from './services/login-redirect.service';
 import { PharmacyManageMedicinesComponent } from './pages/pharmacy/pharmacy-manage-medicines/pharmacy-manage-medicines.component';
 import { PharmacyAddMedicineComponent } from './pages/pharmacy/pharmacy-add-medicine/pharmacy-add-medicine.component';
 import { PharmacyEditMedicineComponent } from './pages/pharmacy/pharmacy-edit-medicine/pharmacy-edit-medicine.component';
+import { PatientPrescriptionComponent } from './pages/patient-prescription/patient-prescription.component';
 
 export const routes: Routes = [
     { path: "", component: LandingPageComponent, canActivate: [LoginRedirectService] },
@@ -25,6 +26,7 @@ export const routes: Routes = [
     { path: "apoteka/lijekovi", component: PharmacyManageMedicinesComponent, canActivate: [GuardService], data: { role: "apoteka" } },
     { path: "apoteka/dodaj", component: PharmacyAddMedicineComponent, canActivate: [GuardService], data: { role: "apoteka" } },
     { path: "apoteka/uredi/:id", component: PharmacyEditMedicineComponent, canActivate: [GuardService], data: { role: "apoteka" } },
+    { path: "uputnice", component: PatientPrescriptionComponent},
     { path: "basecure-admin", component: AdminLoginComponent, canActivate: [LoginRedirectService] },
     { path: "basecure-admin/dashboard", component: AdminDashboardComponent, canActivate: [GuardService], data: { role: "admin" } }
 ];

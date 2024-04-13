@@ -19,6 +19,7 @@ namespace BaseCureAPI.DB.Models
         public float? CijenaLijeka {  get; set; }
         public int? Kolicina {  get; set; }
 
+        public virtual UstanoveZdravstva? Ustanova { get; set; }
         public virtual ICollection<Recepti> Receptis { get; set; }
     }
 }
