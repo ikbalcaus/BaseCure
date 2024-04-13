@@ -20,4 +20,8 @@ export class NavbarComponent {
     logoutUser() {
         this.authService.logoutUser();
     }
+
+    showLink(role: string) {
+        return role == this.authService.getAuthToken()?.korisnik?.uloga;
+    }
 }

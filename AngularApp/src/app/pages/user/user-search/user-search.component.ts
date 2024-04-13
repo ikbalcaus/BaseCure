@@ -4,7 +4,6 @@ import { FilterComponent } from '../../../components/filter/filter.component';
 import { CardComponent } from "../../../components/card/card.component";
 import { HttpClient } from '@angular/common/http';
 import { backendSettings } from '../../../backend-settings';
-import { UstanovaZdravstva } from '../../../endpoints/ustanoveZdravstva';
 
 @Component({
   selector: 'app-user-search',
@@ -16,8 +15,8 @@ import { UstanovaZdravstva } from '../../../endpoints/ustanoveZdravstva';
 export class UserSearchComponent {
   constructor(private httpClient: HttpClient) {}
 
-  req: UstanovaZdravstva = { naziv: "", grad: "" };
-  res: Array<UstanovaZdravstva> = [];
+  req: any = {};
+  res: any;
 
   ngOnInit() {
     this.getSearchResults(["", ""])
@@ -27,7 +26,7 @@ export class UserSearchComponent {
     this.req.naziv = $event[0];
     this.req.grad = $event[1];
     
-    this.httpClient.post<Array<UstanovaZdravstva>>(backendSettings.address + "/ustanveZdravstva/search", this.req).subscribe(
+    this.httpClient.post(backendSettings.address + "/ustanveZdravstva/search", this.req).subscribe(
       res => {
         this.res = res;
       }

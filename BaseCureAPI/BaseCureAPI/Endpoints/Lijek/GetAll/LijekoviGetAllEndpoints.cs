@@ -11,27 +11,25 @@ namespace BaseCureAPI.Endpoints.Lijek.GetAll
     {
         private readonly BasecureContext _context;
 
-        public LijekoviGetAllEndpoints( BasecureContext context)
+        public LijekoviGetAllEndpoints(BasecureContext context)
         {
             _context = context;
         }
 
         [HttpGet]
-        public ActionResult<LijekoviGetAllResList> GetLijekovi()
+        public ActionResult GetLijekovi()
         {
-            var lijek = _context.Lijekovis.OrderByDescending(x => x.LijekId).
+            var lijekovi = _context.Lijekovis.OrderByDescending(x => x.LijekId).
                 Select(x => new LijekoviGetAllRes()
                 {
                     LijekId = x.LijekId,
                     NazivLijeka = x.NazivLijeka,
-                    OpisLijeka = x.OpisLijeka,
-                    SlikaLijeka = x.SlikaLijeka,
-                    UstanovaId = x.UstanovaId,
-                    ZahtijevaRecept = x.ZahtijevaRecept
+                    CijenaLijeka = x.CijenaLijeka,
+                    Kolicina = x.Kolicina,
+                    ZahtijevaRecept = x.ZahtijevaRecept,
+                    OpisLijeka = x.OpisLijeka
                 }).ToList();
-            return new LijekoviGetAllResList {
-                Lijekovi = lijek
-            };
+            return Ok(lijekovi);
         }
     }
 }

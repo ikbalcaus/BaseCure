@@ -11,19 +11,12 @@ export class LoginRedirectService {
   ) {}
   
   canActivate(): boolean {
-    if(!this.authService.isLoggedIn()) {
-      return true;
-    }
+    if(!this.authService.isLoggedIn()) return true;
     let role = this.authService.getAuthToken()?.korisnik?.uloga;
-    if(role == "korisnik") {
-      this.router.navigateByUrl("/pretrazi");
-    }
-    else if(role == "ustanova-zdravstva") {
-      this.router.navigateByUrl("/ustanova-zdravstva/karton");
-    }
-    else if(role == "admin") {
-      this.router.navigateByUrl("/basecure-admin/dashboard");
-    }
+    if(role == "korisnik") this.router.navigateByUrl("/pretrazi");
+    else if(role == "ustanova-zdravstva") this.router.navigateByUrl("/ustanova-zdravstva/karton");
+    else if(role == "apoteka") this.router.navigateByUrl("/apoteka/lijekovi");
+    else if(role == "admin") this.router.navigateByUrl("/basecure-admin/dashboard");
     return false;
   }
 }
