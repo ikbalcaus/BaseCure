@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { backendSettings } from '../../backend-settings';
-import { Therapy, Uputnica } from '../../endpoints/uputnica';
 
 @Component({
   selector: 'app-patient-prescription',
@@ -13,17 +12,17 @@ import { Therapy, Uputnica } from '../../endpoints/uputnica';
   imports: [CommonModule, FormsModule]
 })
 export class PatientPrescriptionComponent {
-  patients: Uputnica[] = [];
+  patients: any;
   selectedPatient: number = 1; 
-  selectedPatientName: string = ''; 
-  medicines: Therapy[] = []; 
+  selectedPatientName: string = ""; 
+  medicines: any; 
 
   constructor(private httpClient: HttpClient) {}
 
   ngOnInit() {
     // Fetch patients upon component initialization
     this.httpClient
-      .get<Uputnica[]>(backendSettings.address + '/uputnice')
+      .get(backendSettings.address + '/uputnice')
       .subscribe((list) => {
         this.patients = list;
 
@@ -33,7 +32,7 @@ export class PatientPrescriptionComponent {
       });
   }
 
-  selectPatient(patient: Uputnica) {
+  selectPatient(patient: any) {
     this.selectedPatient = patient.patientId;
     this.selectedPatientName = patient.patientName || '';
     this.medicines = patient.therapies || [];
