@@ -27,14 +27,15 @@ export class AuthService {
   }
 
   loginUser(authRoute: string, req: any) {
-    this.httpClient.post(backendSettings.address + authRoute, req).subscribe(
+    this.httpClient.post<any>(backendSettings.address + authRoute, req).subscribe(
       res => {
         if(res == null) {
           this.alertService.setAlert("danger", "Korisnik ne postoji");
         }
         else {
           window.localStorage.setItem("auth-token", JSON.stringify(res));
-          this.router.navigateByUrl("/korisnik-info");
+          if(res.korisnik.uloga == "korisnik") this.router.navigateByUrl("/korisnik-info");
+          else if(res.korisnik.uloga == "apoteka") this.router.navigateByUrl("/apoteka/lijekovi");
         }
       }
     );
