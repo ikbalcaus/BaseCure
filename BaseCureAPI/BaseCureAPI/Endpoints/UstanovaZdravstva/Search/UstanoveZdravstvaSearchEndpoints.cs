@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using BaseCureAPI.DB.Models;
 using System.Collections.Generic;
 using System.Linq;
 using BaseCureAPI.DB;

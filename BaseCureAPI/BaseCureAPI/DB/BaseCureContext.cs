@@ -23,6 +23,7 @@ namespace BaseCureAPI.DB
         public virtual DbSet<Korisnici> Korisnicis { get; set; } = null!;
         public virtual DbSet<LaboratorijskiRezultati> LaboratorijskiRezultatis { get; set; } = null!;
         public virtual DbSet<Lijekovi> Lijekovis { get; set; } = null!;
+        public virtual DbSet<LijekoviKorisnici> LijekoviKorisnicis { get; set; } = null!;
         public virtual DbSet<Ljekari> Ljekaris { get; set; } = null!;
         public virtual DbSet<Napomene> Napomenes { get; set; } = null!;
         public virtual DbSet<Osoblje> Osobljes { get; set; } = null!;
@@ -229,6 +230,10 @@ namespace BaseCureAPI.DB
                     .ValueGeneratedNever()
                     .HasColumnName("lijek_id");
 
+                entity.Property(e => e.CijenaLijeka).HasColumnName("cijena_lijeka");
+
+                entity.Property(e => e.Kolicina).HasColumnName("kolicina");
+
                 entity.Property(e => e.NazivLijeka)
                     .HasMaxLength(255)
                     .IsUnicode(false)
@@ -249,6 +254,38 @@ namespace BaseCureAPI.DB
                     .WithMany(p => p.Lijekovis)
                     .HasForeignKey(d => d.UstanovaId)
                     .HasConstraintName("FK__Lijekovi__ustano__2739D489");
+            });
+
+            modelBuilder.Entity<LijekoviKorisnici>(entity =>
+            {
+                entity.HasKey(e => e.NarudzbaId)
+                    .HasName("PK__Lijekovi__26E2BC6DD049B088");
+
+                entity.ToTable("LijekoviKorisnici");
+
+                entity.Property(e => e.NarudzbaId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("narudzba_id");
+
+                entity.Property(e => e.DatumVrijeme)
+                    .HasColumnType("datetime")
+                    .HasColumnName("datum_vrijeme");
+
+                entity.Property(e => e.KorisnikId).HasColumnName("korisnik_id");
+
+                entity.Property(e => e.LijekId).HasColumnName("lijek_id");
+
+                entity.Property(e => e.Odobreno).HasColumnName("odobreno");
+
+                entity.HasOne(d => d.Korisnik)
+                    .WithMany(p => p.LijekoviKorisnicis)
+                    .HasForeignKey(d => d.KorisnikId)
+                    .HasConstraintName("FK__LijekoviK__koris__3C34F16F");
+
+                entity.HasOne(d => d.Lijek)
+                    .WithMany(p => p.LijekoviKorisnicis)
+                    .HasForeignKey(d => d.LijekId)
+                    .HasConstraintName("FK__LijekoviK__lijek__3D2915A8");
             });
 
             modelBuilder.Entity<Ljekari>(entity =>

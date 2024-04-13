@@ -18,11 +18,8 @@ namespace BaseCureAPI.DB.Models
         public byte[]? SlikaLijeka { get; set; }
         public int? UstanovaId { get; set; }
         public string? OpisLijeka { get; set; }
-<<<<<<< Updated upstream
-=======
         public double? CijenaLijeka { get; set; }
         public int? Kolicina { get; set; }
->>>>>>> Stashed changes
 
         public virtual UstanoveZdravstva? Ustanova { get; set; }
         [JsonIgnore]
