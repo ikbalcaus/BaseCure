@@ -7,6 +7,7 @@ namespace BaseCureAPI.DB.Models
     {
         public Lijekovi()
         {
+
             Receptis = new HashSet<Recepti>();
         }
 
@@ -19,7 +20,9 @@ namespace BaseCureAPI.DB.Models
         public float? CijenaLijeka {  get; set; }
         public int? Kolicina {  get; set; }
 
+
         public virtual UstanoveZdravstva? Ustanova { get; set; }
+
         public virtual ICollection<Recepti> Receptis { get; set; }
     }
 }
