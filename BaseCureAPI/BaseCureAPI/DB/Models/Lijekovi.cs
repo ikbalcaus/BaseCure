@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace BaseCureAPI.DB.Models
 {
@@ -22,9 +21,7 @@ namespace BaseCureAPI.DB.Models
         public int? Kolicina { get; set; }
 
         public virtual UstanoveZdravstva? Ustanova { get; set; }
-        [JsonIgnore]
         public virtual ICollection<LijekoviKorisnici> LijekoviKorisnicis { get; set; }
-        [JsonIgnore]
         public virtual ICollection<Recepti> Receptis { get; set; }
     }
 }
