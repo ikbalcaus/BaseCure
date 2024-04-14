@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { backendSettings } from '../../../backend-settings';
+import { serverSettings } from '../../../server-settings';
 import { AlertService } from '../../../services/alert.service';
 
 @Component({
@@ -32,7 +32,7 @@ export class PharmacyAddMedicineComponent {
       opisLijeka: loginForm.opisLijeka,
       zahtijevaRecept: loginForm.zahtijevaRecept || false
     };
-    this.httpClient.post(backendSettings.address + "/lijekovi", this.req).subscribe(
+    this.httpClient.post(serverSettings.address + "/lijekovi", this.req).subscribe(
       res => {
         this.router.navigateByUrl("/apoteka/lijekovi");
         this.alertService.setAlert("success", "Lijek je uspješno dodan");

@@ -7,11 +7,11 @@ namespace BaseCureAPI.Endpoints.Lijek.Put
 {
     [Route("lijekovi")]
     [ApiController]
-    public class LijekoviPutEndpoint : ControllerBase
+    public class LijekoviController : ControllerBase
     {
         private readonly BasecureContext _context;
 
-        public LijekoviPutEndpoint(BasecureContext context)
+        public LijekoviController(BasecureContext context)
         {
             _context = context;
         }

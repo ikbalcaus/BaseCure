@@ -9,11 +9,11 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.GetByParams
 {
     [Route("ustanveZdravstva")]
     [ApiController]
-    public class UstanoveZdravstvaGetByParamsController : ControllerBase
+    public class UstanoveZdravstvaController : ControllerBase
     {
         private readonly BasecureContext _context;
 
-        public UstanoveZdravstvaGetByParamsController(BasecureContext context)
+        public UstanoveZdravstvaController(BasecureContext context)
         {
             _context = context;
         }

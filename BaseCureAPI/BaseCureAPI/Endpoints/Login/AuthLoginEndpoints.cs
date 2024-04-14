@@ -6,22 +6,20 @@ using Microsoft.EntityFrameworkCore;
 using SendGrid.Helpers.Mail;
 using SendGrid;
 
-
-
 namespace BaseCureAPI.Endpoints.Login
 {
     [Route("auth")]
     [ApiController]
-    public class AuthLoginEndpoints : ControllerBase
+    public class AuthController : ControllerBase
     {
         private readonly BasecureContext _context;
 
-        public AuthLoginEndpoints(BasecureContext context)
+        public AuthController(BasecureContext context)
         {
             _context = context;
         }
 
-        [HttpPost("/verify-code")]
+        [HttpPost("verify-code")]
         public ActionResult VerifyCode([FromBody] VerificationRequest request)
         {
             // Retrieve the verification code sent by the user
@@ -149,6 +147,44 @@ namespace BaseCureAPI.Endpoints.Login
             _context.SaveChanges();
 
             //4- vratiti token string
+            return Ok(noviToken);
+        }
+
+        [HttpPost("admin-login")]
+        public ActionResult AdminLogin([FromBody] AuthLoginReq request)
+        {
+            if (request == null)
+            {
+                return BadRequest("Došlo je do greške na serveru");
+            }
+
+            var logiraniKorisnik = _context.Korisnicis
+                .FirstOrDefault(k =>
+                    k.KorisnickoIme == request.KorisnickoIme && k.HashLozinke == request.Lozinka && k.Uloga == "admin");
+
+            if (logiraniKorisnik == null)
+            {
+                return Ok(null);
+            }
+
+            string randomString = TokenGen.Generate(10);
+
+            var noviToken = new AuthToken()
+            {
+                IpAdresa = Request.HttpContext.Connection.RemoteIpAddress?.ToString(),
+                Vrijednost = randomString,
+                KorisnikId = logiraniKorisnik.KorisnikId,
+                Korisnik = logiraniKorisnik,
+                VrijemeEvidentiranja = DateTime.Now,
+                Code2f = Guid.NewGuid().ToString(),
+            };
+
+            noviToken.AuthTokenId =
+                _context.AuthTokens.Any() ? _context.AuthTokens.Max(x => x.AuthTokenId) + 1 : 1;
+
+            _context.Add(noviToken);
+            _context.SaveChanges();
+
             return Ok(noviToken);
         }
 

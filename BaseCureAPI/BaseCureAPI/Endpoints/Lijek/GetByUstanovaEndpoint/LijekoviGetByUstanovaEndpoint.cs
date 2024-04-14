@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BaseCureAPI.Endpoints.Lijek.GetForUstanova
 {
-    [Route("ustanove/{ustanovaId}/lijekovi")]
+    [Route("/lijekovi/apoteka/{ustanovaId}")]
     [ApiController]
-    public class LijekoviGetByUstanovaEndpoint : ControllerBase
+    public class LijekoviController : ControllerBase
     {
         private readonly BasecureContext _context;
 
-        public LijekoviGetByUstanovaEndpoint(BasecureContext context)
+        public LijekoviController(BasecureContext context)
         {
             _context = context;
         }

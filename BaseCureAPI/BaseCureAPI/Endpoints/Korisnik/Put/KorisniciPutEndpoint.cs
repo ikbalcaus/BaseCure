@@ -7,11 +7,11 @@ namespace BaseCureAPI.Endpoints.Korisnik.Put
 {
     [Route("korisnici")]
     [ApiController]
-    public class KorisniciPutEndpoint : ControllerBase
+    public class KorisniciController : ControllerBase
     {
         private readonly BasecureContext _context;
 
-        public KorisniciPutEndpoint(BasecureContext context)
+        public KorisniciController(BasecureContext context)
         {
             _context = context;
         }

@@ -6,11 +6,11 @@ namespace BaseCureAPI.Endpoints.MedicalRecords.Delete
 {
     [Route("medicalRecords")]
     [ApiController]
-    public class MedicalRecordsDeleteEndpoint : ControllerBase
+    public class MedicalRecordsController : ControllerBase
     {
         private readonly BasecureContext _context;
 
-        public MedicalRecordsDeleteEndpoint(BasecureContext context)
+        public MedicalRecordsController(BasecureContext context)
         {
             _context = context;
         }

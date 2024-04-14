@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 
-export class LoginRedirectService {
+export class RedirectService {
   constructor(
     private authService: AuthService,
     private router: Router

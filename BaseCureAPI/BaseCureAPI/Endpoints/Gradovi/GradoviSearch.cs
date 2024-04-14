@@ -4,13 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BaseCureAPI.Endpoints.Search
 {
-    [Route("gradovi/search")]
+    [Route("search")]
     [ApiController]
-    public class GradoviSearch : ControllerBase
+    public class GradoviController : ControllerBase
     {
         private readonly BasecureContext _context;
 
-        public GradoviSearch(BasecureContext context)
+        public GradoviController(BasecureContext context)
         {
             _context = context;
         }

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { backendSettings } from '../../backend-settings';
+import { serverSettings } from '../../server-settings';
 
 @Component({
   selector: 'app-patient-prescription',
@@ -23,7 +23,7 @@ export class PatientPrescriptionComponent {
   ngOnInit() {
     // Fetch patients upon component initialization
     this.httpClient
-      .get(backendSettings.address + '/uputnice')
+      .get(serverSettings.address + '/uputnice')
       .subscribe((list) => {
         this.patients = list;
 
@@ -48,7 +48,7 @@ export class PatientPrescriptionComponent {
       return;
     }
     const therapyId = this.selectedTherapy.therapyId;
-    const apiUrl = `${backendSettings.address}/uputnice/${this.selectedPatient.patientId}/terapije/${therapyId}`;
+    const apiUrl = `${serverSettings.address}/uputnice/${this.selectedPatient.patientId}/terapije/${therapyId}`;
     this.httpClient.put(apiUrl, this.selectedTherapy).subscribe(() => {
       // Assuming therapy is updated successfully
       console.log('Therapy updated successfully.');
@@ -60,7 +60,7 @@ export class PatientPrescriptionComponent {
       return;
     }
     const therapyId = this.selectedTherapy.therapyId;
-    const apiUrl = `${backendSettings.address}/uputnice/${this.selectedPatient.patientId}/terapije/${therapyId}`;
+    const apiUrl = `${serverSettings.address}/uputnice/${this.selectedPatient.patientId}/terapije/${therapyId}`;
     this.httpClient.delete(apiUrl).subscribe(() => {
       // Assuming therapy is deleted successfully
       console.log('Therapy deleted successfully.');

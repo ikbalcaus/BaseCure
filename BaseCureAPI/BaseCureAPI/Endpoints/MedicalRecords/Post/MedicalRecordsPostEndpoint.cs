@@ -9,11 +9,11 @@ namespace BaseCureAPI.Endpoints.MedicalRecords.Post
 {
     [Route("medicalRecords")]
     [ApiController]
-    public class MedicalRecordsPostEndpoint : ControllerBase
+    public class MedicalRecordsController : ControllerBase
     {
         private readonly BasecureContext _context;
 
-        public MedicalRecordsPostEndpoint(BasecureContext context)
+        public MedicalRecordsController(BasecureContext context)
         {
             _context = context;
         }
