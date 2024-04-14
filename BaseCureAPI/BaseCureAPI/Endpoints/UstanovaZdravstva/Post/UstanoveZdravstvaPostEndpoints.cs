@@ -19,7 +19,7 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.Post
             _context = context;
         }
 
-        [HttpPost("create")]
+        [HttpPost]
         public ActionResult<int> CreateUstanova([FromBody] UstanoveZdravstvaPostReq req)
         {
             UstanoveZdravstva ustanova = new UstanoveZdravstva();

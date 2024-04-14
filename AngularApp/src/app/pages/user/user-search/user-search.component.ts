@@ -26,7 +26,7 @@ export class UserSearchComponent {
     this.req.naziv = $event[0];
     this.req.grad = $event[1];
     
-    this.httpClient.post(serverSettings.address + "/ustanveZdravstva/search", this.req).subscribe(
+    this.httpClient.get(serverSettings.address + "/ustanveZdravstva/search?naziv=" + this.req.naziv + "&grad=" + this.req.grad).subscribe(
       res => {
         this.res = res;
       }

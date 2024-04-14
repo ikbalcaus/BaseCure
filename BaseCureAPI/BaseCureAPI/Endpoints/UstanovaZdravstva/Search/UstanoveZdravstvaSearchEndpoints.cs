@@ -18,12 +18,12 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.Search
             _context = context;
         }
 
-        [HttpPost("search")]
-        public ActionResult<UstanoveZdravstvaSearchReq> GetUstanova([FromBody] UstanoveZdravstvaSearchReq req)
+        [HttpGet("search")]
+        public ActionResult GetUstanova([FromQuery] UstanoveZdravstvaSearchReq req)
         {
             var ustanove = _context.UstanoveZdravstvas.OrderByDescending(x => x.UstanovaId)
-                .Where(x => x.Naziv.Contains(req.Naziv) && (x.Grad == req.Grad || req.Grad == ""))
-                .Select(x => new UstanoveZdravstvaSearchReq()
+                 .Where(x => (string.IsNullOrEmpty(req.Naziv) || x.Naziv.Contains(req.Naziv)) && (string.IsNullOrEmpty(req.Grad) || x.Grad == req.Grad))
+                .Select(x => new UstanoveZdravstvaSearchRes()
                 {
                     UstanovaId = x.UstanovaId,
                     Naziv = x.Naziv,
