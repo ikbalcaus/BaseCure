@@ -8,11 +8,11 @@ namespace BaseCureAPI.Endpoints.Lijek.Post
 {
     [Route("lijekovi")]
     [ApiController]
-    public class LijekoviPostEndpoints : ControllerBase
+    public class LijekoviController : ControllerBase
     {
         private readonly BasecureContext _context;
 
-        public LijekoviPostEndpoints(BasecureContext context)
+        public LijekoviController(BasecureContext context)
         {
             _context = context;
         }
@@ -30,6 +30,8 @@ namespace BaseCureAPI.Endpoints.Lijek.Post
                 OpisLijeka = req.OpisLijeka,
                 SlikaLijeka = req.SlikaLijeka,
                 UstanovaId = req.UstanovaId,
+                CijenaLijeka = req.CijenaLijeka,
+                Kolicina = req.Kolicina,
                 ZahtijevaRecept = req.ZahtijevaRecept
             };
 

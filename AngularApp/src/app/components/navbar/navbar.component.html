@@ -1,22 +1,16 @@
 <nav class="navbar navbar-expand-xl bg-body-tertiary shadow-sm">
   <a class="navbar-brand px-5" routerLink="/">BaseCure</a>
-  <button class="navbar-toggler btn btn-secondary me-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button *ngIf="isLoggedIn()" class="navbar-toggler btn btn-secondary me-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ms-auto">
-      <li class="nav-item">
-        <a class="btn navbar-link" routerLink="/pretrazi" routerLinkActive="active-link">Pretraži ustanove zdravstva</a>
-      </li>
-      <li class="nav-item">
-        <a class="btn navbar-link" routerLink="/korpa" routerLinkActive="active-link">Pogledaj korpu</a>
-      <li class="nav-item">
-      <li class="nav-item">
-        <a class="btn navbar-link" routerLink="/korisnik-info" routerLinkActive="active-link">Moje informacije</a>
-      <li class="nav-item">
-      <li class="nav-item" *ngIf="isLoggedIn()">
-        <button class="btn navbar-link btn-primary" (click)="logoutUser()">Odjavi se</button>
-      <li class="nav-item">
+      <li *ngIf="showLink('korisnik')" class="nav-item"><a class="btn navbar-link" routerLink="/pretrazi" routerLinkActive="active-link">Pretraži ustanove zdravstva</a></li>
+      <li *ngIf="showLink('korisnik')" class="nav-item"><a class="btn navbar-link" routerLink="/korpa" routerLinkActive="active-link">Pogledaj korpu</a></li>
+      <li *ngIf="showLink('korisnik')" class="nav-item"><a class="btn navbar-link" routerLink="/korisnik-info" routerLinkActive="active-link">Moje informacije</a></li>
+      <li *ngIf="showLink('apoteka')" class="nav-item"><a class="btn navbar-link" routerLink="/apoteka/lijekovi" routerLinkActive="active-link">Pogledaj lijekove</a></li>
+      <li *ngIf="showLink('apoteka')" class="nav-item"><a class="btn navbar-link" routerLink="/apoteka/dodaj" routerLinkActive="active-link">Dodaj lijek</a></li>
+      <li *ngIf="isLoggedIn()" class="nav-item"><button class="btn btn-primary navbar-link" (click)="logoutUser()">Odjavi se</button></li>
     </ul>
   </div>
 </nav>

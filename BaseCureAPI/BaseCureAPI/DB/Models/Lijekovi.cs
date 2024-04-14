@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace BaseCureAPI.DB.Models
 {
@@ -17,8 +18,8 @@ namespace BaseCureAPI.DB.Models
         public byte[]? SlikaLijeka { get; set; }
         public int? UstanovaId { get; set; }
         public string? OpisLijeka { get; set; }
-        public float? CijenaLijeka { get; set; }
-        public int? Kolicina { get; set; }
+        public float? CijenaLijeka {  get; set; }
+        public int? Kolicina {  get; set; }
 
         [JsonIgnore]
         public virtual ICollection<LijekoviKorisnici> LijekoviKorisnicis { get; set; }

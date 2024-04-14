@@ -1,8 +1,9 @@
 ﻿using BaseCureAPI.DB;
+using BaseCureAPI.DB.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BaseCureAPI.Endpoints.Lijek.Delete
+namespace BaseCureAPI.Endpoints.Lijek.GetById
 {
     [Route("lijekovi")]
     [ApiController]
@@ -15,19 +16,11 @@ namespace BaseCureAPI.Endpoints.Lijek.Delete
             _context = context;
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult DeleteLijek(int id)
+        [HttpGet("{id}")]
+        public ActionResult GetLijek([FromRoute] int id)
         {
-            var lijek = _context.Lijekovis.Find(id);
-            if (lijek == null)
-            {
-                return NotFound();
-            }
-
-            _context.Lijekovis.Remove(lijek);
-            _context.SaveChanges();
-
-            return NoContent();
+            var lijek = _context.Lijekovis.FirstOrDefault(x => x.LijekId == id);
+            return Ok(lijek);
         }
     }
 }

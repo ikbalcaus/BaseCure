@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { backendSettings } from '../../backend-settings';
-import { Therapy, Uputnica } from '../../endpoints/uputnica';
+import { serverSettings } from '../../server-settings';
 
 @Component({
   selector: 'app-patient-prescription',
@@ -13,17 +12,18 @@ import { Therapy, Uputnica } from '../../endpoints/uputnica';
   imports: [CommonModule, FormsModule]
 })
 export class PatientPrescriptionComponent {
-  patients: Uputnica[] = [];
-  selectedPatient: Uputnica | null = null;
-  selectedPatientName: string = '';
-  selectedTherapy: Therapy | null = null;
+  patients: any;
+  selectedPatientName: string = ""; 
+  medicines: any; 
+  selectedPatient: any;
+  selectedTherapy: any;
 
   constructor(private httpClient: HttpClient) {}
 
   ngOnInit() {
     // Fetch patients upon component initialization
     this.httpClient
-      .get<Uputnica[]>(backendSettings.address + '/uputnice')
+      .get(serverSettings.address + '/uputnice')
       .subscribe((list) => {
         this.patients = list;
 
@@ -33,13 +33,13 @@ export class PatientPrescriptionComponent {
       });
   }
 
-  selectPatient(patient: Uputnica) {
+  selectPatient(patient: any) {
     this.selectedPatient = patient;
     this.selectedPatientName = patient.patientName || '';
     this.selectedTherapy = null;
   }
 
-  selectTherapy(therapy: Therapy) {
+  selectTherapy(therapy: any) {
     this.selectedTherapy = therapy;
   }
 
@@ -48,7 +48,7 @@ export class PatientPrescriptionComponent {
       return;
     }
     const therapyId = this.selectedTherapy.therapyId;
-    const apiUrl = `${backendSettings.address}/uputnice/${this.selectedPatient.patientId}/terapije/${therapyId}`;
+    const apiUrl = `${serverSettings.address}/uputnice/${this.selectedPatient.patientId}/terapije/${therapyId}`;
     this.httpClient.put(apiUrl, this.selectedTherapy).subscribe(() => {
       // Assuming therapy is updated successfully
       console.log('Therapy updated successfully.');
@@ -60,12 +60,12 @@ export class PatientPrescriptionComponent {
       return;
     }
     const therapyId = this.selectedTherapy.therapyId;
-    const apiUrl = `${backendSettings.address}/uputnice/${this.selectedPatient.patientId}/terapije/${therapyId}`;
+    const apiUrl = `${serverSettings.address}/uputnice/${this.selectedPatient.patientId}/terapije/${therapyId}`;
     this.httpClient.delete(apiUrl).subscribe(() => {
       // Assuming therapy is deleted successfully
       console.log('Therapy deleted successfully.');
       if (this.selectedPatient && this.selectedPatient.therapies) {
-        const index = this.selectedPatient.therapies.findIndex(t => t.therapyId === therapyId);
+        const index = this.selectedPatient.therapies.findIndex((t: any) => t.therapyId === therapyId);
         if (index !== -1) {
           this.selectedPatient.therapies.splice(index, 1);
         }

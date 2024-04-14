@@ -1,17 +1,14 @@
-﻿namespace BaseCureAPI.Endpoints.Lijek.GetAll
+﻿namespace BaseCureAPI.Endpoints.Lijek.GetById
 {
-    public class LijekoviGetAllRes
+    public class LijekoviGetByIdRes
     {
         public int LijekId { get; set; }
         public string? NazivLijeka { get; set; }
         public bool? ZahtijevaRecept { get; set; }
-        public byte[] SlikaLijeka { get; set; }
+        public byte[]? SlikaLijeka { get; set; }
         public int? UstanovaId { get; set; }
+        public float? CijenaLijeka { get; set; }
+        public int? Kolicina { get; set; }
         public string? OpisLijeka { get; set; }
-    }
-
-    public class LijekoviGetAllResList
-    {
-        public List<LijekoviGetAllRes> Lijekovi { get; set; }
     }
 }

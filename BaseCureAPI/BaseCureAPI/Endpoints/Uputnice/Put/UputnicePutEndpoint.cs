@@ -7,11 +7,11 @@ namespace BaseCureAPI.Endpoints.Uputnice.Put
 {
     [Route("uputnice")]
     [ApiController]
-    public class UputnicePutEndpoint : ControllerBase
+    public class UputniceController : ControllerBase
     {
         private readonly BasecureContext _context;
 
-        public UputnicePutEndpoint(BasecureContext context)
+        public UputniceController(BasecureContext context)
         {
             _context = context;
         }

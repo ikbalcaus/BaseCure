@@ -6,11 +6,11 @@ namespace BaseCureAPI.Endpoints.Uputnice.Delete
 {
     [Route("uputnice")]
     [ApiController]
-    public class UputniceDeleteEndpoint : ControllerBase
+    public class UputniceController : ControllerBase
     {
         private readonly BasecureContext _context;
 
-        public UputniceDeleteEndpoint(BasecureContext context)
+        public UputniceController(BasecureContext context)
         {
             _context = context;
         }

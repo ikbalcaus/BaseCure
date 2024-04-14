@@ -18,7 +18,7 @@
           <hr>
           <div class="form-group mb-2">
             <label>Ime i prezime:</label>
-            <input type="text" class="form-control shadow-sm">
+            <input type="text" class="form-control shadow-sm" [value]="korisnik.ime + ' ' + korisnik.prezime">
           </div>
           <div class="form-group mb-2">
             <label>Telefonski broj:</label>
@@ -30,7 +30,11 @@
           </div>
           <div class="form-group mb-2">
             <label>Adresa stanovanja:</label>
-            <input type="text" class="form-control shadow-sm">
+            <input type="text" class="form-control shadow-sm" [value]="korisnik.adresa">
+          </div>
+          <div class="form-group mb-2">
+            <label>Email adresa:</label>
+            <input type="text" class="form-control shadow-sm" [value]="korisnik.mailAdresa">
           </div>
           <hr>
           <div class="card-column">

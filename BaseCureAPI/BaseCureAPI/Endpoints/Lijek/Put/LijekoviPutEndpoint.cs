@@ -7,11 +7,11 @@ namespace BaseCureAPI.Endpoints.Lijek.Put
 {
     [Route("lijekovi")]
     [ApiController]
-    public class LijekoviPutEndpoint : ControllerBase
+    public class LijekoviController : ControllerBase
     {
         private readonly BasecureContext _context;
 
-        public LijekoviPutEndpoint(BasecureContext context)
+        public LijekoviController(BasecureContext context)
         {
             _context = context;
         }
@@ -28,6 +28,8 @@ namespace BaseCureAPI.Endpoints.Lijek.Put
             lijek.SlikaLijeka = req.SlikaLijeka;
             lijek.OpisLijeka = req.OpisLijeka;
             lijek.ZahtijevaRecept = req.ZahtijevaRecept;
+            lijek.CijenaLijeka = req.CijenaLijeka;
+            lijek.Kolicina = req.Kolicina;
             lijek.UstanovaId = req.UstanovaId;
 
             _context.SaveChanges();
