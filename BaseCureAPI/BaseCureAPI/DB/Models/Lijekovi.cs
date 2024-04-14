@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace BaseCureAPI.DB.Models
 {
@@ -8,7 +7,7 @@ namespace BaseCureAPI.DB.Models
     {
         public Lijekovi()
         {
-
+            Narudzbes = new HashSet<Narudzbe>();
             Receptis = new HashSet<Recepti>();
         }
 
@@ -18,14 +17,11 @@ namespace BaseCureAPI.DB.Models
         public byte[]? SlikaLijeka { get; set; }
         public int? UstanovaId { get; set; }
         public string? OpisLijeka { get; set; }
-        public float? CijenaLijeka {  get; set; }
-        public int? Kolicina {  get; set; }
-
-        [JsonIgnore]
-        public virtual ICollection<LijekoviKorisnici> LijekoviKorisnicis { get; set; }
+        public double? CijenaLijeka { get; set; }
+        public int? Kolicina { get; set; }
 
         public virtual UstanoveZdravstva? Ustanova { get; set; }
-
+        public virtual ICollection<Narudzbe> Narudzbes { get; set; }
         public virtual ICollection<Recepti> Receptis { get; set; }
     }
 }
