@@ -6,11 +6,11 @@ namespace BaseCureAPI.Endpoints.Lijek.Delete
 {
     [Route("lijekovi")]
     [ApiController]
-    public class LijekoviDeleteEndpoint : ControllerBase
+    public class LijekoviController : ControllerBase
     {
         private readonly BasecureContext _context;
 
-        public LijekoviDeleteEndpoint(BasecureContext context)
+        public LijekoviController(BasecureContext context)
         {
             _context = context;
         }

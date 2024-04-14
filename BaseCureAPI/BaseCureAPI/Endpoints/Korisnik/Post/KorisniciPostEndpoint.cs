@@ -8,11 +8,11 @@ namespace BaseCureAPI.Endpoints.Korisnik.Post
 {
     [Route("korisnici")]
     [ApiController]
-    public class KorisniciPostEndpoint : ControllerBase
+    public class KorisniciController : ControllerBase
     {
         private readonly BasecureContext _context;
 
-        public KorisniciPostEndpoint(BasecureContext context)
+        public KorisniciController(BasecureContext context)
         {
             _context = context;
         }

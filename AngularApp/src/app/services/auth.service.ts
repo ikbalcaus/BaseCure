@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
-import { backendSettings } from "../backend-settings";
+import { serverSettings } from "../server-settings";
 import { AlertService } from "./alert.service";
 
 @Injectable({ providedIn: 'root' })
@@ -27,7 +27,7 @@ export class AuthService {
   }
 
   loginUser(authRoute: string, req: any) {
-    this.httpClient.post<any>(backendSettings.address + authRoute, req).subscribe(
+    this.httpClient.post<any>(serverSettings.address + authRoute, req).subscribe(
       res => {
         if(res == null) {
           this.alertService.setAlert("danger", "Korisnik ne postoji");

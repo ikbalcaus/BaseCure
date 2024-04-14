@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { backendSettings } from '../../../backend-settings';
+import { serverSettings } from '../../../server-settings';
 import { ModalComponent } from '../../../components/modal/modal.component';
 import { AlertService } from '../../../services/alert.service';
 
@@ -27,7 +27,7 @@ export class PharmacyEditMedicineComponent {
   showModal: boolean = false;
 
   ngOnInit() {
-    this.httpClient.get(backendSettings.address + "/lijekovi/" + this.route.snapshot.paramMap.get("id")).subscribe(
+    this.httpClient.get(serverSettings.address + "/lijekovi/" + this.route.snapshot.paramMap.get("id")).subscribe(
       res => {
         this.res = res
         console.log(this.res)
@@ -43,7 +43,7 @@ export class PharmacyEditMedicineComponent {
       opisLijeka: loginForm.opisLijeka,
       zahtijevaRecept: loginForm.zahtijevaRecept || false
     };
-    this.httpClient.put(backendSettings.address + "/lijekovi/" + this.route.snapshot.paramMap.get("id"), this.req).subscribe(
+    this.httpClient.put(serverSettings.address + "/lijekovi/" + this.route.snapshot.paramMap.get("id"), this.req).subscribe(
       res => {
         this.router.navigateByUrl("/apoteka/lijekovi");
         this.alertService.setAlert("success", "Lijek je uspješno uređen");
@@ -52,7 +52,7 @@ export class PharmacyEditMedicineComponent {
   }
 
   deleteMedicine() {
-    this.httpClient.delete(backendSettings.address + "/lijekovi/" + this.route.snapshot.paramMap.get("id")).subscribe(
+    this.httpClient.delete(serverSettings.address + "/lijekovi/" + this.route.snapshot.paramMap.get("id")).subscribe(
       res => {
         this.router.navigateByUrl("/apoteka/lijekovi");
         this.alertService.setAlert("success", "Lijek je uspješno obrisan");

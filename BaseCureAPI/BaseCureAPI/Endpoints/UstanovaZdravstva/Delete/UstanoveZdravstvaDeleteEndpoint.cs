@@ -9,11 +9,11 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.Delete
 {
     [Route("ustanveZdravstva")]
     [ApiController]
-    public class UstanoveZdravstvaDeleteController : ControllerBase
+    public class UstanoveZdravstvaController : ControllerBase
     {
         private readonly BasecureContext _context;
 
-        public UstanoveZdravstvaDeleteController(BasecureContext context)
+        public UstanoveZdravstvaController(BasecureContext context)
         {
             _context = context;
         }

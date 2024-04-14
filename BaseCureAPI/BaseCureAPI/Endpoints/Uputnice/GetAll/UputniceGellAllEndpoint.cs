@@ -7,11 +7,11 @@ namespace BaseCureAPI.Endpoints.Uputnice.GetAll
 {
     [Route("uputnice")]
     [ApiController]
-    public class UputniceGellAllEndpoint : ControllerBase
+    public class UputniceController : ControllerBase
     {
         private readonly BasecureContext _context;
 
-        public UputniceGellAllEndpoint(BasecureContext context)
+        public UputniceController(BasecureContext context)
         {
             _context = context;
         }

@@ -7,11 +7,11 @@ namespace BaseCureAPI.Endpoints.Lijek.GetById
 {
     [Route("lijekovi")]
     [ApiController]
-    public class LijekoviGetByIdEndpoints : ControllerBase
+    public class LijekoviController : ControllerBase
     {
         private readonly BasecureContext _context;
 
-        public LijekoviGetByIdEndpoints(BasecureContext context)
+        public LijekoviController(BasecureContext context)
         {
             _context = context;
         }

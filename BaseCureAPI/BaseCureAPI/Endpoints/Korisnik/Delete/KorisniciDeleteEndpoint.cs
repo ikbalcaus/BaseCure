@@ -7,11 +7,11 @@ namespace BaseCureAPI.Endpoints.Korisnik.Delete
 {
     [Route("korisnici")]
     [ApiController]
-    public class KorisniciDeleteEndpoint : ControllerBase
+    public class KorisniciController : ControllerBase
     {
         private readonly BasecureContext _context;
 
-        public KorisniciDeleteEndpoint(BasecureContext context)
+        public KorisniciController(BasecureContext context)
         {
             _context = context;
         }

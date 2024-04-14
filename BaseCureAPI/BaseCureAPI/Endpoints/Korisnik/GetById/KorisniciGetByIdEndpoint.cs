@@ -7,11 +7,11 @@ namespace BaseCureAPI.Endpoints.Korisnik.GetById
 {
     [Route("korisnici")]
     [ApiController]
-    public class KorisniciGetByIdEndpoint : ControllerBase
+    public class KorisniciController : ControllerBase
     {
         private readonly BasecureContext _context;
 
-        public KorisniciGetByIdEndpoint(BasecureContext context)
+        public KorisniciController(BasecureContext context)
         {
             _context = context;
         }

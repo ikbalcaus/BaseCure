@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { backendSettings } from '../../../backend-settings';
+import { serverSettings } from '../../../server-settings';
 
 @Component({
   selector: 'app-user-about',
@@ -20,7 +20,7 @@ export class UserAboutComponent {
   res: any;
 
   ngOnInit() {
-    this.httpClient.get(backendSettings.address + "/ustanveZdravstva/" + this.route.snapshot.paramMap.get("id")).subscribe(
+    this.httpClient.get(serverSettings.address + "/ustanveZdravstva/" + this.route.snapshot.paramMap.get("id")).subscribe(
       res => {
         this.res = res;
       }

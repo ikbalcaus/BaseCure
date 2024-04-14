@@ -9,14 +9,14 @@ import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-das
 import { MedicalInstitutionCartonComponent } from './pages/medical-institution/medical-institution-carton/medical-institution-carton.component';
 import { UserMedicinesComponent } from './pages/user/user-medicines/user-medicines.component';
 import { GuardService } from './services/guard.service';
-import { LoginRedirectService } from './services/login-redirect.service';
+import { RedirectService } from './services/redirect.service';
 import { PharmacyManageMedicinesComponent } from './pages/pharmacy/pharmacy-manage-medicines/pharmacy-manage-medicines.component';
 import { PharmacyAddMedicineComponent } from './pages/pharmacy/pharmacy-add-medicine/pharmacy-add-medicine.component';
 import { PharmacyEditMedicineComponent } from './pages/pharmacy/pharmacy-edit-medicine/pharmacy-edit-medicine.component';
 import { PatientPrescriptionComponent } from './pages/patient-prescription/patient-prescription.component';
 
 export const routes: Routes = [
-    { path: "", component: LandingPageComponent, canActivate: [LoginRedirectService] },
+    { path: "", component: LandingPageComponent, canActivate: [RedirectService] },
     { path: "pretrazi", component: UserSearchComponent, canActivate: [GuardService], data: { role: "korisnik" } },
     { path: "pretrazi/:id", component: UserAboutComponent, canActivate: [GuardService], data: { role: "korisnik" } },
     { path: "lijekovi", component: UserMedicinesComponent, canActivate: [GuardService], data: { role: "korisnik" } },
@@ -27,6 +27,6 @@ export const routes: Routes = [
     { path: "apoteka/dodaj", component: PharmacyAddMedicineComponent, canActivate: [GuardService], data: { role: "apoteka" } },
     { path: "apoteka/uredi/:id", component: PharmacyEditMedicineComponent, canActivate: [GuardService], data: { role: "apoteka" } },
     { path: "uputnice", component: PatientPrescriptionComponent},
-    { path: "basecure-admin", component: AdminLoginComponent, canActivate: [LoginRedirectService] },
+    { path: "basecure-admin", component: AdminLoginComponent, canActivate: [RedirectService] },
     { path: "basecure-admin/dashboard", component: AdminDashboardComponent, canActivate: [GuardService], data: { role: "admin" } }
 ];

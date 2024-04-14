@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FilterComponent } from '../../../components/filter/filter.component';
 import { CardComponent } from "../../../components/card/card.component";
 import { HttpClient } from '@angular/common/http';
-import { backendSettings } from '../../../backend-settings';
+import { serverSettings } from '../../../server-settings';
 
 @Component({
   selector: 'app-user-search',
@@ -26,7 +26,7 @@ export class UserSearchComponent {
     this.req.naziv = $event[0];
     this.req.grad = $event[1];
     
-    this.httpClient.post(backendSettings.address + "/ustanveZdravstva/search", this.req).subscribe(
+    this.httpClient.post(serverSettings.address + "/ustanveZdravstva/search", this.req).subscribe(
       res => {
         this.res = res;
       }

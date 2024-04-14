@@ -9,11 +9,11 @@ namespace BaseCureAPI.Endpoints.MedicalRecords.GetAllRecords
 {
     [Route("medicalRecords")]
     [ApiController]
-    public class MedicalRecordsGetAllEndpoint : ControllerBase
+    public class MedicalRecordsController : ControllerBase
     {
         private readonly BasecureContext _context;
 
-        public MedicalRecordsGetAllEndpoint(BasecureContext context)
+        public MedicalRecordsController(BasecureContext context)
         {
             _context = context;
         }

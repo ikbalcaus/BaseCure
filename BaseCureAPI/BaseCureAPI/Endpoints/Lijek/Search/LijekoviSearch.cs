@@ -7,11 +7,11 @@ namespace BaseCureAPI.Endpoints.Lijek.GetByParams
 {
     [Route("lijekovi")]
     [ApiController]
-    public class LijekoviSearch : ControllerBase
+    public class LijekoviController : ControllerBase
     {
         private readonly BasecureContext _context;
 
-        public LijekoviSearch(BasecureContext context)
+        public LijekoviController(BasecureContext context)
         {
             _context = context;
         }

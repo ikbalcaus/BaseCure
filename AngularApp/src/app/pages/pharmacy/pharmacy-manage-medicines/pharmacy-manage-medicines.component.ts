@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FilterComponent } from '../../../components/filter/filter.component';
 import { HttpClient } from '@angular/common/http';
-import { backendSettings } from '../../../backend-settings';
+import { serverSettings } from '../../../server-settings';
 import { ItemListComponent } from '../../../components/item-list/item-list.component';
 import { Router } from '@angular/router';
 
@@ -23,7 +23,7 @@ export class PharmacyManageMedicinesComponent {
   res: any;
 
   ngOnInit() {
-    this.httpClient.get(backendSettings.address + "/lijekovi").subscribe(
+    this.httpClient.get(serverSettings.address + "/lijekovi").subscribe(
       res => {
         this.res = res;
       }
@@ -34,7 +34,7 @@ export class PharmacyManageMedicinesComponent {
     this.req.naziv = $event[0];
     this.req.grad = $event[1];
     
-    this.httpClient.get(backendSettings.address + "/lijekovi/search?NazivLijeka=" + this.req.naziv + "&OpisLijeka=" + this.req.grad + "", this.req).subscribe(
+    this.httpClient.get(serverSettings.address + "/lijekovi/search?NazivLijeka=" + this.req.naziv + "&OpisLijeka=" + this.req.grad + "", this.req).subscribe(
       res => {
         this.res = res;
       }
