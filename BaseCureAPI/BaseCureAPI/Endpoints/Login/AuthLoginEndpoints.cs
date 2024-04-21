@@ -61,7 +61,6 @@ namespace BaseCureAPI.Endpoints.Login
                 KorisnickoIme = request.KorisnickoIme,
                 HashLozinke = request.Lozinka,
                 MailAdresa = request.MailAdresa,
-                // Add other user properties as needed
             };
 
             // Add the user to the database
@@ -117,6 +116,9 @@ namespace BaseCureAPI.Endpoints.Login
 
             //1- provjera logina
             var logiraniKorisnik = _context.Korisnicis
+                .Include(k => k.Grad)
+                .Include(k => k.Osoblje)
+                .Include(k => k.Osoblje.Uloga)
                 .FirstOrDefault(k =>
                     k.KorisnickoIme == request.KorisnickoIme && k.HashLozinke == request.Lozinka);
 
@@ -135,6 +137,27 @@ namespace BaseCureAPI.Endpoints.Login
                 IpAdresa = Request.HttpContext.Connection.RemoteIpAddress?.ToString(),
                 Vrijednost = randomString,
                 KorisnikId = logiraniKorisnik.KorisnikId,
+                /*
+                 Korisnickoime
+                 Lozinka
+                 Ime
+                 Prezime
+                dtmrodj
+                addre
+                mailaddr
+                grad.naziv
+                osoblje.uloga.naziv
+                 */
+                Korisnik = logiraniKorisnik,
+                VrijemeEvidentiranja = DateTime.Now,
+                Code2f = Guid.NewGuid().ToString(),
+            };
+
+            var resToken = new AuthLoginRes()
+            {
+                IpAdresa = Request.HttpContext.Connection.RemoteIpAddress?.ToString(),
+                Vrijednost = randomString,
+                KorisnikId = logiraniKorisnik.KorisnikId,
                 Korisnik = logiraniKorisnik,
                 VrijemeEvidentiranja = DateTime.Now,
                 Code2f = Guid.NewGuid().ToString(),
@@ -147,7 +170,7 @@ namespace BaseCureAPI.Endpoints.Login
             _context.SaveChanges();
 
             //4- vratiti token string
-            return Ok(noviToken);
+            return Ok(resToken);
         }
 
         [HttpPost("admin-login")]
