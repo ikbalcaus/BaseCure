@@ -37,10 +37,10 @@ namespace BaseCureAPI.Endpoints.Login
         public string Adresa => Korisnik.Adresa;
         public string MailAdresa => Korisnik.MailAdresa;
         [JsonIgnore]
-        public Gradovi grad => Korisnik.Grad;
-        public string Grad => grad.Naziv;
+        public Gradovi? grad => Korisnik.Grad;
+        public string? Grad => grad?.Naziv;
         [JsonIgnore]
-        public Uloge uloga => Korisnik.Osoblje.Uloga;
-        public string Uloga => uloga.Naziv;
+        public Uloge? uloga => Korisnik?.Osoblje?.Uloga;
+        public string? Uloga => uloga?.Naziv;
     }
 }

@@ -12,7 +12,8 @@ export class RedirectService {
   
   canActivate(): boolean {
     if(!this.authService.isLoggedIn()) return true;
-    let role = this.authService.getAuthToken()?.korisnik?.uloga;
+    let role = this.authService.getAuthToken()?.uloga;
+    console.log(role)
     if(role == "korisnik") this.router.navigateByUrl("/pretrazi");
     else if(role == "ustanova-zdravstva") this.router.navigateByUrl("/ustanova-zdravstva/karton");
     else if(role == "apoteka") this.router.navigateByUrl("/apoteka/lijekovi");

@@ -34,8 +34,8 @@ export class AuthService {
         }
         else {
           window.localStorage.setItem("auth-token", JSON.stringify(res));
-          if(res.korisnik.uloga == "korisnik") this.router.navigateByUrl("/korisnik-info");
-          else if(res.korisnik.uloga == "apoteka") this.router.navigateByUrl("/apoteka/lijekovi");
+          if(res.uloga == "korisnik") this.router.navigateByUrl("/korisnik-info");
+          else if(res.uloga == "apoteka") this.router.navigateByUrl("/apoteka/lijekovi");
         }
       }
     );
