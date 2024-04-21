@@ -153,14 +153,17 @@ namespace BaseCureAPI.Endpoints.Login
         [HttpPost("admin-login")]
         public ActionResult AdminLogin([FromBody] AuthLoginReq request)
         {
+
             if (request == null)
             {
                 return BadRequest("Došlo je do greške na serveru");
             }
 
             var logiraniKorisnik = _context.Korisnicis
+                .Include(k => k.Osoblje)
+                .Include(k => k.Osoblje.Uloga)
                 .FirstOrDefault(k =>
-                    k.KorisnickoIme == request.KorisnickoIme && k.HashLozinke == request.Lozinka && k.Uloga == "admin");
+                    k.KorisnickoIme == request.KorisnickoIme && k.HashLozinke == request.Lozinka && k.Osoblje.Uloga.Naziv == "admin");
 
             if (logiraniKorisnik == null)
             {
