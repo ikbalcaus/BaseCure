@@ -28,7 +28,7 @@ namespace BaseCureAPI.Services
                 .Include(x => x.Korisnik)
                 .SingleOrDefault(x => x.Vrijednost == authTokenFromHeader);
 
-            return (authTokenFromDB?.Korisnik?.Uloga == role); 
+            return (authTokenFromDB?.Korisnik?.Osoblje.Uloga.Naziv == role); 
             // Provjeriti da li radi
         }
 
