@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace BaseCureAPI.DB.Models
 {
@@ -13,7 +12,7 @@ namespace BaseCureAPI.DB.Models
         public string? Code2f { get; set; }
         public string? Is2fOtkljucan { get; set; }
         public int? KorisnikId { get; set; }
-        
+
         public virtual Korisnici? Korisnik { get; set; }
     }
 }

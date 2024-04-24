@@ -3,24 +3,6 @@ using BaseCureAPI.DB.Models;
 
 namespace BaseCureAPI.Endpoints.Login
 {
-    /*
-     IpAdresa = Request.HttpContext.Connection.RemoteIpAddress?.ToString(),
-                Vrijednost = randomString,
-                KorisnikId = logiraniKorisnik.KorisnikId,
-                 Korisnickoime
-                 Lozinka
-                 Ime
-                 Prezime
-                dtmrodj
-                addre
-                mailaddr
-                grad.naziv
-                osoblje.uloga.naziv
-
-                Korisnik = logiraniKorisnik,
-                VrijemeEvidentiranja = DateTime.Now,
-                Code2f = Guid.NewGuid().ToString(),
-     */
     public class AuthLoginRes
     {
         public string? Vrijednost { get; set; }

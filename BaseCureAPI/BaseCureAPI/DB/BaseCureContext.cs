@@ -185,8 +185,6 @@ namespace BaseCureAPI.DB
                     .IsUnicode(false)
                     .HasColumnName("prezime");
 
-                entity.Property(e => e.UstanovaId).HasColumnName("ustanova_id");
-
                 entity.HasOne(d => d.Grad)
                     .WithMany(p => p.Korisnicis)
                     .HasForeignKey(d => d.GradId)
@@ -196,11 +194,6 @@ namespace BaseCureAPI.DB
                     .WithMany(p => p.Korisnicis)
                     .HasForeignKey(d => d.OsobljeId)
                     .HasConstraintName("FK__Korisnici__osobl__45BE5BA9");
-
-                entity.HasOne(d => d.Ustanova)
-                    .WithMany(p => p.Korisnicis)
-                    .HasForeignKey(d => d.UstanovaId)
-                    .HasConstraintName("FK__Korisnici__ustan__3E1D39E1");
             });
 
             modelBuilder.Entity<LaboratorijskiRezultati>(entity =>
