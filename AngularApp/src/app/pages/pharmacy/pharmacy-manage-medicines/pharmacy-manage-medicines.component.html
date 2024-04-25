@@ -5,9 +5,9 @@
 ></app-filter>
 <div class="container">
     <app-item-list *ngFor="let i of res"
-        name="{{i.nazivLijeka}}"
-        description="{{i.opisLijeka}}"
-        price="{{i.cijenaLijeka}}KM"
+        [name]="i.nazivLijeka"
+        [description]="i.opisLijeka"
+        [price]="i.cijenaLijeka + 'KM'"
         btnText="Uredi lijek"
         (btnClick)="editMedicine(i.lijekId)"
     ></app-item-list>

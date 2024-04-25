@@ -19,7 +19,7 @@ export const routes: Routes = [
     { path: "", component: LandingPageComponent, canActivate: [RedirectService] },
     { path: "pretrazi", component: UserSearchComponent, canActivate: [GuardService], data: { role: "korisnik" } },
     { path: "pretrazi/:id", component: UserAboutComponent, canActivate: [GuardService], data: { role: "korisnik" } },
-    { path: "lijekovi", component: UserMedicinesComponent, canActivate: [GuardService], data: { role: "korisnik" } },
+    { path: "lijekovi/:id", component: UserMedicinesComponent, canActivate: [GuardService], data: { role: "korisnik" } },
     { path: "korpa", component: UserCartComponent, canActivate: [GuardService], data: { role: "korisnik" } },
     { path: "korisnik-info", component: UserInfoComponent, canActivate: [GuardService], data: { role: "korisnik" } },
     { path: "ustanova-zdravstva/karton", component: MedicalInstitutionCartonComponent, canActivate: [GuardService], data: { role: "ustanova-zdravstva" } },

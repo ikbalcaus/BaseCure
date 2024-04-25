@@ -28,6 +28,7 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.Search
                     UstanovaId = x.UstanovaId,
                     Naziv = x.Naziv,
                     Grad = x.Grad,
+                    TipUstanove = x.TipUstanove.Naziv
                 }).ToList();
             return Ok(ustanove);
         }

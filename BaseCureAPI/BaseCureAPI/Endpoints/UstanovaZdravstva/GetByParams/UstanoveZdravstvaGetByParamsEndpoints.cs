@@ -29,13 +29,9 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.GetByParams
                     Adresa = x.Adresa,
                     KontaktBroj = x.KontaktBroj,
                     Email = x.Email,
-                    Grad = x.Grad
+                    Grad = x.Grad,
+                    TipUstanove = x.TipUstanove.Naziv
                 }).Single();
-
-            if (ustanovaZdravstva == null)
-            {
-                return NotFound();
-            }
 
             return ustanovaZdravstva;
         }
