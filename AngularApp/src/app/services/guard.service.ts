@@ -11,7 +11,7 @@ export class GuardService {
   ) {}
   
   canActivate(route: ActivatedRouteSnapshot): boolean {
-    if(route.data["role"] == this.authService.getAuthToken()?.korisnik?.uloga) {
+    if(route.data["role"] == this.authService.getAuthToken()?.uloga) {
       return true;
     }
     this.router.navigateByUrl("/");

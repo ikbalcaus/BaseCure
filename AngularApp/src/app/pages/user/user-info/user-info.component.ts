@@ -12,5 +12,5 @@ import { AuthService } from '../../../services/auth.service';
 export class UserInfoComponent {
   constructor(private authService: AuthService) {}
 
-  username: string | undefined = this.authService.getAuthToken()?.korisnik?.korisnickoIme;
+  username: string | undefined = this.authService.getAuthToken()?.korisnickoIme;
 }

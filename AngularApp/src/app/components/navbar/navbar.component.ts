@@ -22,6 +22,6 @@ export class NavbarComponent {
     }
 
     showLink(role: string) {
-        return role == this.authService.getAuthToken()?.korisnik?.uloga;
+        return role == this.authService.getAuthToken()?.uloga;
     }
 }
