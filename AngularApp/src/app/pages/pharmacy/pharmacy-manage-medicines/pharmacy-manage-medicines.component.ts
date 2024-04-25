@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { serverSettings } from '../../../server-settings';
 import { ItemListComponent } from '../../../components/item-list/item-list.component';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-pharmacy-manage-cures',
@@ -16,14 +17,15 @@ import { Router } from '@angular/router';
 export class PharmacyManageMedicinesComponent {
   constructor(
     private httpClient: HttpClient,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
   
   req: any = {};
   res: any;
 
   ngOnInit() {
-    this.httpClient.get(serverSettings.address + "/lijekovi").subscribe(
+    this.httpClient.get(serverSettings.address + "/lijekovi/apoteka?ustanovaId=" + this.authService.getAuthToken().ustanovaId).subscribe(
       res => {
         this.res = res;
       }

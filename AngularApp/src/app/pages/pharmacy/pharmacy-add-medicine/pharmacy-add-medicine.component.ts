@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { serverSettings } from '../../../server-settings';
 import { AlertService } from '../../../services/alert.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-pharmacy-add-medicine',
@@ -17,6 +18,7 @@ export class PharmacyAddMedicineComponent {
   constructor(
     private httpClient: HttpClient,
     private router: Router,
+    private authService: AuthService,
     private alertService: AlertService
   ) {}
 
@@ -25,7 +27,7 @@ export class PharmacyAddMedicineComponent {
   formSubmit(loginForm: any) {
     this.req = {
       id: 0,
-      ustanovaId: 0,
+      ustanovaId: this.authService.getAuthToken().ustanovaId,
       nazivLijeka: loginForm.nazivLijeka,
       cijenaLijeka: loginForm.cijenaLijeka,
       kolicina: loginForm.kolicina,

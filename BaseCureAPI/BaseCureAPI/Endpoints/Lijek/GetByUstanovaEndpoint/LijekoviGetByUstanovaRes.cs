@@ -3,8 +3,10 @@
     public class LijekoviGetByUstanovaRes
     {
         public int LijekId { get; set; }
-        public string NazivLijeka { get; set; }
+        public string? NazivLijeka { get; set; }
         public bool? ZahtijevaRecept { get; set; }
-        public string OpisLijeka { get; set; }
+        public string? OpisLijeka { get; set; }
+        public int? Kolicina { get; set; }
+        public double? CijenaLijeka { get; set; }
     }
 }

@@ -42,7 +42,7 @@ namespace BaseCureAPI.Endpoints.Login
 
         // POST auth/register
         [HttpPost("register")]
-        public async Task<ActionResult<AuthToken>> RegisterUser([FromBody] AuthRegisterReq request)
+        public async Task<ActionResult> RegisterUser([FromBody] AuthRegisterReq request)
         {
             if (request == null)
             {
@@ -107,7 +107,7 @@ namespace BaseCureAPI.Endpoints.Login
 
         // POST auth/login
         [HttpPost("login")]
-        public ActionResult<AuthToken> Obradi([FromBody] AuthLoginReq request)
+        public ActionResult Obradi([FromBody] AuthLoginReq request)
         {
             if (request == null)
             {
@@ -119,6 +119,7 @@ namespace BaseCureAPI.Endpoints.Login
                 .Include(k => k.Grad)
                 .Include(k => k.Osoblje)
                 .Include(k => k.Osoblje.Uloga)
+                .Include(k => k.Osoblje.Ustanova)
                 .FirstOrDefault(k =>
                     k.KorisnickoIme == request.KorisnickoIme && k.HashLozinke == request.Lozinka);
 
@@ -185,6 +186,7 @@ namespace BaseCureAPI.Endpoints.Login
             var logiraniKorisnik = _context.Korisnicis
                 .Include(k => k.Osoblje)
                 .Include(k => k.Osoblje.Uloga)
+                .Include(k => k.Osoblje.Ustanova)
                 .FirstOrDefault(k =>
                     k.KorisnickoIme == request.KorisnickoIme && k.HashLozinke == request.Lozinka && k.Osoblje.Uloga.Naziv == "admin");
 

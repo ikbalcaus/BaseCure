@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BaseCureAPI.Endpoints.Search
 {
-    [Route("search")]
+    [Route("gradovi")]
     [ApiController]
     public class GradoviController : ControllerBase
     {
@@ -15,8 +15,8 @@ namespace BaseCureAPI.Endpoints.Search
             _context = context;
         }
 
-        [HttpGet("{searchTerm}")]
-        public ActionResult GetSearchResult(string searchTerm) {
+        [HttpGet("search")]
+        public ActionResult GetSearchResult([FromQuery] string searchTerm) {
             if (string.IsNullOrWhiteSpace(searchTerm))
             {
                 return BadRequest("Search term is required.");
