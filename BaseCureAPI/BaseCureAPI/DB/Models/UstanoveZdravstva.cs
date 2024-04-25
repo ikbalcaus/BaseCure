@@ -7,7 +7,6 @@ namespace BaseCureAPI.DB.Models
     {
         public UstanoveZdravstva()
         {
-            Korisnicis = new HashSet<Korisnici>();
             Lijekovis = new HashSet<Lijekovi>();
             Ljekaris = new HashSet<Ljekari>();
             Osobljes = new HashSet<Osoblje>();
@@ -24,7 +23,6 @@ namespace BaseCureAPI.DB.Models
         public int? TipUstanoveId { get; set; }
 
         public virtual TipoviUstanova? TipUstanove { get; set; }
-        public virtual ICollection<Korisnici> Korisnicis { get; set; }
         public virtual ICollection<Lijekovi> Lijekovis { get; set; }
         public virtual ICollection<Ljekari> Ljekaris { get; set; }
         public virtual ICollection<Osoblje> Osobljes { get; set; }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace BaseCureAPI.DB.Models
 {
@@ -23,14 +22,11 @@ namespace BaseCureAPI.DB.Models
         public DateTime? DatumRodjenja { get; set; }
         public string? MailAdresa { get; set; }
         public string? Code2fa { get; set; }
-        public int? UstanovaId { get; set; }
         public int? GradId { get; set; }
         public int? OsobljeId { get; set; }
 
         public virtual Gradovi? Grad { get; set; }
         public virtual Osoblje? Osoblje { get; set; }
-        public virtual UstanoveZdravstva? Ustanova { get; set; }
-        [JsonIgnore]
         public virtual ICollection<AuthToken> AuthTokens { get; set; }
         public virtual ICollection<Ljekari> Ljekaris { get; set; }
         public virtual ICollection<Narudzbe> Narudzbes { get; set; }
