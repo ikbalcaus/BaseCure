@@ -35,7 +35,7 @@ export class PharmacyAddMedicineComponent {
       zahtijevaRecept: loginForm.zahtijevaRecept || false
     };
     this.httpClient.post(serverSettings.address + "/lijekovi", this.req).subscribe(
-      res => {
+      () => {
         this.router.navigateByUrl("/apoteka/lijekovi");
         this.alertService.setAlert("success", "Lijek je uspješno dodan");
       }

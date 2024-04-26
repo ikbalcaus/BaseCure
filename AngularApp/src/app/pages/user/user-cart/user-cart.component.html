@@ -2,14 +2,16 @@
   <div class="my-5 main">
     <div class="items">
       <h4>Vaša korpa</h4>
-      <p>Trenutno imate X lijekova za poručiti</p>
+      <p>Trenutno imate {{ narudzbe?.length }} lijekova za poručiti</p>
       <hr>
-      <app-item-list *ngFor="let i of [0,1,2,3,4]"
-        name="Naziv Lijeka"
-        description="Opis Lijeka. Opis Lijeka. Opis Lijeka. Opis Lijeka."
-        price="10KM"
-        btnText="Ukloni"
-      ></app-item-list>
+      <app-item-list *ngFor="let i of narudzbe"
+        [name]="i.nazivLijeka"
+        [description]="i.opisLijeka"
+        [price]="i.cijenaLijeka + 'KM'"
+        btnText="Ukloni iz korpe"
+        (btnClick)="removeOrder(i.narudzbaId)"
+      >
+      </app-item-list>
     </div>
     <div class="card-details card bg-primary mt-4 shadow-lg"> 
       <form>

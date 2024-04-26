@@ -28,18 +28,14 @@ export class UserMedicinesComponent {
 
   ngOnInit() {
     this.httpClient.get(serverSettings.address + "/lijekovi/apoteka?ustanovaId=" + this.route.snapshot.paramMap.get("id")).subscribe(
-      res => {
-        this.res = res;
-      }
+      res => this.res = res
     );
   }
 
   addOrder(medicineId: number) {
     this.req.lijekId = medicineId;
-    this.httpClient.post(serverSettings.address + "/narudzbe", this.req).subscribe(
-      res => {
-        this.alertService.setAlert("success", "Uspješno ste dodali lijek u korpu");
-      }
+    this.httpClient.post(serverSettings.address + "/narudzba", this.req).subscribe(
+      () => this.alertService.setAlert("success", "Uspješno ste dodali lijek u korpu")
     );
   }
 }

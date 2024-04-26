@@ -19,12 +19,20 @@ export class UserCartComponent {
   ) {}
 
   korisnik: any;
+  narudzbe: any;
 
   ngOnInit() {
-    this.httpClient.get(serverSettings.address + "/korisnici/" + this.authService.getAuthToken()!.korisnik!.korisnikId).subscribe(
-      res => {
-        this.korisnik = res
-      }
+    this.httpClient.get(serverSettings.address + "/korisnici/" + this.authService.getAuthToken().korisnikId).subscribe(
+      res => this.korisnik = res
+    );
+    this.httpClient.get(serverSettings.address + "/narudzba/" + this.authService.getAuthToken().korisnikId).subscribe(
+      res => this.narudzbe = res
+    );
+  }
+
+  removeOrder(narudzbaId: number) {
+    this.httpClient.delete(serverSettings.address + "/narudzba/" + narudzbaId).subscribe(
+      () =>  this.ngOnInit()
     );
   }
 }

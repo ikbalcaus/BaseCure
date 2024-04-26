@@ -26,9 +26,7 @@ export class PharmacyManageMedicinesComponent {
 
   ngOnInit() {
     this.httpClient.get(serverSettings.address + "/lijekovi/apoteka?ustanovaId=" + this.authService.getAuthToken().ustanovaId).subscribe(
-      res => {
-        this.res = res;
-      }
+      res => this.res = res
     )
   }
 
@@ -37,9 +35,7 @@ export class PharmacyManageMedicinesComponent {
     this.req.grad = $event[1];
     
     this.httpClient.get(serverSettings.address + "/lijekovi/search?NazivLijeka=" + this.req.naziv + "&OpisLijeka=" + this.req.grad + "", this.req).subscribe(
-      res => {
-        this.res = res;
-      }
+      res =>  this.res = res
     );
   }
 
