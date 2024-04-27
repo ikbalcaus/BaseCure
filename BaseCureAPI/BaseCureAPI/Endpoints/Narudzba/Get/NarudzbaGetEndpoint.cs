@@ -31,7 +31,8 @@ namespace BaseCureAPI.Endpoints.Narudzba.Get
                     LijekId = x.LijekId,
                     NazivLijeka = x.Lijek.NazivLijeka,
                     OpisLijeka = x.Lijek.OpisLijeka,
-                    CijenaLijeka = x.Lijek.CijenaLijeka
+                    CijenaLijeka = x.Lijek.CijenaLijeka,
+                    Odobreno = x.Odobreno
                 }) 
                 .ToList(); 
             return Ok(narudzbe);

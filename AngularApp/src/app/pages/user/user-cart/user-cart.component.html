@@ -2,58 +2,63 @@
   <div class="my-5 main">
     <div class="items">
       <h4>Vaša korpa</h4>
-      <p>Trenutno imate {{ narudzbe?.length }} lijekova za poručiti</p>
+      <p>Trenutno imate {{ countOrders() }} lijekova za poručiti</p>
       <hr>
-      <app-item-list *ngFor="let i of narudzbe"
-        [name]="i.nazivLijeka"
-        [description]="i.opisLijeka"
-        [price]="i.cijenaLijeka + 'KM'"
-        btnText="Ukloni iz korpe"
-        (btnClick)="removeOrder(i.narudzbaId)"
-      >
-      </app-item-list>
+      <div *ngFor="let i of narudzbe">
+        <app-item-list *ngIf="i.odobreno == false"
+          [name]="i.nazivLijeka"
+          [description]="i.opisLijeka"
+          [price]="i.cijenaLijeka + 'KM'"
+          btnText="Ukloni iz korpe"
+          (btnClick)="removeOrder(i.narudzbaId)"
+        >
+        </app-item-list>
+      </div>
     </div>
-    <div class="card-details card bg-primary mt-4 shadow-lg"> 
-      <form>
-        <div class="card-body">
-          <h5>Detalji narudžbe</h5>
-          <hr>
-          <div class="form-group mb-2">
-            <label>Ime i prezime:</label>
-            <input type="text" class="form-control shadow-sm" [value]="korisnik.ime + ' ' + korisnik.prezime">
-          </div>
-          <div class="form-group mb-2">
-            <label>Telefonski broj:</label>
-            <input type="text" class="form-control shadow-sm">
-          </div>
-          <div class="form-group mb-2">
-            <label>Grad:</label>
-            <input type="text" class="form-control shadow-sm">
-          </div>
-          <div class="form-group mb-2">
-            <label>Adresa stanovanja:</label>
-            <input type="text" class="form-control shadow-sm" [value]="korisnik.adresa">
-          </div>
-          <div class="form-group mb-2">
-            <label>Email adresa:</label>
-            <input type="text" class="form-control shadow-sm" [value]="korisnik.mailAdresa">
-          </div>
-          <hr>
-          <div class="card-column">
-            <p class="mb-2">Ukupna cijena lijekova:</p>
-            <p class="mb-2">10KM</p>
-          </div>
-          <div class="card-column">
-            <p class="mb-2">Dostava:</p>
-            <p class="mb-2">2KM</p>
-          </div>
-          <div class="card-column">
-            <p class="mb-2">Ukupno cijena lijekova i dostave:</p>
-            <p class="mb-2">12KM</p>
-          </div>
-          <button class="btn btn-primary btn-lg btn-block mt-2">Potvrdi narudžbu</button>
+    <div class="card-details card bg-primary mt-4 shadow-lg">
+      <div class="card-body">
+        <h5>Detalji narudžbe</h5>
+        <hr>
+        <div class="form-group mb-2">
+          <label>Ime i prezime:</label>
+          <input type="text" class="form-control shadow-sm" [value]="korisnik.ime + ' ' + korisnik.prezime">
         </div>
-      </form>
+        <div class="form-group mb-2">
+          <label>Telefonski broj:</label>
+          <input type="text" class="form-control shadow-sm">
+        </div>
+        <div class="form-group mb-2">
+          <label>Grad:</label>
+          <input type="text" class="form-control shadow-sm" [value]="korisnik.grad">
+        </div>
+        <div class="form-group mb-2">
+          <label>Adresa stanovanja:</label>
+          <input type="text" class="form-control shadow-sm" [value]="korisnik.adresa">
+        </div>
+        <div class="form-group mb-2">
+          <label>Email adresa:</label>
+          <input type="text" class="form-control shadow-sm" [value]="korisnik.mailAdresa">
+        </div>
+        <hr>
+        <div class="card-column">
+          <p class="mb-2">Ukupna cijena lijekova:</p>
+          <p class="mb-2">{{ sumPrice() }}KM</p>
+        </div>
+        <div class="card-column">
+          <p class="mb-2">Dostava:</p>
+          <p class="mb-2">0KM</p>
+        </div>
+        <div class="card-column">
+          <p class="mb-2">Ukupno cijena lijekova i dostave:</p>
+          <p class="mb-2">{{ sumPrice() }}KM</p>
+        </div>
+        <button class="btn btn-primary btn-lg btn-block mt-2" (click)="showModal = true">Potvrdi narudžbu</button>
+        <app-modal
+          *ngIf="showModal"
+          (closeModal)="showModal = false"
+          (onSubmit)="confirmOrder()"
+        ></app-modal>
+      </div>
     </div>
   </div>
 </div>

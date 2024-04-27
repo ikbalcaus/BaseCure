@@ -17,11 +17,11 @@ namespace BaseCureAPI.Endpoints.Korisnik.GetById
         }
 
         [HttpGet("{id}")]
-        public ActionResult GetKorisnik([FromRoute] KorisniciGetByIdReq req)
+        public ActionResult GetKorisnik([FromRoute] int id)
         {
             var korisnikEntity = _context.Korisnicis
-                .OrderByDescending(x => x.KorisnikId)
-                .FirstOrDefault(x => x.KorisnikId == req.id);
+                .Include(x => x.Grad)
+                .FirstOrDefault(x => x.KorisnikId == id);
 
             if (korisnikEntity == null)
             {
@@ -30,14 +30,12 @@ namespace BaseCureAPI.Endpoints.Korisnik.GetById
 
             var korisnik = new KorisniciGetByIdRes
             {
-                KorisnickoIme = korisnikEntity.KorisnickoIme,
-                HashLozinke = korisnikEntity.HashLozinke,
                 Ime = korisnikEntity.Ime,
-                Prezime = korisnikEntity.Prezime
-                //Adresa = korisnikEntity.Adresa,
-                //DatumRodjenja = (DateTime)korisnikEntity.DatumRodjenja,
-                //MailAdresa = korisnikEntity.MailAdresa,
-                //Uloga = korisnikEntity.Uloga,
+                Prezime = korisnikEntity.Prezime,
+                //TelefonskiBroj = korisnikEntity.TelefonskiBroj,
+                Adresa = korisnikEntity.Adresa,
+                MailAdresa = korisnikEntity.MailAdresa,
+                Grad = korisnikEntity.Grad?.Naziv
             };
 
             if (korisnik == null)

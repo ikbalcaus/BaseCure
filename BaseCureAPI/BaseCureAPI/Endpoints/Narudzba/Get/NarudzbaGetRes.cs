@@ -8,5 +8,6 @@
         public string? NazivLijeka { get; set; }
         public string? OpisLijeka { get; set; }
         public double? CijenaLijeka { get; set; }
+        public bool? Odobreno {  get; set; }
     }
 }
