@@ -24,5 +24,8 @@ namespace BaseCureAPI.Endpoints.Login
         [JsonIgnore]
         public Uloge? uloga => Korisnik?.Osoblje?.Uloga;
         public string? Uloga => uloga?.Naziv;
+        [JsonIgnore]
+        public UstanoveZdravstva? ustanova => Korisnik?.Osoblje?.Ustanova;
+        public int? UstanovaId => ustanova?.UstanovaId;
     }
 }

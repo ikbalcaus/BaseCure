@@ -3,11 +3,12 @@
   placeholder2="Opis lijeka"
 ></app-filter>
 <div class="container">
-  <app-item-list *ngFor="let i of [0,1,2,3,4]"
-      name="Naziv Lijeka"
-      description="Opis Lijeka. Opis Lijeka. Opis Lijeka. Opis Lijeka."
-      price="10KM"
-      btnText="Dodaj u korpu"
+  <app-item-list *ngFor="let i of res"
+    [name]="i.nazivLijeka"
+    [description]="i.opisLijeka"
+    [price]="i.cijenaLijeka + 'KM'"
+    btnText="Dodaj u korpu"
+    (btnClick)="addOrder(i.lijekId)"
   ></app-item-list>
 </div>
 <ul class="pagination mt-3 mb-4">

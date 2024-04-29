@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { serverSettings } from '../../../server-settings';
 import { ItemListComponent } from '../../../components/item-list/item-list.component';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-pharmacy-manage-cures',
@@ -16,17 +17,16 @@ import { Router } from '@angular/router';
 export class PharmacyManageMedicinesComponent {
   constructor(
     private httpClient: HttpClient,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
   
   req: any = {};
   res: any;
 
   ngOnInit() {
-    this.httpClient.get(serverSettings.address + "/lijekovi").subscribe(
-      res => {
-        this.res = res;
-      }
+    this.httpClient.get(serverSettings.address + "/lijekovi/apoteka?ustanovaId=" + this.authService.getAuthToken().ustanovaId).subscribe(
+      res => this.res = res
     )
   }
 
@@ -35,9 +35,7 @@ export class PharmacyManageMedicinesComponent {
     this.req.grad = $event[1];
     
     this.httpClient.get(serverSettings.address + "/lijekovi/search?NazivLijeka=" + this.req.naziv + "&OpisLijeka=" + this.req.grad + "", this.req).subscribe(
-      res => {
-        this.res = res;
-      }
+      res =>  this.res = res
     );
   }
 

@@ -21,9 +21,7 @@ export class UserAboutComponent {
 
   ngOnInit() {
     this.httpClient.get(serverSettings.address + "/ustanveZdravstva/" + this.route.snapshot.paramMap.get("id")).subscribe(
-      res => {
-        this.res = res;
-      }
+      res => this.res = res
     );
   }
 }

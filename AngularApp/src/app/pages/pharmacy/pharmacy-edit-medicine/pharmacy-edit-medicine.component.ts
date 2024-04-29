@@ -28,10 +28,7 @@ export class PharmacyEditMedicineComponent {
 
   ngOnInit() {
     this.httpClient.get(serverSettings.address + "/lijekovi/" + this.route.snapshot.paramMap.get("id")).subscribe(
-      res => {
-        this.res = res
-        console.log(this.res)
-      }
+      res => this.res = res
     )
   }
 
@@ -44,7 +41,7 @@ export class PharmacyEditMedicineComponent {
       zahtijevaRecept: loginForm.zahtijevaRecept || false
     };
     this.httpClient.put(serverSettings.address + "/lijekovi/" + this.route.snapshot.paramMap.get("id"), this.req).subscribe(
-      res => {
+      () => {
         this.router.navigateByUrl("/apoteka/lijekovi");
         this.alertService.setAlert("success", "Lijek je uspješno uređen");
       }
@@ -53,7 +50,7 @@ export class PharmacyEditMedicineComponent {
 
   deleteMedicine() {
     this.httpClient.delete(serverSettings.address + "/lijekovi/" + this.route.snapshot.paramMap.get("id")).subscribe(
-      res => {
+      () => {
         this.router.navigateByUrl("/apoteka/lijekovi");
         this.alertService.setAlert("success", "Lijek je uspješno obrisan");
       }

@@ -10,10 +10,6 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.GetByParams
         public string? KontaktBroj { get; set; }
         public string? Email { get; set; }
         public string? Grad { get; set; }
-    }
-
-    public class UstanoveZdravstvaPostResponseGetAll
-    {
-        public List<UstanoveZdravstvaGetByParamsRes> Ustanove { get; set; }
+        public string? TipUstanove { get; set; }
     }
 }

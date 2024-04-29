@@ -29,7 +29,7 @@ export class FilterComponent {
     if(this.link1) {
       if(!this.inputValue1) this.filteredList1 = [];
       this.httpClient.get<Array<string>>(serverSettings.address + this.link1 + (this.inputValue1)).subscribe(
-        res => { this.filteredList1 = res }
+        res => this.filteredList1 = res
       );
     }
   }
@@ -38,7 +38,7 @@ export class FilterComponent {
     if(this.link2) {
       if(!this.inputValue2) this.filteredList2 = [];
       this.httpClient.get<Array<string>>(serverSettings.address + this.link2 + (this.inputValue2)).subscribe(
-        res => { this.filteredList2 = res }
+        res => this.filteredList2 = res
       );
     }
   }
