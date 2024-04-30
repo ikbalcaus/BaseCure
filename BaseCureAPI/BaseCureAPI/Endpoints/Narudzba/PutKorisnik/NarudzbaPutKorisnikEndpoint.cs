@@ -1,7 +1,8 @@
 ﻿using BaseCureAPI.DB;
+using BaseCureAPI.DB.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BaseCureAPI.Endpoints.Narudzba.Delete
+namespace BaseCureAPI.Endpoints.Narudzba.PutKorisnik
 {
     [Route("narudzbe")]
     [ApiController]
@@ -14,18 +15,16 @@ namespace BaseCureAPI.Endpoints.Narudzba.Delete
             _context = context;
         }
 
-        [HttpDelete("{id}")]
-        public ActionResult DeleteNarudzba([FromRoute] int id)
+        [HttpPut("korisnik/{korisnikId}")]
+        public ActionResult UpdateNarudzba([FromRoute] int korisnikId)
         {
-            var narudzba = _context.Narudzbes.Find(id);
-            if (narudzba == null)
+            var narudzbe = _context.Narudzbes
+                .Where(x => x.KorisnikId == korisnikId && x.Status == "neaktivno");
+            foreach (var narudzba in narudzbe)
             {
-                return NotFound();
+                narudzba.Status = "aktivno";
             }
-
-            _context.Narudzbes.Remove(narudzba);
             _context.SaveChanges();
-
             return NoContent();
         }
     }

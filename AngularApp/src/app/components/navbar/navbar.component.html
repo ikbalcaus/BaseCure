@@ -8,6 +8,7 @@
       <li *ngIf="showLink('korisnik')" class="nav-item"><a class="btn navbar-link" routerLink="/pretrazi" routerLinkActive="active-link">Pretraži ustanove zdravstva</a></li>
       <li *ngIf="showLink('korisnik')" class="nav-item"><a class="btn navbar-link" routerLink="/korpa" routerLinkActive="active-link">Pogledaj korpu</a></li>
       <li *ngIf="showLink('korisnik')" class="nav-item"><a class="btn navbar-link" routerLink="/korisnik-info" routerLinkActive="active-link">Moje informacije</a></li>
+      <li *ngIf="showLink('apoteka')" class="nav-item"><a class="btn navbar-link" routerLink="/apoteka/narudzbe" routerLinkActive="active-link">Narudžbe</a></li>
       <li *ngIf="showLink('apoteka')" class="nav-item"><a class="btn navbar-link" routerLink="/apoteka/lijekovi" routerLinkActive="active-link">Pogledaj lijekove</a></li>
       <li *ngIf="showLink('apoteka')" class="nav-item"><a class="btn navbar-link" routerLink="/apoteka/dodaj" routerLinkActive="active-link">Dodaj lijek</a></li>
       <li *ngIf="isLoggedIn()" class="nav-item"><button class="btn btn-primary navbar-link" (click)="logoutUser()">Odjavi se</button></li>

@@ -348,7 +348,7 @@ namespace BaseCureAPI.DB
 
                 entity.Property(e => e.LijekId).HasColumnName("lijek_id");
 
-                entity.Property(e => e.Odobreno).HasColumnName("odobreno");
+                entity.Property(e => e.Status).HasColumnName("status");
 
                 entity.HasOne(d => d.Korisnik)
                     .WithMany(p => p.Narudzbes)

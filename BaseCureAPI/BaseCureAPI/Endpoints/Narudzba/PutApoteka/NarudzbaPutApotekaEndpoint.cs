@@ -1,10 +1,11 @@
 ﻿using BaseCureAPI.DB;
 using BaseCureAPI.DB.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
-namespace BaseCureAPI.Endpoints.Narudzba.Put
+namespace BaseCureAPI.Endpoints.Narudzba.PutApoteka
 {
-    [Route("narudzba")]
+    [Route("narudzbe")]
     [ApiController]
     public class NaruzbeController : ControllerBase
     {
@@ -15,13 +16,16 @@ namespace BaseCureAPI.Endpoints.Narudzba.Put
             _context = context;
         }
 
-        [HttpPut("{korisnikId}")]
-        public ActionResult UpdateNarudzba([FromRoute] int korisnikId)
+        [HttpPut("apoteka/{ustanovaId}")]
+        public ActionResult UpdateNarudzba([FromRoute] int ustanovaId)
         {
-            var narudzbe = _context.Narudzbes.Where(x => x.KorisnikId == korisnikId);
+            var narudzbe = _context.Narudzbes
+                .Include(x => x.Lijek)
+                .Where(x => x.Lijek.UstanovaId == ustanovaId && x.Status == "aktivno");
             foreach (var narudzba in narudzbe)
             {
-                narudzba.Odobreno = true;
+                narudzba.Status = "isporuceno";
+                narudzba.Lijek.Kolicina -= 1;
             }
             _context.SaveChanges();
             return NoContent();
