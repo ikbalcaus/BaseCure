@@ -20,14 +20,14 @@ namespace BaseCureAPI.Endpoints.Uputnice.GetAll
         public async Task<ActionResult<IEnumerable<UputniceGetAllRes>>> GetPatientsWithMedicalRecordsAndTherapies()
         {
             var patients = await _context.ZdravstveniKartonis
-                .Include(k => k.Pacijent)
-                .Include(k => k.Terapijes)
-                .Select(k => new UputniceGetAllRes
+                .Include(x => x.Pacijent)
+                .Include(x => x.Terapijes)
+                .Select(x => new UputniceGetAllRes
                 {
-                    PatientId = k.Pacijent.PacijentId,
-                    PatientName = $"{k.Pacijent.Korisnik.Ime} {k.Pacijent.Korisnik.Prezime}",
-                    MedicalRecords = k.Sadrzaj,
-                    Therapies = k.Terapijes.Select(t => new TerapijaDto
+                    PatientId = x.Pacijent.PacijentId,
+                    PatientName = $"{x.Pacijent.Korisnik.Ime} {x.Pacijent.Korisnik.Prezime}",
+                    MedicalRecords = x.Sadrzaj,
+                    Therapies = x.Terapijes.Select(t => new TerapijaDto
                     {
                         TherapyId = t.TerapijaId,
                         TherapyName = t.NazivTerapije,

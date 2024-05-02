@@ -27,7 +27,6 @@ namespace BaseCureAPI.Endpoints.Korisnik.Post
             {
                 Ime = req.Ime,
                 Prezime = req.Prezime,
-                KorisnickoIme = req.KorisnickoIme,
                 HashLozinke = req.HashLozinke
             };
 

@@ -18,10 +18,12 @@ namespace BaseCureAPI.DB.Models
         public string? Adresa { get; set; }
         public string? KontaktBroj { get; set; }
         public string? Email { get; set; }
-        public string? Grad { get; set; }
         public string? Opis { get; set; }
         public int? TipUstanoveId { get; set; }
+        public int? GradId { get; set; }
+        public float? CijenaDostave { get; set; }
 
+        public virtual Gradovi? Grad { get; set; }
         public virtual TipoviUstanova? TipUstanove { get; set; }
         public virtual ICollection<Lijekovi> Lijekovis { get; set; }
         public virtual ICollection<Ljekari> Ljekaris { get; set; }

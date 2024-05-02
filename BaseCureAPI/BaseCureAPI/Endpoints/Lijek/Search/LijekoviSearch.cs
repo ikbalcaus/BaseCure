@@ -24,17 +24,17 @@ namespace BaseCureAPI.Endpoints.Lijek.GetByParams
         {
             var query = _context.Lijekovis.AsQueryable();
             
-            query = query.Where(l => l.UstanovaId == UstanovaId);
+            query = query.Where(x => x.UstanovaId == UstanovaId);
 
 
             if (!string.IsNullOrEmpty(NazivLijeka))
             {
-                query = query.Where(l => l.NazivLijeka == NazivLijeka);
+                query = query.Where(x => x.NazivLijeka == NazivLijeka);
             }
 
             if (!string.IsNullOrEmpty(OpisLijeka))
             {
-                query = query.Where(l => l.OpisLijeka == OpisLijeka);
+                query = query.Where(x => x.OpisLijeka == OpisLijeka);
             }
 
             return query.ToList();

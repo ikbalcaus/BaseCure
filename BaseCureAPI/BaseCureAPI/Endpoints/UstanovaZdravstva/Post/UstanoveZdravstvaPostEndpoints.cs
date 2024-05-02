@@ -25,7 +25,7 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.Post
             UstanoveZdravstva ustanova = new UstanoveZdravstva();
             ustanova.UstanovaId = _context.UstanoveZdravstvas.Any() ? _context.UstanoveZdravstvas.Max(x => x.UstanovaId) + 1 : 1;
             ustanova.Naziv = req.Naziv.RemoveTags();
-            ustanova.Grad = req.Grad.RemoveTags();
+            ustanova.Grad.Naziv = req.Grad.RemoveTags();
             _context.UstanoveZdravstvas.Add(ustanova);
             _context.SaveChanges();
             return ustanova.UstanovaId;

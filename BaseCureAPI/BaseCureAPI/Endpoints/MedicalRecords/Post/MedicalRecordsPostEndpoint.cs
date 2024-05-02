@@ -27,13 +27,12 @@ namespace BaseCureAPI.Endpoints.MedicalRecords.Post
             Console.WriteLine($"Received patient name: {req.ImePacijenta}");
 
             int? pacijentId = _context.Pacijentis.Include(x => x.Korisnik)
-                .Where(p => p.Korisnik.Ime == req.ImePacijenta)
-                .Select(p => (int?)p.PacijentId)
+                .Where(x => x.Korisnik.Ime == req.ImePacijenta)
+                .Select(x => (int?)x.PacijentId)
                 .FirstOrDefault();
 
             if (!pacijentId.HasValue)
             {
-                // Handle the case where the PacijentId is not found for the given patient name
                 return BadRequest("PacijentId not found for the provided ImePacijenta.");
             }
 

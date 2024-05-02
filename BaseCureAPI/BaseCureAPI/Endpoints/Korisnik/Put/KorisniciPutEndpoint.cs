@@ -24,7 +24,6 @@ namespace BaseCureAPI.Endpoints.Korisnik.Put
             {
                 return NotFound();
             }
-            korisnik.KorisnickoIme = korisnikReq.KorisnickoIme;
             korisnik.HashLozinke = korisnikReq.HashLozinke;
             korisnik.Ime = korisnikReq.Ime;
             korisnik.Prezime = korisnikReq.Prezime;
