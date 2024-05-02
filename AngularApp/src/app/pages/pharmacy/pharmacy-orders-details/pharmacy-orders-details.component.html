@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="my-5 main">
+      <div class="items">
+        <h4>{{korisnik.ime + " " + korisnik.prezime}}</h4>
+        <p>Trenutno imate {{ narudzbe.length }} lijekova za isporučiti</p>
+        <hr>
+        <div *ngFor="let i of narudzbe">
+          <app-item-list
+            [name]="i.nazivLijeka"
+            [description]="i.opisLijeka"
+            [price]="i.cijenaLijeka + 'KM'"
+            btnText="Ukloni lijek"
+            (btnClick)="showModalDeleteMedicineFunc(i.narudzbaId)"
+          >
+          </app-item-list>
+        </div>
+      </div>
+      <div class="card-details card bg-primary mt-4 shadow-lg">
+        <div class="card-body">
+          <h5>Detalji narudžbe</h5>
+          <hr>
+          <div class="form-group mb-2">
+            <label>Ime i prezime:</label>
+            <input type="text" class="form-control shadow-sm" [value]="korisnik.ime + ' ' + korisnik.prezime" readonly>
+          </div>
+          <div class="form-group mb-2">
+            <label>Telefonski broj:</label>
+            <input type="text" class="form-control shadow-sm" readonly>
+          </div>
+          <div class="form-group mb-2">
+            <label>Grad:</label>
+            <input type="text" class="form-control shadow-sm" [value]="korisnik.grad" readonly>
+          </div>
+          <div class="form-group mb-2">
+            <label>Adresa stanovanja:</label>
+            <input type="text" class="form-control shadow-sm" [value]="korisnik.adresa" readonly>
+          </div>
+          <div class="form-group mb-2">
+            <label>Email adresa:</label>
+            <input type="text" class="form-control shadow-sm" [value]="korisnik.mailAdresa" readonly>
+          </div>
+          <hr>
+          <div class="card-column">
+            <p class="mb-2">Ukupna cijena lijekova:</p>
+            <p class="mb-2">{{ sumPrice() }}KM</p>
+          </div>
+          <div class="card-column">
+            <p class="mb-2">Cijena dostave:</p>
+            <p class="mb-2">0KM</p>
+          </div>
+          <div class="card-column">
+            <p class="mb-2">Ukupno cijena lijekova i dostave:</p>
+            <p class="mb-2">{{ sumPrice() }}KM</p>
+          </div>
+          <button class="btn btn-primary btn-lg btn-block mt-2" (click)="showModalSubmitForm = true">{{ status == "aktivno" ? "Isporuči narudžbe" : "Izbriši narudžbe" }}</button>
+          <app-modal
+            *ngIf="showModalDeleteMedicine"
+            (closeModal)="showModalDeleteMedicine = false"
+            (onSubmit)="deleteOrder()"
+          ></app-modal>
+          <app-modal
+            *ngIf="showModalSubmitForm"
+            (closeModal)="showModalSubmitForm = false"
+            (onSubmit)="confirmOrder()"
+          ></app-modal>
+        </div>
+      </div>
+    </div>
+  </div>
+  

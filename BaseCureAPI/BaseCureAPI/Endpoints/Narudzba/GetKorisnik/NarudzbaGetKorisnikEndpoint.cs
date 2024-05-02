@@ -1,12 +1,11 @@
 ﻿using BaseCureAPI.DB;
 using BaseCureAPI.DB.Models;
-using BaseCureAPI.Endpoints.Narudzba.Get;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace BaseCureAPI.Endpoints.Narudzba.Get
+namespace BaseCureAPI.Endpoints.Narudzba.GetKorisnik
 {
-    [Route("narudzba")]
+    [Route("narudzbe")]
     [ApiController]
     public class NaruzbeController : ControllerBase
     {
@@ -17,14 +16,14 @@ namespace BaseCureAPI.Endpoints.Narudzba.Get
             _context = context;
         }
 
-        [HttpGet("{korisnikId}")]
-        public ActionResult<List<NarudzbaGetRes>> GetNarudzbe([FromRoute] int korisnikId)
+        [HttpGet("korisnik/{korisnikId}")]
+        public ActionResult<List<NarudzbaGetKorisnikRes>> GetNarudzbe([FromRoute] int korisnikId)
         {
             var narudzbe = _context.Narudzbes
-                .Where(x => x.KorisnikId == korisnikId)
                 .Include(x => x.Korisnik)
                 .Include(x => x.Lijek)
-                .Select(x => new NarudzbaGetRes
+                .Where(x => x.KorisnikId == korisnikId && x.Status == "neaktivno")
+                .Select(x => new NarudzbaGetKorisnikRes
                 {
                     NarudzbaId = x.NarudzbaId,
                     KorisnikId = x.KorisnikId,
@@ -32,9 +31,9 @@ namespace BaseCureAPI.Endpoints.Narudzba.Get
                     NazivLijeka = x.Lijek.NazivLijeka,
                     OpisLijeka = x.Lijek.OpisLijeka,
                     CijenaLijeka = x.Lijek.CijenaLijeka,
-                    Odobreno = x.Odobreno
-                }) 
-                .ToList(); 
+                    Status = x.Status
+                })
+                .ToList();
             return Ok(narudzbe);
         }
     }

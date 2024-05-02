@@ -1,0 +1,24 @@
+.main {
+    display: flex;
+    justify-content: space-between;
+}
+.items {
+    width: 60%;
+}
+.card-details {
+    width: 37%;
+    height: 610px;
+}
+.card-column {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (max-width: 991px) {
+    .main {
+        flex-direction: column;
+    }
+    .items, .card-details {
+        width: 100%;
+    }
+}

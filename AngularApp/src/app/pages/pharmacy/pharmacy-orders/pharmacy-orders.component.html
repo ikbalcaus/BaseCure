@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="my-5 main">
+    <div class="items">
+      <h4>Aktivne narudžbe</h4>
+      <p>Imate aktivnih narudžbi za {{ countOrders("aktivno") }} korisnika</p>
+      <hr>
+      <div *ngFor="let i of res">
+        <div class="card border-0" *ngIf="i.status == 'aktivno'">
+          <div class="card-body pt-2">
+            <div class="card-align">
+              <div class="card-column align-items-center justify-content-start">
+                <div class="ms-1">
+                  <h5>{{i.imePrezime}}</h5>
+                  <p class="small mb-0">Korisnik je naručio {{i.brojLijekova}} lijeka</p>
+                </div>
+              </div>
+              <div class="card-column align-items-center justify-content-end">
+                <a class="btn btn-primary" routerLink="/apoteka/narudzbe/{{i.korisnikId}}/aktivno">Pogledaj detalje</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="items">
+      <h4>Isporučene narudžbe</h4>
+      <p>Imate isporučenih narudžbi za {{ countOrders("isporuceno") }} korisnika </p>
+      <hr>
+      <div *ngFor="let i of res">
+        <div class="card border-0" *ngIf="i.status == 'isporuceno'">
+          <div class="card-body pt-2">
+            <div class="card-align">
+              <div class="card-column align-items-center justify-content-start">
+                <div class="ms-1">
+                  <h5>{{i.imePrezime}}</h5>
+                  <p class="small mb-0">Korisnik je naručio {{i.brojLijekova}} lijeka</p>
+                </div>
+              </div>
+              <div class="card-column align-items-center justify-content-end">
+                <a class="btn btn-primary" routerLink="/apoteka/narudzbe/{{i.korisnikId}}/isporuceno">Pogledaj detalje</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  

@@ -1,6 +1,6 @@
-﻿namespace BaseCureAPI.Endpoints.Narudzba.Get
+﻿namespace BaseCureAPI.Endpoints.Narudzba.GetKorisnik
 {
-    public class NarudzbaGetRes
+    public class NarudzbaGetKorisnikRes
     {
         public int NarudzbaId {  get; set; }
         public int? KorisnikId { get; set; }
@@ -8,6 +8,6 @@
         public string? NazivLijeka { get; set; }
         public string? OpisLijeka { get; set; }
         public double? CijenaLijeka { get; set; }
-        public bool? Odobreno {  get; set; }
+        public string? Status { get; set; }
     }
 }

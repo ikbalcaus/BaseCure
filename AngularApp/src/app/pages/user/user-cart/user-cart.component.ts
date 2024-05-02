@@ -29,27 +29,23 @@ export class UserCartComponent {
     this.httpClient.get(serverSettings.address + "/korisnici/" + this.authService.getAuthToken().korisnikId).subscribe(
       res => this.korisnik = res
     );
-    this.httpClient.get(serverSettings.address + "/narudzba/" + this.authService.getAuthToken().korisnikId).subscribe(
+    this.httpClient.get(serverSettings.address + "/narudzbe/korisnik/" + this.authService.getAuthToken().korisnikId).subscribe(
       res => this.narudzbe = res
     );
   }
 
-  countOrders() {
-    return this.narudzbe.filter((x: any) => x.odobreno == false).length;
-  }
-
   sumPrice() {
-    return this.narudzbe.filter((x: any) => x.odobreno == false).map((x: any) => x.cijenaLijeka).reduce((a: number, b: number) => a + b, 0);
+    return this.narudzbe.map((x: any) => x.cijenaLijeka).reduce((a: number, b: number) => a + b, 0);
   }
 
   removeOrder(narudzbaId: number) {
-    this.httpClient.delete(serverSettings.address + "/narudzba/" + narudzbaId).subscribe(
+    this.httpClient.delete(serverSettings.address + "/narudzbe/" + narudzbaId).subscribe(
       () =>  this.ngOnInit()
     );
   }
 
   confirmOrder() {
-    this.httpClient.put(serverSettings.address + "/narudzba/" + this.authService.getAuthToken().korisnikId, null).subscribe(
+    this.httpClient.put(serverSettings.address + "/narudzbe/korisnik/" + this.authService.getAuthToken().korisnikId, null).subscribe(
       () => {
         this.ngOnInit();
         this.showModal = false;

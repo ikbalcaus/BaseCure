@@ -34,7 +34,7 @@ export class UserMedicinesComponent {
 
   addOrder(medicineId: number) {
     this.req.lijekId = medicineId;
-    this.httpClient.post(serverSettings.address + "/narudzba", this.req).subscribe(
+    this.httpClient.post(serverSettings.address + "/narudzbe", this.req).subscribe(
       () => this.alertService.setAlert("success", "Uspješno ste dodali lijek u korpu")
     );
   }
