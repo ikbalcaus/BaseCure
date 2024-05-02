@@ -30,7 +30,6 @@ namespace BaseCureAPI.Endpoints.Lijek.Put
             lijek.ZahtijevaRecept = req.ZahtijevaRecept;
             lijek.CijenaLijeka = req.CijenaLijeka;
             lijek.Kolicina = req.Kolicina;
-            lijek.UstanovaId = req.UstanovaId;
 
             _context.SaveChanges();
 

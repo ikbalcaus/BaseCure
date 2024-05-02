@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BaseCureAPI.Endpoints.Narudzba.Post
 {
-    [Route("narudzba")]
+    [Route("narudzbe")]
     [ApiController]
     public class NaruzbeController : ControllerBase
     {
@@ -24,7 +24,7 @@ namespace BaseCureAPI.Endpoints.Narudzba.Post
                 KorisnikId = req.KorisnikId,
                 LijekId = req.LijekId,
                 DatumVrijeme = DateTime.Now,
-                Odobreno = false
+                Status = "neaktivno"
             };
             narudzba.NarudzbaId = _context.Narudzbes.Any() ? _context.Narudzbes.Max(x => x.NarudzbaId) + 1 : 1;
             _context.Narudzbes.Add(narudzba);

@@ -14,6 +14,8 @@ import { PharmacyManageMedicinesComponent } from './pages/pharmacy/pharmacy-mana
 import { PharmacyAddMedicineComponent } from './pages/pharmacy/pharmacy-add-medicine/pharmacy-add-medicine.component';
 import { PharmacyEditMedicineComponent } from './pages/pharmacy/pharmacy-edit-medicine/pharmacy-edit-medicine.component';
 import { PatientPrescriptionComponent } from './pages/patient-prescription/patient-prescription.component';
+import { PharmacyOrdersComponent } from './pages/pharmacy/pharmacy-orders/pharmacy-orders.component';
+import { PharmacyOrdersDetailsComponent } from './pages/pharmacy/pharmacy-orders-details/pharmacy-orders-details.component';
 
 export const routes: Routes = [
     { path: "", component: LandingPageComponent, canActivate: [RedirectService] },
@@ -26,6 +28,8 @@ export const routes: Routes = [
     { path: "apoteka/lijekovi", component: PharmacyManageMedicinesComponent, canActivate: [GuardService], data: { role: "apoteka" } },
     { path: "apoteka/dodaj", component: PharmacyAddMedicineComponent, canActivate: [GuardService], data: { role: "apoteka" } },
     { path: "apoteka/uredi/:id", component: PharmacyEditMedicineComponent, canActivate: [GuardService], data: { role: "apoteka" } },
+    { path: "apoteka/narudzbe", component: PharmacyOrdersComponent, canActivate: [GuardService], data: { role: "apoteka" } },
+    { path: "apoteka/narudzbe/:korisnikId/:status", component: PharmacyOrdersDetailsComponent, canActivate: [GuardService], data: { role: "apoteka" } },
     { path: "uputnice", component: PatientPrescriptionComponent},
     { path: "basecure-admin", component: AdminLoginComponent, canActivate: [RedirectService] },
     { path: "basecure-admin/dashboard", component: AdminDashboardComponent, canActivate: [GuardService], data: { role: "admin" } }
