@@ -23,7 +23,6 @@ namespace BaseCureAPI.Endpoints.Korisnik.GetAll
                 .Select(x => new KorisniciGetAllRes()
                 {
                     KorisnikId = x.KorisnikId,
-                    KorisnickoIme = x.KorisnickoIme,
                     HashLozinke = x.HashLozinke,
                     Ime = x.Ime,
                     Prezime = x.Prezime,

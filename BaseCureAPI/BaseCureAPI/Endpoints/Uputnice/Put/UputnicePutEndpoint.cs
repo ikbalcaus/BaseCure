@@ -16,18 +16,15 @@ namespace BaseCureAPI.Endpoints.Uputnice.Put
             _context = context;
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> EditTherapy(int id, object therapy)
+        [HttpPut()]
+        public async Task<IActionResult> EditTherapy([FromQuery]int id, object therapy)
         {
-            // Retrieve the therapy object from the database
             var existingTherapy = await _context.Terapijes.FindAsync(id);
             if (existingTherapy == null)
             {
                 return NotFound();
             }
 
-            // Update properties of the existing therapy object
-            // Assuming that the therapy object has properties TherapyName, StartDate, EndDate
             var therapyProperties = therapy.GetType().GetProperties();
             foreach (var property in therapyProperties)
             {
@@ -38,7 +35,6 @@ namespace BaseCureAPI.Endpoints.Uputnice.Put
                 }
             }
 
-            // Update the modified therapy in the database
             _context.Entry(existingTherapy).State = EntityState.Modified;
 
             try

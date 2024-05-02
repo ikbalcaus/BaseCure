@@ -49,32 +49,20 @@ namespace BaseCureAPI.Endpoints.Login
                 return BadRequest("Došlo je do greške na serveru");
             }
 
-            // Check if the username already exists
-            if (_context.Korisnicis.Any(k => k.KorisnickoIme == request.KorisnickoIme))
-            {
-                return BadRequest("Korisničko ime već postoji");
-            }
-
-            // Create a new user
             var newUser = new Korisnici()
             {
-                KorisnickoIme = request.KorisnickoIme,
                 HashLozinke = request.Lozinka,
                 MailAdresa = request.MailAdresa,
             };
 
-            // Add the user to the database
             _context.Add(newUser);
             _context.SaveChanges();
 
-            // Generate a random 2FA code
             string twoFactorCode = TokenGen.Generate(6);
 
-            // Associate the 2FA code with the user
             newUser.Code2fa = twoFactorCode;
             _context.SaveChanges();
 
-            // Send the 2FA code via email using SendGrid
             string sendGridApiKey = "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";
 
             var client = new SendGridClient(sendGridApiKey);
@@ -92,16 +80,12 @@ namespace BaseCureAPI.Endpoints.Login
 
             if (response.StatusCode != System.Net.HttpStatusCode.OK && response.StatusCode != System.Net.HttpStatusCode.Accepted)
             {
-                // Handle the case when sending email fails
                 return StatusCode((int)response.StatusCode, "Failed to send email");
             }
 
-            // Return the user's information without the 2FA code
             return Ok(new
             {
                 newUser.KorisnikId,
-                newUser.KorisnickoIme
-                // Exclude TwoFactorCode here since it's sent via email
             });
         }
 
@@ -116,12 +100,11 @@ namespace BaseCureAPI.Endpoints.Login
 
             //1- provjera logina
             var logiraniKorisnik = _context.Korisnicis
-                .Include(k => k.Grad)
-                .Include(k => k.Osoblje)
-                .Include(k => k.Osoblje.Uloga)
-                .Include(k => k.Osoblje.Ustanova)
-                .FirstOrDefault(k =>
-                    k.KorisnickoIme == request.KorisnickoIme && k.HashLozinke == request.Lozinka);
+                .Include(x => x.Grad)
+                .Include(x => x.Osoblje)
+                .Include(x => x.Osoblje.Uloga)
+                .Include(x => x.Osoblje.Ustanova)
+                .FirstOrDefault(x =>x.MailAdresa == request.MailAdresa && x.HashLozinke == request.Lozinka);
 
             if (logiraniKorisnik == null)
             {
@@ -138,17 +121,6 @@ namespace BaseCureAPI.Endpoints.Login
                 IpAdresa = Request.HttpContext.Connection.RemoteIpAddress?.ToString(),
                 Vrijednost = randomString,
                 KorisnikId = logiraniKorisnik.KorisnikId,
-                /*
-                 Korisnickoime
-                 Lozinka
-                 Ime
-                 Prezime
-                dtmrodj
-                addre
-                mailaddr
-                grad.naziv
-                osoblje.uloga.naziv
-                 */
                 Korisnik = logiraniKorisnik,
                 VrijemeEvidentiranja = DateTime.Now,
                 Code2f = Guid.NewGuid().ToString(),
@@ -188,7 +160,7 @@ namespace BaseCureAPI.Endpoints.Login
                 .Include(k => k.Osoblje.Uloga)
                 .Include(k => k.Osoblje.Ustanova)
                 .FirstOrDefault(k =>
-                    k.KorisnickoIme == request.KorisnickoIme && k.HashLozinke == request.Lozinka && k.Osoblje.Uloga.Naziv == "admin");
+                    k.MailAdresa == request.MailAdresa && k.HashLozinke == request.Lozinka && k.Osoblje.Uloga.Naziv == "admin");
 
             if (logiraniKorisnik == null)
             {

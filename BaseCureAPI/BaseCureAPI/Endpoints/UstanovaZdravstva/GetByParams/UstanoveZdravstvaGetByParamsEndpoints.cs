@@ -4,6 +4,7 @@ using System.Linq;
 using BaseCureAPI.DB;
 using BaseCureAPI.Endpoints.UstanovaZdravstva;
 using BaseCureAPI.Helpers;
+using Microsoft.EntityFrameworkCore;
 
 namespace BaseCureAPI.Endpoints.UstanovaZdravstva.GetByParams
 {
@@ -23,13 +24,14 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.GetByParams
         {
             var ustanovaZdravstva = _context.UstanoveZdravstvas.OrderByDescending(x => x.UstanovaId)
                 .Where(x => x.UstanovaId == id)
+                .Include(x => x.Grad)
                 .Select(x => new UstanoveZdravstvaGetByParamsRes()
                 {
                     Naziv = x.Naziv,
                     Adresa = x.Adresa,
                     KontaktBroj = x.KontaktBroj,
                     Email = x.Email,
-                    Grad = x.Grad,
+                    Grad = x.Grad.Naziv,
                     TipUstanove = x.TipUstanove.Naziv
                 }).Single();
 

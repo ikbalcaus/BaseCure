@@ -5,7 +5,6 @@ namespace BaseCureAPI.Endpoints.MedicalRecords.GetAllRecords
 {
     public class MedicalRecordsGetAllRes
     {
-        public int KartonId { get; set; }
         public DateTime? DatumIzdavanja { get; set; }
         public int? PacijentId { get; set; }
         public Pacijenti Pacijent { get; set; }
