@@ -1,5 +1,4 @@
 ﻿using BaseCureAPI.DB;
-using BaseCureAPI.DB.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BaseCureAPI.Endpoints.Narudzba.PutKorisnik

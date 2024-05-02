@@ -26,7 +26,6 @@ namespace BaseCureAPI.Endpoints.MedicalRecords.GetAllRecords
                 .ThenInclude(p => p.Korisnik)
                 .Select(x => new MedicalRecordsGetAllRes()
                 {
-                    KartonId = x.KartonId,
                     DatumIzdavanja = x.DatumIzdavanja,
                     PacijentId = x.PacijentId,
                     Pacijent = x.Pacijent != null ? new Pacijenti

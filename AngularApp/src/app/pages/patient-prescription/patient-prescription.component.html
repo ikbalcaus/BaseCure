@@ -6,48 +6,214 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Name</th>
+              <th>Ime</th>
+              <th>Podaci o pacijentu</th>
             </tr>
           </thead>
-          <tbody>
-            <tr *ngFor="let patient of patients.slice(0, 10)"
-                (click)="selectPatient(patient)"
-                [ngClass]="{ 'selected': patient.patientId === selectedPatient?.patientId }">
-              <td>{{ patient.patientId }}</td>
+          <tbody *ngIf="patients">
+            <tr
+              *ngFor="let patient of patients.slice(0, 10)"
+              (click)="selectPatient(patient)"
+              [ngClass]="{
+                selected: patient.patientId === selectedPatient?.patientId
+              }"
+            >
               <td>{{ patient.patientName }}</td>
+              <td>
+                <button
+                  class="btn btn-primary"
+                  (click)="showPatientData(patient)"
+                >
+                  Podaci o pacijentu
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
     <div class="col-md-6">
-      <h2>Therapies</h2>
+      <h2>Terapije</h2>
       <div class="table-responsive">
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Start Date</th>
-              <th>End Date</th>
-              <th>Actions</th>
+              <th>Ime</th>
+              <th>Pocetak terapije</th>
+              <th>Kraj terapije</th>
+              <th>Akcije</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let therapy of selectedPatient?.therapies" (click)="selectTherapy(therapy)"
-                [ngClass]="{ 'selected': therapy.therapyId === selectedTherapy?.therapyId }">
-              <td>{{ therapy.therapyId }}</td>
-              <td>{{ therapy.therapyName }}</td>
-              <td>{{ therapy.startDate }}</td>
-              <td>{{ therapy.endDate }}</td>
+            <tr
+              *ngFor="let therapy of selectedPatient?.therapies"
+              (click)="selectTherapy(therapy)"
+              [ngClass]="{
+                selected: therapy.therapyId === selectedTherapy?.therapyId
+              }"
+            >
               <td>
-                <button class="btn btn-primary" (click)="editTherapy()">Edit</button>
-                <button class="btn btn-danger" (click)="deleteTherapy()">Delete</button>
+                <ng-container *ngIf="!editMode; else editTherapyInput">
+                  {{ therapy.therapyName }}
+                </ng-container>
+                <ng-template #editTherapyInput>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="editedTherapy.therapyName"
+                  />
+                </ng-template>
+              </td>
+              <td>
+                <ng-container *ngIf="!editMode; else editStartDateInput">
+                  {{ therapy.startDate }}
+                </ng-container>
+                <ng-template #editStartDateInput>
+                  <input
+                    type="date"
+                    class="form-control"
+                    [value] = "therapy.startDate | parseDateTime"
+                  />
+                </ng-template>
+              </td>
+              <td>
+                <ng-container *ngIf="!editMode; else editEndDateInput">
+                  {{ therapy.endDate }}
+                </ng-container>
+                <ng-template #editEndDateInput>
+                  <input
+                    type="date"
+                    class="form-control"
+                    [value] = "therapy.endDate | parseDateTime"
+                  />
+                </ng-template>
+              </td>
+              <td>
+                <ng-container *ngIf="!editMode">
+                  <button class="btn btn-primary" (click)="toggleEditMode()">
+                    Edit
+                  </button>
+                  <button class="btn btn-danger" (click)="deleteTherapy()">
+                    Delete
+                  </button>
+                </ng-container>
+                <ng-container *ngIf="editMode">
+                  <button
+                    class="btn btn-primary"
+                    (click)="confirmEditTherapy()"
+                  >
+                    Potvrdi
+                  </button>
+                </ng-container>
               </td>
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="patientDataModal"
+  tabindex="-1"
+  aria-labelledby="patientDataModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="patientDataModalLabel">
+          Podaci o pacijentu
+        </h5>
+      </div>
+      <div class="modal-body" *ngIf="patientData">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-10">
+              <ul class="list-group">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <strong>Težina:</strong>
+                  <span>{{ patientData[0]?.tezina }}</span>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <strong>Visina:</strong>
+                  <span>{{ patientData[0]?.visina }}</span>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <strong>Krvna grupa:</strong>
+                  <span>{{ patientData[0]?.krvnaGrupa }}</span>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <strong>Pritisak sistolicki:</strong>
+                  <span>{{ patientData[0]?.pritisakSistolicki }}</span>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <strong>Pritisak distolicki:</strong>
+                  <span>{{ patientData[0]?.pritisakDistolicki }}</span>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <strong>Puls:</strong>
+                  <span>{{ patientData[0]?.pulz }}</span>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <strong>Alergije:</strong>
+                  <span>{{ patientData[0]?.alergije }}</span>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <strong>Trenutne bolesti:</strong>
+                  <span>{{ patientData[0]?.trenutneBolesti }}</span>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <strong>Ranije bolesti:</strong>
+                  <span>{{ patientData[0]?.ranijeBolesti }}</span>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <strong>Lijekovi:</strong>
+                  <span>{{ patientData[0]?.lijekovi }}</span>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <strong>Porodična anamneza:</strong>
+                  <span>{{ patientData[0]?.porodicnaAnamneza }}</span>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <strong>Navike ponašanja:</strong>
+                  <span>{{ patientData[0]?.navikePonasanja }}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">
+          Zatvori
+        </button>
       </div>
     </div>
   </div>

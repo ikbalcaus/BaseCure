@@ -20,15 +20,15 @@ namespace BaseCureAPI.Endpoints.Lijek.GetForUstanova
         public async Task<ActionResult<IEnumerable<LijekoviGetByUstanovaRes>>> GetLijekoviForUstanova([FromQuery] int ustanovaId)
         {
             var lijekovi = await _context.Lijekovis
-                .Where(l => l.UstanovaId == ustanovaId)
-                .Select(l => new LijekoviGetByUstanovaRes
+                .Where(x => x.UstanovaId == ustanovaId)
+                .Select(x => new LijekoviGetByUstanovaRes
                 {
-                    LijekId = l.LijekId,
-                    NazivLijeka = l.NazivLijeka,
-                    ZahtijevaRecept = l.ZahtijevaRecept,
-                    OpisLijeka = l.OpisLijeka,
-                    Kolicina = l.Kolicina,
-                    CijenaLijeka = l.CijenaLijeka
+                    LijekId = x.LijekId,
+                    NazivLijeka = x.NazivLijeka,
+                    ZahtijevaRecept = x.ZahtijevaRecept,
+                    OpisLijeka = x.OpisLijeka,
+                    Kolicina = x.Kolicina,
+                    CijenaLijeka = x.CijenaLijeka
                 })
                 .ToListAsync();
 

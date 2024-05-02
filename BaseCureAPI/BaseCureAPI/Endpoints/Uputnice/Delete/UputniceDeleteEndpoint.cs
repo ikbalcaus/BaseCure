@@ -15,8 +15,8 @@ namespace BaseCureAPI.Endpoints.Uputnice.Delete
             _context = context;
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTherapy(int id)
+        [HttpDelete()]
+        public async Task<IActionResult> DeleteTherapy([FromQuery]int id)
         {
             var therapy = await _context.Terapijes.FindAsync(id);
             if (therapy == null)

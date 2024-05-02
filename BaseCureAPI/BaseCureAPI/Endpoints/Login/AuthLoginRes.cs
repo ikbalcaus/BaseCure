@@ -12,7 +12,6 @@ namespace BaseCureAPI.Endpoints.Login
         public int? KorisnikId { get; set; }
         [JsonIgnore]
         public Korisnici Korisnik { get; set; }
-        public string? KorisnickoIme => Korisnik.KorisnickoIme;
         public string? Ime => Korisnik.Ime;
         public string? Prezime => Korisnik.Prezime;
         public DateTime? DatumRodjenja => Korisnik.DatumRodjenja;
