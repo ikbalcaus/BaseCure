@@ -1,5 +1,4 @@
 ﻿using BaseCureAPI.DB;
-using BaseCureAPI.Endpoints.Narudzba.Get;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
