@@ -1,4 +1,4 @@
-﻿gusing System;
+﻿using System;
 using System.Collections.Generic;
 using BaseCureAPI.DB.Models;
 using Microsoft.EntityFrameworkCore;
@@ -357,7 +357,11 @@ namespace BaseCureAPI.DB
                     .HasMaxLength(255)
                     .HasColumnName("mailadresa");
 
-                entity.Property(e => e.Odobreno).HasColumnName("odobreno");
+                entity.Property(e => e.RedniBroj).HasColumnName("redni_broj");
+
+                entity.Property(e => e.Status)
+                    .HasMaxLength(255)
+                    .HasColumnName("status");
 
                 entity.Property(e => e.TelefonskiBroj)
                     .HasMaxLength(25)

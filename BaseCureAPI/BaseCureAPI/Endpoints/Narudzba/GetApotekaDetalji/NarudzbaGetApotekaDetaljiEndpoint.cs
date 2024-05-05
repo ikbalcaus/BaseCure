@@ -1,5 +1,4 @@
 ﻿using BaseCureAPI.DB;
-using BaseCureAPI.DB.Models;
 using BaseCureAPI.Endpoints.Narudzba.GetKorisnik;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
