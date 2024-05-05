@@ -16,13 +16,13 @@ namespace BaseCureAPI.Endpoints.Narudzba.GetApotekaDetalji
             _context = context;
         }
 
-        [HttpGet("apoteka/{ustanovaId}/{status}")]
-        public ActionResult<List<NarudzbaGetApotekaDetaljiRes>> GetNarudzbe([FromRoute] int ustanovaId, string status)
+        [HttpGet("apoteka/{ustanovaId}/{status}/korisnik/{korisnikId}")]
+        public ActionResult<List<NarudzbaGetApotekaDetaljiRes>> GetNarudzbe([FromRoute] int ustanovaId, string status, int korisnikId)
         {
             var narudzbe = _context.Narudzbes
                 .Include(x => x.Korisnik)
                 .Include(x => x.Lijek)
-                .Where(x => x.Lijek.UstanovaId == ustanovaId && x.Status == status && (x.Status == "aktivno" || x.Status == "isporuceno"))
+                .Where(x => x.Lijek.UstanovaId == ustanovaId && x.Status == status && x.KorisnikId == korisnikId && (x.Status == "aktivno" || x.Status == "isporuceno"))
                 .Select(x => new NarudzbaGetKorisnikRes
                 {
                     NarudzbaId = x.NarudzbaId,
