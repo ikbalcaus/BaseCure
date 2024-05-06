@@ -2,7 +2,7 @@
   <div class="my-5 main">
     <div class="items">
       <h4>Aktivne narudžbe</h4>
-      <p>Imate aktivnih narudžbi za {{ countOrders("aktivno") }} korisnika</p>
+      <p>Trenutno imate {{ countOrders("aktivno") }} aktivnih narudžbi</p>
       <hr>
       <div *ngFor="let i of res">
         <div class="card border-0" *ngIf="i.status == 'aktivno'">
@@ -15,7 +15,7 @@
                 </div>
               </div>
               <div class="card-column align-items-center justify-content-end">
-                <a class="btn btn-primary" routerLink="/apoteka/narudzbe/{{i.korisnikId}}/aktivno">Pogledaj detalje</a>
+                <a class="btn btn-primary" routerLink="/apoteka/narudzbe/{{i.redniBroj}}/aktivno">Pogledaj detalje</a>
               </div>
             </div>
           </div>
@@ -24,7 +24,7 @@
     </div>
     <div class="items">
       <h4>Isporučene narudžbe</h4>
-      <p>Imate isporučenih narudžbi za {{ countOrders("isporuceno") }} korisnika </p>
+      <p>Trenutno imate {{ countOrders("isporuceno") }} isporučenih narudžbi </p>
       <hr>
       <div *ngFor="let i of res">
         <div class="card border-0" *ngIf="i.status == 'isporuceno'">
@@ -37,7 +37,7 @@
                 </div>
               </div>
               <div class="card-column align-items-center justify-content-end">
-                <a class="btn btn-primary" routerLink="/apoteka/narudzbe/{{i.korisnikId}}/isporuceno">Pogledaj detalje</a>
+                <a class="btn btn-primary" routerLink="/apoteka/narudzbe/{{i.redniBroj}}/isporuceno">Pogledaj detalje</a>
               </div>
             </div>
           </div>

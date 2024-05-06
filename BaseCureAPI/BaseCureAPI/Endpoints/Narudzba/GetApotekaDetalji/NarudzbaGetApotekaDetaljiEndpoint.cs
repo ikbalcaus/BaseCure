@@ -16,21 +16,29 @@ namespace BaseCureAPI.Endpoints.Narudzba.GetApotekaDetalji
             _context = context;
         }
 
-        [HttpGet("apoteka/{ustanovaId}/{status}/korisnik/{korisnikId}")]
-        public ActionResult<List<NarudzbaGetApotekaDetaljiRes>> GetNarudzbe([FromRoute] int ustanovaId, string status, int korisnikId)
+        [HttpGet("apoteka/{ustanovaId}/{status}/korisnik/{redniBroj}")]
+        public ActionResult<List<NarudzbaGetApotekaDetaljiRes>> GetNarudzbe([FromRoute] int ustanovaId, string status, int redniBroj)
         {
             var narudzbe = _context.Narudzbes
+                .Include(x => x.Grad)
                 .Include(x => x.Korisnik)
                 .Include(x => x.Lijek)
-                .Where(x => x.Lijek.UstanovaId == ustanovaId && x.Status == status && x.KorisnikId == korisnikId && (x.Status == "aktivno" || x.Status == "isporuceno"))
-                .Select(x => new NarudzbaGetKorisnikRes
+                .ThenInclude(x => x.Ustanova)
+                .Where(x => x.Lijek.UstanovaId == ustanovaId && x.Status == status && x.RedniBroj == redniBroj && (x.Status == "aktivno" || x.Status == "isporuceno"))
+                .Select(x => new NarudzbaGetApotekaDetaljiRes
                 {
                     NarudzbaId = x.NarudzbaId,
                     KorisnikId = x.KorisnikId,
+                    ImePrezime = x.ImePrezime,
+                    TelefonskiBroj = x.TelefonskiBroj,
+                    Grad = x.Grad.Naziv,
+                    Adresa = x.Adresa,
+                    MailAdresa = x.Mailadresa,
                     LijekId = x.LijekId,
                     NazivLijeka = x.Lijek.NazivLijeka,
                     OpisLijeka = x.Lijek.OpisLijeka,
                     CijenaLijeka = x.Lijek.CijenaLijeka,
+                    CijenaDostave = x.Lijek.Ustanova.CijenaDostave,
                     Status = x.Status
                 })
                 .ToList();

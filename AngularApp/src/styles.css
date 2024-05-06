@@ -1,7 +1,7 @@
 .shadow, .shadow-sm, .shadow-lg {
     border: none;
 }
-.btn, .login, .form-control, .form-check-input, .card, .card-img-top, .card-body, .alert, .modal-content {
+.btn, .login, .form-control, .form-select, .form-check-input, .card, .card-img-top, .card-body, .alert, .modal-content {
     border-radius: 3px;
 }
 .btn {

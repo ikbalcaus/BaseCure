@@ -21,6 +21,7 @@ namespace BaseCureAPI.Endpoints.Narudzba.GetKorisnik
             var narudzbe = _context.Narudzbes
                 .Include(x => x.Korisnik)
                 .Include(x => x.Lijek)
+                .ThenInclude(x => x.Ustanova)
                 .Where(x => x.KorisnikId == korisnikId && x.Status == "neaktivno")
                 .Select(x => new NarudzbaGetKorisnikRes
                 {
@@ -28,8 +29,9 @@ namespace BaseCureAPI.Endpoints.Narudzba.GetKorisnik
                     KorisnikId = x.KorisnikId,
                     LijekId = x.LijekId,
                     NazivLijeka = x.Lijek.NazivLijeka,
-                    OpisLijeka = x.Lijek.OpisLijeka,
+                    NazivUstanove = x.Lijek.Ustanova.Naziv,
                     CijenaLijeka = x.Lijek.CijenaLijeka,
+                    CijenaDostave = x.Lijek.Ustanova.CijenaDostave,
                     Status = x.Status
                 })
                 .ToList();
