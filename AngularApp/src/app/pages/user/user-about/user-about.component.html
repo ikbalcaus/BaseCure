@@ -3,12 +3,12 @@
         <img class="thumbnail rounded shadow mx-4 col-8" src="./../../../assets/img/no-image-avabliable.jpg" alt="Slika">
         <div class="mx-4 mt-2 col">
             <h2>{{res.naziv}}</h2>
-            <h6>Some quick example text to build on the card title and make up the bulk of the card's content.</h6>
+            <p class="fs-5">{{res.opis}}</p>
             <p class="mt-4">Grad: {{res.grad}}</p>
             <p>Adresa: {{res.adresa}}</p>
             <p>Kontakt telefon: {{res.kontaktBroj}}</p>
             <p>E-mail: {{res.email}}</p>
-            <a class="btn btn-primary" routerLink="/lijekovi">Pretraži lijekove</a>
+            <a class="btn btn-primary" [routerLink]="res.tipUstanove == 'apoteka' ? '/lijekovi/' + res.ustanovaId : '/ljekari/' + res.ustanovaId">{{ res.tipUstanove == "apoteka" ? "Pogledaj lijekove" : "Pogledaj ljekare"}}</a>
         </div>
     </div>
     <iframe

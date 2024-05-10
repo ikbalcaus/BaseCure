@@ -24,7 +24,8 @@ namespace BaseCureAPI.Endpoints.Narudzba.Post
                 KorisnikId = req.KorisnikId,
                 LijekId = req.LijekId,
                 DatumVrijeme = DateTime.Now,
-                Status = "neaktivno"
+                Status = "neaktivno",
+                RedniBroj = 0
             };
             narudzba.NarudzbaId = _context.Narudzbes.Any() ? _context.Narudzbes.Max(x => x.NarudzbaId) + 1 : 1;
             _context.Narudzbes.Add(narudzba);

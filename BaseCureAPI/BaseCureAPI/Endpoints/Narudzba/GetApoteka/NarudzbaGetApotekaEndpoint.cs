@@ -19,13 +19,16 @@ namespace BaseCureAPI.Endpoints.Narudzba.GetApoteka
         public ActionResult<List<NarudzbaGetApotekaRes>> GetNarudzbe([FromRoute] int ustanovaId)
         {
             var narudzbe = _context.Narudzbes
-                .Where(x => x.Status == "aktivno" || x.Status == "isporuceno")
-                .GroupBy(x => new { x.KorisnikId, x.Korisnik.Ime, x.Korisnik.Prezime, x.Status })
+                .Include(x => x.Korisnik)
+                .Include(x => x.Lijek)
+                .Where(x => x.Lijek.UstanovaId == ustanovaId && (x.Status == "aktivno" || x.Status == "isporuceno"))
+                .GroupBy(x => new { x.KorisnikId, x.Korisnik.Ime, x.Korisnik.Prezime, x.Status, x.RedniBroj })
                 .Select(group => new NarudzbaGetApotekaRes
                 {
                     KorisnikId = group.Key.KorisnikId,
                     ImePrezime = group.Key.Ime + " " + group.Key.Prezime,
                     Status = group.Key.Status,
+                    RedniBroj = group.Key.RedniBroj,
                     BrojLijekova = group.Select(x => x.LijekId).Count()
                 }).ToList();
             return Ok(narudzbe);

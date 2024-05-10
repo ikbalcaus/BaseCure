@@ -24,19 +24,15 @@ export class PharmacyOrdersDetailsComponent {
     private alertService: AlertService
   ) {}
 
-  korisnik: any;
   narudzbe: any;
-  korisnikId: any = this.route.snapshot.paramMap.get("korisnikId")
+  redniBroj: any = this.route.snapshot.paramMap.get("redniBroj")
   status: any = this.route.snapshot.paramMap.get("status");
   showModalSubmitForm: boolean = false;
   showModalDeleteMedicine: boolean = false;
   tempNarudzbaId: number = 0;
 
   ngOnInit() {
-    this.httpClient.get(serverSettings.address + "/korisnici/" + this.route.snapshot.paramMap.get("korisnikId")).subscribe(
-      res => this.korisnik = res
-    );
-    this.httpClient.get(serverSettings.address + "/narudzbe/apoteka/" + this.authService.getAuthToken().ustanovaId + "/" + this.status + "/korisnik/" + this.korisnikId).subscribe(
+    this.httpClient.get(serverSettings.address + "/narudzbe/apoteka/" + this.authService.getAuthToken().ustanovaId + "/" + this.status + "/korisnik/" + this.redniBroj).subscribe(
       res => this.narudzbe = res
     );
   }
@@ -58,7 +54,7 @@ export class PharmacyOrdersDetailsComponent {
 
   confirmOrder() {
     if(this.status == "aktivno") {
-      this.httpClient.put(serverSettings.address + "/narudzbe/apoteka/" + this.authService.getAuthToken().ustanovaId + "/korisnik/" + this.korisnikId, null).subscribe(
+      this.httpClient.put(serverSettings.address + "/narudzbe/apoteka/" + this.authService.getAuthToken().ustanovaId + "/korisnik/" + this.redniBroj, null).subscribe(
         () => {
           this.ngOnInit();
           this.showModalSubmitForm = false;
@@ -68,7 +64,7 @@ export class PharmacyOrdersDetailsComponent {
       );
     }
     else if(this.status == "isporuceno") {
-      this.httpClient.delete(serverSettings.address + "/narudzbe/apoteka/" + this.authService.getAuthToken().ustanovaId + "/korisnik/" + this.korisnikId).subscribe(
+      this.httpClient.delete(serverSettings.address + "/narudzbe/apoteka/" + this.authService.getAuthToken().ustanovaId + "/korisnik/" + this.redniBroj).subscribe(
         () => {
           this.ngOnInit();
           this.showModalSubmitForm = false;

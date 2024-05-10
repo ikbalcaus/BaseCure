@@ -27,7 +27,9 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.GetByParams
                 .Include(x => x.Grad)
                 .Select(x => new UstanoveZdravstvaGetByParamsRes()
                 {
+                    UstanovaId = x.UstanovaId,
                     Naziv = x.Naziv,
+                    Opis = x.Opis,
                     Adresa = x.Adresa,
                     KontaktBroj = x.KontaktBroj,
                     Email = x.Email,
