@@ -30,7 +30,7 @@ export const routes: Routes = [
     { path: "apoteka/uredi/:id", component: PharmacyEditMedicineComponent, canActivate: [GuardService], data: { role: "apoteka" } },
     { path: "apoteka/narudzbe", component: PharmacyOrdersComponent, canActivate: [GuardService], data: { role: "apoteka" } },
     { path: "apoteka/narudzbe/:korisnikId/:status", component: PharmacyOrdersDetailsComponent, canActivate: [GuardService], data: { role: "apoteka" } },
-    { path: "uputnice", component: PatientPrescriptionComponent},
+    { path: "ljekar/uputnice", component: PatientPrescriptionComponent, canActivate: [GuardService], data: { role: "ljekar" }},
     { path: "basecure-admin", component: AdminLoginComponent, canActivate: [RedirectService] },
     { path: "basecure-admin/dashboard", component: AdminDashboardComponent, canActivate: [GuardService], data: { role: "admin" } }
 ];

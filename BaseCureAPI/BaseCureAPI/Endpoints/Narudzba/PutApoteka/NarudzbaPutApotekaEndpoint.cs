@@ -20,6 +20,7 @@ namespace BaseCureAPI.Endpoints.Narudzba.PutApoteka
         {
             var narudzbe = _context.Narudzbes
                 .Include(x => x.Lijek)
+
                 .Where(x => x.Lijek.UstanovaId == ustanovaId && x.KorisnikId == korisnikId && x.Status == "aktivno");
             foreach (var narudzba in narudzbe)
             {

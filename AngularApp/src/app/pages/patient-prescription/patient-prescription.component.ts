@@ -132,6 +132,7 @@ export class PatientPrescriptionComponent {
       this.selectedTherapy = null;
     });
   }
+
 }
 
 @NgModule({
