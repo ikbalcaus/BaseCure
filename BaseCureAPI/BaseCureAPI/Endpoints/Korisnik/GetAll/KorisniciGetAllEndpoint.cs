@@ -26,10 +26,10 @@ namespace BaseCureAPI.Endpoints.Korisnik.GetAll
                     HashLozinke = x.HashLozinke,
                     Ime = x.Ime,
                     Prezime = x.Prezime,
-                    //Adresa = x.Adresa,
-                    //DatumRodjenja = (DateTime)x.DatumRodjenja,
-                    //MailAdresa = x.MailAdresa,
-                    //Uloga = x.Uloga,
+                    Adresa = x.Adresa,
+                    DatumRodjenja = x.DatumRodjenja,
+                    MailAdresa = x.MailAdresa,
+                    Code2fa = x.Code2fa
                 }).ToList();
 
             return Ok(new KorisniciGetAllResList
