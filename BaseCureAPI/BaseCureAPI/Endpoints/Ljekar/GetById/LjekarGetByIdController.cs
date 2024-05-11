@@ -22,7 +22,9 @@ namespace BaseCureAPI.Endpoints.Ljekar.GetById
                 .Select(x => new LjekarGetByIdRes()
                 {
                     LjekarId = x.LjekarId,
-                    Specijalizacija = x.Specijalizacija
+                    Specijalizacija = x.Specijalizacija,
+                    Korisnik = x.Korisnik,
+                    Ustanova = x.Ustanova
                 }).FirstOrDefault();
 
             return Ok(ljekar);
