@@ -15,12 +15,12 @@ namespace BaseCureAPI.Endpoints.Narudzba.DeleteAllApoteka
             _context = context;
         }
 
-        [HttpDelete("apoteka/{ustanovaId}/korisnik/{korisnikId}")]
-        public ActionResult DeleteAllNarudzba([FromRoute] int ustanovaId, [FromRoute] int korisnikId)
+        [HttpDelete("apoteka/{ustanovaId}/korisnik/{redniBroj}")]
+        public ActionResult DeleteAllNarudzba([FromRoute] int ustanovaId, [FromRoute] int redniBroj)
         {
             var narudzbe = _context.Narudzbes
                 .Include(x => x.Lijek)
-                .Where(x => x.Lijek.UstanovaId == ustanovaId && x.KorisnikId == korisnikId && x.Status == "isporuceno");
+                .Where(x => x.Lijek.UstanovaId == ustanovaId && x.RedniBroj == redniBroj && x.Status == "isporuceno");
 
             foreach (var narudzba in narudzbe)
             {

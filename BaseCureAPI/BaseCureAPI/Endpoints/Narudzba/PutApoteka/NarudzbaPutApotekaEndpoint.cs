@@ -15,13 +15,12 @@ namespace BaseCureAPI.Endpoints.Narudzba.PutApoteka
             _context = context;
         }
 
-        [HttpPut("apoteka/{ustanovaId}/korisnik/{korisnikId}")]
-        public ActionResult UpdateNarudzba([FromRoute] int ustanovaId, [FromRoute] int korisnikId)
+        [HttpPut("apoteka/{ustanovaId}/korisnik/{redniBroj}")]
+        public ActionResult UpdateNarudzba([FromRoute] int ustanovaId, [FromRoute] int redniBroj)
         {
             var narudzbe = _context.Narudzbes
                 .Include(x => x.Lijek)
-
-                .Where(x => x.Lijek.UstanovaId == ustanovaId && x.KorisnikId == korisnikId && x.Status == "aktivno");
+                .Where(x => x.Lijek.UstanovaId == ustanovaId && x.RedniBroj == redniBroj && x.Status == "aktivno");
             foreach (var narudzba in narudzbe)
             {
                 narudzba.Status = "isporuceno";

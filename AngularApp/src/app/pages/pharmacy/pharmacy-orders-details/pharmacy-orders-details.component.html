@@ -1,7 +1,7 @@
 <div class="container">
     <div class="my-5 main">
       <div class="items">
-        <h4>{{korisnik.ime + " " + korisnik.prezime}}</h4>
+        <h4>{{ narudzbe[0].imePrezime }}</h4>
         <p>Trenutno imate {{ narudzbe.length }} lijekova za isporučiti</p>
         <hr>
         <div *ngFor="let i of narudzbe">
@@ -21,23 +21,23 @@
           <hr>
           <div class="form-group mb-2">
             <label>Ime i prezime:</label>
-            <input type="text" class="form-control shadow-sm" [value]="korisnik.ime + ' ' + korisnik.prezime" readonly>
+            <input type="text" class="form-control shadow-sm" [value]="narudzbe[0].imePrezime" readonly>
           </div>
           <div class="form-group mb-2">
             <label>Telefonski broj:</label>
-            <input type="text" class="form-control shadow-sm" readonly>
+            <input type="text" class="form-control shadow-sm" [value]="narudzbe[0].telefonskiBroj" readonly>
           </div>
           <div class="form-group mb-2">
             <label>Grad:</label>
-            <input type="text" class="form-control shadow-sm" [value]="korisnik.grad" readonly>
+            <input type="text" class="form-control shadow-sm" [value]="narudzbe[0].grad" readonly>
           </div>
           <div class="form-group mb-2">
             <label>Adresa stanovanja:</label>
-            <input type="text" class="form-control shadow-sm" [value]="korisnik.adresa" readonly>
+            <input type="text" class="form-control shadow-sm" [value]="narudzbe[0].adresa" readonly>
           </div>
           <div class="form-group mb-2">
             <label>Email adresa:</label>
-            <input type="text" class="form-control shadow-sm" [value]="korisnik.mailAdresa" readonly>
+            <input type="text" class="form-control shadow-sm" [value]="narudzbe[0].mailAdresa" readonly>
           </div>
           <hr>
           <div class="card-column">
@@ -46,11 +46,11 @@
           </div>
           <div class="card-column">
             <p class="mb-2">Cijena dostave:</p>
-            <p class="mb-2">0KM</p>
+            <p class="mb-2">{{ narudzbe[0].cijenaDostave }}KM</p>
           </div>
           <div class="card-column">
             <p class="mb-2">Ukupno cijena lijekova i dostave:</p>
-            <p class="mb-2">{{ sumPrice() }}KM</p>
+            <p class="mb-2">{{ sumPrice() + narudzbe[0].cijenaDostave }}KM</p>
           </div>
           <button class="btn btn-primary btn-lg btn-block mt-2" (click)="showModalSubmitForm = true">{{ status == "aktivno" ? "Isporuči narudžbe" : "Izbriši narudžbe" }}</button>
           <app-modal
