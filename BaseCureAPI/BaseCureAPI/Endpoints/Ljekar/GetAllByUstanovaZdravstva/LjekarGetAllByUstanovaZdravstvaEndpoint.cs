@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BaseCureAPI.Endpoints.Ljekar.GetAllByUstanovaZdravstva
 {
-    [Route("ljekari")]
+    [Route("ljekari/uputnice")]
     [ApiController]
     public class LjekariController : ControllerBase
     {

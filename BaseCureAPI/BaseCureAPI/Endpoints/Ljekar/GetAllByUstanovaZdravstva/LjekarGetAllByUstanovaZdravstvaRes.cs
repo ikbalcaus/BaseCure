@@ -5,6 +5,7 @@ namespace BaseCureAPI.Endpoints.Ljekar.GetAllByUstanovaZdravstva
 {
     public class LjekarGetAllByUstanovaZdravstvaRes
     {
+        public int ljekarId { get; set; }
         public string? Specijalizacija { get; set; }
         [JsonIgnore]
         public Korisnici Korisnik { get; set; }
