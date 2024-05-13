@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="mt-4 row d-flex flex-row justify-content-around">
+        <img class="thumbnail rounded shadow mx-4 col-8" src="./../../../assets/img/no-image-avabliable.jpg" alt="Slika">
+        <div class="mx-4 mt-2 col">
+            <h2>{{res.ime}} {{res.prezime}}</h2>
+            <p class="fs-5">{{res.opis}}</p>
+            <p class="mt-4">Specijalizacija: {{res.specijalizacija}}</p>
+            <p>Grad: {{res.grad}}</p>
+            <p>Adresa: {{res.adresa}}</p>
+            <p>Kontakt telefon: {{res.kontaktBroj}}</p>
+            <p>E-mail: {{res.mailAdresa}}</p>
+            <a class="btn btn-primary" [routerLink]="'/kontakt/' + res.ustanovaId">Zakaži termin</a>
+        </div>
+    </div>
+    <iframe
+        class="container location my-5"
+        height="300px"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps/embed/v1/place?key=API_KEY
+        &q=Space+Needle,Seattle+WA">
+    </iframe>
+</div>

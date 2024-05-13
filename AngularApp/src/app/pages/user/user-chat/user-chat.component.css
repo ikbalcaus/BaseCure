@@ -1,0 +1,9 @@
+.table {
+    cursor: default;
+}
+th {
+    width: 20%;
+}
+td:hover {
+    background-color: #6fd478;
+}

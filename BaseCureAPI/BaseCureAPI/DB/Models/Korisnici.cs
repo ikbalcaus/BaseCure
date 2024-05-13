@@ -23,7 +23,6 @@ namespace BaseCureAPI.DB.Models
         public string? Code2fa { get; set; }
         public int? GradId { get; set; }
         public int? OsobljeId { get; set; }
-        public string BrojTelefona { get; set; }
 
         public virtual Gradovi? Grad { get; set; }
         public virtual Osoblje? Osoblje { get; set; }
