@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BaseCureAPI.Endpoints.Ljekar.GetAllByUstanovaZdravstva
 {
-    [Route("ljekari/uputnice")]
+    [Route("ljekari")]
     [ApiController]
     public class LjekariController : ControllerBase
     {
@@ -16,19 +16,17 @@ namespace BaseCureAPI.Endpoints.Ljekar.GetAllByUstanovaZdravstva
         }
 
         [HttpGet]
-        public ActionResult Get([FromQuery] int ustanovaid)
+        public ActionResult Get([FromQuery] int ustanovaId)
         {
-            var ljekari = _context.Ljekaris.Where(x => x.UstanovaId == ustanovaid)
+            var ljekari = _context.Ljekaris.Where(x => x.UstanovaId == ustanovaId)
                 .Select(x => new LjekarGetAllByUstanovaZdravstvaRes()
                 {
+                    LjekarId = x.LjekarId,
                     Specijalizacija = x.Specijalizacija,
                     Korisnik = x.Korisnik
                 }).ToList();
 
-            return Ok(new LjekarGetAllByUstanovaZdravstvaResList
-            {
-                Ljekari = ljekari
-            });
+            return Ok(ljekari);
         }
     }
 }

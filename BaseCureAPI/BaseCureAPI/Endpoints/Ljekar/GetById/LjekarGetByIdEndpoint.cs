@@ -1,4 +1,4 @@
-﻿using BaseCureAPI.DB;
+using BaseCureAPI.DB;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

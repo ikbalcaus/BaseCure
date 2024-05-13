@@ -8,7 +8,7 @@
             <p>Adresa: {{res.adresa}}</p>
             <p>Kontakt telefon: {{res.kontaktBroj}}</p>
             <p>E-mail: {{res.email}}</p>
-            <a class="btn btn-primary" [routerLink]="res.tipUstanove == 'apoteka' ? '/lijekovi/' + res.ustanovaId : '/ljekari/' + res.ustanovaId">{{ res.tipUstanove == "apoteka" ? "Pogledaj lijekove" : "Pogledaj ljekare"}}</a>
+            <a class="btn btn-primary" [routerLink]="res.tipUstanove == 'apoteka' ? '/pretrazi/lijekovi/' + res.ustanovaId : '/pretrazi/ljekari/' + res.ustanovaId">{{ res.tipUstanove == "apoteka" ? "Pogledaj lijekove" : "Pogledaj ljekare"}}</a>
         </div>
     </div>
     <iframe

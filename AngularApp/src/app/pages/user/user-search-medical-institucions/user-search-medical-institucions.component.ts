@@ -8,8 +8,8 @@ import { serverSettings } from '../../../server-settings';
 @Component({
   selector: 'app-user-search',
   standalone: true,
-  templateUrl: './user-search.component.html',
-  styleUrl: './user-search.component.css',
+  templateUrl: './user-search-medical-institucions.component.html',
+  styleUrl: './user-search-medical-institucions.component.css',
   imports: [CommonModule, FilterComponent, CardComponent]
 })
 export class UserSearchComponent {

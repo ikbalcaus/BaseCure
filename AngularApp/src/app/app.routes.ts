@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
-import { UserSearchComponent } from './pages/user/user-search/user-search.component';
+import { UserSearchComponent } from './pages/user/user-search-medical-institucions/user-search-medical-institucions.component';
 import { UserCartComponent } from './pages/user/user-cart/user-cart.component';
-import { UserAboutComponent } from './pages/user/user-about/user-about.component';
+import { UserAboutMedicalInstitutionComponent } from './pages/user/user-about-medical-institucion/user-about-medical-institucion.component';
 import { UserInfoComponent } from './pages/user/user-info/user-info.component';
 import { AdminLoginComponent } from './pages/admin/admin-login/admin-login.component';
 import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
@@ -16,13 +16,19 @@ import { PharmacyEditMedicineComponent } from './pages/pharmacy/pharmacy-edit-me
 import { PatientPrescriptionComponent } from './pages/doctor/patient-prescription/patient-prescription.component';
 import { PharmacyOrdersComponent } from './pages/pharmacy/pharmacy-orders/pharmacy-orders.component';
 import { PharmacyOrdersDetailsComponent } from './pages/pharmacy/pharmacy-orders-details/pharmacy-orders-details.component';
+import { UserAboutDoctorComponent } from './pages/user/user-about-doctor/user-about-doctor.component';
+import { UserDoctorsComponent } from './pages/user/user-search-doctors/user-search-doctors.component';
+import { UserChatComponent } from './pages/user/user-chat/user-chat.component';
 
 export const routes: Routes = [
     { path: "", component: LandingPageComponent, canActivate: [RedirectService] },
     { path: "pretrazi", component: UserSearchComponent, canActivate: [GuardService], data: { role: "korisnik" } },
-    { path: "pretrazi/:id", component: UserAboutComponent, canActivate: [GuardService], data: { role: "korisnik" } },
-    { path: "lijekovi/:id", component: UserMedicinesComponent, canActivate: [GuardService], data: { role: "korisnik" } },
+    { path: "pretrazi/:id", component: UserAboutMedicalInstitutionComponent, canActivate: [GuardService], data: { role: "korisnik" } },
+    { path: "pretrazi/lijekovi/:id", component: UserMedicinesComponent, canActivate: [GuardService], data: { role: "korisnik" } },
+    { path: "pretrazi/ljekari/:id", component: UserDoctorsComponent, canActivate: [GuardService], data: { role: "korisnik" } },
+    { path: "ljekar/:id", component: UserAboutDoctorComponent, canActivate: [GuardService], data: { role: "korisnik" } },
     { path: "korpa", component: UserCartComponent, canActivate: [GuardService], data: { role: "korisnik" } },
+    { path: "kontakt/:id", component: UserChatComponent, canActivate: [GuardService], data: { role: "korisnik" } },
     { path: "korisnik-info", component: UserInfoComponent, canActivate: [GuardService], data: { role: "korisnik" } },
     { path: "ustanova-zdravstva/karton", component: MedicalInstitutionCartonComponent, canActivate: [GuardService], data: { role: "ustanova-zdravstva" } },
     { path: "apoteka/lijekovi", component: PharmacyManageMedicinesComponent, canActivate: [GuardService], data: { role: "apoteka" } },

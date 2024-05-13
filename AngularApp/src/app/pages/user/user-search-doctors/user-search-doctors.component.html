@@ -1,0 +1,16 @@
+<app-filter
+    placeholder1="Naziv ljekara"
+    placeholder2="Naziv specijalizacije"
+    (searchOptions)="getSearchResults($any($event))"
+></app-filter>
+<div class="container cards">
+    <app-card *ngFor="let i of res"
+        img="./../../../assets/img/no-image-avabliable.jpg"
+        [title]="i.imePrezime"
+        [description]="i.specijalizacija"
+        btn_text1="Termini"
+        [btn_link1]="'/kontakt/' + i.ljekarId"
+        btn_text2="Detalji"
+        [btn_link2]="'/ljekar/' + i.ljekarId"
+    ></app-card>
+</div>
