@@ -51,11 +51,11 @@
             <p class="mb-2">Ukupno cijena lijekova i dostave:</p>
             <p class="mb-2">{{ sumPrice() + deliveryPrice() }}KM</p>
           </div>
-          <button class="btn btn-primary btn-lg btn-block mt-2">Potvrdi narudžbu</button>
+          <button type="button" class="btn btn-primary btn-lg btn-block mt-2" (click)="showModal = true">Potvrdi narudžbu</button>
           <app-modal
             *ngIf="showModal"
             (closeModal)="showModal = false"
-            (onSubmit)="loginForm.ngSubmit.emit()"
+            (onSubmit)="confirmOrder(loginForm.value)"
           ></app-modal>
         </div>
       </form>
