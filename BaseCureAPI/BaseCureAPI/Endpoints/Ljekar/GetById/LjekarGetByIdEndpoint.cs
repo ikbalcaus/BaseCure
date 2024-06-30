@@ -1,7 +1,6 @@
-﻿using BaseCureAPI.DB;
+using BaseCureAPI.DB;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace BaseCureAPI.Endpoints.Ljekar.GetById
 {
@@ -16,21 +15,16 @@ namespace BaseCureAPI.Endpoints.Ljekar.GetById
             _context = context;
         }
 
-        [HttpGet("{id}")]
-        public ActionResult Get([FromRoute] int id)
+        [HttpGet]
+        public ActionResult Get([FromQuery] int ljekarid)
         {
-            var ljekar = _context.Ljekaris.Where(x => x.LjekarId == id)
-                .Include(x => x.Korisnik)
-                .ThenInclude(x => x.Grad)
+            var ljekar = _context.Ljekaris.Where(x => x.LjekarId == ljekarid)
                 .Select(x => new LjekarGetByIdRes()
                 {
                     LjekarId = x.LjekarId,
-                    Ime = x.Korisnik.Ime,
-                    Prezime = x.Korisnik.Prezime,
                     Specijalizacija = x.Specijalizacija,
-                    MailAdresa = x.Korisnik.MailAdresa,
-                    Adresa = x.Korisnik.Adresa,
-                    Grad = x.Korisnik.Grad.Naziv
+                    Korisnik = x.Korisnik,
+                    Ustanova = x.Ustanova
                 }).FirstOrDefault();
 
             return Ok(ljekar);

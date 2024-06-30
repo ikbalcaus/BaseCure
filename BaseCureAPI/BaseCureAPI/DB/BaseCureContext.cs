@@ -147,6 +147,10 @@ namespace BaseCureAPI.DB
                     .IsUnicode(false)
                     .HasColumnName("adresa");
 
+                entity.Property(e => e.BrojTelefona)
+                    .HasMaxLength(25)
+                    .HasColumnName("broj_telefona");
+
                 entity.Property(e => e.Code2fa)
                     .HasMaxLength(255)
                     .IsUnicode(false)
@@ -273,6 +277,10 @@ namespace BaseCureAPI.DB
                     .HasColumnName("ljekar_id");
 
                 entity.Property(e => e.KorisnikId).HasColumnName("korisnik_id");
+
+                entity.Property(e => e.Opis)
+                    .HasMaxLength(255)
+                    .HasColumnName("opis");
 
                 entity.Property(e => e.Specijalizacija)
                     .HasMaxLength(255)

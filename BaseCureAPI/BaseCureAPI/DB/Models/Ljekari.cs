@@ -16,6 +16,7 @@ namespace BaseCureAPI.DB.Models
         public string? Specijalizacija { get; set; }
         public int? UstanovaId { get; set; }
         public int? KorisnikId { get; set; }
+        public string? Opis { get; set; }
 
         public virtual Korisnici? Korisnik { get; set; }
         public virtual UstanoveZdravstva? Ustanova { get; set; }
