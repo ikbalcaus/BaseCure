@@ -1,101 +1,32 @@
-<!-- FILEPATH: /C:/Users/hp/BaseCure_b_AS/temp/AngularApp/src/app/pages/medical-records/medical-records.component.html -->
 <div class="container">
-    
-    <!-- View Medical Records -->
-    <div class="card mt-5 shadow-sm">
-        <div class="card-header">
-            <h5>Odaberi Medicinski Karton</h5>
-        </div>
-        <div class="card-body">
-            <table class="table text-center">
-                <thead>
-                    <tr>
-                        <th>Ime Pacijenta</th>
-                        <th>Datum</th>
-                        <th>Akcije</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>John Doe</td>
-                        <td>2024-01-01</td>
-                        <td>
-                            <button class="btn btn-primary">Snimi</button>
-                            <button class="btn btn-danger ms-2">Obrisi</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Jane Smith</td>
-                        <td>2024-02-01</td>
-                        <td>
-                            <button class="btn btn-primary">Snimi</button>
-                            <button class="btn btn-danger ms-2">Obrisi</button>
-                        </td>
-                    </tr>
-                    <!-- More records... -->
-                </tbody>
-            </table>
-        </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Vaši termini</h3>
+      <hr class="section-divider">
     </div>
-    
-    <!-- Create New Medical Record -->
-    <div class="card mt-4 shadow-sm">
-        <div class="card-header">
-            <h5>Kreiraj Novi Karton</h5>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="appointment-card" *ngFor="let appointment of appointments">
+        <div class="appointment-info">
+          <h5>{{ appointment.name }}</h5>
+          <p>{{ appointment.date }}</p>
         </div>
-        <div class="card-body">
-            <form>
-                <div class="form-group">
-                    <label>Ime Pacijenta:</label>
-                    <input type="text" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label>Datum:</label>
-                    <input type="date" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label>Medicinski Detalji:</label>
-                    <textarea class="form-control"></textarea>
-                </div>
-                <button class="btn btn-primary">Save</button>
-            </form>
+        <div class="appointment-actions">
+          <button class="btn btn-link">Informacije vezane za termin</button>
+          <button class="btn btn-primary">Karton pacijenta</button>
         </div>
+      </div>
     </div>
-    
-    <!-- Edit Medical Record -->
-    <div class="card mt-4 shadow-sm">
-        <div class="card-header">
-            <h5>Edituj Medicinski Katron</h5>
+    <div class="col-md-4">
+      <div class="patient-details">
+        <h4 class="text-center font-weight-bold">Naziv pacijenta</h4>
+        <div *ngFor="let record of patientRecords" class="yearly-record">
+          <h5>{{ record.year }}</h5>
+          <hr class="year-divider">
+          <p *ngFor="let detail of record.details">{{ detail }}</p>
         </div>
-        <div class="card-body">
-            <form>
-                <div class="form-group">
-                    <label>Ime Pacijenta:</label>
-                    <input type="text" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label>Datum:</label>
-                    <input type="date" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label>Medicinski Detalji:</label>
-                    <textarea class="form-control"></textarea>
-                </div>
-                <button class="btn btn-primary">Snimi Promjene</button>
-            </form>
-        </div>
+      </div>
     </div>
-    
-    <!-- Delete Medical Record -->
-    <div class="card my-5 shadow-sm">
-        <div class="card-header">
-            <h5>Obrisi Medicinski Karton</h5>
-        </div>
-        <div class="card-body">
-            <p>Da li ste sigurni da zelite obrisati ovaj karton?</p>
-            <button class="btn btn-danger">Delete</button>
-        </div>
-    </div>
+  </div>
 </div>
