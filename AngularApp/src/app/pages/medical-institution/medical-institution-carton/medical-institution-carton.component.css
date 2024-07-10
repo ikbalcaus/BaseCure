@@ -1,69 +1,78 @@
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
+body {
+    font-family: Arial, sans-serif;
 }
 
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
+.section-divider {
+    width: 70%;
+    border-top: 1px solid #000;
+    margin: 0 0 20px 0;
 }
 
-.card {
+h3 {
     margin-top: 20px;
+}
+
+.appointment-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
     border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    height: 80px;
 }
 
-.card-header {
-    background-color: #f8f9fa;
-    padding: 15px;
-    border-bottom: 1px solid #ddd;
+.appointment-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
 }
 
-.card-body {
+.appointment-info h5 {
+    margin-top: 0;
+}
+
+.appointment-info p {
+    margin: 0;
+}
+
+.appointment-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.patient-details {
+    background-color: #6f42c1;
+    color: #fff;
     padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-th, td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-label {
+.patient-details h4 {
+    margin-top: 0;
+    text-align: center;
     font-weight: bold;
-    display: block;
-    margin-bottom: 8px;
 }
 
-.form-control {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    box-sizing: border-box;
+.yearly-record {
+    margin-top: 20px;
+}
+
+.year-divider {
+    border-top: 1px solid #fff;
+    margin: 10px 0;
+}
+
+.yearly-record h5 {
     margin-bottom: 10px;
 }
 
-textarea {
-    width: 100%;
-    padding: 12px;
-    height: 100px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-bottom: 10px;
+.yearly-record p {
+    margin: 0 0 5px 0;
 }
-
