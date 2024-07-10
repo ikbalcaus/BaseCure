@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BaseCureAPI.Endpoints.Ljekar.GetById
 {
-    [Route("ljekari")]
+    [Route("ljekar")]
     [ApiController]
     public class LjekariController : ControllerBase
     {
@@ -24,7 +24,7 @@ namespace BaseCureAPI.Endpoints.Ljekar.GetById
                     LjekarId = x.LjekarId,
                     Specijalizacija = x.Specijalizacija,
                     Korisnik = x.Korisnik,
-                    Ustanova = x.Ustanova
+                    //Ustanova = x.Ustanova
                 }).FirstOrDefault();
 
             return Ok(ljekar);
