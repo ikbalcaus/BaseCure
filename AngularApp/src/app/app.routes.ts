@@ -13,7 +13,7 @@ import { RedirectService } from './services/redirect.service';
 import { PharmacyManageMedicinesComponent } from './pages/pharmacy/pharmacy-manage-medicines/pharmacy-manage-medicines.component';
 import { PharmacyAddMedicineComponent } from './pages/pharmacy/pharmacy-add-medicine/pharmacy-add-medicine.component';
 import { PharmacyEditMedicineComponent } from './pages/pharmacy/pharmacy-edit-medicine/pharmacy-edit-medicine.component';
-import { PatientPrescriptionComponent } from './pages/patient-prescription/patient-prescription.component';
+import { PatientPrescriptionComponent } from './pages/doctor/patient-prescription/patient-prescription.component';
 import { PharmacyOrdersComponent } from './pages/pharmacy/pharmacy-orders/pharmacy-orders.component';
 import { PharmacyOrdersDetailsComponent } from './pages/pharmacy/pharmacy-orders-details/pharmacy-orders-details.component';
 import { UserAboutDoctorComponent } from './pages/user/user-about-doctor/user-about-doctor.component';

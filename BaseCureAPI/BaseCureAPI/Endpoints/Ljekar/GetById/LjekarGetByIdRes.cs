@@ -1,4 +1,4 @@
-﻿using BaseCureAPI.DB.Models;
+using BaseCureAPI.DB.Models;
 using System.Text.Json.Serialization;
 
 namespace BaseCureAPI.Endpoints.Ljekar.GetById
