@@ -12,5 +12,6 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.GetByParams
         public string? Email { get; set; }
         public string? Grad { get; set; }
         public string? TipUstanove { get; set; }
+        public float? CijenaDostave {  get; set; }
     }
 }

@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="my-5 row d-flex flex-row justify-content-around">
+        <img class="thumbnail rounded shadow mx-4 col-8" src="./../../../assets/img/no-image-avabliable.jpg" alt="Slika">
+        <div class="content mx-4 col">
+            <form #loginForm="ngForm" (submit)="formSubmit(loginForm.value)">
+                <div class="form-group">
+                    <span>Slika apoteke:</span>
+                    <input type="file" class="form-control" name="slikaApoteke" ngModel>
+                </div>
+                <div class="form-group">
+                    <span>Naziv apoteke:</span>
+                    <input class="form-control" placeholder="Naziv apoteke" name="naziv" autocomplete="off" spellcheck="false" [(ngModel)]="res.naziv">
+                </div>
+                <div class="form-group">
+                    <span>Grad:</span>
+                    <select class="form-select" name="grad" autocomplete="off" required>
+                        <option *ngFor="let i of gradovi" [(ngModel)]="i.gradId">{{ i.naziv }}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <span>Adresa:</span>
+                    <input class="form-control" placeholder="Adresa" name="adresa" autocomplete="off" spellcheck="false" [(ngModel)]="res.adresa">
+                </div>
+                <div class="form-group">
+                    <span>Email:</span>
+                    <input type="email" class="form-control" placeholder="Email" name="email" autocomplete="off" spellcheck="false" [(ngModel)]="res.email">
+                </div>
+                <div class="form-group">
+                    <span>Telefonski broj:</span>
+                    <input class="form-control" placeholder="Telefonski broj" name="telefonskiBroj" autocomplete="off" spellcheck="false" [(ngModel)]="res.kontaktBroj">
+                </div>
+                <div class="form-group">
+                    <span>Cijena dostave:</span>
+                    <input type="number" class="form-control" placeholder="Cijena dostave" name="cijenaDostave" autocomplete="off" spellcheck="false" [(ngModel)]="res.cijenaDostave">
+                </div>
+                <div class="form-group">
+                    <span>Opis apoteke:</span>
+                    <textarea class="form-control" rows="3" placeholder="Opis apoteke" name="opisApoteke" autocomplete="false" spellcheck="false" [(ngModel)]="res.opis"></textarea>
+                </div>
+                <button class="btn btn-primary btn-block mt-2">Potvrdi</button>
+            </form>
+        </div>
+    </div>
+</div>

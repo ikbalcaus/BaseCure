@@ -11,13 +11,5 @@
             <a class="btn btn-primary" [routerLink]="res.tipUstanove == 'apoteka' ? '/pretrazi/lijekovi/' + res.ustanovaId : '/pretrazi/ljekari/' + res.ustanovaId">{{ res.tipUstanove == "apoteka" ? "Pogledaj lijekove" : "Pogledaj ljekare"}}</a>
         </div>
     </div>
-    <iframe
-        class="container location my-5"
-        height="300px"
-        loading="lazy"
-        allowfullscreen
-        referrerpolicy="no-referrer-when-downgrade"
-        src="https://www.google.com/maps/embed/v1/place?key=API_KEY
-        &q=Space+Needle,Seattle+WA">
-    </iframe>
+    <app-map></app-map>
 </div>

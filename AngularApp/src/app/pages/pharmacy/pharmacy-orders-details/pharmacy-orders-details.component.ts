@@ -33,7 +33,12 @@ export class PharmacyOrdersDetailsComponent {
 
   ngOnInit() {
     this.httpClient.get(serverSettings.address + "/narudzbe/apoteka/" + this.authService.getAuthToken().ustanovaId + "/" + this.status + "/korisnik/" + this.redniBroj).subscribe(
-      res => this.narudzbe = res
+      res => {
+        this.narudzbe = res;
+        if(this.narudzbe.length == 0) {
+          this.router.navigateByUrl("apoteka/narudzbe");
+        }
+      }
     );
   }
 
@@ -48,7 +53,7 @@ export class PharmacyOrdersDetailsComponent {
 
   deleteMedicine() {
     this.httpClient.delete(serverSettings.address + "/narudzbe/" + this.tempNarudzbaId).subscribe(
-      () =>  this.ngOnInit()
+      () => this.ngOnInit()
     );
   }
 
@@ -58,7 +63,7 @@ export class PharmacyOrdersDetailsComponent {
         () => {
           this.ngOnInit();
           this.showModalSubmitForm = false;
-          this.alertService.setAlert("success", "Uspješno ste isporučili narudžbe");
+          this.alertService.setAlert("success", "Uspješno ste isporučili narudžbu");
           this.router.navigateByUrl("apoteka/narudzbe");
         }
       );
@@ -68,7 +73,7 @@ export class PharmacyOrdersDetailsComponent {
         () => {
           this.ngOnInit();
           this.showModalSubmitForm = false;
-          this.alertService.setAlert("success", "Uspješno ste izbrisali narudžbe");
+          this.alertService.setAlert("success", "Uspješno ste izbrisali narudžbu");
           this.router.navigateByUrl("apoteka/narudzbe");
         }
       );

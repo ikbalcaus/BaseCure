@@ -19,6 +19,8 @@ import { PharmacyOrdersDetailsComponent } from './pages/pharmacy/pharmacy-orders
 import { UserAboutDoctorComponent } from './pages/user/user-about-doctor/user-about-doctor.component';
 import { UserDoctorsComponent } from './pages/user/user-search-doctors/user-search-doctors.component';
 import { UserChatComponent } from './pages/user/user-chat/user-chat.component';
+import { PharmacyMapComponent } from './pages/pharmacy/pharmacy-map/pharmacy-map.component';
+import { PharmacyDataComponent } from './pages/pharmacy/pharmacy-data/pharmacy-data.component';
 
 export const routes: Routes = [
     { path: "", component: LandingPageComponent, canActivate: [RedirectService] },
@@ -36,6 +38,8 @@ export const routes: Routes = [
     { path: "apoteka/uredi/:id", component: PharmacyEditMedicineComponent, canActivate: [GuardService], data: { role: "apoteka" } },
     { path: "apoteka/narudzbe", component: PharmacyOrdersComponent, canActivate: [GuardService], data: { role: "apoteka" } },
     { path: "apoteka/narudzbe/:redniBroj/:status", component: PharmacyOrdersDetailsComponent, canActivate: [GuardService], data: { role: "apoteka" } },
+    { path: "apoteka/podaci", component: PharmacyDataComponent, canActivate: [GuardService], data: { role: "apoteka" } },
+    { path: "apoteka/lokacija", component: PharmacyMapComponent, canActivate: [GuardService], data: { role: "apoteka" } },
     { path: "uputnice", component: PatientPrescriptionComponent},
     { path: "basecure-admin", component: AdminLoginComponent, canActivate: [RedirectService] },
     { path: "basecure-admin/dashboard", component: AdminDashboardComponent, canActivate: [GuardService], data: { role: "admin" } }

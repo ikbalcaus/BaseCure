@@ -34,7 +34,8 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.GetByParams
                     KontaktBroj = x.KontaktBroj,
                     Email = x.Email,
                     Grad = x.Grad.Naziv,
-                    TipUstanove = x.TipUstanove.Naziv
+                    TipUstanove = x.TipUstanove.Naziv,
+                    CijenaDostave = x.CijenaDostave
                 }).Single();
 
             return ustanovaZdravstva;
