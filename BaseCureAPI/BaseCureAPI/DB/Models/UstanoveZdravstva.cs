@@ -22,6 +22,8 @@ namespace BaseCureAPI.DB.Models
         public int? TipUstanoveId { get; set; }
         public int? GradId { get; set; }
         public float? CijenaDostave { get; set; }
+        public double? Latitude { get; set; }
+        public double? Longitude { get; set; }
 
         public virtual Gradovi? Grad { get; set; }
         public virtual TipoviUstanova? TipUstanove { get; set; }
