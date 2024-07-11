@@ -1,4 +1,5 @@
 ﻿using BaseCureAPI.DB;
+using BaseCureAPI.Endpoints.Grad.GetAll;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,7 +25,11 @@ namespace BaseCureAPI.Endpoints.Search
 
             var results = _context.Gradovis
                 .Where(x => x.Naziv.Contains(searchTerm))
-                .Select(x => x.Naziv)
+                .Select(x => new GradoviGetAllRes
+                {
+                    GradId = x.GradId,
+                    Naziv = x.Naziv
+                })
                 .Take(5) // Limit the number of results
                 .ToList();
 

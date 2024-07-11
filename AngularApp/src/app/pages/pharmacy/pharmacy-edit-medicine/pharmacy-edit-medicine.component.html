@@ -7,14 +7,14 @@
                 <input class="form-control mt-2" placeholder="Naziv lijeka" name="nazivLijeka" [(ngModel)]="res.nazivLijeka" autocomplete="off">
                 <textarea class="form-control mt-2" rows="3" placeholder="Opis lijeka" name="opisLijeka" [(ngModel)]="res.opisLijeka"></textarea>
                 <div class="inline-input-group mt-2">
-                    <label>Cijena Lijeka (KM): </label>
-                    <input type="number" class="form-control inline-input" name="cijenaLijeka" [(ngModel)]="res.cijenaLijeka">
-                    <label>Količina: </label>
-                    <input type="number" class="form-control inline-input" name="kolicina" [(ngModel)]="res.kolicina">
+                    <label for="cijenaLijeka">Cijena Lijeka (KM): </label>
+                    <input type="number" id="cijenaLijeka" class="form-control inline-input" name="cijenaLijeka" [(ngModel)]="res.cijenaLijeka">
+                    <label for="kolicina">Količina: </label>
+                    <input type="number" id="kolicina" class="form-control inline-input" name="kolicina" [(ngModel)]="res.kolicina">
                 </div>
                 <div class="form-check mt-2">
                     <input class="form-check-input" type="checkbox" id="checkbox" name="zahtijevaRecept" [(ngModel)]="res.zahtijevaRecept">
-                    <label class="form-check-label" for="checkbox">Zahtijeva recept?</label>
+                    <label for="checkbox">Zahtijeva recept?</label>
                 </div>
                 <button class="btn btn-primary btn-half-block mt-2">Potvrdi</button>
                 <button type="button" (click)="showModal = true" class="btn btn-danger btn-half-block mt-2">Izbriši Lijek</button>

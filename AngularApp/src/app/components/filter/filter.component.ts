@@ -15,10 +15,10 @@ import { RouterLink } from '@angular/router';
 export class FilterComponent {
   constructor(private httpClient: HttpClient) {}
 
-  @Input() placeholder1 = "";
-  @Input() placeholder2 = "";
-  @Input() link1 = "";
-  @Input() link2 = "";
+  @Input() placeholder1: any;
+  @Input() placeholder2: any;
+  @Input() link1: any;
+  @Input() link2: any;
   @Output() searchOptions = new EventEmitter<any>();
   inputValue1: string = "";
   inputValue2: string = "";

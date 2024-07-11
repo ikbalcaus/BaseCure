@@ -10,11 +10,11 @@ import { RouterLink } from '@angular/router';
     styleUrl: './card.component.css'
 })
 export class CardComponent {
-    @Input() img: string = "";
-    @Input() title: string = "";
-    @Input() description: string = "";
-    @Input() btn_text1: string = "";
-    @Input() btn_link1: string = "";
-    @Input() btn_text2: string = "";
-    @Input() btn_link2: string = "";
+    @Input() img: any;
+    @Input() title: any;
+    @Input() description: any;
+    @Input() btn_text1: any;
+    @Input() btn_link1: any;
+    @Input() btn_text2: any;
+    @Input() btn_link2: any;
 }

@@ -4,24 +4,23 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BaseCureAPI.Endpoints.UstanovaZdravstva.GetLatLong
 {
-    [Route("ustanova/latlang")]
+    [Route("ustanova/latlong")]
     [ApiController]
-    public class GetLatLongEndpoint : ControllerBase
+    public class UstanoveZdravstvaController : ControllerBase
     {
         private readonly BasecureContext _context;
 
-        public GetLatLongEndpoint(BasecureContext context)
+        public UstanoveZdravstvaController(BasecureContext context)
         {
             _context = context;
         }
 
-        [HttpGet]
-        public ActionResult Get([FromQuery] int ustanovaid)
+        [HttpGet("{id}")]
+        public ActionResult Get(int id)
         {
-            var ustanova = _context.UstanoveZdravstvas.Where(x => x.UstanovaId == ustanovaid)
+            var ustanova = _context.UstanoveZdravstvas.Where(x => x.UstanovaId == id)
                 .Select(x => new GetLatLongRes()
                 {
-                    UstanovaId = x.UstanovaId,
                     Lat = x.Latitude,
                     Long = x.Longitude
                 }).FirstOrDefault();

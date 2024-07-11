@@ -22,7 +22,7 @@ export class PatientPrescriptionComponent {
 
   toggleEditMode() {
     this.editMode = !this.editMode;
-    if (this.editMode) {
+    if(this.editMode) {
       this.editedTherapy = { ...this.selectedTherapy }; 
     } else {
       this.editedTherapy = {};
@@ -49,7 +49,7 @@ export class PatientPrescriptionComponent {
       .subscribe((list) => {
         this.patients = list;
 
-        if (this.patients.length > 0) {
+        if(this.patients.length > 0) {
           // Select the first patient by default
           this.selectPatient(this.patients[0]);
         }
@@ -65,7 +65,7 @@ export class PatientPrescriptionComponent {
   }
 
   fetchPatientData() {
-    if (this.selectedPatient) {
+    if(this.selectedPatient) {
       const apiUrl = `${serverSettings.address}/pacijenti?id=${this.selectedPatient.patientId}`;
       this.httpClient.get(apiUrl).subscribe((data) => {
         this.patientData = data;
@@ -104,7 +104,7 @@ export class PatientPrescriptionComponent {
   }
 
   editTherapy() {
-    if (!this.selectedTherapy || !this.selectedPatient) {
+    if(!this.selectedTherapy || !this.selectedPatient) {
       return;
     }
     const therapyId = this.selectedTherapy.therapyId;
@@ -115,7 +115,7 @@ export class PatientPrescriptionComponent {
   }
 
   deleteTherapy() {
-    if (!this.selectedTherapy || !this.selectedPatient) {
+    if(!this.selectedTherapy || !this.selectedPatient) {
       return;
     }
     const therapyId = this.selectedTherapy.therapyId;
@@ -123,9 +123,9 @@ export class PatientPrescriptionComponent {
     this.httpClient.delete(apiUrl).subscribe(() => {
       // Assuming therapy is deleted successfully
       console.log('Therapy deleted successfully.');
-      if (this.selectedPatient && this.selectedPatient.therapies) {
+      if(this.selectedPatient && this.selectedPatient.therapies) {
         const index = this.selectedPatient.therapies.findIndex((t: any) => t.therapyId === therapyId);
-        if (index !== -1) {
+        if(index !== -1) {
           this.selectedPatient.therapies.splice(index, 1);
         }
       }

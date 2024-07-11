@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 export class ParseDateTimePipe implements PipeTransform {
   transform(value: string): string {
-    if (value) {
+    if(value) {
         return value.split('T')[0];
     }
     return '';
