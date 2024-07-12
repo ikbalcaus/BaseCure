@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
-import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { IndexPageComponent } from './pages/index-page/index-page.component';
 import { UserSearchComponent } from './pages/user/user-search-medical-institucions/user-search-medical-institucions.component';
 import { UserCartComponent } from './pages/user/user-cart/user-cart.component';
 import { UserAboutMedicalInstitutionComponent } from './pages/user/user-about-medical-institucion/user-about-medical-institucion.component';
-import { UserInfoComponent } from './pages/user/user-info/user-info.component';
+import { UserDataComponent } from './pages/user/user-data/user-data.component';
 import { AdminLoginComponent } from './pages/admin/admin-login/admin-login.component';
 import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
 import { MedicalInstitutionCartonComponent } from './pages/medical-institution/medical-institution-carton/medical-institution-carton.component';
@@ -19,11 +19,11 @@ import { PharmacyOrdersDetailsComponent } from './pages/pharmacy/pharmacy-orders
 import { UserAboutDoctorComponent } from './pages/user/user-about-doctor/user-about-doctor.component';
 import { UserDoctorsComponent } from './pages/user/user-search-doctors/user-search-doctors.component';
 import { UserChatComponent } from './pages/user/user-chat/user-chat.component';
-import { PharmacyMapComponent } from './pages/pharmacy/pharmacy-map/pharmacy-map.component';
 import { PharmacyDataComponent } from './pages/pharmacy/pharmacy-data/pharmacy-data.component';
+import { SetMapComponent } from './components/set-map/set-map.component';
 
 export const routes: Routes = [
-    { path: "", component: LandingPageComponent, canActivate: [RedirectService] },
+    { path: "", component: IndexPageComponent, canActivate: [RedirectService] },
     { path: "pretrazi", component: UserSearchComponent, canActivate: [GuardService], data: { role: "korisnik" } },
     { path: "pretrazi/:id", component: UserAboutMedicalInstitutionComponent, canActivate: [GuardService], data: { role: "korisnik" } },
     { path: "pretrazi/lijekovi/:id", component: UserMedicinesComponent, canActivate: [GuardService], data: { role: "korisnik" } },
@@ -31,7 +31,7 @@ export const routes: Routes = [
     { path: "ljekar/:id", component: UserAboutDoctorComponent, canActivate: [GuardService], data: { role: "korisnik" } },
     { path: "korpa", component: UserCartComponent, canActivate: [GuardService], data: { role: "korisnik" } },
     { path: "kontakt/:id", component: UserChatComponent, canActivate: [GuardService], data: { role: "korisnik" } },
-    { path: "korisnik-info", component: UserInfoComponent, canActivate: [GuardService], data: { role: "korisnik" } },
+    { path: "podaci", component: UserDataComponent, canActivate: [GuardService], data: { role: "korisnik" } },
     { path: "ustanova-zdravstva/karton", component: MedicalInstitutionCartonComponent, canActivate: [GuardService], data: { role: "ustanova-zdravstva" } },
     { path: "apoteka/lijekovi", component: PharmacyManageMedicinesComponent, canActivate: [GuardService], data: { role: "apoteka" } },
     { path: "apoteka/dodaj", component: PharmacyAddMedicineComponent, canActivate: [GuardService], data: { role: "apoteka" } },
@@ -39,8 +39,9 @@ export const routes: Routes = [
     { path: "apoteka/narudzbe", component: PharmacyOrdersComponent, canActivate: [GuardService], data: { role: "apoteka" } },
     { path: "apoteka/narudzbe/:redniBroj/:status", component: PharmacyOrdersDetailsComponent, canActivate: [GuardService], data: { role: "apoteka" } },
     { path: "apoteka/podaci", component: PharmacyDataComponent, canActivate: [GuardService], data: { role: "apoteka" } },
-    { path: "apoteka/lokacija", component: PharmacyMapComponent, canActivate: [GuardService], data: { role: "apoteka" } },
-    { path: "uputnice", component: PatientPrescriptionComponent},
+    { path: "apoteka/lokacija", component: SetMapComponent, canActivate: [GuardService], data: { role: "apoteka" } },
+    { path: "ustanova-zdravstva/lokacija", component: SetMapComponent, canActivate: [GuardService], data: { role: "ustanova-zdravstva" } },
+    { path: "ljekar/uputnice", component: PatientPrescriptionComponent, canActivate: [GuardService], data: { role: "ljekar" } },
     { path: "basecure-admin", component: AdminLoginComponent, canActivate: [RedirectService] },
     { path: "basecure-admin/dashboard", component: AdminDashboardComponent, canActivate: [GuardService], data: { role: "admin" } }
 ];

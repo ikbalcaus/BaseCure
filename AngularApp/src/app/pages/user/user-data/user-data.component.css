@@ -1,0 +1,15 @@
+.content {
+    max-width: 700px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+}
+.form-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+.form-control, .form-select {
+    width: 70%;
+}

@@ -3,18 +3,20 @@
         <img class="thumbnail rounded shadow mx-4 col-8" src="./../../../assets/img/no-image-avabliable.jpg" alt="Slika">
         <div class="mx-4 mt-2 col">
             <form #loginForm="ngForm" (submit)="formSubmit(loginForm.value)">
-                <input type="file" class="form-control mt-2" name="slijaLijeka" ngModel>
-                <input class="form-control mt-2" placeholder="Naziv lijeka" name="nazivLijeka" ngModel autocomplete="off">
-                <textarea class="form-control mt-2" rows="3" placeholder="Opis lijeka" name="opisLijeka" ngModel></textarea>
-                <div class="inline-input-group mt-2">
-                    <label>Cijena Lijeka (KM): </label>
-                    <input type="number" class="form-control inline-input" name="cijenaLijeka" ngModel>
-                    <label>Količina: </label>
-                    <input type="number" class="form-control inline-input" name="kolicina" ngModel>
-                </div>
-                <div class="form-check mt-2">
-                    <input class="form-check-input" type="checkbox" id="checkbox" name="zahtijevaRecept" ngModel>
-                    <label class="form-check-label" for="checkbox">Zahtijeva recept?</label>
+                <div class="mx-1">
+                    <input type="file" class="form-control mt-2" name="slijaLijeka" ngModel>
+                    <input class="form-control mt-2" placeholder="Naziv lijeka" name="nazivLijeka" ngModel autocomplete="off">
+                    <textarea class="form-control mt-2" rows="3" placeholder="Opis lijeka" name="opisLijeka" ngModel></textarea>
+                    <div class="inline-input-group mt-2">
+                        <label for="cijenaLijeka">Cijena Lijeka (KM): </label>
+                        <input type="number" id="cijenaLijeka" class="form-control inline-input" name="cijenaLijeka" ngModel>
+                        <label for="kolicina">Količina: </label>
+                        <input type="number" id="kolicina" class="form-control inline-input" name="kolicina" ngModel>
+                    </div>
+                    <div class="form-check mt-2">
+                        <input class="form-check-input" type="checkbox" id="checkbox" name="zahtijevaRecept" ngModel>
+                        <label for="checkbox">Zahtijeva recept?</label>
+                    </div>
                 </div>
                 <button class="btn btn-primary btn-block mt-2">Potvrdi</button>
             </form>

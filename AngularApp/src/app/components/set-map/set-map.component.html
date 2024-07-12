@@ -1,0 +1,7 @@
+<div id="map"></div>
+<button id="btn" class="btn btn-primary" (click)="showModal = true">Sačuvaj lokaciju</button>
+<app-modal
+    *ngIf="showModal"
+    (closeModal)="showModal = false"
+    (onSubmit)="saveLocation()"
+></app-modal>

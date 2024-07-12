@@ -3,6 +3,15 @@
     aspect-ratio: 16/9;
     padding: 0;
 }
+.name {
+    margin-top: 30px;
+}
+.data {
+    margin: 4px 0 4px 5px;
+    font-size: 17px;
+    font-weight: 500;
+    display: block;
+}
 
 @media(max-width: 991px){
     .thumbnail {

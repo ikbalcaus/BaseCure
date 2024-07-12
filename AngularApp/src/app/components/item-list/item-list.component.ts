@@ -8,10 +8,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './item-list.component.css'
 })
 export class ItemListComponent {
-  @Input() name = "";
-  @Input() description = "";
-  @Input() price = "";
-  @Input() btnText = "";
+  @Input() name: any;
+  @Input() description: any;
+  @Input() price: any;
+  @Input() btnText: any;
   @Output() btnClick = new EventEmitter();
 
   btnClickHandler() {
