@@ -4,13 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-    selector: 'app-landing-page',
+    selector: 'app-index-page',
     standalone: true,
     imports: [CommonModule, FormsModule],
-    templateUrl: './landing-page.component.html',
-    styleUrl: './landing-page.component.css',
+    templateUrl: './index-page.component.html',
+    styleUrl: './index-page.component.css',
 })
-export class LandingPageComponent {
+export class IndexPageComponent {
     constructor(private authService: AuthService) {}
 
     formSubmit(data: any) {

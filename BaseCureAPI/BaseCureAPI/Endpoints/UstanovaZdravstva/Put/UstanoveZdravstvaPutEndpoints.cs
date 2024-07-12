@@ -21,11 +21,6 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.Put
         [HttpPut("{id}")]
         public IActionResult UpdateUstanova(int id, [FromBody] UstanoveZdravstvaPutReq ustanova)
         {
-            if (id != ustanova.UstanovaId)
-            {
-                return BadRequest();
-            }
-
             _context.Entry(ustanova).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
 

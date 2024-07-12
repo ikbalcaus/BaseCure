@@ -4,11 +4,13 @@ import * as L from 'leaflet';
 import { AuthService } from '../../services/auth.service';
 import { AlertService } from '../../services/alert.service';
 import { serverSettings } from '../../server-settings';
+import { CommonModule } from '@angular/common';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-set-map',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, ModalComponent],
   templateUrl: './set-map.component.html',
   styleUrl: './set-map.component.css'
 })
@@ -20,6 +22,7 @@ export class SetMapComponent {
   ) {}
 
   map!: L.Map;
+  showModal: boolean = false;
   lat: any;
   long: any;
   marker: any = L.icon({

@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="content my-5">
+        <form #loginForm="ngForm" (submit)="formSubmit(loginForm.value)">
+            <div class="mx-1">
+                <div class="form-group">
+                    <span>Ime:</span>
+                    <input class="form-control" placeholder="Ime" name="ime" autocomplete="off" spellcheck="false" [(ngModel)]="res.ime">
+                </div>
+                <div class="form-group">
+                    <span>Prezime:</span>
+                    <input class="form-control" placeholder="Prezime" name="prezime" autocomplete="off" spellcheck="false" [(ngModel)]="res.prezime">
+                </div>
+                <div class="form-group">
+                    <span>Grad:</span>
+                    <select class="form-select" name="grad" autocomplete="off" required>
+                        <option *ngFor="let i of gradovi" [(ngModel)]="i.gradId">{{ i.naziv }}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <span>Adresa:</span>
+                    <input class="form-control" placeholder="Adresa" name="adresa" autocomplete="off" spellcheck="false" [(ngModel)]="res.adresa">
+                </div>
+                <div class="form-group">
+                    <span>Email:</span>
+                    <input type="email" class="form-control" placeholder="Email" name="email" autocomplete="off" spellcheck="false" [(ngModel)]="res.mailAdresa">
+                </div>
+                <div class="form-group">
+                    <span>Telefonski broj:</span>
+                    <input class="form-control" placeholder="Telefonski broj" name="telefonskiBroj" autocomplete="off" spellcheck="false" [(ngModel)]="res.telefonskiBroj">
+                </div>
+            </div>
+            <button class="btn btn-primary btn-block mt-2">Potvrdi</button>
+        </form>
+    </div>
+</div>

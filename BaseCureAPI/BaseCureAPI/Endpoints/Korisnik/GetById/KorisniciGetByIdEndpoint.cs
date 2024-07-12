@@ -32,7 +32,7 @@ namespace BaseCureAPI.Endpoints.Korisnik.GetById
             {
                 Ime = korisnikEntity.Ime,
                 Prezime = korisnikEntity.Prezime,
-                //TelefonskiBroj = korisnikEntity.TelefonskiBroj,
+                TelefonskiBroj = korisnikEntity.BrojTelefona,
                 Adresa = korisnikEntity.Adresa,
                 MailAdresa = korisnikEntity.MailAdresa,
                 Grad = korisnikEntity.Grad?.Naziv
