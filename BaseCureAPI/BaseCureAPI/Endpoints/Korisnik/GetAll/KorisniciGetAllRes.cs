@@ -11,9 +11,4 @@
         public string? MailAdresa { get; set; }
         public string? Code2fa { get; set; }
     }
-
-    public class KorisniciGetAllResList
-    {
-        public List<KorisniciGetAllRes> Korisnici { get; set; }
-    }
 }

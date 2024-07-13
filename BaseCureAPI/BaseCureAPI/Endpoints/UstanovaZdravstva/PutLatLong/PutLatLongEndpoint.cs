@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BaseCureAPI.Endpoints.UstanovaZdravstva.PutLatLong
 {
-    [Route("ustanova/latlong")]
+    [Route("ustanoveZdravstva/latlong")]
     [ApiController]
     public class UstanoveZdravstvaController : ControllerBase
     {

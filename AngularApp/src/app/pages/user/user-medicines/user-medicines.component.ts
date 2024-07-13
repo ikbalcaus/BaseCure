@@ -27,7 +27,7 @@ export class UserMedicinesComponent {
   res: any;
 
   ngOnInit() {
-    this.httpClient.get(serverSettings.address + "/lijekovi/apoteka?ustanovaId=" + this.route.snapshot.paramMap.get("id")).subscribe(
+    this.httpClient.get(serverSettings.address + "/lijekovi?ustanovaId=" + this.route.snapshot.paramMap.get("id")).subscribe(
       res => this.res = res
     );
   }

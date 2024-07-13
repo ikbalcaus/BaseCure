@@ -35,7 +35,7 @@ export class SetMapComponent {
   });
 
   ngOnInit() {
-    this.httpClient.get<any>(serverSettings.address + "/ustanova/latlong/" + this.authService.getAuthToken().ustanovaId).subscribe(
+    this.httpClient.get<any>(serverSettings.address + "/ustanoveZdravstva/latlong/" + this.authService.getAuthToken().ustanovaId).subscribe(
       res => {
         this.lat = res.lat;
         this.long = res.long;
@@ -69,7 +69,7 @@ export class SetMapComponent {
   }
 
   saveLocation() {
-    this.httpClient.put(serverSettings.address + "/ustanova/latlong/" + this.authService.getAuthToken().ustanovaId, { lat: this.lat, long: this.long }).subscribe(
+    this.httpClient.put(serverSettings.address + "/ustanoveZdravstva/latlong/" + this.authService.getAuthToken().ustanovaId, { lat: this.lat, long: this.long }).subscribe(
       () => this.alertService.setAlert("success", "Uspješno ste sačuvali lokaciju")
     )
   }

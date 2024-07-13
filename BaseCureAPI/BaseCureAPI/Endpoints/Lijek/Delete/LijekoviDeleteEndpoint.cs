@@ -16,7 +16,7 @@ namespace BaseCureAPI.Endpoints.Lijek.Delete
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteLijek(int id)
+        public ActionResult DeleteLijek(int id)
         {
             var lijek = _context.Lijekovis.SingleOrDefault(x => x.LijekId == id);
             if (lijek == null)

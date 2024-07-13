@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BaseCureAPI.Endpoints.UstanovaZdravstva.Search
 {
-    [Route("ustanveZdravstva")]
+    [Route("ustanoveZdravstva")]
     [ApiController]
     public class UstanoveZdravstvaController : ControllerBase
     {

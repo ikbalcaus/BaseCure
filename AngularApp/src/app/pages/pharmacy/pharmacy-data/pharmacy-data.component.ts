@@ -26,7 +26,7 @@ export class PharmacyDataComponent {
   gradovi: any;
 
   ngOnInit() {
-    this.httpClient.get(serverSettings.address + "/ustanveZdravstva?id=" + this.authService.getAuthToken().ustanovaId).subscribe(
+    this.httpClient.get(serverSettings.address + "/ustanoveZdravstva?id=" + this.authService.getAuthToken().ustanovaId).subscribe(
       res => this.res = res
     )
     this.httpClient.get(serverSettings.address + "/gradovi/").subscribe(

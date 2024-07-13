@@ -15,7 +15,7 @@ namespace BaseCureAPI.Endpoints.Pacijent.GetById
             _context = context;
         }
         [HttpGet("{id}")]
-        public IActionResult Get([FromRoute] int id)
+        public ActionResult Get([FromRoute] int id)
         {
             var pacijent = _context.Pacijentis
                 .Where(x => x.PacijentId == id)

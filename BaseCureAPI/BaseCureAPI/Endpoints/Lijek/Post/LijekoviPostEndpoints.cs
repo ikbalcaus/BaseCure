@@ -18,7 +18,7 @@ namespace BaseCureAPI.Endpoints.Lijek.Post
         }
 
         [HttpPost]
-        public IActionResult CreateLijek([FromBody] LijekoviPostReq req)
+        public ActionResult CreateLijek([FromBody] LijekoviPostReq req)
         {
 
             if (req == null)

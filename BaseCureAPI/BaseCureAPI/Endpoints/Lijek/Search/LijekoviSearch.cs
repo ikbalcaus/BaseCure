@@ -17,7 +17,7 @@ namespace BaseCureAPI.Endpoints.Lijek.GetByParams
         }
 
         [HttpGet("search")]
-        public ActionResult<IEnumerable<Lijekovi>> GetLijekoviByParams(
+        public ActionResult GetLijekoviByParams(
                 int UstanovaId,
                 string? NazivLijeka,
                 string? OpisLijeka)
@@ -37,7 +37,7 @@ namespace BaseCureAPI.Endpoints.Lijek.GetByParams
                 query = query.Where(x => x.OpisLijeka == OpisLijeka);
             }
 
-            return query.ToList();
+            return Ok(query.ToList());
         }
     }
 }

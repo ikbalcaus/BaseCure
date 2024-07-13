@@ -19,7 +19,7 @@ export class ViewMapComponent {
   long: any;
 
   ngOnInit() {
-    this.httpClient.get<any>(serverSettings.address + "/ustanova/latlong/" + this.medicalInstitutionId).subscribe(
+    this.httpClient.get<any>(serverSettings.address + "/ustanoveZdravstva/latlong/" + this.medicalInstitutionId).subscribe(
       res => {
         this.lat = res.lat;
         this.long = res.long;

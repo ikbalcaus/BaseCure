@@ -25,7 +25,7 @@ export class PharmacyManageMedicinesComponent {
   res: any;
 
   ngOnInit() {
-    this.httpClient.get(serverSettings.address + "/lijekovi/apoteka?ustanovaId=" + this.authService.getAuthToken().ustanovaId).subscribe(
+    this.httpClient.get(serverSettings.address + "/lijekovi?ustanovaId=" + this.authService.getAuthToken().ustanovaId).subscribe(
       res => this.res = res
     )
   }

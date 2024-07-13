@@ -19,7 +19,7 @@ namespace BaseCureAPI.Endpoints.Korisnik.GetAll
         [HttpGet]
         public ActionResult Get()
         {
-            var korisnik = _context.Korisnicis.OrderByDescending(x => x.KorisnikId)
+            var korisnici = _context.Korisnicis.OrderByDescending(x => x.KorisnikId)
                 .Select(x => new KorisniciGetAllRes()
                 {
                     KorisnikId = x.KorisnikId,
@@ -32,10 +32,7 @@ namespace BaseCureAPI.Endpoints.Korisnik.GetAll
                     Code2fa = x.Code2fa
                 }).ToList();
 
-            return Ok(new KorisniciGetAllResList
-            {
-                Korisnici = korisnik
-            });
+            return Ok(korisnici);
         }
     }
 }

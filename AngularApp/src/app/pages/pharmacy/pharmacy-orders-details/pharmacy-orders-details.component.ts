@@ -32,7 +32,7 @@ export class PharmacyOrdersDetailsComponent {
   tempNarudzbaId: number = 0;
 
   ngOnInit() {
-    this.httpClient.get(serverSettings.address + "/narudzbe/apoteka/" + this.authService.getAuthToken().ustanovaId + "/" + this.status + "/korisnik/" + this.redniBroj).subscribe(
+    this.httpClient.get(serverSettings.address + "/narudzbe/apoteka/" + this.authService.getAuthToken().ustanovaId + "/detalji?status=" + this.status + "&redniBroj=" + this.redniBroj).subscribe(
       res => {
         this.narudzbe = res;
         if(this.narudzbe.length == 0) {
@@ -59,7 +59,7 @@ export class PharmacyOrdersDetailsComponent {
 
   confirmOrder() {
     if(this.status == "aktivno") {
-      this.httpClient.put(serverSettings.address + "/narudzbe/apoteka/" + this.authService.getAuthToken().ustanovaId + "/korisnik/" + this.redniBroj, null).subscribe(
+      this.httpClient.put(serverSettings.address + "/narudzbe/apoteka/" + this.authService.getAuthToken().ustanovaId + "?redniBroj=" + this.redniBroj, null).subscribe(
         () => {
           this.ngOnInit();
           this.showModalSubmitForm = false;
@@ -69,7 +69,7 @@ export class PharmacyOrdersDetailsComponent {
       );
     }
     else if(this.status == "isporuceno") {
-      this.httpClient.delete(serverSettings.address + "/narudzbe/apoteka/" + this.authService.getAuthToken().ustanovaId + "/korisnik/" + this.redniBroj).subscribe(
+      this.httpClient.delete(serverSettings.address + "/narudzbe/apoteka/" + this.authService.getAuthToken().ustanovaId + "?redniBroj=" + this.redniBroj).subscribe(
         () => {
           this.ngOnInit();
           this.showModalSubmitForm = false;

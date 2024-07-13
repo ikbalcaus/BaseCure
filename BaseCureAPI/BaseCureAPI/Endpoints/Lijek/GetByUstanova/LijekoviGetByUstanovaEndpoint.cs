@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BaseCureAPI.Endpoints.Lijek.GetForUstanova
 {
-    [Route("/lijekovi/apoteka")]
+    [Route("/lijekovi")]
     [ApiController]
     public class LijekoviController : ControllerBase
     {
@@ -16,10 +16,10 @@ namespace BaseCureAPI.Endpoints.Lijek.GetForUstanova
             _context = context;
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<LijekoviGetByUstanovaRes>>> GetLijekoviForUstanova([FromRoute] int ustanovaId)
+        [HttpGet]
+        public ActionResult GetLijekoviForUstanova([FromQuery] int ustanovaId)
         {
-            var lijekovi = await _context.Lijekovis
+            var lijekovi = _context.Lijekovis
                 .Where(x => x.UstanovaId == ustanovaId)
                 .Select(x => new LijekoviGetByUstanovaRes
                 {
@@ -30,9 +30,9 @@ namespace BaseCureAPI.Endpoints.Lijek.GetForUstanova
                     Kolicina = x.Kolicina,
                     CijenaLijeka = x.CijenaLijeka
                 })
-                .ToListAsync();
+                .ToList();
 
-            return lijekovi;
+            return Ok(lijekovi);
         }
     }
 }

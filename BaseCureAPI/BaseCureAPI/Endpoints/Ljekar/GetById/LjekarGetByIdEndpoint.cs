@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BaseCureAPI.Endpoints.Ljekar.GetById
 {
-    [Route("ljekar")]
+    [Route("ljekari")]
     [ApiController]
     public class LjekariController : ControllerBase
     {

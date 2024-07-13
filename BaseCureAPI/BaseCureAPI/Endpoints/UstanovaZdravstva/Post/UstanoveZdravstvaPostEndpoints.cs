@@ -8,7 +8,7 @@ using BaseCureAPI.Helpers;
 
 namespace BaseCureAPI.Endpoints.UstanovaZdravstva.Post
 {
-    [Route("ustanveZdravstva")]
+    [Route("ustanoveZdravstva")]
     [ApiController]
     public class UstanoveZdravstvaController : ControllerBase
     {
@@ -20,7 +20,7 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.Post
         }
 
         [HttpPost]
-        public ActionResult<int> CreateUstanova([FromBody] UstanoveZdravstvaPostReq req)
+        public ActionResult CreateUstanova([FromBody] UstanoveZdravstvaPostReq req)
         {
             UstanoveZdravstva ustanova = new UstanoveZdravstva();
             ustanova.UstanovaId = _context.UstanoveZdravstvas.Any() ? _context.UstanoveZdravstvas.Max(x => x.UstanovaId) + 1 : 1;
@@ -28,7 +28,7 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.Post
             ustanova.Grad.Naziv = req.Grad.RemoveTags();
             _context.UstanoveZdravstvas.Add(ustanova);
             _context.SaveChanges();
-            return ustanova.UstanovaId;
+            return NoContent();
         }
     }
 }

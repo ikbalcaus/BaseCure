@@ -7,7 +7,7 @@ using BaseCureAPI.Helpers;
 
 namespace BaseCureAPI.Endpoints.UstanovaZdravstva.Delete
 {
-    [Route("ustanveZdravstva")]
+    [Route("ustanoveZdravstva")]
     [ApiController]
     public class UstanoveZdravstvaController : ControllerBase
     {
@@ -19,7 +19,7 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.Delete
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteUstanova(int id)
+        public ActionResult DeleteUstanova(int id)
         {
             var ustanova = _context.UstanoveZdravstvas.Find(id);
             if (ustanova == null)

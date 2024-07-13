@@ -17,7 +17,7 @@ namespace BaseCureAPI.Endpoints.Uputnica.Post
         }
 
         [HttpPost]
-        public async Task<ActionResult<UputnicePostRes>> CreateUputnicu([FromBody] UputnicePostReq request)
+        public ActionResult CreateUputnicu([FromBody] UputnicePostReq request)
         {
             var medicalRecord = new Pacijenti
             {
@@ -35,11 +35,11 @@ namespace BaseCureAPI.Endpoints.Uputnica.Post
                 NavikePonasanja = request.NavikePonasanja
             };
             _context.Pacijentis.Add(medicalRecord);
-            await _context.SaveChangesAsync();
-            return new UputnicePostRes
+            _context.SaveChanges();
+            return Ok(new UputnicePostRes
             {
                 MedicalRecordId = medicalRecord.PacijentId
-            };
+            });
         }
     }
 }

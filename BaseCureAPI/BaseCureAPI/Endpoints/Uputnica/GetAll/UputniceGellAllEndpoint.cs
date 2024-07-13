@@ -17,9 +17,9 @@ namespace BaseCureAPI.Endpoints.Uputnica.GetAll
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UputniceGetAllRes>>> GetPatientsWithMedicalRecordsAndTherapies()
+        public ActionResult GetPatientsWithMedicalRecordsAndTherapies()
         {
-            var patients = await _context.ZdravstveniKartonis
+            var patients = _context.ZdravstveniKartonis
                 .Include(x => x.Pacijent)
                 .Include(x => x.Terapijes)
                 .Select(x => new UputniceGetAllRes
@@ -35,7 +35,7 @@ namespace BaseCureAPI.Endpoints.Uputnica.GetAll
                         EndDate = t.KrajTerapije
                     }).ToList()
                 })
-                .ToListAsync();
+                .ToList();
 
             return Ok(patients);
         }
