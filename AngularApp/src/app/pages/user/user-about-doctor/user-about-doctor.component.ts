@@ -21,7 +21,7 @@ export class UserAboutDoctorComponent {
   res: any;
 
   ngOnInit() {
-    this.httpClient.get(serverSettings.address + "/ljekar?ljekarid=" + this.route.snapshot.paramMap.get("id")).subscribe(
+    this.httpClient.get(serverSettings.address + "/ljekari/" + this.route.snapshot.paramMap.get("id")).subscribe(
       res => this.res = res
     );
   }

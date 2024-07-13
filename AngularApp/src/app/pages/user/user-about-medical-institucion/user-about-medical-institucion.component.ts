@@ -23,7 +23,7 @@ export class UserAboutMedicalInstitutionComponent {
   long: any;
 
   ngOnInit() {
-    this.httpClient.get(serverSettings.address + "/ustanveZdravstva?id=" + this.route.snapshot.paramMap.get("id")).subscribe(
+    this.httpClient.get(serverSettings.address + "/ustanoveZdravstva?id=" + this.route.snapshot.paramMap.get("id")).subscribe(
       res => this.res = res
     );
   }

@@ -16,10 +16,10 @@ namespace BaseCureAPI.Endpoints.Uputnica.Put
             _context = context;
         }
 
-        [HttpPut()]
-        public async Task<IActionResult> EditTherapy([FromQuery]int id, object therapy)
+        [HttpPut("{id}")]
+        public ActionResult EditTherapy([FromRoute] int id, object therapy)
         {
-            var existingTherapy = await _context.Terapijes.SingleOrDefaultAsync(x => x.TerapijaId == id);
+            var existingTherapy = _context.Terapijes.SingleOrDefault(x => x.TerapijaId == id);
             if (existingTherapy == null)
             {
                 return NotFound();
@@ -39,7 +39,7 @@ namespace BaseCureAPI.Endpoints.Uputnica.Put
 
             try
             {
-                await _context.SaveChangesAsync();
+                _context.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {

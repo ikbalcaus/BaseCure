@@ -17,7 +17,7 @@ namespace BaseCureAPI.Endpoints.Lijek.Put
         }
 
         [HttpPut("{id}")]
-        public IActionResult PutLijek(int id, [FromBody] LijekoviPutReq req)
+        public ActionResult PutLijek(int id, [FromBody] LijekoviPutReq req)
         {
             var lijek = _context.Lijekovis.SingleOrDefault(x => x.LijekId == id);
             if (lijek == null)

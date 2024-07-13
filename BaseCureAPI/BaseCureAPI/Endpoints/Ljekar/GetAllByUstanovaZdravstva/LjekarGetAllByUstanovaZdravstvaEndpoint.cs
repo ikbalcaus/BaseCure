@@ -15,10 +15,10 @@ namespace BaseCureAPI.Endpoints.Ljekar.GetAllByUstanovaZdravstva
             _context = context;
         }
 
-        [HttpGet("{id}")]
-        public ActionResult Get([FromRoute] int id)
+        [HttpGet]
+        public ActionResult Get([FromQuery] int ustanovaId)
         {
-            var ljekari = _context.Ljekaris.Where(x => x.UstanovaId == id)
+            var ljekari = _context.Ljekaris.Where(x => x.UstanovaId == ustanovaId)
                 .Select(x => new LjekarGetAllByUstanovaZdravstvaRes()
                 {
                     LjekarId = x.LjekarId,

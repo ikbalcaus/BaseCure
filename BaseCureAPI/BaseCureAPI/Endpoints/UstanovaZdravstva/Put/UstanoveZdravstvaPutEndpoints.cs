@@ -7,7 +7,7 @@ using BaseCureAPI.Helpers;
 
 namespace BaseCureAPI.Endpoints.UstanovaZdravstva.Put
 {
-    [Route("ustanveZdravstva")]
+    [Route("ustanoveZdravstva")]
     [ApiController]
     public class UstanoveZdravstvaController : ControllerBase
     {
@@ -19,7 +19,7 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.Put
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateUstanova(int id, [FromBody] UstanoveZdravstvaPutReq ustanovareq, IFormFile image)
+        public ActionResult UpdateUstanova(int id, [FromBody] UstanoveZdravstvaPutReq ustanovareq, IFormFile image)
         {
             var ustanova = _context.UstanoveZdravstvas.SingleOrDefault(x => x.UstanovaId == id);
             if (ustanova == null)

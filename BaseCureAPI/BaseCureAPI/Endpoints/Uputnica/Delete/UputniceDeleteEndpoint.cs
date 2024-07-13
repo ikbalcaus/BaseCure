@@ -16,16 +16,16 @@ namespace BaseCureAPI.Endpoints.Uputnica.Delete
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTherapy([FromRoute]int id)
+        public ActionResult DeleteTherapy([FromRoute]int id)
         {
-            var therapy = await _context.Terapijes.FindAsync(id);
+            var therapy = _context.Terapijes.Find(id);
             if (therapy == null)
             {
                 return NotFound();
             }
 
             _context.Terapijes.Remove(therapy);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return NoContent();
         }

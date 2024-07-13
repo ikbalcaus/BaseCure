@@ -17,14 +17,14 @@ namespace BaseCureAPI.Endpoints.Search
         }
 
         [HttpGet("search")]
-        public ActionResult GetSearchResult([FromQuery] string searchTerm) {
-            if (string.IsNullOrWhiteSpace(searchTerm))
+        public ActionResult GetSearchResult([FromQuery] string naziv) {
+            if (string.IsNullOrWhiteSpace(naziv))
             {
                 return BadRequest("Search term is required.");
             }
 
             var results = _context.Gradovis
-                .Where(x => x.Naziv.Contains(searchTerm))
+                .Where(x => x.Naziv.Contains(naziv))
                 .Select(x => new GradoviGetAllRes
                 {
                     GradId = x.GradId,
