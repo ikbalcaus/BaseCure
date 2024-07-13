@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace BaseCureAPI.Endpoints.MedicalRecords.Post
+namespace BaseCureAPI.Endpoints.MedicinskiKarton.Post
 {
     [Route("medicalRecords")]
     [ApiController]

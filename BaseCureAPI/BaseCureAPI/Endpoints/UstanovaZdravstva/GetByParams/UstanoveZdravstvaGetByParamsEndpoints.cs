@@ -31,11 +31,12 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.GetByParams
                     Naziv = x.Naziv,
                     Opis = x.Opis,
                     Adresa = x.Adresa,
-                    KontaktBroj = x.KontaktBroj,
-                    Email = x.Email,
+                    BrojTelefona = x.BrojTelefona,
+                    MailAdresa = x.MailAdresa,
                     Grad = x.Grad.Naziv,
                     TipUstanove = x.TipUstanove.Naziv,
-                    CijenaDostave = x.CijenaDostave
+                    CijenaDostave = x.CijenaDostave,
+                    ImageData = x.ImageData
                 }).Single();
 
             return ustanovaZdravstva;
