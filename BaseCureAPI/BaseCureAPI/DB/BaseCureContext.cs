@@ -635,25 +635,24 @@ namespace BaseCureAPI.DB
                     .IsUnicode(false)
                     .HasColumnName("adresa");
 
+                entity.Property(e => e.BrojTelefona)
+                    .HasMaxLength(25)
+                    .HasColumnName("broj_telefona");
+
                 entity.Property(e => e.CijenaDostave).HasColumnName("cijena_dostave");
 
-                entity.Property(e => e.MailAdresa)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("email");
-
                 entity.Property(e => e.GradId).HasColumnName("grad_id");
-
-                entity.Property(e => e.BrojTelefona)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("kontakt_broj");
 
                 entity.Property(e => e.Latitude).HasColumnName("latitude");
 
                 entity.Property(e => e.Longitude).HasColumnName("longitude");
 
                 entity.Property(e => e.ImageData).HasColumnName("image_data");
+
+                entity.Property(e => e.MailAdresa)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("mail_adresa");
 
                 entity.Property(e => e.Naziv)
                     .HasMaxLength(255)

@@ -16,15 +16,15 @@ namespace BaseCureAPI.DB.Models
         public int UstanovaId { get; set; }
         public string? Naziv { get; set; }
         public string? Adresa { get; set; }
-        public string? BrojTelefona { get; set; }
-        public string? MailAdresa { get; set; }
         public string? Opis { get; set; }
         public int? TipUstanoveId { get; set; }
         public int? GradId { get; set; }
         public float? CijenaDostave { get; set; }
         public double? Latitude { get; set; }
         public double? Longitude { get; set; }
-        public byte[] ImageData { get; set; }
+        public string? MailAdresa { get; set; }
+        public string? BrojTelefona { get; set; }
+        public byte[]? ImageData { get; set; }
 
         public virtual Gradovi? Grad { get; set; }
         public virtual TipoviUstanova? TipUstanove { get; set; }

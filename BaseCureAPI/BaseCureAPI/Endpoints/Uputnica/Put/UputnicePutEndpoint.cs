@@ -19,7 +19,7 @@ namespace BaseCureAPI.Endpoints.Uputnica.Put
         [HttpPut()]
         public async Task<IActionResult> EditTherapy([FromQuery]int id, object therapy)
         {
-            var existingTherapy = await _context.Terapijes.FindAsync(id);
+            var existingTherapy = await _context.Terapijes.SingleOrDefaultAsync(x => x.TerapijaId == id);
             if (existingTherapy == null)
             {
                 return NotFound();

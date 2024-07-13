@@ -19,7 +19,7 @@ namespace BaseCureAPI.Endpoints.Korisnik.Put
         [HttpPut("{id}")]
         public ActionResult UpdateKorisnik(int id, [FromBody] KorisniciPutReq korisnikReq)
         {
-            var korisnik = _context.Korisnicis.Find(id);
+            var korisnik = _context.Korisnicis.SingleOrDefault(x => x.KorisnikId == id);
             if (korisnik == null)
             {
                 return NotFound();
