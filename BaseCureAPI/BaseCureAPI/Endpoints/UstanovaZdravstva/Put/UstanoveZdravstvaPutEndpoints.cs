@@ -21,7 +21,7 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.Put
         [HttpPut("{id}")]
         public IActionResult UpdateUstanova(int id, [FromBody] UstanoveZdravstvaPutReq ustanovareq, IFormFile image)
         {
-            var ustanova = _context.UstanoveZdravstvas.Find(id);
+            var ustanova = _context.UstanoveZdravstvas.SingleOrDefault(x => x.UstanovaId == id);
             if (ustanova == null)
                 return NotFound();
 

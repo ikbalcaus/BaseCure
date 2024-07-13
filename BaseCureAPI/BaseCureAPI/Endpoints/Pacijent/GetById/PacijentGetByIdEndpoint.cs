@@ -6,11 +6,11 @@ namespace BaseCureAPI.Endpoints.Pacijent.GetById
 {
     [Route("/pacijenti")]
     [ApiController]
-    public class PacijentController : ControllerBase
+    public class PacijentiController : ControllerBase
     {
         private readonly BasecureContext _context;
 
-        public PacijentController(BasecureContext context)
+        public PacijentiController(BasecureContext context)
         {
             _context = context;
         }

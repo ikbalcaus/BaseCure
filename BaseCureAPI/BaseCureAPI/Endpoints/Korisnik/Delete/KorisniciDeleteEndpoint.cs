@@ -19,7 +19,7 @@ namespace BaseCureAPI.Endpoints.Korisnik.Delete
         [HttpDelete("{id}")]
         public ActionResult DeleteKorisnik(int id)
         {
-            var korisnik = _context.Korisnicis.Find(id);
+            var korisnik = _context.Korisnicis.SingleOrDefault(x => x.KorisnikId == id);
             if (korisnik == null)
             {
                 return NotFound();

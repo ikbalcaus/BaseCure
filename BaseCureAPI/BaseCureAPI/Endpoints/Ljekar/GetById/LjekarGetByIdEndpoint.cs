@@ -16,9 +16,9 @@ namespace BaseCureAPI.Endpoints.Ljekar.GetById
         }
 
         [HttpGet("{id}")]
-        public ActionResult Get([FromRoute] int ljekarid)
+        public ActionResult Get([FromRoute] int id)
         {
-            var ljekar = _context.Ljekaris.Where(x => x.LjekarId == ljekarid)
+            var ljekar = _context.Ljekaris.Where(x => x.LjekarId == id)
                 .Select(x => new LjekarGetByIdRes()
                 {
                     LjekarId = x.LjekarId,
