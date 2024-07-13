@@ -11,6 +11,6 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.Put
         public string? Opis { get; set; }
         public float? CijenaDostave { get; set; }
         public byte[] ImageData { get; set; }
-        public virtual Gradovi? Grad { get; set; }
+        public string? Grad { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SendGrid.Helpers.Mail;
 using SendGrid;
+using BCrypt.Net;
 
 namespace BaseCureAPI.Endpoints.Auth
 {
@@ -49,39 +50,26 @@ namespace BaseCureAPI.Endpoints.Auth
                 return BadRequest("Došlo je do greške na serveru");
             }
 
+            // Hash the password
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(request.Lozinka);
+
+            // Generate a new unique KorisnikId
+            int newKorisnikId = _context.Korisnicis.Any() ? _context.Korisnicis.Max(k => k.KorisnikId) + 1 : 1;
+
             var newUser = new Korisnici()
             {
-                HashLozinke = request.Lozinka,
+                KorisnikId = newKorisnikId,
+                HashLozinke = hashedPassword,
                 MailAdresa = request.MailAdresa,
             };
 
             _context.Add(newUser);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             string twoFactorCode = TokenGen.Generate(6);
 
             newUser.Code2fa = twoFactorCode;
-            _context.SaveChanges();
-
-            string sendGridApiKey = "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";
-
-            var client = new SendGridClient(sendGridApiKey);
-            var msg = new SendGridMessage()
-            {
-                From = new EmailAddress("abdullah.salcinovic@gmail.com", "Abdullah Salcinovic"),
-                Subject = "Your 2FA Code",
-                PlainTextContent = $"Your verification code is: {twoFactorCode}",
-                HtmlContent = $"<p>Your verification code is: {twoFactorCode}</p>"
-            };
-
-            msg.AddTo(new EmailAddress(newUser.MailAdresa));
-
-            var response = await client.SendEmailAsync(msg);
-
-            if (response.StatusCode != System.Net.HttpStatusCode.OK && response.StatusCode != System.Net.HttpStatusCode.Accepted)
-            {
-                return StatusCode((int)response.StatusCode, "Failed to send email");
-            }
+            await _context.SaveChangesAsync();
 
             return Ok(new
             {
@@ -104,9 +92,9 @@ namespace BaseCureAPI.Endpoints.Auth
                 .Include(x => x.Osoblje)
                 .Include(x => x.Osoblje.Uloga)
                 .Include(x => x.Osoblje.Ustanova)
-                .FirstOrDefault(x =>x.MailAdresa == request.MailAdresa && x.HashLozinke == request.Lozinka);
+                .FirstOrDefault(x => x.MailAdresa == request.MailAdresa);
 
-            if (logiraniKorisnik == null)
+            if (logiraniKorisnik == null || !BCrypt.Net.BCrypt.Verify(request.Lozinka, logiraniKorisnik.HashLozinke))
             {
                 //pogresan username i password
                 return Ok(null);
@@ -160,9 +148,9 @@ namespace BaseCureAPI.Endpoints.Auth
                 .Include(k => k.Osoblje.Uloga)
                 .Include(k => k.Osoblje.Ustanova)
                 .FirstOrDefault(k =>
-                    k.MailAdresa == request.MailAdresa && k.HashLozinke == request.Lozinka && k.Osoblje.Uloga.Naziv == "admin");
+                    k.MailAdresa == request.MailAdresa && k.Osoblje.Uloga.Naziv == "admin");
 
-            if (logiraniKorisnik == null)
+            if (logiraniKorisnik == null || !BCrypt.Net.BCrypt.Verify(request.Lozinka, logiraniKorisnik.HashLozinke))
             {
                 return Ok(null);
             }
