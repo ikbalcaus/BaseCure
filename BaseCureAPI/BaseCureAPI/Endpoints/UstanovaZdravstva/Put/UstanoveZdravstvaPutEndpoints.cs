@@ -19,9 +19,31 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.Put
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateUstanova(int id, [FromBody] UstanoveZdravstvaPutReq ustanova)
+        public IActionResult UpdateUstanova(int id, [FromBody] UstanoveZdravstvaPutReq ustanovareq, IFormFile image)
         {
-            _context.Entry(ustanova).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            var ustanova = _context.UstanoveZdravstvas.Find(id);
+            if (ustanova == null)
+                return NotFound();
+
+            // Update ustanova properties
+            ustanova.Naziv = ustanovareq.Naziv;
+            ustanova.Grad = ustanovareq.Grad;
+            ustanova.Adresa = ustanovareq.Adresa;
+            ustanova.MailAdresa = ustanovareq.MailAdresa;
+            ustanova.BrojTelefona = ustanovareq.BrojTelefona;
+            ustanova.CijenaDostave = ustanovareq.CijenaDostave;
+            ustanova.Opis = ustanovareq.Opis;
+
+            if (image != null)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    image.CopyTo(memoryStream);
+                    ustanova.ImageData = memoryStream.ToArray();
+                }
+            }
+
+            _context.UstanoveZdravstvas.Update(ustanova);
             _context.SaveChanges();
 
             return NoContent();

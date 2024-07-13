@@ -27,7 +27,11 @@ namespace BaseCureAPI.Endpoints.Korisnik.Put
             korisnik.HashLozinke = korisnikReq.HashLozinke;
             korisnik.Ime = korisnikReq.Ime;
             korisnik.Prezime = korisnikReq.Prezime;
-            // Update other properties as needed
+            korisnik.Adresa = korisnikReq.Adresa;
+            korisnik.DatumRodjenja = korisnikReq.DatumRodjenja;
+            korisnik.MailAdresa = korisnikReq.MailAdresa;
+            korisnik.Code2fa = korisnikReq.Code2fa;
+            korisnik.BrojTelefona = korisnikReq.BrojTelefona;
 
             _context.SaveChanges();
 

@@ -3,7 +3,7 @@ using BaseCureAPI.DB.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BaseCureAPI.Endpoints.Uputnice.Post
+namespace BaseCureAPI.Endpoints.Uputnica.Post
 {
     [Route("uputnice")]
     [ApiController]

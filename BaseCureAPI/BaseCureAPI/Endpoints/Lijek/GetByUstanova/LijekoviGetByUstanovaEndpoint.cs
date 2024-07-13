@@ -16,8 +16,8 @@ namespace BaseCureAPI.Endpoints.Lijek.GetForUstanova
             _context = context;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<LijekoviGetByUstanovaRes>>> GetLijekoviForUstanova([FromQuery] int ustanovaId)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<IEnumerable<LijekoviGetByUstanovaRes>>> GetLijekoviForUstanova([FromRoute] int ustanovaId)
         {
             var lijekovi = await _context.Lijekovis
                 .Where(x => x.UstanovaId == ustanovaId)
