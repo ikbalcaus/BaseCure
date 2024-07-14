@@ -28,9 +28,9 @@ namespace BaseCureAPI.Endpoints.Narudzba.GetKorisnik
                     NarudzbaId = x.NarudzbaId,
                     KorisnikId = x.KorisnikId,
                     LijekId = x.LijekId,
-                    NazivLijeka = x.Lijek.NazivLijeka,
+                    Naziv = x.Lijek.Naziv,
                     NazivUstanove = x.Lijek.Ustanova.Naziv,
-                    CijenaLijeka = x.Lijek.CijenaLijeka,
+                    Cijena = x.Lijek.Cijena,
                     CijenaDostave = x.Lijek.Ustanova.CijenaDostave,
                     Status = x.Status
                 })

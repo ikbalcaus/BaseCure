@@ -1,3 +1,9 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Roboto,"Helvetica Neue", sans-serif;
+}
 .shadow, .shadow-sm, .shadow-lg {
     border: none;
 }
@@ -53,14 +59,3 @@
 .btn-block {
     width: 100%;
 }
-.pagination {
-    justify-content: center;
-}
-.pagination li {
-    cursor: pointer;
-}
-.pagination li a, .pagination li a:hover {
-    color: black;
-}
-
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

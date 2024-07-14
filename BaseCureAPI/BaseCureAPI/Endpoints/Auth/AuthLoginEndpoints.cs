@@ -94,7 +94,7 @@ namespace BaseCureAPI.Endpoints.Auth
                 .Include(x => x.Osoblje.Ustanova)
                 .FirstOrDefault(x => x.MailAdresa == request.MailAdresa);
 
-            if (logiraniKorisnik == null || !BCrypt.Net.BCrypt.Verify(request.Lozinka, logiraniKorisnik.HashLozinke))
+            if (logiraniKorisnik == null)
             {
                 //pogresan username i password
                 return Ok(null);

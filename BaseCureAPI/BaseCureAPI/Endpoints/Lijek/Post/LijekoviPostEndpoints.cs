@@ -26,11 +26,11 @@ namespace BaseCureAPI.Endpoints.Lijek.Post
 
             var lijek = new Lijekovi
             {
-                NazivLijeka = req.NazivLijeka,
-                OpisLijeka = req.OpisLijeka,
-                SlikaLijeka = req.SlikaLijeka,
+                Naziv = req.Naziv,
+                Opis = req.Opis,
+                Slika = req.Slika,
                 UstanovaId = req.UstanovaId,
-                CijenaLijeka = req.CijenaLijeka,
+                Cijena = req.Cijena,
                 Kolicina = req.Kolicina,
                 ZahtijevaRecept = req.ZahtijevaRecept
             };

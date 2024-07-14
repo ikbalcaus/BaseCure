@@ -13,7 +13,7 @@ import { AuthService } from '../../services/auth.service';
 export class IndexPageComponent {
     constructor(private authService: AuthService) {}
 
-    formSubmit(data: any) {
+    loginUser(data: any) {
         this.authService.loginUser("/auth/login", data);
     }
 }

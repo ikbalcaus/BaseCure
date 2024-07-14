@@ -1,12 +1,12 @@
 <div class="container my-4">
     <div class="input-result">
-        <input type="text" class="form-control" [(ngModel)]="inputValue1" placeholder="{{placeholder1}}" (input)="getAutoComplete1()" autocomplete="off">
+        <input type="text" class="form-control" [(ngModel)]="inputValue1" placeholder="{{placeholder1}}" (input)="getAutoComplete1()" autocomplete="off" spellcheck="false">
         <ul class="list-group p-1 shadow-sm" *ngIf="filteredList1.length > 0">
             <li *ngFor="let item of filteredList1" class="filter-item p-1" (click)="setValue1(item)">{{item}}</li>
         </ul>
     </div>
     <div class="input-result">
-        <input type="text" class="form-control" [(ngModel)]="inputValue2" placeholder="{{placeholder2}}" (input)="getAutoComplete2()" autocomplete="off">
+        <input type="text" class="form-control" [(ngModel)]="inputValue2" placeholder="{{placeholder2}}" (input)="getAutoComplete2()" autocomplete="off" spellcheck="false">
         <ul class="list-group p-1 shadow-sm" *ngIf="filteredList2.length > 0">
             <li *ngFor="let item of filteredList2" class="filter-item p-1" (click)="setValue2(item)">{{item}}</li>
         </ul>

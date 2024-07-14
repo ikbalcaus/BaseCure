@@ -32,13 +32,13 @@ export class PharmacyEditMedicineComponent {
     )
   }
 
-  formSubmit(loginForm: any) {
+  EditMedicine(data: any) {
     this.req = {
-      nazivLijeka: loginForm.nazivLijeka,
-      cijenaLijeka: loginForm.cijenaLijeka,
-      kolicina: loginForm.kolicina,
-      opisLijeka: loginForm.opisLijeka,
-      zahtijevaRecept: loginForm.zahtijevaRecept || false
+      naziv: data.naziv,
+      cijena: data.cijena,
+      kolicina: data.kolicina,
+      opis: data.opis,
+      zahtijevaRecept: data.zahtijevaRecept || false
     };
     this.httpClient.put(serverSettings.address + "/lijekovi/" + this.route.snapshot.paramMap.get("id"), this.req).subscribe(
       () => {

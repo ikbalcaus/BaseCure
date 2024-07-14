@@ -3,21 +3,12 @@
     placeholder2="Opis lijeka"
     (searchOptions)="getSearchResults($any($event))"
 ></app-filter>
-<div class="container">
+<div class="container main">
     <app-item-list *ngFor="let i of res"
-        [name]="i.nazivLijeka"
-        [description]="i.opisLijeka"
-        [price]="i.cijenaLijeka + 'KM'"
+        [name]="i.naziv"
+        [description]="i.opis"
+        [price]="i.cijena + 'KM'"
         btnText="Uredi lijek"
         (btnClick)="editMedicine(i.lijekId)"
     ></app-item-list>
 </div>
-<ul class="pagination mt-3 mb-4">
-    <li class="page-item"><a class="page-link"><span>&laquo;</span></a></li>
-    <li class="page-item"><a class="page-link">1</a></li>
-    <li class="page-item"><a class="page-link">2</a></li>
-    <li class="page-item"><a class="page-link">3</a></li>
-    <li class="page-item"><a class="page-link">4</a></li>
-    <li class="page-item"><a class="page-link">5</a></li>
-    <li class="page-item"><a class="page-link"><span>&raquo;</span></a></li>
-</ul>

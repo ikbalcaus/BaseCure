@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using BaseCureAPI.DB;
-using BaseCureAPI.Endpoints.UstanovaZdravstva;
 using BaseCureAPI.Helpers;
 using Microsoft.EntityFrameworkCore;
 
-namespace BaseCureAPI.Endpoints.UstanovaZdravstva.Search
+namespace BaseCureAPI.Endpoints.Filter.UstanovaZdravstva
 {
-    [Route("ustanoveZdravstva")]
+    [Route("filter")]
     [ApiController]
     public class UstanoveZdravstvaController : ControllerBase
     {
@@ -19,12 +18,12 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.Search
             _context = context;
         }
 
-        [HttpGet("search")]
-        public ActionResult GetUstanova([FromQuery] UstanoveZdravstvaSearchReq req)
+        [HttpGet("ustanoveZdravstva")]
+        public ActionResult GetUstanova([FromQuery] string? tipUstanove, [FromQuery] string? grad)
         {
             var ustanove = _context.UstanoveZdravstvas.OrderByDescending(x => x.UstanovaId)
                 .Include(x => x.Grad)
-                .Where(x => (string.IsNullOrEmpty(req.Naziv) || x.Naziv.Contains(req.Naziv)) && (string.IsNullOrEmpty(req.Grad) || x.Grad.Naziv == req.Grad))
+                .Where(x => (string.IsNullOrEmpty(tipUstanove) || x.TipUstanove.Naziv == tipUstanove) && (string.IsNullOrEmpty(grad) || x.Grad.Naziv == grad))
                 .Select(x => new UstanoveZdravstvaSearchRes()
                 {
                     UstanovaId = x.UstanovaId,

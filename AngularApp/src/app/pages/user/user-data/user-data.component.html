@@ -1,6 +1,6 @@
 <div class="container">
     <div class="content my-5">
-        <form #loginForm="ngForm" (submit)="formSubmit(loginForm.value)">
+        <form #loginForm="ngForm">
             <div class="mx-1">
                 <div class="form-group">
                     <span>Ime:</span>
@@ -12,8 +12,8 @@
                 </div>
                 <div class="form-group">
                     <span>Grad:</span>
-                    <select class="form-select" name="grad" autocomplete="off" required>
-                        <option *ngFor="let i of gradovi" [(ngModel)]="i.gradId">{{ i.naziv }}</option>
+                    <select class="form-select" name="grad" autocomplete="off" required [(ngModel)]="res.grad">
+                        <option *ngFor="let i of gradovi" [selected]="i.naziv == res.grad">{{ i.naziv }}</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -22,14 +22,19 @@
                 </div>
                 <div class="form-group">
                     <span>Email:</span>
-                    <input type="email" class="form-control" placeholder="Email" name="email" autocomplete="off" spellcheck="false" [(ngModel)]="res.mailAdresa">
+                    <input type="email" class="form-control" placeholder="Email" name="mailAdresa" autocomplete="off" spellcheck="false" [(ngModel)]="res.mailAdresa">
                 </div>
                 <div class="form-group">
-                    <span>Telefonski broj:</span>
-                    <input class="form-control" placeholder="Telefonski broj" name="telefonskiBroj" autocomplete="off" spellcheck="false" [(ngModel)]="res.telefonskiBroj">
+                    <span>Broj Telefona:</span>
+                    <input class="form-control" placeholder="Broj Telefona" name="brojTelefona" autocomplete="off" spellcheck="false" [(ngModel)]="res.brojTelefona">
                 </div>
             </div>
-            <button class="btn btn-primary btn-block mt-2">Potvrdi</button>
+            <button class="btn btn-primary btn-block mt-2" (click)="showModal = true">Potvrdi</button>
         </form>
     </div>
 </div>
+<app-modal
+    *ngIf="showModal"
+    (closeModal)="showModal = false"
+    (onSubmit)="EditUser(loginForm.value)"
+></app-modal>

@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { serverSettings } from '../../../server-settings';
+import { serverSettings } from '../../server-settings';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { AlertService } from '../../../services/alert.service';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
-  selector: 'app-pharmacy-data',
+  selector: 'app-edit-medical-institution',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './pharmacy-data.component.html',
-  styleUrl: './pharmacy-data.component.css'
+  templateUrl: './edit-medical-institution.component.html',
+  styleUrl: './edit-medical-institution.component.css'
 })
-export class PharmacyDataComponent {
+export class EditMedicalInstitutionComponent {
   constructor(
     private httpClient: HttpClient,
     private router: Router,
@@ -34,7 +34,12 @@ export class PharmacyDataComponent {
     )
   }
 
-  formSubmit(data: any) {
-
+  EditPharmacy(data: any) {
+    this.httpClient.put(serverSettings.address + "/ustanoveZdravstva/" + this.authService.getAuthToken().ustanovaId, data).subscribe(
+      () => {
+        this.router.navigateByUrl("/");
+        this.alertService.setAlert("success", "Uspješno ste promjenili podatke");
+      }
+    )
   }
 }

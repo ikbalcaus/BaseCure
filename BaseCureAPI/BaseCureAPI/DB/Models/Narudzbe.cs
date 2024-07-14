@@ -10,10 +10,10 @@ namespace BaseCureAPI.DB.Models
         public int? LijekId { get; set; }
         public DateTime? DatumVrijeme { get; set; }
         public string? ImePrezime { get; set; }
-        public string? TelefonskiBroj { get; set; }
+        public string? BrojTelefona { get; set; }
         public int? GradId { get; set; }
         public string? Adresa { get; set; }
-        public string? Mailadresa { get; set; }
+        public string? MailAdresa { get; set; }
         public int? RedniBroj { get; set; }
         public string? Status { get; set; }
 

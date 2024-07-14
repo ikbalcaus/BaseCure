@@ -2,20 +2,20 @@
     <div class="my-5 row d-flex flex-row justify-content-around">
         <img class="thumbnail rounded shadow mx-4 col-8" src="./../../../assets/img/no-image-avabliable.jpg" alt="Slika">
         <div class="content mx-4 col">
-            <form #loginForm="ngForm" (submit)="formSubmit(loginForm.value)">
+            <form #loginForm="ngForm" (submit)="EditPharmacy(loginForm.value)">
                 <div class="mx-1">
                     <div class="form-group">
-                        <span>Slika apoteke:</span>
-                        <input type="file" class="form-control" name="slikaApoteke" ngModel>
+                        <span>Slika:</span>
+                        <input type="file" class="form-control" name="slika" ngModel>
                     </div>
                     <div class="form-group">
-                        <span>Naziv apoteke:</span>
-                        <input class="form-control" placeholder="Naziv apoteke" name="naziv" autocomplete="off" spellcheck="false" [(ngModel)]="res.naziv">
+                        <span>Naziv:</span>
+                        <input class="form-control" placeholder="Naziv" name="naziv" autocomplete="off" spellcheck="false" [(ngModel)]="res.naziv">
                     </div>
                     <div class="form-group">
                         <span>Grad:</span>
-                        <select class="form-select" name="grad" autocomplete="off" required>
-                            <option *ngFor="let i of gradovi" [(ngModel)]="i.gradId">{{ i.naziv }}</option>
+                        <select class="form-select" name="grad" autocomplete="off" [(ngModel)]="res.grad">
+                            <option *ngFor="let i of gradovi" [selected]="i.naziv == res.grad">{{ i.naziv }}</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -24,19 +24,19 @@
                     </div>
                     <div class="form-group">
                         <span>Email:</span>
-                        <input type="email" class="form-control" placeholder="Email" name="email" autocomplete="off" spellcheck="false" [(ngModel)]="res.email">
+                        <input type="email" class="form-control" placeholder="Email" name="mailAdresa"autocomplete="off" spellcheck="false" [(ngModel)]="res.mailAdresa">
                     </div>
                     <div class="form-group">
-                        <span>Telefonski broj:</span>
-                        <input class="form-control" placeholder="Telefonski broj" name="telefonskiBroj" autocomplete="off" spellcheck="false" [(ngModel)]="res.kontaktBroj">
+                        <span>Broj Telefona:</span>
+                        <input class="form-control" placeholder="Broj Telefona" name="brojTelefona" autocomplete="off" spellcheck="false" [(ngModel)]="res.brojTelefona">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" *ngIf="res.tipUstanove == 'apoteka'">
                         <span>Cijena dostave:</span>
                         <input type="number" class="form-control" placeholder="Cijena dostave" name="cijenaDostave" autocomplete="off" spellcheck="false" [(ngModel)]="res.cijenaDostave">
                     </div>
                     <div class="form-group">
-                        <span>Opis apoteke:</span>
-                        <textarea class="form-control" rows="3" placeholder="Opis apoteke" name="opisApoteke" autocomplete="false" spellcheck="false" [(ngModel)]="res.opis"></textarea>
+                        <span>Opis:</span>
+                        <textarea class="form-control" rows="3" placeholder="Opis" name="opis" autocomplete="false" spellcheck="false" [(ngModel)]="res.opis"></textarea>
                     </div>
                 </div>
                 <button class="btn btn-primary btn-block mt-2">Potvrdi</button>

@@ -1,15 +1,15 @@
 <div class="container">
-    <div class="mt-5 row d-flex flex-row justify-content-around">
+    <div class="my-5 row d-flex flex-row justify-content-around">
         <img class="thumbnail rounded shadow mx-4 col-8" src="./../../../assets/img/no-image-avabliable.jpg" alt="Slika">
         <div class="mx-4 mt-2 col">
-            <form #loginForm="ngForm" (submit)="formSubmit(loginForm.value)">
+            <form #loginForm="ngForm" (submit)="EditMedicine(loginForm.value)">
                 <div class="mx-1">
-                    <input type="file" class="form-control mt-2" name="slijaLijeka" ngModel>
-                    <input class="form-control mt-2" placeholder="Naziv lijeka" name="nazivLijeka" [(ngModel)]="res.nazivLijeka" autocomplete="off">
-                    <textarea class="form-control mt-2" rows="3" placeholder="Opis lijeka" name="opisLijeka" [(ngModel)]="res.opisLijeka"></textarea>
+                    <input type="file" class="form-control mt-2" name="slika" ngModel>
+                    <input class="form-control mt-2" placeholder="Naziv lijeka" name="naziv" [(ngModel)]="res.naziv" autocomplete="off">
+                    <textarea class="form-control mt-2" rows="3" placeholder="Opis lijeka" name="opis" [(ngModel)]="res.opis"></textarea>
                     <div class="inline-input-group mt-2">
-                        <label for="cijenaLijeka">Cijena Lijeka (KM): </label>
-                        <input type="number" id="cijenaLijeka" class="form-control inline-input" name="cijenaLijeka" [(ngModel)]="res.cijenaLijeka">
+                        <label for="cijena">Cijena Lijeka (KM): </label>
+                        <input type="number" id="cijena" class="form-control inline-input" name="cijena" [(ngModel)]="res.cijena">
                         <label for="kolicina">Količina: </label>
                         <input type="number" id="kolicina" class="form-control inline-input" name="kolicina" [(ngModel)]="res.kolicina">
                     </div>
@@ -23,9 +23,9 @@
             </form>
         </div>
     </div>
-    <app-modal
-        *ngIf="showModal"
-        (closeModal)="showModal = false"
-        (onSubmit)="deleteMedicine()"
-    ></app-modal>
 </div>
+    <app-modal
+    *ngIf="showModal"
+    (closeModal)="showModal = false"
+    (onSubmit)="deleteMedicine()"
+></app-modal>
