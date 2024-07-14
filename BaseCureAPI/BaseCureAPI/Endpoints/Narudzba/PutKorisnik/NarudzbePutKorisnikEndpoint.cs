@@ -31,7 +31,7 @@ namespace BaseCureAPI.Endpoints.Narudzba.PutKorisnik
                 narudzba.BrojTelefona = req.BrojTelefona;
                 narudzba.Grad = grad;
                 narudzba.Adresa = req.Adresa;
-                narudzba.MailAdresa = req.MailAdresa;
+                narudzba.Mailadresa = req.MailAdresa;
                 narudzba.Status = "aktivno";
                 narudzba.RedniBroj = _context.Narudzbes.Max(x => x.RedniBroj) + 1;
             }
