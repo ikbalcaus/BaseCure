@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './user-search-doctors.component.html',
   styleUrl: './user-search-doctors.component.css'
 })
-export class UserDoctorsComponent {
+export class UserSearchDoctorsComponent {
   constructor(
     private httpClient: HttpClient,
     private route: ActivatedRoute

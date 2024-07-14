@@ -45,7 +45,7 @@ export class UserCartComponent {
   }
 
   sumPrice() {
-    return this.narudzbe.map((x: any) => x.cijenaLijeka).reduce((a: number, b: number) => a + b, 0);
+    return this.narudzbe.map((x: any) => x.cijena).reduce((a: number, b: number) => a + b, 0);
   }
 
   deliveryPrice() {

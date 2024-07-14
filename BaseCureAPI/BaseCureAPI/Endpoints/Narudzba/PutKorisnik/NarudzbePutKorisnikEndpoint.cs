@@ -17,15 +17,21 @@ namespace BaseCureAPI.Endpoints.Narudzba.PutKorisnik
         [HttpPut("korisnik/{korisnikId}")]
         public ActionResult UpdateNarudzba([FromRoute] int korisnikId, [FromBody] NarudzbePutKorisnikReq req)
         {
-            var narudzbe = _context.Narudzbes
-                .Where(x => x.KorisnikId == korisnikId && x.Status == "neaktivno");
+            var narudzbe = _context.Narudzbes.Where(x => x.KorisnikId == korisnikId && x.Status == "neaktivno");
+            var grad = _context.Gradovis.SingleOrDefault(x => x.Naziv == req.Grad);
+
+            if (grad == null)
+            {
+                return BadRequest(new { message = "Grad ne postoji" });
+            }
+
             foreach (var narudzba in narudzbe)
             {
                 narudzba.ImePrezime = req.ImePrezime;
-                narudzba.TelefonskiBroj = req.TelefonskiBroj;
-                narudzba.GradId = req.GradId;
+                narudzba.BrojTelefona = req.BrojTelefona;
+                narudzba.Grad = grad;
                 narudzba.Adresa = req.Adresa;
-                narudzba.Mailadresa = req.MailAdresa;
+                narudzba.MailAdresa = req.MailAdresa;
                 narudzba.Status = "aktivno";
                 narudzba.RedniBroj = _context.Narudzbes.Max(x => x.RedniBroj) + 1;
             }

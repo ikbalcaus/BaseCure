@@ -13,7 +13,7 @@ import { AuthService } from '../../../services/auth.service';
 export class AdminLoginComponent {
   constructor(private authService: AuthService) {}
 
-  formSubmit(data: any) {
+  loginAdmin(data: any) {
     this.authService.loginUser("/auth/admin-login", data);
   }
 }

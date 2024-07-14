@@ -9,8 +9,8 @@ import { ViewMapComponent } from '../../../components/view-map/view-map.componen
   selector: 'app-user-about',
   standalone: true,
   imports: [CommonModule, RouterModule, ViewMapComponent],
-  templateUrl: './user-about-medical-institucion.component.html',
-  styleUrl: './user-about-medical-institucion.component.css'
+  templateUrl: './user-about-medical-institution.component.html',
+  styleUrl: './user-about-medical-institution.component.css'
 })
 export class UserAboutMedicalInstitutionComponent {
   constructor(

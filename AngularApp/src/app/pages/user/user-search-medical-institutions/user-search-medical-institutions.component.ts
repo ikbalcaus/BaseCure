@@ -8,25 +8,25 @@ import { serverSettings } from '../../../server-settings';
 @Component({
   selector: 'app-user-search',
   standalone: true,
-  templateUrl: './user-search-medical-institucions.component.html',
-  styleUrl: './user-search-medical-institucions.component.css',
+  templateUrl: './user-search-medical-institutions.component.html',
+  styleUrl: './user-search-medical-institutions.component.css',
   imports: [CommonModule, FilterComponent, CardComponent]
 })
-export class UserSearchComponent {
+export class UserSearchMedicalInstitutionComponent {
   constructor(private httpClient: HttpClient) {}
 
   req: any = {};
   res: any;
 
   ngOnInit() {
-    this.getSearchResults(["", ""])
+    this.getSearchResults(["", ""]);
   }
 
   getSearchResults($event: Array<string>) {
-    this.req.naziv = $event[0];
+    this.req.tipUstanove = $event[0];
     this.req.grad = $event[1];
     
-    this.httpClient.get(serverSettings.address + "/ustanoveZdravstva/search?naziv=" + this.req.naziv + "&grad=" + this.req.grad).subscribe(
+    this.httpClient.get(serverSettings.address + "/filter/ustanoveZdravstva?tipUstanove=" + this.req.tipUstanove + "&grad=" + this.req.grad).subscribe(
       res => this.res = res
     );
   }

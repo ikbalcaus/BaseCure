@@ -36,6 +36,9 @@ export class AuthService {
           window.localStorage.setItem("auth-token", JSON.stringify(res));
           if(res.uloga == "korisnik") this.router.navigateByUrl("/pretrazi");
           else if(res.uloga == "apoteka") this.router.navigateByUrl("/apoteka/narudzbe");
+          else if(res.uloga == "bolnica") this.router.navigateByUrl("/ustanova-zdravstva/podaci");
+          else if(res.uloga == "ljekar") this.router.navigateByUrl("/ljekar/karton");
+          else if(res.uloga == "admin") this.router.navigateByUrl("/basecure-admin/dashboard");
         }
       }
     );

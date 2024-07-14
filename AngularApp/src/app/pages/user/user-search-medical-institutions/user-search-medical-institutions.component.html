@@ -1,7 +1,8 @@
 <app-filter
-    placeholder1="Naziv zdravstvene institucije"
+    placeholder1="Tip zdravstvene ustanove"
     placeholder2="Naziv grada"
-    link2="/gradovi/search/"
+    link1="/autocomplete/tipustanove?naziv="
+    link2="/autocomplete/grad?naziv="
     (searchOptions)="getSearchResults($any($event))"
 ></app-filter>
 <div class="container cards">

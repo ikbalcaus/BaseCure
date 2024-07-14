@@ -24,11 +24,11 @@ namespace BaseCureAPI.Endpoints.Lijek.Put
             {
                 return NotFound();
             }
-            lijek.NazivLijeka = req.NazivLijeka;
-            lijek.SlikaLijeka = req.SlikaLijeka;
-            lijek.OpisLijeka = req.OpisLijeka;
+            lijek.Naziv = req.Naziv;
+            lijek.Slika = req.Slika;
+            lijek.Opis = req.Opis;
             lijek.ZahtijevaRecept = req.ZahtijevaRecept;
-            lijek.CijenaLijeka = req.CijenaLijeka;
+            lijek.Cijena = req.Cijena;
             lijek.Kolicina = req.Kolicina;
 
             _context.SaveChanges();

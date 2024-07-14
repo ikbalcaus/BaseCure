@@ -13,6 +13,6 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.GetById
         public string? Grad { get; set; }
         public string? TipUstanove { get; set; }
         public float? CijenaDostave {  get; set; }
-        public byte[] ImageData { get; set; }
+        public byte[] Slika { get; set; }
     }
 }

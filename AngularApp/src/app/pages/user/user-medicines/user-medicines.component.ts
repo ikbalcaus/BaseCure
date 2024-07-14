@@ -23,18 +23,28 @@ export class UserMedicinesComponent {
     private alertService: AlertService
   ) {}
 
-  req: any = { korisnikId: this.authService.getAuthToken().korisnikId };
+  req: any = {};
   res: any;
 
   ngOnInit() {
-    this.httpClient.get(serverSettings.address + "/lijekovi?ustanovaId=" + this.route.snapshot.paramMap.get("id")).subscribe(
+    this.getSearchResults(["", ""]);
+  }
+
+  getSearchResults($event: Array<string>) {
+    this.req.naziv = $event[0];
+    this.req.opis = $event[1];
+    
+    this.httpClient.get(serverSettings.address + "/filter/lijekovi/" + this.route.snapshot.paramMap.get("id") + "?naziv=" + this.req.naziv + "&opis=" + this.req.opis, this.req).subscribe(
       res => this.res = res
     );
   }
 
   addOrder(medicineId: number) {
-    this.req.lijekId = medicineId;
-    this.httpClient.post(serverSettings.address + "/narudzbe", this.req).subscribe(
+    let req = {
+      korisnikId: this.authService.getAuthToken().korisnikId,
+      lijekId: medicineId
+    };
+    this.httpClient.post(serverSettings.address + "/narudzbe", req).subscribe(
       () => this.alertService.setAlert("success", "Uspješno ste dodali lijek u korpu")
     );
   }

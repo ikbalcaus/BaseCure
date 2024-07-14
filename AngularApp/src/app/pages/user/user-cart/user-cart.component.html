@@ -5,16 +5,16 @@
       <p>Trenutno imate {{ narudzbe.length }} lijekova za poručiti</p>
       <hr>
       <app-item-list *ngFor="let i of narudzbe"
-        [name]="i.nazivLijeka"
+        [name]="i.naziv"
         [description]="i.nazivUstanove"
-        [price]="i.cijenaLijeka + 'KM'"
+        [price]="i.cijena + 'KM'"
         btnText="Ukloni iz korpe"
         (btnClick)="removeOrder(i.narudzbaId)"
       >
       </app-item-list>
     </div>
     <div class="card-details card bg-primary mt-4 shadow-lg">
-      <form #loginForm="ngForm" (submit)="confirmOrder(loginForm.value)">
+      <form #loginForm="ngForm">
         <div class="card-body">
           <h5>Detalji narudžbe</h5>
           <hr>
@@ -23,8 +23,8 @@
             <input type="text" class="form-control shadow-sm" name="imePrezime" [(ngModel)]="korisnik.imePrezime" autocomplete="off" spellcheck="false" required>
           </div>
           <label class="mx-1">Grad:</label>
-          <select class="form-select mb-2" name="grad" autocomplete="off" spellcheck="false" required>
-            <option *ngFor="let i of gradovi" [(ngModel)]="i.gradId">{{ i.naziv }}</option>
+          <select class="form-select mb-2" name="grad" [(ngModel)]="korisnik.grad" autocomplete="off" spellcheck="false" required>
+            <option *ngFor="let i of gradovi" [selected]="i.naziv == korisnik.grad">{{ i.naziv }}</option>
           </select>
           <div class="form-group mb-2">
             <label class="mx-1">Adresa stanovanja:</label>
@@ -35,8 +35,8 @@
             <input type="text" class="form-control shadow-sm" name="mailAdresa" [(ngModel)]="korisnik.mailAdresa" autocomplete="off" spellcheck="false" required ngModel>
           </div>
           <div class="form-group mb-2">
-            <label class="mx-1">Telefonski broj:</label>
-            <input type="text" class="form-control shadow-sm" name="telefonskiBroj" [(ngModel)]="korisnik.telefonskiBroj" autocomplete="off" spellcheck="false" required>
+            <label class="mx-1">Broj Telefona:</label>
+            <input type="text" class="form-control shadow-sm" name="brojTelefona" [(ngModel)]="korisnik.brojTelefona" autocomplete="off" spellcheck="false" required>
           </div>
           <hr>
           <div class="card-column">
@@ -52,13 +52,13 @@
             <p class="mb-2 mx-1">{{ sumPrice() + deliveryPrice() }}KM</p>
           </div>
           <button type="button" class="btn btn-primary btn-lg btn-block mt-2" (click)="showModal = true">Potvrdi narudžbu</button>
-          <app-modal
-            *ngIf="showModal"
-            (closeModal)="showModal = false"
-            (onSubmit)="confirmOrder(loginForm.value)"
-          ></app-modal>
         </div>
       </form>
     </div>
   </div>
 </div>
+<app-modal
+  *ngIf="showModal"
+  (closeModal)="showModal = false"
+  (onSubmit)="confirmOrder(loginForm.value)"
+></app-modal>

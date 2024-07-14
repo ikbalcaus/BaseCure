@@ -25,17 +25,15 @@ export class PharmacyManageMedicinesComponent {
   res: any;
 
   ngOnInit() {
-    this.httpClient.get(serverSettings.address + "/lijekovi?ustanovaId=" + this.authService.getAuthToken().ustanovaId).subscribe(
-      res => this.res = res
-    )
+    this.getSearchResults(["", ""]);
   }
 
   getSearchResults($event: Array<string>) {
     this.req.naziv = $event[0];
-    this.req.grad = $event[1];
+    this.req.opis = $event[1];
     
-    this.httpClient.get(serverSettings.address + "/lijekovi/search?NazivLijeka=" + this.req.naziv + "&OpisLijeka=" + this.req.grad + "", this.req).subscribe(
-      res =>  this.res = res
+    this.httpClient.get(serverSettings.address + "/filter/lijekovi/" + this.authService.getAuthToken().ustanovaId + "?naziv=" + this.req.naziv + "&opis=" + this.req.opis, this.req).subscribe(
+      res => this.res = res
     );
   }
 

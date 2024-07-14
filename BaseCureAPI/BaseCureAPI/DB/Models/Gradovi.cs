@@ -14,7 +14,7 @@ namespace BaseCureAPI.DB.Models
 
         public int GradId { get; set; }
         public string? Naziv { get; set; }
-        public string? Entitet { get; set; }
+        public string? Drzava { get; set; }
 
         public virtual ICollection<Korisnici> Korisnicis { get; set; }
         public virtual ICollection<Narudzbe> Narudzbes { get; set; }

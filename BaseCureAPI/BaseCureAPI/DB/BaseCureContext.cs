@@ -120,10 +120,10 @@ namespace BaseCureAPI.DB
                     .ValueGeneratedNever()
                     .HasColumnName("grad_id");
 
-                entity.Property(e => e.Entitet)
+                entity.Property(e => e.Drzava)
                     .HasMaxLength(255)
                     .IsUnicode(false)
-                    .HasColumnName("entitet");
+                    .HasColumnName("drzava");
 
                 entity.Property(e => e.Naziv)
                     .HasMaxLength(255)
@@ -239,21 +239,21 @@ namespace BaseCureAPI.DB
                     .ValueGeneratedNever()
                     .HasColumnName("lijek_id");
 
-                entity.Property(e => e.CijenaLijeka).HasColumnName("cijena_lijeka");
+                entity.Property(e => e.Cijena).HasColumnName("cijena");
 
                 entity.Property(e => e.Kolicina).HasColumnName("kolicina");
 
-                entity.Property(e => e.NazivLijeka)
+                entity.Property(e => e.Naziv)
                     .HasMaxLength(255)
                     .IsUnicode(false)
-                    .HasColumnName("naziv_lijeka");
+                    .HasColumnName("naziv");
 
-                entity.Property(e => e.OpisLijeka)
+                entity.Property(e => e.Opis)
                     .HasMaxLength(255)
                     .IsUnicode(false)
-                    .HasColumnName("opis_lijeka");
+                    .HasColumnName("opis");
 
-                entity.Property(e => e.SlikaLijeka).HasColumnName("slika_lijeka");
+                entity.Property(e => e.Slika).HasColumnName("slika");
 
                 entity.Property(e => e.UstanovaId).HasColumnName("ustanova_id");
 
@@ -361,9 +361,9 @@ namespace BaseCureAPI.DB
 
                 entity.Property(e => e.LijekId).HasColumnName("lijek_id");
 
-                entity.Property(e => e.Mailadresa)
+                entity.Property(e => e.MailAdresa)
                     .HasMaxLength(255)
-                    .HasColumnName("mailadresa");
+                    .HasColumnName("mail_adresa");
 
                 entity.Property(e => e.RedniBroj).HasColumnName("redni_broj");
 
@@ -371,9 +371,9 @@ namespace BaseCureAPI.DB
                     .HasMaxLength(255)
                     .HasColumnName("status");
 
-                entity.Property(e => e.TelefonskiBroj)
+                entity.Property(e => e.BrojTelefona)
                     .HasMaxLength(25)
-                    .HasColumnName("telefonski_broj");
+                    .HasColumnName("broj_telefona");
 
                 entity.HasOne(d => d.Grad)
                     .WithMany(p => p.Narudzbes)
@@ -647,7 +647,7 @@ namespace BaseCureAPI.DB
 
                 entity.Property(e => e.Longitude).HasColumnName("longitude");
 
-                entity.Property(e => e.ImageData).HasColumnName("image_data");
+                entity.Property(e => e.Slika).HasColumnName("slika");
 
                 entity.Property(e => e.MailAdresa)
                     .HasMaxLength(255)

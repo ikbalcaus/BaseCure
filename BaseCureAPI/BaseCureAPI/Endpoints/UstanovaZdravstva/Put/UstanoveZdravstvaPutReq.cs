@@ -10,7 +10,7 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.Put
         public string? MailAdresa { get; set; }
         public string? Opis { get; set; }
         public float? CijenaDostave { get; set; }
-        public byte[] ImageData { get; set; }
+        //public byte[] Slika { get; set; }
         public string? Grad { get; set; }
     }
 }

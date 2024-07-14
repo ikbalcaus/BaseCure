@@ -6,8 +6,8 @@
             <div class="mt-2">{{res.opis}}</div>
             <div class="data mt-3">{{res.grad}}</div>
             <div class="data">{{res.adresa}}</div>
-            <a href="mailto:{{res.email}}" class="data text-decoration-none mt-2">{{res.email}}</a>
-            <a href="tel:{{res.kontaktBroj}}" class="data text-decoration-none">{{res.kontaktBroj}}</a>
+            <a href="mailto:{{res.mailAdresa}}" class="data text-decoration-none mt-2">{{res.mailAdresa}}</a>
+            <a href="tel:{{res.brojTelefona}}" class="data text-decoration-none">{{res.brojTelefona}}</a>
             <a class="btn btn-primary mt-3" [routerLink]="res.tipUstanove == 'apoteka' ? '/pretrazi/lijekovi/' + res.ustanovaId : '/pretrazi/ljekari/' + res.ustanovaId">{{ res.tipUstanove == "apoteka" ? "Pogledaj lijekove" : "Pogledaj ljekare"}}</a>
         </div>
     </div>

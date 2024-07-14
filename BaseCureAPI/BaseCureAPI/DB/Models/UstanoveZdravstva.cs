@@ -24,7 +24,7 @@ namespace BaseCureAPI.DB.Models
         public double? Longitude { get; set; }
         public string? MailAdresa { get; set; }
         public string? BrojTelefona { get; set; }
-        public byte[]? ImageData { get; set; }
+        public byte[]? Slika { get; set; }
 
         public virtual Gradovi? Grad { get; set; }
         public virtual TipoviUstanova? TipUstanove { get; set; }

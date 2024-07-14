@@ -24,15 +24,15 @@ export class PharmacyAddMedicineComponent {
 
   req: any;
 
-  formSubmit(loginForm: any) {
+  AddMedicine(data: any) {
     this.req = {
       id: 0,
       ustanovaId: this.authService.getAuthToken().ustanovaId,
-      nazivLijeka: loginForm.nazivLijeka,
-      cijenaLijeka: loginForm.cijenaLijeka,
-      kolicina: loginForm.kolicina,
-      opisLijeka: loginForm.opisLijeka,
-      zahtijevaRecept: loginForm.zahtijevaRecept || false
+      naziv: data.naziv,
+      cijena: data.cijena,
+      kolicina: data.kolicina,
+      opis: data.opis,
+      zahtijevaRecept: data.zahtijevaRecept || false
     };
     this.httpClient.post(serverSettings.address + "/lijekovi", this.req).subscribe(
       () => {

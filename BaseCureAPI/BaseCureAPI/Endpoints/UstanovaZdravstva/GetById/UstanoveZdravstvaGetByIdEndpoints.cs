@@ -36,7 +36,7 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.GetById
                     Grad = x.Grad.Naziv,
                     TipUstanove = x.TipUstanove.Naziv,
                     CijenaDostave = x.CijenaDostave,
-                    ImageData = x.ImageData
+                    Slika = x.Slika
                 }).Single();
 
             return Ok(ustanovaZdravstva);
