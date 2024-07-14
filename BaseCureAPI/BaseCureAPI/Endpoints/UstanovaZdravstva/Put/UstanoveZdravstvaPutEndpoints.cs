@@ -25,14 +25,20 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.Put
             if (ustanova == null)
                 return NotFound();
 
-            // Update ustanova properties
+            var grad = _context.Gradovis.SingleOrDefault(x => x.Naziv == ustanovareq.Grad);
+
+            if(grad == null)
+            {
+                return BadRequest(new { message = "Grad ne postoji" });
+            }
+
             ustanova.Naziv = ustanovareq.Naziv;
-            ustanova.Grad = ustanovareq.Grad;
             ustanova.Adresa = ustanovareq.Adresa;
             ustanova.MailAdresa = ustanovareq.MailAdresa;
             ustanova.BrojTelefona = ustanovareq.BrojTelefona;
             ustanova.CijenaDostave = ustanovareq.CijenaDostave;
             ustanova.Opis = ustanovareq.Opis;
+            ustanova.Grad = grad;
 
             if (image != null)
             {

@@ -24,13 +24,19 @@ namespace BaseCureAPI.Endpoints.Korisnik.Put
             {
                 return NotFound();
             }
-            korisnik.HashLozinke = korisnikReq.HashLozinke;
+
+            var grad = _context.Gradovis.SingleOrDefault(x => x.Naziv == korisnikReq.Grad);
+
+            if (grad == null)
+            {
+                return BadRequest(new { message = "Grad ne postoji" });
+            }
+
             korisnik.Ime = korisnikReq.Ime;
             korisnik.Prezime = korisnikReq.Prezime;
+            korisnik.Grad = grad;
             korisnik.Adresa = korisnikReq.Adresa;
-            korisnik.DatumRodjenja = korisnikReq.DatumRodjenja;
             korisnik.MailAdresa = korisnikReq.MailAdresa;
-            korisnik.Code2fa = korisnikReq.Code2fa;
             korisnik.BrojTelefona = korisnikReq.BrojTelefona;
 
             _context.SaveChanges();
