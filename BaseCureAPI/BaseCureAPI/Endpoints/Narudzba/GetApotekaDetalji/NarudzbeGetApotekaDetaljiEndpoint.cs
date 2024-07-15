@@ -33,7 +33,7 @@ namespace BaseCureAPI.Endpoints.Narudzba.GetApotekaDetalji
                     BrojTelefona = x.BrojTelefona,
                     Grad = x.Grad.Naziv,
                     Adresa = x.Adresa,
-                    MailAdresa = x.MailAdresa,
+                    MailAdresa = x.Mailadresa,
                     LijekId = x.LijekId,
                     Naziv = x.Lijek.Naziv,
                     Opis = x.Lijek.Opis,

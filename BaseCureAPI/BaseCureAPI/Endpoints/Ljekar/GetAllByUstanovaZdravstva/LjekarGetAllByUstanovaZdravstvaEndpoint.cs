@@ -18,12 +18,12 @@ namespace BaseCureAPI.Endpoints.Ljekar.GetAllByUstanovaZdravstva
         [HttpGet]
         public ActionResult Get([FromQuery] int ustanovaId)
         {
-            var ljekari = _context.Ljekaris.Where(x => x.UstanovaId == ustanovaId)
+            var ljekari = _context.Ljekaris/*.Where(x => x.UstanovaId == ustanovaId)*/
                 .Select(x => new LjekarGetAllByUstanovaZdravstvaRes()
                 {
                     LjekarId = x.LjekarId,
                     Specijalizacija = x.Specijalizacija,
-                    Korisnik = x.Korisnik
+                    //Korisnik = x.Korisnik
                 }).ToList();
 
             return Ok(ljekari);

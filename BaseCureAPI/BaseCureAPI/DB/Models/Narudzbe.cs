@@ -13,7 +13,7 @@ namespace BaseCureAPI.DB.Models
         public string? BrojTelefona { get; set; }
         public int? GradId { get; set; }
         public string? Adresa { get; set; }
-        public string? MailAdresa { get; set; }
+        public string? Mailadresa { get; set; }
         public int? RedniBroj { get; set; }
         public string? Status { get; set; }
 
