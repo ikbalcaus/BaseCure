@@ -6,11 +6,12 @@ import { AuthService } from '../../services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AlertService } from '../../services/alert.service';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-edit-medical-institution',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ModalComponent],
   templateUrl: './edit-medical-institution.component.html',
   styleUrl: './edit-medical-institution.component.css'
 })
@@ -24,6 +25,7 @@ export class EditMedicalInstitutionComponent {
 
   res: any;
   gradovi: any;
+  showModal: boolean = false;
 
   ngOnInit() {
     this.httpClient.get(serverSettings.address + "/ustanoveZdravstva?id=" + this.authService.getAuthToken().ustanovaId).subscribe(
@@ -34,7 +36,7 @@ export class EditMedicalInstitutionComponent {
     )
   }
 
-  EditPharmacy(data: any) {
+  EditMedicalInstitution(data: any) {
     this.httpClient.put(serverSettings.address + "/ustanoveZdravstva/" + this.authService.getAuthToken().ustanovaId, data).subscribe(
       () => {
         this.router.navigateByUrl("/");

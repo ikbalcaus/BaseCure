@@ -33,7 +33,9 @@ export class UserCartComponent {
     this.httpClient.get<any>(serverSettings.address + "/korisnici/" + this.authService.getAuthToken().korisnikId).subscribe(
       res => {
         this.korisnik = res;
-        this.korisnik.imePrezime = res.ime + " " + res.prezime
+        if(res.ime == null) this.korisnik.imePrezime = res.prezime;
+        else if(res.prezime == null) this.korisnik.imePrezime = res.ime;
+        else this.korisnik.imePrezime = res.ime + " " + res.prezime
       }
     );
     this.httpClient.get(serverSettings.address + "/narudzbe/korisnik/" + this.authService.getAuthToken().korisnikId).subscribe(

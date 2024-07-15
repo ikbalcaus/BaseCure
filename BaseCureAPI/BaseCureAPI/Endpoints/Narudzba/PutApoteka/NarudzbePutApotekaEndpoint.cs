@@ -18,16 +18,23 @@ namespace BaseCureAPI.Endpoints.Narudzba.PutApoteka
         [HttpPut("apoteka/{ustanovaId}")]
         public ActionResult UpdateNarudzba([FromRoute] int ustanovaId, [FromQuery] int redniBroj)
         {
+            var isSveIsporuceno = true;
             var narudzbe = _context.Narudzbes
                 .Include(x => x.Lijek)
                 .Where(x => x.Lijek.UstanovaId == ustanovaId && x.RedniBroj == redniBroj && x.Status == "aktivno");
+
             foreach (var narudzba in narudzbe)
             {
-                narudzba.Status = "isporuceno";
-                narudzba.Lijek.Kolicina -= 1;
+                if (narudzba.Lijek.Kolicina > 0)
+                {
+                    narudzba.Status = "isporuceno";
+                    narudzba.Lijek.Kolicina -= 1;
+                }
+                else isSveIsporuceno = false;
             }
             _context.SaveChanges();
-            return NoContent();
+            if (isSveIsporuceno) return NoContent();
+            else return BadRequest("Nema zaliha lijeka");
         }
     }
 }

@@ -14,9 +14,6 @@ namespace BaseCureAPI.DB.Models
         public string? PunoIme { get; set; }
         public int? UstanovaId { get; set; }
         public int? UlogaId { get; set; }
-        public int? LjekarId { get; set; }
-
-        public virtual Ljekari? Ljekar { get; set; }
         public virtual Uloge? Uloga { get; set; }
         public virtual UstanoveZdravstva? Ustanova { get; set; }
         public virtual ICollection<Korisnici> Korisnicis { get; set; }

@@ -9,6 +9,6 @@ namespace BaseCureAPI.Endpoints.Ljekar.GetAllByUstanovaZdravstva
         public string? Specijalizacija { get; set; }
         [JsonIgnore]
         public Korisnici Korisnik { get; set; }
-        public string ImePrezime => $"{Korisnik.Ime} {Korisnik.Prezime}";
+        public string ImePrezime => $"{Korisnik?.Ime} {Korisnik?.Prezime}";
     }
 }

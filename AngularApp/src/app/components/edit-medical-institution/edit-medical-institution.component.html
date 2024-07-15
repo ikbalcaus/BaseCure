@@ -2,7 +2,7 @@
     <div class="my-5 row d-flex flex-row justify-content-around">
         <img class="thumbnail rounded shadow mx-4 col-8" src="./../../../assets/img/no-image-avabliable.jpg" alt="Slika">
         <div class="content mx-4 col">
-            <form #loginForm="ngForm" (submit)="EditPharmacy(loginForm.value)">
+            <form #loginForm="ngForm">
                 <div class="mx-1">
                     <div class="form-group">
                         <span>Slika:</span>
@@ -39,8 +39,13 @@
                         <textarea class="form-control" rows="3" placeholder="Opis" name="opis" autocomplete="false" spellcheck="false" [(ngModel)]="res.opis"></textarea>
                     </div>
                 </div>
-                <button class="btn btn-primary btn-block mt-2">Potvrdi</button>
+                <button class="btn btn-primary btn-block mt-2" (click)="showModal = true">Potvrdi</button>
             </form>
         </div>
     </div>
 </div>
+<app-modal
+    *ngIf="showModal"
+    (closeModal)="showModal = false"
+    (onSubmit)="EditMedicalInstitution(loginForm.value)"
+></app-modal>
