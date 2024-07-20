@@ -3,6 +3,7 @@ using BaseCureAPI.DB.Models;
 using BaseCureAPI.Endpoints.Korisnik.Post;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace BaseCureAPI.Endpoints.Lijek.Post
 {
@@ -18,17 +19,23 @@ namespace BaseCureAPI.Endpoints.Lijek.Post
         }
 
         [HttpPost]
-        public ActionResult CreateLijek([FromBody] LijekoviPostReq req)
+        public ActionResult CreateLijek([FromForm] IFormFile slika, [FromForm] LijekoviPostReq req)
         {
-
-            if (req == null)
-                return BadRequest("User data is null");
+            byte[] imageBytes = null;
+            if (slika != null && slika.Length > 0)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    slika.CopyTo(memoryStream);
+                    imageBytes = memoryStream.ToArray();
+                }
+            }
 
             var lijek = new Lijekovi
             {
                 Naziv = req.Naziv,
                 Opis = req.Opis,
-                Slika = req.Slika,
+                Slika = imageBytes,
                 UstanovaId = req.UstanovaId,
                 Cijena = req.Cijena,
                 Kolicina = req.Kolicina,

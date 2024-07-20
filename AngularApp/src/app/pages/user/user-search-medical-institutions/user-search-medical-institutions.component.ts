@@ -16,8 +16,7 @@ export class UserSearchMedicalInstitutionComponent {
   constructor(private httpClient: HttpClient) {}
 
   req: any = {};
-  res: any;
-
+  res: any[] = [];
   ngOnInit() {
     this.getSearchResults(["", ""]);
   }
@@ -26,8 +25,21 @@ export class UserSearchMedicalInstitutionComponent {
     this.req.tipUstanove = $event[0];
     this.req.grad = $event[1];
     
-    this.httpClient.get(serverSettings.address + "/filter/ustanoveZdravstva?tipUstanove=" + this.req.tipUstanove + "&grad=" + this.req.grad).subscribe(
-      res => this.res = res
+    this.httpClient.get<any[]>(`${serverSettings.address}/filter/ustanoveZdravstva?tipUstanove=${this.req.tipUstanove}&grad=${this.req.grad}`).subscribe(
+      res => {
+        this.res = res;
+        this.res.forEach(institution => {
+          this.httpClient.get(`${serverSettings.address}/slika/ustanovaZdravstva/${institution.ustanovaId}`, { responseType: 'blob' }).subscribe(
+            imageBlob => {
+              const reader = new FileReader();
+              reader.onload = () => {
+                institution.slika = reader.result as string;
+              };
+              reader.readAsDataURL(imageBlob);
+            }
+          );
+        });
+      }
     );
   }
 }

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -22,22 +22,25 @@ export class PharmacyAddMedicineComponent {
     private alertService: AlertService
   ) {}
 
-  req: any;
-
   AddMedicine(data: any) {
-    this.req = {
-      id: 0,
-      ustanovaId: this.authService.getAuthToken().ustanovaId,
-      naziv: data.naziv,
-      cijena: data.cijena,
-      kolicina: data.kolicina,
-      opis: data.opis,
-      zahtijevaRecept: data.zahtijevaRecept || false
-    };
-    this.httpClient.post(serverSettings.address + "/lijekovi", this.req).subscribe(
+    const formData = new FormData();
+    formData.append('slika', data.slika);
+    formData.append('naziv', data.naziv);
+    formData.append('opis', data.opis);
+    formData.append('cijena', data.cijena);
+    formData.append('kolicina', data.kolicina);
+    formData.append('zahtijevaRecept', data.zahtijevaRecept);
+    formData.append('ustanovaId', data.ustanovaId);
+    formData.append('id', data.id);
+
+    this.httpClient.post(serverSettings.address + "/lijekovi", formData).subscribe(
       () => {
         this.router.navigateByUrl("/apoteka/lijekovi");
         this.alertService.setAlert("success", "Lijek je uspješno dodan");
+      },
+      error => {
+        this.alertService.setAlert("error", "Došlo je do greške prilikom dodavanja lijeka");
+        console.error('Error adding medicine:', error);
       }
     );
   }

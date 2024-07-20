@@ -5,6 +5,7 @@
 ></app-filter>
 <div class="container main">
     <app-item-list *ngFor="let i of res"
+        [img]="i.slika"
         [name]="i.naziv"
         [description]="i.opis"
         [price]="i.cijena + 'KM'"
