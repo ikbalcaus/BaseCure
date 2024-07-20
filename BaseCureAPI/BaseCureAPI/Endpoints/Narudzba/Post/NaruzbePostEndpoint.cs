@@ -27,6 +27,11 @@ namespace BaseCureAPI.Endpoints.Narudzba.Post
                 Status = "neaktivno",
                 RedniBroj = 0
             };
+            var lijek = _context.Lijekovis.Find(req.LijekId);
+            if (lijek.Kolicina == 0)
+            {
+                return BadRequest("Nema zaliha lijeka");
+            }
             narudzba.NarudzbaId = _context.Narudzbes.Any() ? _context.Narudzbes.Max(x => x.NarudzbaId) + 1 : 1;
             _context.Narudzbes.Add(narudzba);
             _context.SaveChanges();

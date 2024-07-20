@@ -18,7 +18,7 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.PutLatLong
         [HttpPut("{id}")]
         public ActionResult Put([FromRoute] int id, [FromBody] PutLatLongReq putLatLongReq)
         {
-            var ustanova = _context.UstanoveZdravstvas.FirstOrDefault(x => x.UstanovaId == id);
+            var ustanova = _context.UstanoveZdravstvas.Find(id);
             ustanova.Latitude = putLatLongReq.Lat;
             ustanova.Longitude = putLatLongReq.Long;
             _context.SaveChanges();

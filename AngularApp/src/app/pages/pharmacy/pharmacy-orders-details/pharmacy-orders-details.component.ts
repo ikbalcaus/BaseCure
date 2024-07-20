@@ -65,7 +65,8 @@ export class PharmacyOrdersDetailsComponent {
           this.showModalSubmitForm = false;
           this.alertService.setAlert("success", "Uspješno ste isporučili narudžbu");
           this.router.navigateByUrl("apoteka/narudzbe");
-        }
+        },
+        () => this.alertService.setAlert("danger", "Nemate zaliha lijekova")
       );
     }
     else if(this.status == "isporuceno") {

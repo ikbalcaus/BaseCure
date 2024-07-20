@@ -21,7 +21,10 @@ export class NavbarComponent {
         this.authService.logoutUser();
     }
 
-    showLink(role: string) {
-        return role == this.authService.getAuthToken()?.uloga;
+    showLink(roles: Array<string>) {
+        for(let role of roles) {
+            if(role == this.authService.getAuthToken()?.uloga) return true;
+        }
+        return false;
     }
 }

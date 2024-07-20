@@ -18,7 +18,7 @@ namespace BaseCureAPI.Endpoints.Lijek.GetById
         [HttpGet("{id}")]
         public ActionResult GetLijek([FromRoute] int id)
         {
-            var lijek = _context.Lijekovis.FirstOrDefault(x => x.LijekId == id);
+            var lijek = _context.Lijekovis.Find(id);
             return Ok(lijek);
         }
     }

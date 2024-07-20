@@ -280,10 +280,27 @@ namespace BaseCureAPI.DB
                     .HasMaxLength(255)
                     .HasColumnName("opis");
 
+                entity.Property(e => e.Slika).HasColumnName("slika");
+
                 entity.Property(e => e.Specijalizacija)
                     .HasMaxLength(255)
                     .IsUnicode(false)
                     .HasColumnName("specijalizacija");
+
+                entity.Property(e => e.KorisnikId).HasColumnName("korisnik_id");
+
+                entity.Property(e => e.UstanovaId).HasColumnName("ustanova_id");
+
+                entity.HasOne(d => d.Korisnik)
+                    .WithMany(p => p.Ljekaris)
+                    .HasForeignKey(d => d.KorisnikId)
+                    .HasConstraintName("FK__Ljekari__korisni__4F7CD00D");
+
+                entity.HasOne(d => d.Ustanova)
+                    .WithMany(p => p.Ljekaris)
+                    .HasForeignKey(d => d.UstanovaId)
+                    .HasConstraintName("FK__Ljekari__ustanov__5070F446");
+
             });
 
             modelBuilder.Entity<Napomene>(entity =>
@@ -385,8 +402,6 @@ namespace BaseCureAPI.DB
                     .ValueGeneratedNever()
                     .HasColumnName("osoblje_id");
 
-                entity.Property(e => e.LjekarId).HasColumnName("ljekar_id");
-
                 entity.Property(e => e.PunoIme)
                     .HasMaxLength(255)
                     .IsUnicode(false)
@@ -395,11 +410,6 @@ namespace BaseCureAPI.DB
                 entity.Property(e => e.UlogaId).HasColumnName("uloga_id");
 
                 entity.Property(e => e.UstanovaId).HasColumnName("ustanova_id");
-
-                entity.HasOne(d => d.Ljekar)
-                    .WithMany(p => p.Osobljes)
-                    .HasForeignKey(d => d.LjekarId)
-                    .HasConstraintName("FK__Osoblje__ljekar___078C1F06");
 
                 entity.HasOne(d => d.Uloga)
                     .WithMany(p => p.Osobljes)

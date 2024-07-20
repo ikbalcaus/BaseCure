@@ -97,7 +97,7 @@ namespace BaseCureAPI.Endpoints.Auth
             if (logiraniKorisnik == null)
             {
                 //pogresan username i password
-                return Ok(null);
+                return Unauthorized();
             }
 
             //2- generisati random string

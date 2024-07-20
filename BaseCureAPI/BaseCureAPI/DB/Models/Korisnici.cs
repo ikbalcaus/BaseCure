@@ -10,6 +10,7 @@ namespace BaseCureAPI.DB.Models
             AuthTokens = new HashSet<AuthToken>();
             Narudzbes = new HashSet<Narudzbe>();
             Pacijentis = new HashSet<Pacijenti>();
+            Ljekaris = new HashSet<Ljekari>();
         }
 
         public int KorisnikId { get; set; }
@@ -29,5 +30,6 @@ namespace BaseCureAPI.DB.Models
         public virtual ICollection<AuthToken> AuthTokens { get; set; }
         public virtual ICollection<Narudzbe> Narudzbes { get; set; }
         public virtual ICollection<Pacijenti> Pacijentis { get; set; }
+        public virtual ICollection<Ljekari> Ljekaris { get; set; }
     }
 }
