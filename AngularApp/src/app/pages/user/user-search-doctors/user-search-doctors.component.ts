@@ -31,7 +31,20 @@ export class UserSearchDoctorsComponent {
     this.req.grad = $event[1];
     
     this.httpClient.get(serverSettings.address + "/ljekari?ustanovaId=" + this.route.snapshot.paramMap.get("id")).subscribe(
-      res => this.res = res
+      res => {
+        this.res = res
+        this.res.forEach((doctor: any) => {
+          this.httpClient.get(serverSettings.address + "/slika/ljekar/" + doctor.ljekarId, { responseType: 'blob' }).subscribe(
+            imageBlob => {
+              const reader = new FileReader();
+              reader.onload = () => {
+                doctor.slika = reader.result as string;
+              };
+              reader.readAsDataURL(imageBlob);
+            }
+          );
+        });
+      }
     );
   }
 }

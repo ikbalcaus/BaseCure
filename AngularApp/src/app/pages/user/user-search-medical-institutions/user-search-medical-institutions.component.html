@@ -7,7 +7,7 @@
 ></app-filter>
 <div class="container cards">
     <app-card *ngFor="let i of res"
-        img="./../../../assets/img/no-image-avabliable.jpg"
+        [img]="i.slika || 'assets/img/doctor-placeholder.jpg'"
         [title]="i.naziv"
         [description]="i.grad"
         [btn_text1]="(i.tipUstanove == 'apoteka') ? ('Lijekovi') : ('Ljekari')"

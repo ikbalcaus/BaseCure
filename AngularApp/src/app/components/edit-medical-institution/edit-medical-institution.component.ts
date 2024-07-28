@@ -28,9 +28,23 @@ export class EditMedicalInstitutionComponent {
   showModal: boolean = false;
 
   ngOnInit() {
-    this.httpClient.get(serverSettings.address + "/ustanoveZdravstva?id=" + this.authService.getAuthToken().ustanovaId).subscribe(
-      res => this.res = res
-    )
+    const id = this.authService.getAuthToken().ustanovaId;
+    if (id) {
+      this.httpClient.get<any>(`${serverSettings.address}/ustanoveZdravstva?id=${id}`).subscribe(
+        res => {
+          this.res = res;
+          this.httpClient.get(`${serverSettings.address}/slika/ustanovaZdravstva/${id}`, { responseType: 'blob' }).subscribe(
+            imageBlob => {
+              const reader = new FileReader();
+              reader.onload = () => {
+                this.res.slika = reader.result as string;
+              };
+              reader.readAsDataURL(imageBlob);
+            }
+          );
+        }
+      );
+    }
     this.httpClient.get(serverSettings.address + "/gradovi/").subscribe(
       res => this.gradovi = res
     )

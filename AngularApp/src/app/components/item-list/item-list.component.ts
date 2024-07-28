@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './item-list.component.css'
 })
 export class ItemListComponent {
+  @Input() img: any;
   @Input() name: any;
   @Input() description: any;
   @Input() price: any;

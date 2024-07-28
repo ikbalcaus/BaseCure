@@ -13,18 +13,33 @@ import { ViewMapComponent } from '../../../components/view-map/view-map.componen
   styleUrl: './user-about-medical-institution.component.css'
 })
 export class UserAboutMedicalInstitutionComponent {
+  res: any;
+  lat: any;
+  long: any;
+
   constructor(
     private httpClient: HttpClient,
     private route: ActivatedRoute
   ) {}
 
-  res: any;
-  lat: any;
-  long: any;
-
   ngOnInit() {
-    this.httpClient.get(serverSettings.address + "/ustanoveZdravstva?id=" + this.route.snapshot.paramMap.get("id")).subscribe(
-      res => this.res = res
-    );
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.httpClient.get<any>(`${serverSettings.address}/ustanoveZdravstva?id=${id}`).subscribe(
+        res => {
+          this.res = res;
+          // Fetch image for the medical institution
+          this.httpClient.get(`${serverSettings.address}/slika/ustanovaZdravstva/${id}`, { responseType: 'blob' }).subscribe(
+            imageBlob => {
+              const reader = new FileReader();
+              reader.onload = () => {
+                this.res.slika = reader.result as string;
+              };
+              reader.readAsDataURL(imageBlob);
+            }
+          );
+        }
+      );
+    }
   }
 }
