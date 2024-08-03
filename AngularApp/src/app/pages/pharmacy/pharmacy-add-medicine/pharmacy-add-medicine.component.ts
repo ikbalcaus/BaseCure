@@ -24,24 +24,29 @@ export class PharmacyAddMedicineComponent {
 
   AddMedicine(data: any) {
     const formData = new FormData();
-    formData.append('slika', data.slika);
     formData.append('naziv', data.naziv);
     formData.append('opis', data.opis);
     formData.append('cijena', data.cijena);
     formData.append('kolicina', data.kolicina);
-    formData.append('zahtijevaRecept', data.zahtijevaRecept);
-    formData.append('ustanovaId', data.ustanovaId);
-    formData.append('id', data.id);
+    formData.append('zahtijevaRecept', data.zahtijevaRecept || false);
+    formData.append('ustanovaId', this.authService.getAuthToken().ustanovaId);
+    
+    const fileInput = (document.querySelector('input[name="slika"]') as HTMLInputElement);
+    if (fileInput.files?.length) {
+        formData.append('slika', fileInput.files[0]);
+    }
 
     this.httpClient.post(serverSettings.address + "/lijekovi", formData).subscribe(
-      () => {
-        this.router.navigateByUrl("/apoteka/lijekovi");
-        this.alertService.setAlert("success", "Lijek je uspješno dodan");
-      },
-      error => {
-        this.alertService.setAlert("error", "Došlo je do greške prilikom dodavanja lijeka");
-        console.error('Error adding medicine:', error);
-      }
+        () => {
+            this.router.navigateByUrl("/apoteka/lijekovi");
+            this.alertService.setAlert("success", "Lijek je uspješno dodan");
+        },
+        error => {
+            this.alertService.setAlert("error", "Došlo je do greške prilikom dodavanja lijeka");
+            console.error('Error adding medicine:', error);
+        }
     );
-  }
+}
+
+  
 }

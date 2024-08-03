@@ -17,7 +17,7 @@ namespace BaseCureAPI.Endpoints.Lijek.Put
         }
 
         [HttpPut("{id}")]
-        public ActionResult PutLijek(int id, [FromBody] LijekoviPutReq req)
+        public ActionResult PutLijek(int id, [FromForm] LijekoviPutReq req)
         {
             var lijek = _context.Lijekovis.SingleOrDefault(x => x.LijekId == id);
             if (lijek == null)
@@ -25,11 +25,19 @@ namespace BaseCureAPI.Endpoints.Lijek.Put
                 return NotFound();
             }
             lijek.Naziv = req.Naziv;
-            lijek.Slika = req.Slika;
             lijek.Opis = req.Opis;
             lijek.ZahtijevaRecept = req.ZahtijevaRecept;
             lijek.Cijena = req.Cijena;
             lijek.Kolicina = req.Kolicina;
+
+            if (req.Slika != null)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    req.Slika.CopyTo(memoryStream);
+                    lijek.Slika = memoryStream.ToArray();
+                }
+            }
 
             _context.SaveChanges();
 

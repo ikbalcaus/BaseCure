@@ -51,11 +51,30 @@ export class EditMedicalInstitutionComponent {
   }
 
   EditMedicalInstitution(data: any) {
-    this.httpClient.put(serverSettings.address + "/ustanoveZdravstva/" + this.authService.getAuthToken().ustanovaId, data).subscribe(
-      () => {
-        this.router.navigateByUrl("/");
-        this.alertService.setAlert("success", "Uspješno ste promjenili podatke");
-      }
-    )
+    const formData = new FormData();
+    formData.append('naziv', data.naziv);
+    formData.append('grad', data.grad);
+    formData.append('adresa', data.adresa);
+    formData.append('telefon', data.telefon);
+    formData.append('mailAdresa', data.mailAdresa);
+    formData.append('brojTelefona', data.brojTelefona);
+    formData.append('cijenaDostave', data.cijenaDostave);
+    formData.append('opis', data.opis);
+
+    const fileInput = (document.querySelector('input[name="slika"]') as HTMLInputElement);
+    if (fileInput.files?.length) {
+        formData.append('slika', fileInput.files[0]);
+    }
+
+    this.httpClient.put(serverSettings.address + "/ustanoveZdravstva/" + this.authService.getAuthToken().ustanovaId, formData).subscribe(
+        () => {
+            this.router.navigateByUrl("/");
+            this.alertService.setAlert("success", "Uspješno ste promjenili podatke");
+        },
+        error => {
+            this.alertService.setAlert("error", "Došlo je do greške prilikom promjene podataka");
+            console.error('Error adding medicine:', error);
+        }
+    );
   }
 }

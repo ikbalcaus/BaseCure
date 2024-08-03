@@ -19,7 +19,7 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.Put
         }
 
         [HttpPut("{id}")]
-        public ActionResult UpdateUstanova(int id, [FromBody] UstanoveZdravstvaPutReq ustanovareq/*, IFormFile image*/)
+        public ActionResult UpdateUstanova(int id, [FromForm] UstanoveZdravstvaPutReq ustanovareq)
         {
             var ustanova = _context.UstanoveZdravstvas.SingleOrDefault(x => x.UstanovaId == id);
             if (ustanova == null)
@@ -40,14 +40,14 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.Put
             ustanova.Opis = ustanovareq.Opis;
             ustanova.Grad = grad;
 
-/*            if (image != null)
+            if (ustanovareq.Slika != null)
             {
                 using (var memoryStream = new MemoryStream())
                 {
-                    image.CopyTo(memoryStream);
+                    ustanovareq.Slika.CopyTo(memoryStream);
                     ustanova.Slika = memoryStream.ToArray();
                 }
-            }*/
+            }
 
             _context.UstanoveZdravstvas.Update(ustanova);
             _context.SaveChanges();
