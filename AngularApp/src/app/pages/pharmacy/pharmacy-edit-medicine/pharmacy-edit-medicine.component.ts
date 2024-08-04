@@ -28,22 +28,42 @@ export class PharmacyEditMedicineComponent {
 
   ngOnInit() {
     this.httpClient.get(serverSettings.address + "/lijekovi/" + this.route.snapshot.paramMap.get("id")).subscribe(
-      res => this.res = res
-    )
+      res => {
+        this.res = res
+        this.httpClient.get(`${serverSettings.address}/slika/lijek/${this.route.snapshot.paramMap.get("id")}`, { responseType: 'blob' }).subscribe(
+          imageBlob => {
+            const reader = new FileReader();
+            reader.onload = () => {
+              this.res.slika = reader.result as string;
+            };
+            reader.readAsDataURL(imageBlob);
+          }
+        );
+      }
+    );
   }
 
   EditMedicine(data: any) {
-    this.req = {
-      naziv: data.naziv,
-      cijena: data.cijena,
-      kolicina: data.kolicina,
-      opis: data.opis,
-      zahtijevaRecept: data.zahtijevaRecept || false
-    };
-    this.httpClient.put(serverSettings.address + "/lijekovi/" + this.route.snapshot.paramMap.get("id"), this.req).subscribe(
+    const formData = new FormData();
+    formData.append('naziv', data.naziv);
+    formData.append('cijena', data.cijena);
+    formData.append('kolicina', data.kolicina);
+    formData.append('opis', data.opis);
+    formData.append('zahtijevaRecept', data.zahtijevaRecept || false);
+    
+    const fileInput = (document.querySelector('input[name="slika"]') as HTMLInputElement);
+    if (fileInput.files?.length) {
+      formData.append('slika', fileInput.files[0]);
+    }
+  
+    this.httpClient.put(serverSettings.address + "/lijekovi/" + this.route.snapshot.paramMap.get("id"), formData).subscribe(
       () => {
         this.router.navigateByUrl("/apoteka/lijekovi");
         this.alertService.setAlert("success", "Lijek je uspješno uređen");
+      },
+      error => {
+        console.error('Error updating medicine:', error);
+        this.alertService.setAlert("danger", "Failed to update medicine. Please try again.");
       }
     );
   }

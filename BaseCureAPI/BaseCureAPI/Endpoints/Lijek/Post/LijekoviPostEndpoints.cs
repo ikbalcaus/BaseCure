@@ -1,9 +1,9 @@
 ﻿using BaseCureAPI.DB;
 using BaseCureAPI.DB.Models;
-using BaseCureAPI.Endpoints.Korisnik.Post;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
+using System.IO;
+using System.Linq;
 
 namespace BaseCureAPI.Endpoints.Lijek.Post
 {
@@ -19,14 +19,15 @@ namespace BaseCureAPI.Endpoints.Lijek.Post
         }
 
         [HttpPost]
-        public ActionResult CreateLijek([FromForm] IFormFile slika, [FromForm] LijekoviPostReq req)
+        public ActionResult CreateLijek([FromForm] LijekoviPostReq req)
         {
             byte[] imageBytes = null;
-            if (slika != null && slika.Length > 0)
+
+            if (req.Slika != null)
             {
                 using (var memoryStream = new MemoryStream())
                 {
-                    slika.CopyTo(memoryStream);
+                    req.Slika.CopyTo(memoryStream);
                     imageBytes = memoryStream.ToArray();
                 }
             }
@@ -36,23 +37,16 @@ namespace BaseCureAPI.Endpoints.Lijek.Post
                 Naziv = req.Naziv,
                 Opis = req.Opis,
                 Slika = imageBytes,
-                UstanovaId = req.UstanovaId,
                 Cijena = req.Cijena,
                 Kolicina = req.Kolicina,
-                ZahtijevaRecept = req.ZahtijevaRecept
+                ZahtijevaRecept = req.ZahtijevaRecept,
+                UstanovaId = req.UstanovaId
             };
 
-            if (req.ID == 0)
-            {
-                int maxId = _context.Lijekovis.Any() ? _context.Lijekovis.Max(x => x.LijekId) + 1 : 1;
-                lijek.LijekId = maxId;
-            }
-            else
-            {
-                lijek.LijekId = req.ID;
-            }
-            _context.Lijekovis.Add(lijek);
+            int maxId = _context.Lijekovis.Any() ? _context.Lijekovis.Max(x => x.LijekId) + 1 : 1;
+            lijek.LijekId = maxId;
 
+            _context.Lijekovis.Add(lijek);
             _context.SaveChanges();
 
             return NoContent();
