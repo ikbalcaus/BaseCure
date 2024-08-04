@@ -29,7 +29,7 @@ export class UserAboutMedicalInstitutionComponent {
         res => {
           this.res = res;
           // Fetch image for the medical institution
-          this.httpClient.get(`${serverSettings.address}/slika/ustanovaZdravstva/${id}`, { responseType: 'blob' }).subscribe(
+          this.httpClient.get(`${serverSettings.address}/slika/ustanoveZdravstva/${id}`, { responseType: "blob" }).subscribe(
             imageBlob => {
               const reader = new FileReader();
               reader.onload = () => {

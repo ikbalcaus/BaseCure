@@ -5,7 +5,7 @@
 ></app-filter>
 <div class="container cards">
     <app-card *ngFor="let i of res"
-        [img]="i.slika || 'assets/img/doctor-placeholder.jpg'"
+        [img]="i.slika || './../../../assets/img/no-image-avabliable.jpg'"
         [title]="i.imePrezime"
         [description]="i.specijalizacija"
         btn_text1="Termini"

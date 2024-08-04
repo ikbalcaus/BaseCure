@@ -25,12 +25,13 @@ export class PharmacyEditMedicineComponent {
   req: any;
   res: any;
   showModal: boolean = false;
+  image: any;
 
   ngOnInit() {
     this.httpClient.get(serverSettings.address + "/lijekovi/" + this.route.snapshot.paramMap.get("id")).subscribe(
       res => {
         this.res = res
-        this.httpClient.get(`${serverSettings.address}/slika/lijek/${this.route.snapshot.paramMap.get("id")}`, { responseType: 'blob' }).subscribe(
+        this.httpClient.get(`${serverSettings.address}/slika/lijekovi/${this.route.snapshot.paramMap.get("id")}`, { responseType: "blob" }).subscribe(
           imageBlob => {
             const reader = new FileReader();
             reader.onload = () => {
@@ -43,27 +44,34 @@ export class PharmacyEditMedicineComponent {
     );
   }
 
+  onFileSelected(event: any) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.image = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
   EditMedicine(data: any) {
     const formData = new FormData();
-    formData.append('naziv', data.naziv);
-    formData.append('cijena', data.cijena);
-    formData.append('kolicina', data.kolicina);
-    formData.append('opis', data.opis);
-    formData.append('zahtijevaRecept', data.zahtijevaRecept || false);
+    const formAppend = (key: string, value: any) => { if(value != null && value != undefined) formData.append(key, value) }
+    formAppend("naziv", data.naziv);
+    formAppend("cijena", data.cijena);
+    formAppend("kolicina", data.kolicina);
+    formAppend("opis", data.opis);
+    formAppend("zahtijevaRecept", data.zahtijevaRecept || false);
     
-    const fileInput = (document.querySelector('input[name="slika"]') as HTMLInputElement);
-    if (fileInput.files?.length) {
-      formData.append('slika', fileInput.files[0]);
-    }
+    const fileInput = (document.getElementById("imageInput") as HTMLInputElement);
+    if(fileInput.files?.length) formData.append("slika", fileInput.files[0]);
   
     this.httpClient.put(serverSettings.address + "/lijekovi/" + this.route.snapshot.paramMap.get("id"), formData).subscribe(
       () => {
         this.router.navigateByUrl("/apoteka/lijekovi");
         this.alertService.setAlert("success", "Lijek je uspješno uređen");
-      },
-      error => {
-        console.error('Error updating medicine:', error);
-        this.alertService.setAlert("danger", "Failed to update medicine. Please try again.");
       }
     );
   }

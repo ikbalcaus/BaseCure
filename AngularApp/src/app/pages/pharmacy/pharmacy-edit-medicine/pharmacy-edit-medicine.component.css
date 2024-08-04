@@ -2,6 +2,7 @@
     width: 600px;
     aspect-ratio: 16/9;
     padding: 0;
+    object-fit: cover;
 }
 .inline-input-group {
     display: flex;

@@ -34,7 +34,7 @@ export class UserSearchDoctorsComponent {
       res => {
         this.res = res
         this.res.forEach((doctor: any) => {
-          this.httpClient.get(serverSettings.address + "/slika/ljekar/" + doctor.ljekarId, { responseType: 'blob' }).subscribe(
+          this.httpClient.get(serverSettings.address + "/slika/ljekari/" + doctor.ljekarId, { responseType: "blob" }).subscribe(
             imageBlob => {
               const reader = new FileReader();
               reader.onload = () => {

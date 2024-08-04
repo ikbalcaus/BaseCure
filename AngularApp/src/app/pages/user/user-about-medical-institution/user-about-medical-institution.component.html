@@ -1,6 +1,6 @@
 <div class="container">
     <div class="my-4 row d-flex flex-row justify-content-around" *ngIf="res">
-      <img class="thumbnail rounded shadow mx-4 col-8" [src]="res.slika" alt="Slika">
+      <img class="thumbnail rounded shadow mx-4 col-8" [src]="res.slika || './../../../assets/img/no-image-avabliable.jpg'" alt="Slika">
       <div class="mx-4 col">
         <h2 class="name">{{res.naziv}}</h2>
         <div class="mt-2">{{res.opis}}</div>

@@ -39,7 +39,20 @@ export class UserCartComponent {
       }
     );
     this.httpClient.get(serverSettings.address + "/narudzbe/korisnik/" + this.authService.getAuthToken().korisnikId).subscribe(
-      res => this.narudzbe = res
+      res => {
+        this.narudzbe = res;
+        this.narudzbe.forEach((medicine: any) => {
+          this.httpClient.get(serverSettings.address + "/slika/lijekovi/" + medicine.lijekId, { responseType: "blob" }).subscribe(
+            imageBlob => {
+              const reader = new FileReader();
+              reader.onload = () => {
+                medicine.slika = reader.result as string;
+              };
+              reader.readAsDataURL(imageBlob);
+            }
+          );
+        });
+      }
     );
     this.httpClient.get(serverSettings.address + "/gradovi/").subscribe(
       res => this.gradovi = res
@@ -57,7 +70,6 @@ export class UserCartComponent {
         deliveryPriceMap.set(narudzba.nazivUstanove, narudzba.cijenaDostave);
       }
     });
-  
     const sum = Array.from(deliveryPriceMap.values()).reduce((a, b) => a + b, 0);
     return sum;
   }
@@ -68,13 +80,17 @@ export class UserCartComponent {
     );
   }
 
-  confirmOrder(loginForm: any) {
-    this.httpClient.put(serverSettings.address + "/narudzbe/korisnik/" + this.authService.getAuthToken().korisnikId, loginForm).subscribe(
+  confirmOrder(formData: any) {
+    this.httpClient.put(serverSettings.address + "/narudzbe/korisnik/" + this.authService.getAuthToken().korisnikId, formData).subscribe(
       () => {
         this.ngOnInit();
         this.showModal = false;
-        this.alertService.setAlert("success", "Uspješno ste potvrdili narudžbu");
         this.router.navigateByUrl("/");
+        this.alertService.setAlert("success", "Uspješno ste potvrdili narudžbu");
+      },
+      () => {
+        this.router.navigateByUrl("/");
+        this.alertService.setAlert("danger", "Niste unijeli ispravne podatke");
       }
     );
   }

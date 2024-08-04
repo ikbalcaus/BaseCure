@@ -1,12 +1,13 @@
 <div class="container">
     <div class="my-5 row d-flex flex-row justify-content-around">
-        <img class="thumbnail rounded shadow mx-4 col-8" [src]="res.slika" alt="Slika">
+        <img *ngIf="!image" class="thumbnail rounded shadow mx-4 col-8" [src]="res.slika || './../../../assets/img/no-image-avabliable.jpg'" alt="Slika">
+        <img *ngIf="image" class="thumbnail rounded shadow mx-4 col-8" [src]="image" alt="Slika">
         <div class="content mx-4 col">
             <form #loginForm="ngForm">
                 <div class="mx-1">
                     <div class="form-group">
                         <span>Slika:</span>
-                        <input type="file" class="form-control" name="slika" ngModel>
+                        <input type="file" id="imageInput" class="form-control" (change)="onFileSelected($event)">
                     </div>
                     <div class="form-group">
                         <span>Naziv:</span>
@@ -31,7 +32,7 @@
                         <input class="form-control" placeholder="Broj Telefona" name="brojTelefona" autocomplete="off" spellcheck="false" [(ngModel)]="res.brojTelefona">
                     </div>
                     <div class="form-group" *ngIf="res.tipUstanove == 'apoteka'">
-                        <span>Cijena dostave:</span>
+                        <span>Cijena dostave (KM):</span>
                         <input type="number" class="form-control" placeholder="Cijena dostave" name="cijenaDostave" autocomplete="off" spellcheck="false" [(ngModel)]="res.cijenaDostave">
                     </div>
                     <div class="form-group">

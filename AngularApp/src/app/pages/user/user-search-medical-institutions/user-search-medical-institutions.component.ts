@@ -29,7 +29,7 @@ export class UserSearchMedicalInstitutionComponent {
       res => {
         this.res = res;
         this.res.forEach(institution => {
-          this.httpClient.get(`${serverSettings.address}/slika/ustanovaZdravstva/${institution.ustanovaId}`, { responseType: 'blob' }).subscribe(
+          this.httpClient.get(`${serverSettings.address}/slika/ustanoveZdravstva/${institution.ustanovaId}`, { responseType: "blob" }).subscribe(
             imageBlob => {
               const reader = new FileReader();
               reader.onload = () => {

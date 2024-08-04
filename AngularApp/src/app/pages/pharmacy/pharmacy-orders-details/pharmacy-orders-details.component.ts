@@ -35,6 +35,17 @@ export class PharmacyOrdersDetailsComponent {
     this.httpClient.get(serverSettings.address + "/narudzbe/apoteka/" + this.authService.getAuthToken().ustanovaId + "/detalji?status=" + this.status + "&redniBroj=" + this.redniBroj).subscribe(
       res => {
         this.narudzbe = res;
+        this.narudzbe.forEach((medicine: any) => {
+          this.httpClient.get(serverSettings.address + "/slika/lijekovi/" + medicine.lijekId, { responseType: "blob" }).subscribe(
+            imageBlob => {
+              const reader = new FileReader();
+              reader.onload = () => {
+                medicine.slika = reader.result as string;
+              };
+              reader.readAsDataURL(imageBlob);
+            }
+          );
+        });
         if(this.narudzbe.length == 0) {
           this.router.navigateByUrl("apoteka/narudzbe");
         }
@@ -63,8 +74,8 @@ export class PharmacyOrdersDetailsComponent {
         () => {
           this.ngOnInit();
           this.showModalSubmitForm = false;
-          this.alertService.setAlert("success", "Uspješno ste isporučili narudžbu");
           this.router.navigateByUrl("apoteka/narudzbe");
+          this.alertService.setAlert("success", "Uspješno ste isporučili narudžbu");
         },
         () => this.alertService.setAlert("danger", "Nemate zaliha lijekova")
       );
@@ -74,8 +85,8 @@ export class PharmacyOrdersDetailsComponent {
         () => {
           this.ngOnInit();
           this.showModalSubmitForm = false;
-          this.alertService.setAlert("success", "Uspješno ste izbrisali narudžbu");
           this.router.navigateByUrl("apoteka/narudzbe");
+          this.alertService.setAlert("success", "Uspješno ste izbrisali narudžbu");
         }
       );
     }

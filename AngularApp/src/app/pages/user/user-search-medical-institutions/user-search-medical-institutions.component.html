@@ -1,13 +1,13 @@
 <app-filter
     placeholder1="Tip zdravstvene ustanove"
     placeholder2="Naziv grada"
-    link1="/autocomplete/tipustanove?naziv="
+    link1="/autocomplete/tipUstanove?naziv="
     link2="/autocomplete/grad?naziv="
     (searchOptions)="getSearchResults($any($event))"
 ></app-filter>
 <div class="container cards">
     <app-card *ngFor="let i of res"
-        [img]="i.slika || 'assets/img/doctor-placeholder.jpg'"
+        [img]="i.slika || './../../../assets/img/no-image-avabliable.jpg'"
         [title]="i.naziv"
         [description]="i.grad"
         [btn_text1]="(i.tipUstanove == 'apoteka') ? ('Lijekovi') : ('Ljekari')"

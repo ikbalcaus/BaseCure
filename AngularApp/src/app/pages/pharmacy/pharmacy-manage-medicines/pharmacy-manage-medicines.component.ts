@@ -34,9 +34,9 @@ export class PharmacyManageMedicinesComponent {
     
     this.httpClient.get(serverSettings.address + "/filter/lijekovi/" + this.authService.getAuthToken().ustanovaId + "?naziv=" + this.req.naziv + "&opis=" + this.req.opis, this.req).subscribe(
       res => {
-        this.res = res
+        this.res = res;
         this.res.forEach((medicine: any) => {
-          this.httpClient.get(serverSettings.address + "/slika/lijek/" + medicine.lijekId, { responseType: 'blob' }).subscribe(
+          this.httpClient.get(serverSettings.address + "/slika/lijekovi/" + medicine.lijekId, { responseType: "blob" }).subscribe(
             imageBlob => {
               const reader = new FileReader();
               reader.onload = () => {

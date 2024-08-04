@@ -19,8 +19,9 @@ export class UserChatComponent {
   updateAppointment(arg0: string, arg1: string) {
     
   }
+  
   confirmAppointment() {
-    this.alertService.setAlert("success", "Uspjesno ste potvrdili termin");
     this.router.navigateByUrl("/");
+    this.alertService.setAlert("success", "Uspjesno ste potvrdili termin");
   }
 }

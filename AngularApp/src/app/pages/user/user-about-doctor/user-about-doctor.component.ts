@@ -23,10 +23,10 @@ export class UserAboutDoctorComponent {
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.httpClient.get<any>(`${serverSettings.address}/ljekari?id=${id}`).subscribe(
+      this.httpClient.get<any>(`${serverSettings.address}/ljekari/${id}`).subscribe(
         res => {
           this.res = res;
-          this.httpClient.get(`${serverSettings.address}/slika/ljekar/${id}`, { responseType: 'blob' }).subscribe(
+          this.httpClient.get(`${serverSettings.address}/slika/ljekari/${id}`, { responseType: "blob" }).subscribe(
             imageBlob => {
               const reader = new FileReader();
               reader.onload = () => {

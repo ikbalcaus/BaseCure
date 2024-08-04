@@ -22,31 +22,38 @@ export class PharmacyAddMedicineComponent {
     private alertService: AlertService
   ) {}
 
+  image: any;
+
+  onFileSelected(event: any) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.image = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
   AddMedicine(data: any) {
     const formData = new FormData();
-    formData.append('naziv', data.naziv);
-    formData.append('opis', data.opis);
-    formData.append('cijena', data.cijena);
-    formData.append('kolicina', data.kolicina);
-    formData.append('zahtijevaRecept', data.zahtijevaRecept || false);
-    formData.append('ustanovaId', this.authService.getAuthToken().ustanovaId);
-    
-    const fileInput = (document.querySelector('input[name="slika"]') as HTMLInputElement);
-    if (fileInput.files?.length) {
-        formData.append('slika', fileInput.files[0]);
-    }
+    const formAppend = (key: string, value: any) => { if(value != null && value != undefined) formData.append(key, value) }
+    formAppend("naziv", data.naziv);
+    formAppend("opis", data.opis);
+    formAppend("cijena", data.cijena);
+    formAppend("kolicina", data.kolicina);
+    formAppend("zahtijevaRecept", data.zahtijevaRecept || false);
+    formAppend("ustanovaId", this.authService.getAuthToken().ustanovaId);
+
+    const fileInput = (document.getElementById("imageInput") as HTMLInputElement);
+    if(fileInput.files?.length) formData.append("slika", fileInput.files[0]);
 
     this.httpClient.post(serverSettings.address + "/lijekovi", formData).subscribe(
-        () => {
-            this.router.navigateByUrl("/apoteka/lijekovi");
-            this.alertService.setAlert("success", "Lijek je uspješno dodan");
-        },
-        error => {
-            this.alertService.setAlert("error", "Došlo je do greške prilikom dodavanja lijeka");
-            console.error('Error adding medicine:', error);
-        }
+      () => {
+        this.router.navigateByUrl("/apoteka/lijekovi");
+        this.alertService.setAlert("success", "Lijek je uspješno dodan");
+      }
     );
-}
-
-  
+  }
 }

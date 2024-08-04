@@ -35,7 +35,20 @@ export class UserMedicinesComponent {
     this.req.opis = $event[1];
     
     this.httpClient.get(serverSettings.address + "/filter/lijekovi/" + this.route.snapshot.paramMap.get("id") + "?naziv=" + this.req.naziv + "&opis=" + this.req.opis, this.req).subscribe(
-      res => this.res = res
+      res => {
+        this.res = res;
+        this.res.forEach((medicine: any) => {
+          this.httpClient.get(serverSettings.address + "/slika/lijekovi/" + medicine.lijekId, { responseType: "blob" }).subscribe(
+            imageBlob => {
+              const reader = new FileReader();
+              reader.onload = () => {
+                medicine.slika = reader.result as string;
+              };
+              reader.readAsDataURL(imageBlob);
+            }
+          );
+        });
+      }
     );
   }
 

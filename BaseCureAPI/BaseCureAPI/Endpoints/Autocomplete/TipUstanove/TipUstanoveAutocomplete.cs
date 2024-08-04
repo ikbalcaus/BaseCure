@@ -7,16 +7,16 @@ namespace BaseCureAPI.Endpoints.Autocomplete.TipUstanoveZdravstva
 {
     [Route("autocomplete")]
     [ApiController]
-    public class GradoviController : ControllerBase
+    public class AutoCompleteController : ControllerBase
     {
         private readonly BasecureContext _context;
 
-        public GradoviController(BasecureContext context)
+        public AutoCompleteController(BasecureContext context)
         {
             _context = context;
         }
 
-        [HttpGet("tipustanove")]
+        [HttpGet("tipUstanove")]
         public ActionResult GetSearchResult([FromQuery] string? naziv)
         {
             var results = _context.TipoviUstanovas

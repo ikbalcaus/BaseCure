@@ -15,7 +15,7 @@ namespace BaseCureAPI.Endpoints.Slika.Lijek
             _context = context;
         }
 
-        [HttpGet("lijek/{id}")]
+        [HttpGet("lijekovi/{id}")]
         public IActionResult GetImage(int id)
         {
             var image = _context.Lijekovis
@@ -31,7 +31,7 @@ namespace BaseCureAPI.Endpoints.Slika.Lijek
             return File(image, "image/jpeg");
         }
 
-        [HttpPost("lijek/{id}")]
+        [HttpPost("lijekovi/{id}")]
         public IActionResult PostImage(int id, [FromForm] IFormFile file)
         {
             if (file == null || file.Length == 0)

@@ -5,6 +5,7 @@
       <p>Trenutno imate {{ narudzbe.length }} lijekova za poručiti</p>
       <hr>
       <app-item-list *ngFor="let i of narudzbe"
+        [img]="i.slika || './../../../assets/img/no-image-avabliable.jpg'"
         [name]="i.naziv"
         [description]="i.nazivUstanove"
         [price]="i.cijena + 'KM'"
@@ -41,15 +42,15 @@
           <hr>
           <div class="card-column">
             <p class="mb-2 mx-1">Ukupna cijena lijekova:</p>
-            <p class="mb-2 mx-1">{{ sumPrice() }}KM</p>
+            <p class="mb-2 mx-1">{{ sumPrice() }} KM</p>
           </div>
           <div class="card-column">
             <p class="mb-2 mx-1">Cijena dostave:</p>
-            <p class="mb-2 mx-1">{{ deliveryPrice() }}KM</p>
+            <p class="mb-2 mx-1">{{ deliveryPrice() }} KM</p>
           </div>
           <div class="card-column">
             <p class="mb-2 mx-1">Ukupno cijena lijekova i dostave:</p>
-            <p class="mb-2 mx-1">{{ sumPrice() + deliveryPrice() }}KM</p>
+            <p class="mb-2 mx-1">{{ sumPrice() + deliveryPrice() }} KM</p>
           </div>
           <button type="button" class="btn btn-primary btn-lg btn-block mt-2" (click)="showModal = true">Potvrdi narudžbu</button>
         </div>

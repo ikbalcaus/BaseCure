@@ -15,7 +15,7 @@ namespace BaseCureAPI.Endpoints.Slika.UstanovaZdravstva
             _context = context;
         }
 
-        [HttpGet("ustanovaZdravstva/{id}")]
+        [HttpGet("ustanoveZdravstva/{id}")]
         public IActionResult GetImage(int id)
         {
             var image = _context.UstanoveZdravstvas

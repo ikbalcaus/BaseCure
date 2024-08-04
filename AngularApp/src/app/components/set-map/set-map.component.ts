@@ -6,6 +6,7 @@ import { AlertService } from '../../services/alert.service';
 import { serverSettings } from '../../server-settings';
 import { CommonModule } from '@angular/common';
 import { ModalComponent } from '../modal/modal.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-set-map',
@@ -18,6 +19,7 @@ export class SetMapComponent {
   constructor(
     private httpClient: HttpClient,
     private authService: AuthService,
+    private router: Router,
     private alertService: AlertService
   ) {}
 
@@ -62,7 +64,7 @@ export class SetMapComponent {
   onMapClick(event: L.LeafletMouseEvent) {
     this.lat = event.latlng.lat;
     this.long = event.latlng.lng;
-    this.map.eachLayer((layer) => {
+    this.map.eachLayer(layer => {
       if(layer instanceof L.Marker) this.map.removeLayer(layer);
     });
     L.marker([this.lat, this.long], { icon: this.marker }).addTo(this.map);
@@ -70,7 +72,10 @@ export class SetMapComponent {
 
   saveLocation() {
     this.httpClient.put(serverSettings.address + "/ustanoveZdravstva/latlong/" + this.authService.getAuthToken().ustanovaId, { lat: this.lat, long: this.long }).subscribe(
-      () => this.alertService.setAlert("success", "Uspješno ste sačuvali lokaciju")
+      () => {
+        this.router.navigateByUrl("/");
+        this.alertService.setAlert("success", "Uspješno ste sačuvali lokaciju");
+      }
     )
   }
 }
