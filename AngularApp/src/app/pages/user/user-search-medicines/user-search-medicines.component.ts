@@ -12,10 +12,10 @@ import { AlertService } from '../../../services/alert.service';
   selector: 'app-user-medicines',
   standalone: true,
   imports: [CommonModule, FilterComponent, ItemListComponent],
-  templateUrl: './user-medicines.component.html',
-  styleUrl: './user-medicines.component.css'
+  templateUrl: './user-search-medicines.component.html',
+  styleUrl: './user-search-medicines.component.css'
 })
-export class UserMedicinesComponent {
+export class UserSearchMedicinesComponent {
   constructor(
     private httpClient: HttpClient,
     private route: ActivatedRoute,

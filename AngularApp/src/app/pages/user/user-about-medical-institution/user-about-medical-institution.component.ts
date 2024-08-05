@@ -28,7 +28,6 @@ export class UserAboutMedicalInstitutionComponent {
       this.httpClient.get<any>(`${serverSettings.address}/ustanoveZdravstva?id=${id}`).subscribe(
         res => {
           this.res = res;
-          // Fetch image for the medical institution
           this.httpClient.get(`${serverSettings.address}/slika/ustanoveZdravstva/${id}`, { responseType: "blob" }).subscribe(
             imageBlob => {
               const reader = new FileReader();

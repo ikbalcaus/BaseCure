@@ -30,7 +30,7 @@ export class PharmacyEditMedicineComponent {
   ngOnInit() {
     this.httpClient.get(serverSettings.address + "/lijekovi/" + this.route.snapshot.paramMap.get("id")).subscribe(
       res => {
-        this.res = res
+        this.res = res;
         this.httpClient.get(`${serverSettings.address}/slika/lijekovi/${this.route.snapshot.paramMap.get("id")}`, { responseType: "blob" }).subscribe(
           imageBlob => {
             const reader = new FileReader();

@@ -27,12 +27,12 @@ export class UserSearchDoctorsComponent {
   }
 
   getSearchResults($event: Array<string>) {
-    this.req.naziv = $event[0];
-    this.req.grad = $event[1];
+    this.req.imePrezime = $event[0];
+    this.req.specijalizacija = $event[1];
     
-    this.httpClient.get(serverSettings.address + "/ljekari?ustanovaId=" + this.route.snapshot.paramMap.get("id")).subscribe(
+    this.httpClient.get(serverSettings.address + "/filter/ljekari/" + this.route.snapshot.paramMap.get("id") + "?imePrezime=" + this.req.imePrezime + "&specijalizacija=" + this.req.specijalizacija).subscribe(
       res => {
-        this.res = res
+        this.res = res;
         this.res.forEach((doctor: any) => {
           this.httpClient.get(serverSettings.address + "/slika/ljekari/" + doctor.ljekarId, { responseType: "blob" }).subscribe(
             imageBlob => {

@@ -21,7 +21,7 @@ namespace BaseCureAPI.Endpoints.Filter.Lijek
         [HttpGet("lijekovi/{ustanovaId}")]
         public ActionResult GetLijekoviByParams([FromRoute] int ustanovaId, [FromQuery] string? naziv, [FromQuery] string? opis)
         {
-            var ustanove = _context.Lijekovis.OrderByDescending(x => x.UstanovaId)
+            var lijekovi = _context.Lijekovis
                 .Where(x => x.UstanovaId == ustanovaId && (string.IsNullOrEmpty(naziv) || x.Naziv.Contains(naziv)) && (string.IsNullOrEmpty(opis) || x.Opis.Contains(opis)))
                 .Select(x => new LijekoviSearchRes()
                 {
@@ -32,7 +32,7 @@ namespace BaseCureAPI.Endpoints.Filter.Lijek
                     ZahtijevaRecept = x.ZahtijevaRecept,
                     Kolicina = x.Kolicina
                 }).ToList();
-            return Ok(ustanove);
+            return Ok(lijekovi);
         }
     }
 }

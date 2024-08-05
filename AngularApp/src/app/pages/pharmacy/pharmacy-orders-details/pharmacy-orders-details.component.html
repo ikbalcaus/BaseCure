@@ -50,7 +50,7 @@
           <p class="mb-2">{{ narudzbe[0].cijenaDostave || 0 }} KM</p>
         </div>
         <div class="card-column">
-          <p class="mb-2">Ukupno cijena lijekova i dostave:</p>
+          <p class="mb-2">Ukupna cijena lijekova i dostave:</p>
           <p class="mb-2">{{ sumPrice() + narudzbe[0].cijenaDostave }} KM</p>
         </div>
         <button class="btn btn-primary btn-lg btn-block mt-2" (click)="showModalSubmitForm = true">{{ status == "aktivno" ? "Isporuči narudžbu" : "Izbriši narudžbu" }}</button>
