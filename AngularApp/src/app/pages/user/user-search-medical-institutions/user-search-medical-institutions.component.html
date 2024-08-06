@@ -1,6 +1,6 @@
 <app-filter
-    placeholder1="Tip zdravstvene ustanove"
-    placeholder2="Naziv grada"
+    placeholder1="{{ 'institution_type' | translate }}"
+    placeholder2="{{ 'city_name' | translate }}"
     link1="/autocomplete/tipUstanove?naziv="
     link2="/autocomplete/grad?naziv="
     (searchOptions)="getSearchResults($any($event))"
@@ -10,9 +10,9 @@
         [img]="i.slika || './../../../assets/img/no-image-avabliable.jpg'"
         [title]="i.naziv"
         [description]="i.grad"
-        [btn_text1]="(i.tipUstanove == 'apoteka') ? ('Lijekovi') : ('Ljekari')"
+        [btn_text1]="(i.tipUstanove == 'apoteka') ? ('medications' | translate) : ('doctors' | translate)"
         [btn_link1]="(i.tipUstanove == 'apoteka') ? ('/pretrazi/lijekovi/' + i.ustanovaId) : ('/pretrazi/ljekari/' + i.ustanovaId)"
-        btn_text2="Detalji"
+        btn_text2="{{ 'details' | translate }}"
         [btn_link2]="'/pretrazi/' + i.ustanovaId"
     ></app-card>
 </div>

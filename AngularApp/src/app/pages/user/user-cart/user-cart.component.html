@@ -1,15 +1,15 @@
 <div class="container">
   <div class="my-5 main">
     <div class="items">
-      <h4>Vaša korpa</h4>
-      <p>Trenutno imate {{ narudzbe.length }} lijekova za poručiti</p>
+      <h4>{{ 'your_cart' | translate }}</h4>
+      <p>{{ 'currently_have' | translate: { count: narudzbe.length } }}</p>
       <hr>
       <app-item-list *ngFor="let i of narudzbe"
         [img]="i.slika || './../../../assets/img/no-image-avabliable.jpg'"
         [name]="i.naziv"
         [description]="i.nazivUstanove"
         [price]="i.cijena + 'KM'"
-        btnText="Ukloni iz korpe"
+        [btnText]="'delete_from_cart' | translate"
         (btnClick)="removeOrder(i.narudzbaId)"
       >
       </app-item-list>
@@ -17,42 +17,42 @@
     <div class="card-details card bg-primary mt-4 shadow-lg">
       <form #loginForm="ngForm">
         <div class="card-body">
-          <h5>Detalji narudžbe</h5>
+          <h5>{{ 'order_details' | translate }}</h5>
           <hr>
           <div class="form-group mb-2">
-            <label class="mx-1">Ime i prezime:</label>
+            <label class="mx-1">{{ 'full_name' | translate }}:</label>
             <input type="text" class="form-control shadow-sm" name="imePrezime" [(ngModel)]="korisnik.imePrezime" autocomplete="off" spellcheck="false" required>
           </div>
-          <label class="mx-1">Grad:</label>
+          <label class="mx-1">{{ 'city' | translate }}:</label>
           <select class="form-select mb-2" name="grad" [(ngModel)]="korisnik.grad" autocomplete="off" spellcheck="false" required>
             <option *ngFor="let i of gradovi" [selected]="i.naziv == korisnik.grad">{{ i.naziv }}</option>
           </select>
           <div class="form-group mb-2">
-            <label class="mx-1">Adresa stanovanja:</label>
-            <input type="text" class="form-control shadow-sm" name="adresa" [(ngModel)]="korisnik.adresa" autocomplete="off" spellcheck="false" required ngModel>
+            <label class="mx-1">{{ 'address' | translate }}:</label>
+            <input type="text" class="form-control shadow-sm" name="adresa" [(ngModel)]="korisnik.adresa" autocomplete="off" spellcheck="false" required>
           </div>
           <div class="form-group mb-2">
-            <label class="mx-1">Email adresa:</label>
-            <input type="email" class="form-control shadow-sm" name="mailAdresa" [(ngModel)]="korisnik.mailAdresa" autocomplete="off" spellcheck="false" required ngModel>
+            <label class="mx-1">{{ 'email_address' | translate }}:</label>
+            <input type="email" class="form-control shadow-sm" name="mailAdresa" [(ngModel)]="korisnik.mailAdresa" autocomplete="off" spellcheck="false" required>
           </div>
           <div class="form-group mb-2">
-            <label class="mx-1">Broj Telefona:</label>
+            <label class="mx-1">{{ 'phone_number' | translate }}:</label>
             <input type="text" class="form-control shadow-sm" name="brojTelefona" [(ngModel)]="korisnik.brojTelefona" autocomplete="off" spellcheck="false" required>
           </div>
           <hr>
           <div class="card-column">
-            <p class="mb-2 mx-1">Ukupna cijena lijekova:</p>
+            <p class="mb-2 mx-1">{{ 'total_price_of_medications' | translate }}:</p>
             <p class="mb-2 mx-1">{{ sumPrice() }} KM</p>
           </div>
           <div class="card-column">
-            <p class="mb-2 mx-1">Cijena dostave:</p>
+            <p class="mb-2 mx-1">{{ 'delivery_price' | translate }}:</p>
             <p class="mb-2 mx-1">{{ deliveryPrice() }} KM</p>
           </div>
           <div class="card-column">
-            <p class="mb-2 mx-1">Ukupna cijena lijekova i dostave:</p>
+            <p class="mb-2 mx-1">{{ 'total_price_with_delivery' | translate }}:</p>
             <p class="mb-2 mx-1">{{ sumPrice() + deliveryPrice() }} KM</p>
           </div>
-          <button type="button" class="btn btn-primary btn-lg btn-block mt-2" (click)="showModal = true">Potvrdi narudžbu</button>
+          <button type="button" class="btn btn-primary btn-lg btn-block mt-2" (click)="showModal = true">{{ 'confirm_order' | translate }}</button>
         </div>
       </form>
     </div>

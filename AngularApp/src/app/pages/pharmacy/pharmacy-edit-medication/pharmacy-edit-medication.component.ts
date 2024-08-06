@@ -6,15 +6,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { serverSettings } from '../../../server-settings';
 import { ModalComponent } from '../../../components/modal/modal.component';
 import { AlertService } from '../../../services/alert.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-pharmacy-edit-medicine',
+  selector: 'app-pharmacy-edit-medication',
   standalone: true,
-  imports: [CommonModule, FormsModule, ModalComponent],
-  templateUrl: './pharmacy-edit-medicine.component.html',
-  styleUrl: './pharmacy-edit-medicine.component.css'
+  imports: [CommonModule, FormsModule, ModalComponent, TranslateModule],
+  templateUrl: './pharmacy-edit-medication.component.html',
+  styleUrl: './pharmacy-edit-medication.component.css'
 })
-export class PharmacyEditMedicineComponent {
+export class PharmacyEditMedicationComponent {
   constructor(
     private httpClient: HttpClient,
     private router: Router,
@@ -56,7 +57,7 @@ export class PharmacyEditMedicineComponent {
     }
   }
 
-  EditMedicine(data: any) {
+  EditMedication(data: any) {
     const formData = new FormData();
     const formAppend = (key: string, value: any) => { if(value != null && value != undefined) formData.append(key, value) }
     formAppend("naziv", data.naziv);
@@ -76,7 +77,7 @@ export class PharmacyEditMedicineComponent {
     );
   }
 
-  deleteMedicine() {
+  deleteMedication() {
     this.httpClient.delete(serverSettings.address + "/lijekovi/" + this.route.snapshot.paramMap.get("id")).subscribe(
       () => {
         this.router.navigateByUrl("/apoteka/lijekovi");

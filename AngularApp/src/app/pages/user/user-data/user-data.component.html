@@ -3,33 +3,33 @@
         <form #loginForm="ngForm">
             <div class="mx-1">
                 <div class="form-group">
-                    <span>Ime:</span>
-                    <input class="form-control" placeholder="Ime" name="ime" autocomplete="off" spellcheck="false" [(ngModel)]="res.ime">
+                    <span>{{ 'first_name' | translate }}:</span>
+                    <input class="form-control" placeholder="{{ 'first_name' | translate }}" name="ime" autocomplete="off" spellcheck="false" [(ngModel)]="res.ime">
                 </div>
                 <div class="form-group">
-                    <span>Prezime:</span>
-                    <input class="form-control" placeholder="Prezime" name="prezime" autocomplete="off" spellcheck="false" [(ngModel)]="res.prezime">
+                    <span>{{ 'last_name' | translate }}:</span>
+                    <input class="form-control" placeholder="{{ 'last_name' | translate }}" name="prezime" autocomplete="off" spellcheck="false" [(ngModel)]="res.prezime">
                 </div>
                 <div class="form-group">
-                    <span>Grad:</span>
+                    <span>{{ 'city' | translate }}:</span>
                     <select class="form-select" name="grad" autocomplete="off" required [(ngModel)]="res.grad">
                         <option *ngFor="let i of gradovi" [selected]="i.naziv == res.grad">{{ i.naziv }}</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <span>Adresa:</span>
-                    <input class="form-control" placeholder="Adresa" name="adresa" autocomplete="off" spellcheck="false" [(ngModel)]="res.adresa">
+                    <span>{{ 'address' | translate }}:</span>
+                    <input class="form-control" placeholder="{{ 'address' | translate }}" name="adresa" autocomplete="off" spellcheck="false" [(ngModel)]="res.adresa">
                 </div>
                 <div class="form-group">
-                    <span>Email:</span>
-                    <input type="email" class="form-control" placeholder="Email" name="mailAdresa" autocomplete="off" spellcheck="false" [(ngModel)]="res.mailAdresa">
+                    <span>{{ 'email' | translate }}:</span>
+                    <input type="email" class="form-control" placeholder="{{ 'email' | translate }}" name="mailAdresa" autocomplete="off" spellcheck="false" [(ngModel)]="res.mailAdresa">
                 </div>
                 <div class="form-group">
-                    <span>Broj Telefona:</span>
-                    <input class="form-control" placeholder="Broj Telefona" name="brojTelefona" autocomplete="off" spellcheck="false" [(ngModel)]="res.brojTelefona">
+                    <span>{{ 'phone_number' | translate }}:</span>
+                    <input class="form-control" placeholder="{{ 'phone_number' | translate }}" name="brojTelefona" autocomplete="off" spellcheck="false" [(ngModel)]="res.brojTelefona">
                 </div>
             </div>
-            <button class="btn btn-primary btn-block mt-2" (click)="showModal = true">Potvrdi</button>
+            <button class="btn btn-primary btn-block mt-2" (click)="showModal = true">{{ 'confirm' | translate }}</button>
         </form>
     </div>
 </div>

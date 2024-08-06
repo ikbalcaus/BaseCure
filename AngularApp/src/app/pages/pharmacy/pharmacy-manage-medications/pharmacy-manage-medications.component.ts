@@ -6,15 +6,16 @@ import { serverSettings } from '../../../server-settings';
 import { ItemListComponent } from '../../../components/item-list/item-list.component';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-pharmacy-manage-cures',
   standalone: true,
-  imports: [CommonModule, FilterComponent, ItemListComponent],
-  templateUrl: './pharmacy-manage-medicines.component.html',
-  styleUrl: './pharmacy-manage-medicines.component.css'
+  imports: [CommonModule, FilterComponent, ItemListComponent, TranslateModule],
+  templateUrl: './pharmacy-manage-medications.component.html',
+  styleUrl: './pharmacy-manage-medications.component.css'
 })
-export class PharmacyManageMedicinesComponent {
+export class PharmacyManageMedicationsComponent {
   constructor(
     private httpClient: HttpClient,
     private router: Router,
@@ -35,12 +36,12 @@ export class PharmacyManageMedicinesComponent {
     this.httpClient.get(serverSettings.address + "/filter/lijekovi/" + this.authService.getAuthToken().ustanovaId + "?naziv=" + this.req.naziv + "&opis=" + this.req.opis, this.req).subscribe(
       res => {
         this.res = res;
-        this.res.forEach((medicine: any) => {
-          this.httpClient.get(serverSettings.address + "/slika/lijekovi/" + medicine.lijekId, { responseType: "blob" }).subscribe(
+        this.res.forEach((medication: any) => {
+          this.httpClient.get(serverSettings.address + "/slika/lijekovi/" + medication.lijekId, { responseType: "blob" }).subscribe(
             imageBlob => {
               const reader = new FileReader();
               reader.onload = () => {
-                medicine.slika = reader.result as string;
+                medication.slika = reader.result as string;
               };
               reader.readAsDataURL(imageBlob);
             }
@@ -50,7 +51,7 @@ export class PharmacyManageMedicinesComponent {
     );
   }
 
-  editMedicine(lijekId: number) {
+  editMedication(lijekId: number) {
     this.router.navigateByUrl("/apoteka/uredi/" + lijekId);
   }
 }

@@ -7,11 +7,12 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AlertService } from '../../services/alert.service';
 import { ModalComponent } from '../modal/modal.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-edit-medical-institution',
   standalone: true,
-  imports: [CommonModule, FormsModule, ModalComponent],
+  imports: [CommonModule, FormsModule, ModalComponent, TranslateModule],
   templateUrl: './edit-medical-institution.component.html',
   styleUrl: './edit-medical-institution.component.css'
 })

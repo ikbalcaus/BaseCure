@@ -7,11 +7,12 @@ import { serverSettings } from '../../server-settings';
 import { CommonModule } from '@angular/common';
 import { ModalComponent } from '../modal/modal.component';
 import { Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-set-map',
   standalone: true,
-  imports: [CommonModule, ModalComponent],
+  imports: [CommonModule, ModalComponent, TranslateModule],
   templateUrl: './set-map.component.html',
   styleUrl: './set-map.component.css'
 })

@@ -1,6 +1,6 @@
 <div class="container">
     <div class="my-4 row d-flex flex-row justify-content-around" *ngIf="res">
-      <img class="thumbnail rounded shadow mx-4 col-8" [src]="res.slika || './../../../assets/img/no-image-avabliable.jpg'" alt="Slika">
+      <img class="thumbnail rounded shadow mx-4 col-8" [src]="res.slika || './../../../assets/img/no-image-avabliable.jpg'" alt="{{ 'image' | translate }}">
       <div class="mx-4 col">
         <h2 class="name">{{res.naziv}}</h2>
         <div class="mt-2">{{res.opis}}</div>
@@ -8,7 +8,7 @@
         <div class="data">{{res.adresa}}</div>
         <a href="mailto:{{res.mailAdresa}}" class="data text-decoration-none mt-2">{{res.mailAdresa}}</a>
         <a href="tel:{{res.brojTelefona}}" class="data text-decoration-none">{{res.brojTelefona}}</a>
-        <a class="btn btn-primary mt-3" [routerLink]="res.tipUstanove == 'apoteka' ? '/pretrazi/lijekovi/' + res.ustanovaId : '/pretrazi/ljekari/' + res.ustanovaId">{{ res.tipUstanove == 'apoteka' ? 'Pogledaj lijekove' : 'Pogledaj ljekare' }}</a>
+        <a class="btn btn-primary mt-3" [routerLink]="res.tipUstanove == 'apoteka' ? '/pretrazi/lijekovi/' + res.ustanovaId : '/pretrazi/ljekari/' + res.ustanovaId">{{ res.tipUstanove == 'apoteka' ? ('view_medications' | translate) : ('view_doctors' | translate) }}</a>
       </div>
     </div>
     <app-view-map [medicalInstitutionId]="res.ustanovaId"></app-view-map>

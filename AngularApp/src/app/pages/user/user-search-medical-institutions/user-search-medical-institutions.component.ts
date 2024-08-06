@@ -4,13 +4,14 @@ import { FilterComponent } from '../../../components/filter/filter.component';
 import { CardComponent } from "../../../components/card/card.component";
 import { HttpClient } from '@angular/common/http';
 import { serverSettings } from '../../../server-settings';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-search',
   standalone: true,
   templateUrl: './user-search-medical-institutions.component.html',
   styleUrl: './user-search-medical-institutions.component.css',
-  imports: [CommonModule, FilterComponent, CardComponent]
+  imports: [CommonModule, FilterComponent, CardComponent, TranslateModule]
 })
 export class UserSearchMedicalInstitutionComponent {
   constructor(private httpClient: HttpClient) {}

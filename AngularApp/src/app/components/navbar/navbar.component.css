@@ -15,6 +15,16 @@
     background-color: #ebebeb;
     box-shadow: 0 .06rem .25rem rgba(0, 0, 0, .075);
 }
+.navbar-toggler {
+    margin-right: 65px;
+}
+.language-select {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    outline: none;
+    border: 1px solid #dfdfdf;
+}
 
 @media (max-width: 1199px) {
     .navbar {

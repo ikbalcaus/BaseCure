@@ -1,46 +1,46 @@
 <div class="container">
     <div class="my-5 row d-flex flex-row justify-content-around">
-        <img *ngIf="!image" class="thumbnail rounded shadow mx-4 col-8" [src]="res.slika || './../../../assets/img/no-image-avabliable.jpg'" alt="Slika">
-        <img *ngIf="image" class="thumbnail rounded shadow mx-4 col-8" [src]="image" alt="Slika">
+        <img *ngIf="!image" class="thumbnail rounded shadow mx-4 col-8" [src]="res.slika || './../../../assets/img/no-image-avabliable.jpg'" alt="{{ 'image' | translate }}">
+        <img *ngIf="image" class="thumbnail rounded shadow mx-4 col-8" [src]="image" alt="{{ 'image' | translate }}">
         <div class="content mx-4 col">
             <form #loginForm="ngForm">
                 <div class="mx-1">
                     <div class="form-group">
-                        <span>Slika:</span>
+                        <span>{{ 'image' | translate }}:</span>
                         <input type="file" id="imageInput" class="form-control" (change)="onFileSelected($event)">
                     </div>
                     <div class="form-group">
-                        <span>Naziv:</span>
-                        <input class="form-control" placeholder="Naziv" name="naziv" autocomplete="off" spellcheck="false" [(ngModel)]="res.naziv">
+                        <span>{{ 'name' | translate }}:</span>
+                        <input class="form-control" placeholder="{{ 'name' | translate }}" name="naziv" autocomplete="off" spellcheck="false" [(ngModel)]="res.naziv">
                     </div>
                     <div class="form-group">
-                        <span>Grad:</span>
+                        <span>{{ 'city' | translate }}:</span>
                         <select class="form-select" name="grad" autocomplete="off" [(ngModel)]="res.grad">
                             <option *ngFor="let i of gradovi" [selected]="i.naziv == res.grad">{{ i.naziv }}</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <span>Adresa:</span>
-                        <input class="form-control" placeholder="Adresa" name="adresa" autocomplete="off" spellcheck="false" [(ngModel)]="res.adresa">
+                        <span>{{ 'address' | translate }}:</span>
+                        <input class="form-control" placeholder="{{ 'address' | translate }}" name="adresa" autocomplete="off" spellcheck="false" [(ngModel)]="res.adresa">
                     </div>
                     <div class="form-group">
-                        <span>Email:</span>
-                        <input type="email" class="form-control" placeholder="Email" name="mailAdresa"autocomplete="off" spellcheck="false" [(ngModel)]="res.mailAdresa">
+                        <span>{{ 'email' | translate }}:</span>
+                        <input type="email" class="form-control" placeholder="{{ 'email' | translate }}" name="mailAdresa" autocomplete="off" spellcheck="false" [(ngModel)]="res.mailAdresa">
                     </div>
                     <div class="form-group">
-                        <span>Broj Telefona:</span>
-                        <input class="form-control" placeholder="Broj Telefona" name="brojTelefona" autocomplete="off" spellcheck="false" [(ngModel)]="res.brojTelefona">
+                        <span>{{ 'phone_number' | translate }}:</span>
+                        <input class="form-control" placeholder="{{ 'phone_number' | translate }}" name="brojTelefona" autocomplete="off" spellcheck="false" [(ngModel)]="res.brojTelefona">
                     </div>
                     <div class="form-group" *ngIf="res.tipUstanove == 'apoteka'">
-                        <span>Cijena dostave (KM):</span>
-                        <input type="number" class="form-control" placeholder="Cijena dostave (KM)" name="cijenaDostave" autocomplete="off" spellcheck="false" [(ngModel)]="res.cijenaDostave">
+                        <span>{{ 'delivery_price' | translate }} (KM):</span>
+                        <input type="number" class="form-control" placeholder="{{ 'delivery_price' | translate }} (KM)" name="cijenaDostave" autocomplete="off" spellcheck="false" [(ngModel)]="res.cijenaDostave">
                     </div>
                     <div class="form-group">
-                        <span>Opis:</span>
-                        <textarea class="form-control" rows="3" placeholder="Opis" name="opis" autocomplete="false" spellcheck="false" [(ngModel)]="res.opis"></textarea>
+                        <span>{{ 'description' | translate }}:</span>
+                        <textarea class="form-control" rows="3" placeholder="{{ 'description' | translate }}" name="opis" autocomplete="false" spellcheck="false" [(ngModel)]="res.opis"></textarea>
                     </div>
                 </div>
-                <button class="btn btn-primary btn-block mt-2" (click)="showModal = true">Potvrdi</button>
+                <button class="btn btn-primary btn-block mt-2" (click)="showModal = true">{{ 'confirm' | translate }}</button>
             </form>
         </div>
     </div>

@@ -6,15 +6,16 @@ import { Router } from '@angular/router';
 import { serverSettings } from '../../../server-settings';
 import { AlertService } from '../../../services/alert.service';
 import { AuthService } from '../../../services/auth.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-pharmacy-add-medicine',
+  selector: 'app-pharmacy-add-medication',
   standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './pharmacy-add-medicine.component.html',
-  styleUrl: './pharmacy-add-medicine.component.css'
+  imports: [CommonModule, FormsModule, TranslateModule],
+  templateUrl: './pharmacy-add-medication.component.html',
+  styleUrl: './pharmacy-add-medication.component.css'
 })
-export class PharmacyAddMedicineComponent {
+export class PharmacyAddMedicationComponent {
   constructor(
     private httpClient: HttpClient,
     private router: Router,
@@ -36,7 +37,7 @@ export class PharmacyAddMedicineComponent {
     }
   }
 
-  AddMedicine(data: any) {
+  AddMedication(data: any) {
     const formData = new FormData();
     const formAppend = (key: string, value: any) => { if(value != null && value != undefined) formData.append(key, value) }
     formAppend("naziv", data.naziv);

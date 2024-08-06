@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { CardComponent } from '../../../components/card/card.component';
 import { FilterComponent } from '../../../components/filter/filter.component';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-doctors',
   standalone: true,
-  imports: [CommonModule, FilterComponent, CardComponent],
+  imports: [CommonModule, FilterComponent, CardComponent, TranslateModule],
   templateUrl: './user-search-doctors.component.html',
   styleUrl: './user-search-doctors.component.css'
 })

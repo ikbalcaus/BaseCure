@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-item-list',
   standalone: true,
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './item-list.component.html',
   styleUrl: './item-list.component.css'
 })
