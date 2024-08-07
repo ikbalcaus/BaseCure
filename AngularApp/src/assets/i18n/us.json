@@ -55,12 +55,11 @@
     "delete_medication": "Delete medication",
     "edit_medication": "Edit medication",
     "active_orders": "Active orders",
-    "active_orders_count": "You currently have {{ countOrders }} active orders",
+    "active_orders_count": "You currently have {{ count }} active orders",
     "delivered_orders": "Delivered orders",
-    "delivered_orders_count": "You currently have {{ countOrders }} delivered orders",
+    "delivered_orders_count": "You currently have {{ count }} delivered orders",
     "view_details": "View details",
-    "user_ordered_medications": "User has ordered {{ countMedications }} medications",
-    "current_orders": "You have {{ count }} ordered medications",
+    "user_ordered_medications": "User has ordered {{ count }} medications",
     "deliver_order": "Deliver order",
     "delete_order": "Delete order"
 }

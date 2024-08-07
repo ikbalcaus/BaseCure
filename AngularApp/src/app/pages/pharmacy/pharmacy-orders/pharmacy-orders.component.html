@@ -2,7 +2,7 @@
   <div class="my-5 main">
     <div class="items">
       <h4>{{ 'active_orders' | translate }}</h4>
-      <p>{{ 'active_orders_count' | translate: { countOrders: countOrders('aktivno') } }}</p>
+      <p>{{ 'active_orders_count' | translate: { count: countOrders('aktivno') } }}</p>
       <hr>
       <div *ngFor="let i of res">
         <div class="card border-0" *ngIf="i.status == 'aktivno'">
@@ -11,7 +11,7 @@
               <div class="card-column align-items-center justify-content-start">
                 <div class="ms-1">
                   <h5>{{i.imePrezime}}</h5>
-                  <p class="small mb-0">{{ 'user_ordered_medications' | translate: { countMedications: i.brojLijekova } }}</p>
+                  <p class="small mb-0">{{ 'user_ordered_medications' | translate: { count: i.brojLijekova } }}</p>
                 </div>
               </div>
               <div class="card-column align-items-center justify-content-end">
@@ -24,7 +24,7 @@
     </div>
     <div class="items">
       <h4>{{ 'delivered_orders' | translate }}</h4>
-      <p>{{ 'delivered_orders_count' | translate: { countOrders: countOrders('isporuceno') } }}</p>
+      <p>{{ 'delivered_orders_count' | translate: { count: countOrders('isporuceno') } }}</p>
       <hr>
       <div *ngFor="let i of res">
         <div class="card border-0" *ngIf="i.status == 'isporuceno'">
@@ -33,7 +33,7 @@
               <div class="card-column align-items-center justify-content-start">
                 <div class="ms-1">
                   <h5>{{i.imePrezime}}</h5>
-                  <p class="small mb-0">{{ 'user_ordered_medications' | translate: { countMedications: i.brojLijekova } }}</p>
+                  <p class="small mb-0">{{ 'user_ordered_medications' | translate: { count: i.brojLijekova } }}</p>
                 </div>
               </div>
               <div class="card-column align-items-center justify-content-end">

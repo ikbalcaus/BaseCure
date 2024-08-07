@@ -55,12 +55,11 @@
     "delete_medication": "Izbriši lijek",
     "edit_medication": "Uredi lijek",
     "active_orders": "Aktivne narudžbe",
-    "active_orders_count": "Trenutno imate {{ countOrders }} aktivnih narudžbi",
+    "active_orders_count": "Trenutno imate {{ count }} aktivnih narudžbi",
     "delivered_orders": "Isporučene narudžbe",
-    "delivered_orders_count": "Trenutno imate {{ countOrders }} isporučenih narudžbi",
+    "delivered_orders_count": "Trenutno imate {{ count }} isporučenih narudžbi",
     "view_details": "Pogledaj detalje",
-    "user_ordered_medications": "Korisnik je naručio {{ countMedications }} lijekova",
-    "current_orders": "Imate {{ count }} naručenih lijekova",
+    "user_ordered_medications": "Korisnik je naručio {{ count }} lijekova",
     "deliver_order": "Isporuči narudžbu",
     "delete_order": "Izbriši narudžbu"
 }

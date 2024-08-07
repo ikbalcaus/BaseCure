@@ -2,7 +2,7 @@
   <div class="my-5 main">
     <div class="items">
       <h4>{{ narudzbe[0].imePrezime }}</h4>
-      <p>{{ 'current_orders' | translate: { count: narudzbe.length } }}</p>
+      <p>{{ 'user_ordered_medications' | translate: { count: narudzbe.length } }}</p>
       <hr>
       <div *ngFor="let i of narudzbe">
         <app-item-list
