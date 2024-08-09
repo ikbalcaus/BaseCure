@@ -17,29 +17,29 @@ body {
     border-color: transparent !important;
 }
 .btn-primary, .btn-secondary, .btn-danger {
-    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .075) !important;
     font-weight: 500;
     font-size: 16px;
     padding: 6px 30px;
     margin-top: 1px;
 }
 .btn-primary {
-    background-color: #3D8AF7;
-    border: 1px solid #3D8AF7;
+    background-color: #3d8af7;
+    border: 1px solid #3d8af7;
 }
 .btn-primary:hover {
-    background-color: #1E88E5;
-    border: 1px solid #1E88E5;
+    background-color: #1e88e5;
+    border: 1px solid #1e88e5;
 }
 .btn-primary:active {
-    background-color: #1976D2 !important;
-    border: 1px solid #1976D2 !important;
+    background-color: #1976d2 !important;
+    border: 1px solid #1976d2 !important;
 }
 .btn-secondary {
     background-color: #ebebeb !important;
     border: 1px solid #ebebeb !important;
     color: black !important;
-    box-shadow: 0 .06rem .25rem rgba(0, 0, 0, .075) !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .075) !important;
 }
 .btn-secondary:hover {
     background-color: #dfdfdf !important;

@@ -8,9 +8,9 @@
         [img]="i.slika || './../../../assets/img/no-image-avabliable.jpg'"
         [title]="i.imePrezime"
         [description]="i.specijalizacija"
-        btn_text1="{{ 'appointments' | translate }}"
+        btn_text1="{{ 'contact' | translate }}"
         [btn_link1]="'/kontakt/' + i.ljekarId"
         btn_text2="{{ 'details' | translate }}"
-        [btn_link2]="'/ljekar/' + i.ljekarId"
+        [btn_link2]="'/pretrazi/ljekar/' + i.ljekarId"
     ></app-card>
 </div>

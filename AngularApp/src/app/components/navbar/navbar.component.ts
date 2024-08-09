@@ -32,10 +32,7 @@ export class NavbarComponent {
     }
 
     showLink(roles: Array<string>) {
-        for(let role of roles) {
-            if(role == this.authService.getAuthToken()?.uloga) return true;
-        }
-        return false;
+        return roles.includes(this.authService.getAuthToken()?.uloga);
     }
 
     changeLanguage(event: any) {

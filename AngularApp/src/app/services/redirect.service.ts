@@ -16,7 +16,7 @@ export class RedirectService {
     if(role == "korisnik") this.router.navigateByUrl("/pretrazi");
     else if(role == "apoteka") this.router.navigateByUrl("/apoteka/narudzbe");
     else if(role == "bolnica") this.router.navigateByUrl("/ustanova-zdravstva/podaci");
-    else if(role == "ljekar") this.router.navigateByUrl("/ljekar/uputnice");
+    else if(role == "ljekar") this.router.navigateByUrl("/ljekar/poruke");
     else if(role == "admin") this.router.navigateByUrl("/basecure-admin/dashboard");
     return false;
   }
