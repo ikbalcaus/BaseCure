@@ -5,7 +5,9 @@
 }
 .card-img-top {
     aspect-ratio: 16/9;
+    object-fit: cover;
 }
 .btn {
     width: 48.6%;
+    padding: 6px 0;
 }

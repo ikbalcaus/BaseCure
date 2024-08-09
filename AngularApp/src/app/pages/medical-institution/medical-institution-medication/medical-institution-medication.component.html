@@ -1,0 +1,15 @@
+<!-- user-medications.component.html -->
+
+<app-filter placeholder1="Naziv lijeka" placeholder2="Opis lijeka"></app-filter>
+<div class="container">
+  <!-- user-medications.component.html -->
+
+  <app-item-list
+    *ngFor="let medication of dummyDataFirstSection"
+    [name]="medication.name"
+    [description]="medication.description"
+    [price]="medication.price"
+    btnText="Dodaj lijek"
+  ></app-item-list>
+
+</div>

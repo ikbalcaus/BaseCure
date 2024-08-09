@@ -1,5 +1,5 @@
 <div id="map"></div>
-<button id="btn" class="btn btn-primary" (click)="showModal = true">Sačuvaj lokaciju</button>
+<button id="btn" class="btn btn-primary" (click)="showModal = true">{{ 'save_location' | translate }}</button>
 <app-modal
     *ngIf="showModal"
     (closeModal)="showModal = false"

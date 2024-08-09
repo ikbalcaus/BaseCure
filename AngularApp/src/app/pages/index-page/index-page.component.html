@@ -1,21 +1,22 @@
 <div class="login shadow">
     <form #loginForm="ngForm" (submit)="loginUser(loginForm.value)">
-        <h3 class="text-center mt-2">Prijavi se</h3>
+        <h3 class="text-center mt-2">{{ 'login' | translate }}</h3>
         <div class="form-group first-input">
-            <label>Email adresa:</label>
+            <label>{{ 'email_address' | translate }}:</label>
             <input type="email" class="form-control" name="mailAdresa" autocomplete="off" spellcheck="false" ngModel>
         </div>
         <div class="form-group mt-2">
-            <label>Šifra:</label>
+            <label>{{ 'password' | translate }}:</label>
             <input type="password" class="form-control" name="lozinka" ngModel>
         </div>
         <div class="form-group form-check mt-2">
             <input type="checkbox" id="checkbox-input" class="form-check-input" name="rememberme" ngModel>
-            <label for="checkbox-input">Zapamti me</label>
+            <label for="checkbox-input">{{ 'remember_me' | translate }}</label>
         </div>
-        <button class="btn btn-primary btn-block mt-3">Nastavi</button>
+        <button class="btn btn-primary btn-block mt-3">{{ 'continue' | translate }}</button>
     </form>
 </div>
+
 
 <div class="modal fade" id="verificationModal" tabindex="-1" role="dialog" aria-labelledby="verificationModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

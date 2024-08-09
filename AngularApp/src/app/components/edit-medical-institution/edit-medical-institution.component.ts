@@ -7,11 +7,12 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AlertService } from '../../services/alert.service';
 import { ModalComponent } from '../modal/modal.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-edit-medical-institution',
   standalone: true,
-  imports: [CommonModule, FormsModule, ModalComponent],
+  imports: [CommonModule, FormsModule, ModalComponent, TranslateModule],
   templateUrl: './edit-medical-institution.component.html',
   styleUrl: './edit-medical-institution.component.css'
 })
@@ -26,6 +27,7 @@ export class EditMedicalInstitutionComponent {
   res: any;
   gradovi: any;
   showModal: boolean = false;
+  image: any;
 
   ngOnInit() {
     const id = this.authService.getAuthToken().ustanovaId;
@@ -33,7 +35,7 @@ export class EditMedicalInstitutionComponent {
       this.httpClient.get<any>(`${serverSettings.address}/ustanoveZdravstva?id=${id}`).subscribe(
         res => {
           this.res = res;
-          this.httpClient.get(`${serverSettings.address}/slika/ustanovaZdravstva/${id}`, { responseType: 'blob' }).subscribe(
+          this.httpClient.get(`${serverSettings.address}/slika/ustanoveZdravstva/${id}`, { responseType: "blob" }).subscribe(
             imageBlob => {
               const reader = new FileReader();
               reader.onload = () => {
@@ -50,31 +52,38 @@ export class EditMedicalInstitutionComponent {
     )
   }
 
+  onFileSelected(event: any) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.image = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
   EditMedicalInstitution(data: any) {
     const formData = new FormData();
-    formData.append('naziv', data.naziv);
-    formData.append('grad', data.grad);
-    formData.append('adresa', data.adresa);
-    formData.append('telefon', data.telefon);
-    formData.append('mailAdresa', data.mailAdresa);
-    formData.append('brojTelefona', data.brojTelefona);
-    formData.append('cijenaDostave', data.cijenaDostave);
-    formData.append('opis', data.opis);
+    const formAppend = (key: string, value: any) => { if(value != null && value != undefined) formData.append(key, value) }
+    formAppend("naziv", data.naziv);
+    formAppend("grad", data.grad);
+    formAppend("adresa", data.adresa);
+    formAppend("telefon", data.telefon);
+    formAppend("mailAdresa", data.mailAdresa);
+    formAppend("brojTelefona", data.brojTelefona);
+    formAppend("cijenaDostave", data.cijenaDostave);
+    formAppend("opis", data.opis);
 
-    const fileInput = (document.querySelector('input[name="slika"]') as HTMLInputElement);
-    if (fileInput.files?.length) {
-        formData.append('slika', fileInput.files[0]);
-    }
+    const fileInput = (document.getElementById("imageInput") as HTMLInputElement);
+    if(fileInput.files?.length) formData.append("slika", fileInput.files[0]);
 
     this.httpClient.put(serverSettings.address + "/ustanoveZdravstva/" + this.authService.getAuthToken().ustanovaId, formData).subscribe(
-        () => {
-            this.router.navigateByUrl("/");
-            this.alertService.setAlert("success", "Uspješno ste promjenili podatke");
-        },
-        error => {
-            this.alertService.setAlert("error", "Došlo je do greške prilikom promjene podataka");
-            console.error('Error adding medicine:', error);
-        }
+      () => {
+          this.router.navigateByUrl("/");
+          this.alertService.setAlert("success", "Uspješno ste promjenili podatke");
+      }
     );
   }
 }

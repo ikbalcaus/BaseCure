@@ -1,0 +1,15 @@
+<app-filter
+    placeholder1="{{ 'medication_name' | translate }}"
+    placeholder2="{{ 'medication_description' | translate }}"
+    (searchOptions)="getSearchResults($any($event))"
+></app-filter>
+<div class="container main">
+    <app-item-list *ngFor="let i of res"
+        [img]="i.slika || './../../../assets/img/no-image-avabliable.jpg'"
+        [name]="i.naziv"
+        [description]="i.opis"
+        [price]="i.cijena + 'KM'"
+        btnText="{{ 'edit_medication' | translate }}"
+        (btnClick)="editMedication(i.lijekId)"
+    ></app-item-list>
+</div>

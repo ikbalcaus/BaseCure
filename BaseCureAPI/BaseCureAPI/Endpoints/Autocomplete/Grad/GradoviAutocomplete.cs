@@ -7,11 +7,11 @@ namespace BaseCureAPI.Endpoints.Autocomplete.Grad
 {
     [Route("autocomplete")]
     [ApiController]
-    public class GradoviController : ControllerBase
+    public class AutoCompleteController : ControllerBase
     {
         private readonly BasecureContext _context;
 
-        public GradoviController(BasecureContext context)
+        public AutoCompleteController(BasecureContext context)
         {
             _context = context;
         }

@@ -1,7 +1,7 @@
 :host {
     display: block;
     height: calc(100vh - 73px);
-    background-image: url("./../../../assets/img/landing-page-background.jpg");
+    background-image: url("./../../../assets/img/index-page-background.jpg");
     background-position: center;
     background-size: cover;
 }

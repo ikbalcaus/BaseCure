@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { CardComponent } from '../../../components/card/card.component';
 import { FilterComponent } from '../../../components/filter/filter.component';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-doctors',
   standalone: true,
-  imports: [CommonModule, FilterComponent, CardComponent],
+  imports: [CommonModule, FilterComponent, CardComponent, TranslateModule],
   templateUrl: './user-search-doctors.component.html',
   styleUrl: './user-search-doctors.component.css'
 })
@@ -27,14 +28,14 @@ export class UserSearchDoctorsComponent {
   }
 
   getSearchResults($event: Array<string>) {
-    this.req.naziv = $event[0];
-    this.req.grad = $event[1];
+    this.req.imePrezime = $event[0];
+    this.req.specijalizacija = $event[1];
     
-    this.httpClient.get(serverSettings.address + "/ljekari?ustanovaId=" + this.route.snapshot.paramMap.get("id")).subscribe(
+    this.httpClient.get(serverSettings.address + "/filter/ljekari/" + this.route.snapshot.paramMap.get("id") + "?imePrezime=" + this.req.imePrezime + "&specijalizacija=" + this.req.specijalizacija).subscribe(
       res => {
-        this.res = res
+        this.res = res;
         this.res.forEach((doctor: any) => {
-          this.httpClient.get(serverSettings.address + "/slika/ljekar/" + doctor.ljekarId, { responseType: 'blob' }).subscribe(
+          this.httpClient.get(serverSettings.address + "/slika/ljekari/" + doctor.ljekarId, { responseType: "blob" }).subscribe(
             imageBlob => {
               const reader = new FileReader();
               reader.onload = () => {

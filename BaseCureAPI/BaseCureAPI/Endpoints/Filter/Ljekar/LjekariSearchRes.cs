@@ -1,9 +1,9 @@
 ﻿using BaseCureAPI.DB.Models;
 using System.Text.Json.Serialization;
 
-namespace BaseCureAPI.Endpoints.Ljekar.GetAllByUstanovaZdravstva
+namespace BaseCureAPI.Endpoints.Filter.Ljekar
 {
-    public class LjekarGetAllByUstanovaZdravstvaRes
+    public class LjekariSearchRes
     {
         public int? LjekarId { get; set; }
         public string? Specijalizacija { get; set; }

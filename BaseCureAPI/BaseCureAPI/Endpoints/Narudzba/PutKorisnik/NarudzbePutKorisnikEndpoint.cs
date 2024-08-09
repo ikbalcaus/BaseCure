@@ -22,7 +22,12 @@ namespace BaseCureAPI.Endpoints.Narudzba.PutKorisnik
 
             if (grad == null)
             {
-                return BadRequest(new { message = "Grad ne postoji" });
+                return BadRequest("Grad ne postoji");
+            }
+
+            if (req.ImePrezime == "" || req.BrojTelefona == "" || req.Adresa == "" || req.MailAdresa == "")
+            {
+                return BadRequest("Niste unijeli ispravne podatke");
             }
 
             foreach (var narudzba in narudzbe)

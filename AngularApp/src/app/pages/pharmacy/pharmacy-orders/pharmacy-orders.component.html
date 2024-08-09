@@ -1,8 +1,8 @@
 <div class="container">
   <div class="my-5 main">
     <div class="items">
-      <h4>Aktivne narudžbe</h4>
-      <p>Trenutno imate {{ countOrders("aktivno") }} aktivnih narudžbi</p>
+      <h4>{{ 'active_orders' | translate }}</h4>
+      <p>{{ 'active_orders_count' | translate: { count: countOrders('aktivno') } }}</p>
       <hr>
       <div *ngFor="let i of res">
         <div class="card border-0" *ngIf="i.status == 'aktivno'">
@@ -11,11 +11,11 @@
               <div class="card-column align-items-center justify-content-start">
                 <div class="ms-1">
                   <h5>{{i.imePrezime}}</h5>
-                  <p class="small mb-0">Korisnik je naručio {{i.brojLijekova}} lijeka</p>
+                  <p class="small mb-0">{{ 'user_ordered_medications' | translate: { count: i.brojLijekova } }}</p>
                 </div>
               </div>
               <div class="card-column align-items-center justify-content-end">
-                <a class="btn btn-primary" routerLink="/apoteka/narudzbe/{{i.redniBroj}}/aktivno">Pogledaj detalje</a>
+                <a class="btn btn-primary" [routerLink]="'/apoteka/narudzbe/' + i.redniBroj + '/aktivno'">{{ 'view_details' | translate }}</a>
               </div>
             </div>
           </div>
@@ -23,8 +23,8 @@
       </div>
     </div>
     <div class="items">
-      <h4>Isporučene narudžbe</h4>
-      <p>Trenutno imate {{ countOrders("isporuceno") }} isporučenih narudžbi </p>
+      <h4>{{ 'delivered_orders' | translate }}</h4>
+      <p>{{ 'delivered_orders_count' | translate: { count: countOrders('isporuceno') } }}</p>
       <hr>
       <div *ngFor="let i of res">
         <div class="card border-0" *ngIf="i.status == 'isporuceno'">
@@ -33,11 +33,11 @@
               <div class="card-column align-items-center justify-content-start">
                 <div class="ms-1">
                   <h5>{{i.imePrezime}}</h5>
-                  <p class="small mb-0">Korisnik je naručio {{i.brojLijekova}} lijeka</p>
+                  <p class="small mb-0">{{ 'user_ordered_medications' | translate: { count: i.brojLijekova } }}</p>
                 </div>
               </div>
               <div class="card-column align-items-center justify-content-end">
-                <a class="btn btn-primary" routerLink="/apoteka/narudzbe/{{i.redniBroj}}/isporuceno">Pogledaj detalje</a>
+                <a class="btn btn-primary" [routerLink]="'/apoteka/narudzbe/' + i.redniBroj + '/isporuceno'">{{ 'view_details' | translate }}</a>
               </div>
             </div>
           </div>
@@ -46,4 +46,3 @@
     </div>
   </div>
 </div>
-  

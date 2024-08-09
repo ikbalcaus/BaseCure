@@ -15,7 +15,7 @@ namespace BaseCureAPI.Endpoints.Slika.Ljekar
             _context = context;
         }
 
-        [HttpGet("ljekar/{id}")]
+        [HttpGet("ljekari/{id}")]
         public IActionResult GetImage(int id)
         {
             var image = _context.Ljekaris

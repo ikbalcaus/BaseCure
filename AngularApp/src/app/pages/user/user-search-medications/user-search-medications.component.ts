@@ -7,15 +7,16 @@ import { serverSettings } from '../../../server-settings';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { AlertService } from '../../../services/alert.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-user-medicines',
+  selector: 'app-user-medications',
   standalone: true,
-  imports: [CommonModule, FilterComponent, ItemListComponent],
-  templateUrl: './user-medicines.component.html',
-  styleUrl: './user-medicines.component.css'
+  imports: [CommonModule, FilterComponent, ItemListComponent, TranslateModule],
+  templateUrl: './user-search-medications.component.html',
+  styleUrl: './user-search-medications.component.css'
 })
-export class UserMedicinesComponent {
+export class UserSearchMedicationsComponent {
   constructor(
     private httpClient: HttpClient,
     private route: ActivatedRoute,
@@ -35,14 +36,27 @@ export class UserMedicinesComponent {
     this.req.opis = $event[1];
     
     this.httpClient.get(serverSettings.address + "/filter/lijekovi/" + this.route.snapshot.paramMap.get("id") + "?naziv=" + this.req.naziv + "&opis=" + this.req.opis, this.req).subscribe(
-      res => this.res = res
+      res => {
+        this.res = res;
+        this.res.forEach((medication: any) => {
+          this.httpClient.get(serverSettings.address + "/slika/lijekovi/" + medication.lijekId, { responseType: "blob" }).subscribe(
+            imageBlob => {
+              const reader = new FileReader();
+              reader.onload = () => {
+                medication.slika = reader.result as string;
+              };
+              reader.readAsDataURL(imageBlob);
+            }
+          );
+        });
+      }
     );
   }
 
-  addOrder(medicineId: number) {
+  addOrder(medicationId: number) {
     let req = {
       korisnikId: this.authService.getAuthToken().korisnikId,
-      lijekId: medicineId
+      lijekId: medicationId
     };
     this.httpClient.post(serverSettings.address + "/narudzbe", req).subscribe(
       () => this.alertService.setAlert("success", "Uspješno ste dodali lijek u korpu")

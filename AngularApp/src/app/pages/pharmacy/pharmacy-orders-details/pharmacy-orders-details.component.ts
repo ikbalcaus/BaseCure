@@ -7,11 +7,12 @@ import { CommonModule } from '@angular/common';
 import { ItemListComponent } from '../../../components/item-list/item-list.component';
 import { ModalComponent } from '../../../components/modal/modal.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-pharmacy-orders-details',
   standalone: true,
-  imports: [CommonModule, ItemListComponent, ModalComponent],
+  imports: [CommonModule, ItemListComponent, ModalComponent, TranslateModule],
   templateUrl: './pharmacy-orders-details.component.html',
   styleUrl: './pharmacy-orders-details.component.css'
 })
@@ -28,13 +29,24 @@ export class PharmacyOrdersDetailsComponent {
   redniBroj: any = this.route.snapshot.paramMap.get("redniBroj")
   status: any = this.route.snapshot.paramMap.get("status");
   showModalSubmitForm: boolean = false;
-  showModalDeleteMedicine: boolean = false;
+  showModalDeleteMedication: boolean = false;
   tempNarudzbaId: number = 0;
 
   ngOnInit() {
     this.httpClient.get(serverSettings.address + "/narudzbe/apoteka/" + this.authService.getAuthToken().ustanovaId + "/detalji?status=" + this.status + "&redniBroj=" + this.redniBroj).subscribe(
       res => {
         this.narudzbe = res;
+        this.narudzbe.forEach((medication: any) => {
+          this.httpClient.get(serverSettings.address + "/slika/lijekovi/" + medication.lijekId, { responseType: "blob" }).subscribe(
+            imageBlob => {
+              const reader = new FileReader();
+              reader.onload = () => {
+                medication.slika = reader.result as string;
+              };
+              reader.readAsDataURL(imageBlob);
+            }
+          );
+        });
         if(this.narudzbe.length == 0) {
           this.router.navigateByUrl("apoteka/narudzbe");
         }
@@ -46,12 +58,12 @@ export class PharmacyOrdersDetailsComponent {
     return this.narudzbe.map((x: any) => x.cijena).reduce((a: number, b: number) => a + b, 0);
   }
 
-  showModalDeleteMedicineFunc(narudzbaId: number) {
+  showModalDeleteMedicationFunc(narudzbaId: number) {
     this.tempNarudzbaId = narudzbaId;
-    this.showModalDeleteMedicine = true;
+    this.showModalDeleteMedication = true;
   }
 
-  deleteMedicine() {
+  deleteMedication() {
     this.httpClient.delete(serverSettings.address + "/narudzbe/" + this.tempNarudzbaId).subscribe(
       () => this.ngOnInit()
     );
@@ -63,8 +75,8 @@ export class PharmacyOrdersDetailsComponent {
         () => {
           this.ngOnInit();
           this.showModalSubmitForm = false;
-          this.alertService.setAlert("success", "Uspješno ste isporučili narudžbu");
           this.router.navigateByUrl("apoteka/narudzbe");
+          this.alertService.setAlert("success", "Uspješno ste isporučili narudžbu");
         },
         () => this.alertService.setAlert("danger", "Nemate zaliha lijekova")
       );
@@ -74,8 +86,8 @@ export class PharmacyOrdersDetailsComponent {
         () => {
           this.ngOnInit();
           this.showModalSubmitForm = false;
-          this.alertService.setAlert("success", "Uspješno ste izbrisali narudžbu");
           this.router.navigateByUrl("apoteka/narudzbe");
+          this.alertService.setAlert("success", "Uspješno ste izbrisali narudžbu");
         }
       );
     }

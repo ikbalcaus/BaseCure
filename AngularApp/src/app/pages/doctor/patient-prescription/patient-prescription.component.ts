@@ -13,7 +13,7 @@ import { ParseDateTimePipe } from './parse-date-time';
 export class PatientPrescriptionComponent {
   patients: any;
   selectedPatientName: string = ""; 
-  medicines: any; 
+  medications: any; 
   selectedPatient: any;
   selectedTherapy: any;
   patientData: any;

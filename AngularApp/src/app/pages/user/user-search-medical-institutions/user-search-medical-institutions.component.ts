@@ -4,13 +4,14 @@ import { FilterComponent } from '../../../components/filter/filter.component';
 import { CardComponent } from "../../../components/card/card.component";
 import { HttpClient } from '@angular/common/http';
 import { serverSettings } from '../../../server-settings';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-search',
   standalone: true,
   templateUrl: './user-search-medical-institutions.component.html',
   styleUrl: './user-search-medical-institutions.component.css',
-  imports: [CommonModule, FilterComponent, CardComponent]
+  imports: [CommonModule, FilterComponent, CardComponent, TranslateModule]
 })
 export class UserSearchMedicalInstitutionComponent {
   constructor(private httpClient: HttpClient) {}
@@ -29,7 +30,7 @@ export class UserSearchMedicalInstitutionComponent {
       res => {
         this.res = res;
         this.res.forEach(institution => {
-          this.httpClient.get(`${serverSettings.address}/slika/ustanovaZdravstva/${institution.ustanovaId}`, { responseType: 'blob' }).subscribe(
+          this.httpClient.get(`${serverSettings.address}/slika/ustanoveZdravstva/${institution.ustanovaId}`, { responseType: "blob" }).subscribe(
             imageBlob => {
               const reader = new FileReader();
               reader.onload = () => {
