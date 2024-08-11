@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { serverSettings } from '../../../server-settings';
-import { ViewMapComponent } from '../../../components/view-map/view-map.component';
+import { MapComponent } from '../../../components/map/map.component';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-about',
   standalone: true,
-  imports: [CommonModule, RouterModule, ViewMapComponent, TranslateModule],
+  imports: [CommonModule, RouterModule, MapComponent, TranslateModule],
   templateUrl: './user-about-medical-institution.component.html',
   styleUrl: './user-about-medical-institution.component.css'
 })
@@ -24,7 +24,7 @@ export class UserAboutMedicalInstitutionComponent {
   ) {}
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.paramMap.get("id");
     if (id) {
       this.httpClient.get<any>(`${serverSettings.address}/ustanoveZdravstva?id=${id}`).subscribe(
         res => {

@@ -15,7 +15,7 @@ import { PharmacyOrdersComponent } from './pages/pharmacy/pharmacy-orders/pharma
 import { PharmacyOrdersDetailsComponent } from './pages/pharmacy/pharmacy-orders-details/pharmacy-orders-details.component';
 import { UserAboutDoctorComponent } from './pages/user/user-about-doctor/user-about-doctor.component';
 import { UserSearchDoctorsComponent } from './pages/user/user-search-doctors/user-search-doctors.component';
-import { SetMapComponent } from './components/set-map/set-map.component';
+import { SetMapComponent } from './pages/multi-roles/set-map/set-map.component';
 import { EditMedicalInstitutionComponent } from './pages/multi-roles/edit-medical-institution/edit-medical-institution.component';
 import { UserSearchMedicalInstitutionComponent } from './pages/user/user-search-medical-institutions/user-search-medical-institutions.component';
 import { UserAboutMedicalInstitutionComponent } from './pages/user/user-about-medical-institution/user-about-medical-institution.component';

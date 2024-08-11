@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import * as L from 'leaflet';
-import { AuthService } from '../../services/auth.service';
-import { AlertService } from '../../services/alert.service';
-import { serverSettings } from '../../server-settings';
+import { AuthService } from '../../../services/auth.service';
+import { AlertService } from '../../../services/alert.service';
+import { serverSettings } from '../../../server-settings';
 import { CommonModule } from '@angular/common';
-import { ModalComponent } from '../modal/modal.component';
+import { ModalComponent } from '../../../components/modal/modal.component';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 

@@ -13,6 +13,6 @@
             <a href="tel:{{res.kontaktBroj}}" class="data text-decoration-none">{{res.kontaktBroj}}</a>
             <a class="btn btn-primary mt-3" [routerLink]="'/poruke/' + res.korisnikId">{{ 'contact_doctor' | translate }}</a>
         </div>
-        <app-view-map [medicalInstitutionId]="res.ustanovaId"></app-view-map>
+        <app-map [medicalInstitutionId]="res.ustanovaId"></app-map>
     </div>
 </div>

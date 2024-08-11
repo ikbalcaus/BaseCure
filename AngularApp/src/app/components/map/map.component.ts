@@ -4,13 +4,13 @@ import { serverSettings } from '../../server-settings';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-view-map',
+  selector: 'app-map',
   standalone: true,
   imports: [],
-  templateUrl: './view-map.component.html',
-  styleUrl: './view-map.component.css'
+  templateUrl: './map.component.html',
+  styleUrl: './map.component.css'
 })
-export class ViewMapComponent {
+export class MapComponent {
   constructor(private httpClient: HttpClient) {}
 
   private map: any;
