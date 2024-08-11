@@ -15,7 +15,7 @@
       </app-item-list>
     </div>
     <div class="card-details card bg-primary mt-4 shadow-lg">
-      <form #loginForm="ngForm">
+      <form #form="ngForm">
         <div class="card-body">
           <h5>{{ 'order_details' | translate }}</h5>
           <hr>
@@ -61,5 +61,5 @@
 <app-modal
   *ngIf="showModal"
   (closeModal)="showModal = false"
-  (onSubmit)="confirmOrder(loginForm.value)"
+  (onSubmit)="confirmOrder(form.value)"
 ></app-modal>

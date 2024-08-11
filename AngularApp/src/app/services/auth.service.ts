@@ -33,7 +33,7 @@ export class AuthService {
         if (res.uloga == "korisnik") this.router.navigateByUrl("/pretrazi");
         else if (res.uloga == "apoteka") this.router.navigateByUrl("/apoteka/narudzbe");
         else if (res.uloga == "bolnica") this.router.navigateByUrl("/ustanova-zdravstva/podaci");
-        else if (res.uloga == "ljekar") this.router.navigateByUrl("/ljekar/poruke");
+        else if (res.uloga == "ljekar") this.router.navigateByUrl("/poruke");
         else if (res.uloga == "admin") this.router.navigateByUrl("/basecure-admin/dashboard");
       },
       () => this.alertService.setAlert("danger", "Niste unijeli ispravne podatke")

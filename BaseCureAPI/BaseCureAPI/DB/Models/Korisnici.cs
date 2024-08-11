@@ -24,6 +24,7 @@ namespace BaseCureAPI.DB.Models
         public int? GradId { get; set; }
         public int? OsobljeId { get; set; }
         public string? BrojTelefona { get; set; }
+        public string? KonekcijskiId { get; set; }
 
         public virtual Gradovi? Grad { get; set; }
         public virtual Osoblje? Osoblje { get; set; }

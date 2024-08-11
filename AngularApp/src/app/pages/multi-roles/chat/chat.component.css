@@ -18,9 +18,6 @@
     background-color: #3d8af7;
     color: white;
 }
-.check-icon {
-    color: grey;
-}
 .message-input {
     display: flex;
     gap: 10px;

@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { serverSettings } from '../../server-settings';
+import { serverSettings } from '../../../server-settings';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { AlertService } from '../../services/alert.service';
-import { ModalComponent } from '../modal/modal.component';
+import { AlertService } from '../../../services/alert.service';
+import { ModalComponent } from '../../../components/modal/modal.component';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
@@ -81,8 +81,8 @@ export class EditMedicalInstitutionComponent {
 
     this.httpClient.put(serverSettings.address + "/ustanoveZdravstva/" + this.authService.getAuthToken().ustanovaId, formData).subscribe(
       () => {
-          this.router.navigateByUrl("/");
-          this.alertService.setAlert("success", "Uspješno ste promjenili podatke");
+        this.router.navigateByUrl("/");
+        this.alertService.setAlert("success", "Uspješno ste promjenili podatke");
       }
     );
   }

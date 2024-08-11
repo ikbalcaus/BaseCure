@@ -3,7 +3,7 @@
     <img *ngIf="!image" class="thumbnail rounded shadow mx-4 col-8" src="./../../../assets/img/no-image-avabliable.jpg" alt="{{ 'image' | translate }}">
     <img *ngIf="image" class="thumbnail rounded shadow mx-4 col-8" [src]="image" alt="{{ 'image' | translate }}">
     <div class="mx-4 mt-2 col">
-      <form #loginForm="ngForm" (ngSubmit)="AddMedication(loginForm.value)">
+      <form #form="ngForm" (ngSubmit)="AddMedication(form.value)">
         <div class="mx-1">
           <input type="file" id="imageInput" class="form-control mt-2" (change)="onFileSelected($event)">
           <input class="form-control mt-2" placeholder="{{ 'medication_name' | translate }}" name="naziv" ngModel autocomplete="off">

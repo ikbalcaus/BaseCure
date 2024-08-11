@@ -3,13 +3,13 @@ import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-doctor-manage-messages',
+  selector: 'app-manage-messages',
   standalone: true,
   imports: [CommonModule, TranslateModule],
-  templateUrl: './doctor-manage-messages.component.html',
-  styleUrl: './doctor-manage-messages.component.css'
+  templateUrl: './manage-messages.component.html',
+  styleUrl: './manage-messages.component.css'
 })
-export class DoctorManageMessagesComponent {
+export class ManageMessagesComponent {
   constructor() {}
 
   res: any;
