@@ -11,10 +11,10 @@ export class GuardService {
   ) {}
   
   canActivate(route: ActivatedRouteSnapshot): boolean {
-    for(let role of route.data["roles"]) {
-      if(role == this.authService.getAuthToken()?.uloga) return true;
+    if(!route.data["roles"].includes(this.authService.getAuthToken()?.uloga)) {
+      this.router.navigateByUrl("/");
+      return false;
     }
-    this.router.navigateByUrl("/");
-    return false;
+    return true;
   }
 }

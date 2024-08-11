@@ -1,5 +1,6 @@
 .navbar {
     padding: 11px 10% 11px 5%;
+    background-color: #f8f9fa;
 }
 .navbar-brand {
     font-size: 27px;
@@ -13,7 +14,7 @@
 }
 .active-link {
     background-color: #ebebeb;
-    box-shadow: 0 .06rem .25rem rgba(0, 0, 0, .075);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .075);
 }
 .navbar-toggler {
     margin-right: 65px;

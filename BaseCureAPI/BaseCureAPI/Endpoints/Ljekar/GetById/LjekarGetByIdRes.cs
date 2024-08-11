@@ -10,6 +10,7 @@ namespace BaseCureAPI.Endpoints.Ljekar.GetById
         public string? Opis { get; set; }
         [JsonIgnore]
         public Korisnici? Korisnik { get; set; }
+        public int? KorisnikId => Korisnik?.KorisnikId;
         public string? Ime => Korisnik?.Ime;
         public string? Prezime => Korisnik?.Prezime;
         public string? MailAdresa => Korisnik?.MailAdresa;

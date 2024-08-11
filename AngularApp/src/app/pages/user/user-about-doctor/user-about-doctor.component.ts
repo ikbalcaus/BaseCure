@@ -3,13 +3,13 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { serverSettings } from '../../../server-settings';
 import { CommonModule } from '@angular/common';
-import { ViewMapComponent } from '../../../components/view-map/view-map.component';
+import { MapComponent } from '../../../components/map/map.component';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-about-doctor',
   standalone: true,
-  imports: [CommonModule, RouterModule, ViewMapComponent, TranslateModule],
+  imports: [CommonModule, RouterModule, MapComponent, TranslateModule],
   templateUrl: './user-about-doctor.component.html',
   styleUrl: './user-about-doctor.component.css'
 })

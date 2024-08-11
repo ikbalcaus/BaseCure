@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-xl bg-body-tertiary shadow-sm">
+<nav class="navbar navbar-expand-xl shadow-sm">
   <a class="navbar-brand px-5" routerLink="/">BaseCure</a>
   <button *ngIf="isLoggedIn()" class="navbar-toggler btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -7,13 +7,14 @@
     <ul class="navbar-nav ms-auto">
       <li *ngIf="showLink(['korisnik', 'ljekar'])"><a class="btn navbar-link" routerLink="/pretrazi" routerLinkActive="active-link">{{ 'search' | translate }}</a></li>
       <li *ngIf="showLink(['korisnik', 'ljekar'])"><a class="btn navbar-link" routerLink="/korpa" routerLinkActive="active-link">{{ 'cart' | translate }}</a></li>
+      <li *ngIf="showLink(['korisnik', 'ljekar'])"><a class="btn navbar-link" routerLink="/poruke" routerLinkActive="active-link">{{ 'messages' | translate }}</a></li>
       <li *ngIf="showLink(['korisnik', 'ljekar'])"><a class="btn navbar-link" routerLink="/podaci" routerLinkActive="active-link">{{ 'data' | translate }}</a></li>
       <li *ngIf="showLink(['apoteka'])"><a class="btn navbar-link" routerLink="/apoteka/narudzbe" routerLinkActive="active-link">{{ 'orders' | translate }}</a></li>
       <li *ngIf="showLink(['apoteka'])"><a class="btn navbar-link" routerLink="/apoteka/lijekovi" routerLinkActive="active-link">{{ 'medications' | translate }}</a></li>
       <li *ngIf="showLink(['apoteka'])"><a class="btn navbar-link" routerLink="/apoteka/dodaj" routerLinkActive="active-link">{{ 'add_medication' | translate }}</a></li>
       <li *ngIf="showLink(['bolnica', 'apoteka'])"><a class="btn navbar-link" routerLink="/ustanova-zdravstva/podaci" routerLinkActive="active-link">{{ 'data' | translate }}</a></li>
       <li *ngIf="showLink(['bolnica', 'apoteka'])"><a class="btn navbar-link" routerLink="/ustanova-zdravstva/lokacija" routerLinkActive="active-link">{{ 'location' | translate }}</a></li>
-      <li *ngIf="showLink(['ljekar'])"><a class="btn navbar-link" routerLink="/ljekar/uputnice" routerLinkActive="active-link">{{ 'view_prescriptions' | translate }}</a></li>
+      <li *ngIf="showLink(['ljekar'])"><a class="btn navbar-link" routerLink="/ljekar/uputnice" routerLinkActive="active-link">{{ 'prescriptions' | translate }}</a></li>
       <li *ngIf="isLoggedIn()"><button class="btn btn-primary navbar-link" (click)="logoutUser()">{{ 'logout' | translate }}</button></li>
     </ul>
   </div>

@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="my-4 p-4 main shadow-sm">
+        <form #form="ngForm" (ngSubmit)="sendMessageToUser(form.value.message)">
+            <div class="messages">
+                <div *ngFor="let i of messages">
+                    <div [class]="'d-flex ' + (i.sender == 'me' ? 'justify-content-start' : 'justify-content-end')">
+                        <div [class]="'message shadow-sm mb-2 ' + (i.sender == 'me' ? 'left' : 'right')">{{ i.message }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="message-input mt-2">
+                <input type="text" class="form-control shadow-sm" name="message" placeholder="{{ 'message' | translate }}" autocomplete="off" spellcheck="false" [(ngModel)]="message">
+                <button class="btn btn-primary message-button">
+                    <i class="bi bi-arrow-up"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -194,6 +194,11 @@ namespace BaseCureAPI.DB
                     .WithMany(p => p.Korisnicis)
                     .HasForeignKey(d => d.OsobljeId)
                     .HasConstraintName("FK__Korisnici__osobl__45BE5BA9");
+
+                entity.Property(e => e.KonekcijskiId)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("konekcijski_id");
             });
 
             modelBuilder.Entity<LaboratorijskiRezultati>(entity =>

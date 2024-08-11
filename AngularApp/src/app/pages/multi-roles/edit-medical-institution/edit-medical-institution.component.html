@@ -3,7 +3,7 @@
         <img *ngIf="!image" class="thumbnail rounded shadow mx-4 col-8" [src]="res.slika || './../../../assets/img/no-image-avabliable.jpg'" alt="{{ 'image' | translate }}">
         <img *ngIf="image" class="thumbnail rounded shadow mx-4 col-8" [src]="image" alt="{{ 'image' | translate }}">
         <div class="content mx-4 col">
-            <form #loginForm="ngForm">
+            <form #form="ngForm">
                 <div class="mx-1">
                     <div class="form-group">
                         <span>{{ 'image' | translate }}:</span>
@@ -48,5 +48,5 @@
 <app-modal
     *ngIf="showModal"
     (closeModal)="showModal = false"
-    (onSubmit)="EditMedicalInstitution(loginForm.value)"
+    (onSubmit)="EditMedicalInstitution(form.value)"
 ></app-modal>

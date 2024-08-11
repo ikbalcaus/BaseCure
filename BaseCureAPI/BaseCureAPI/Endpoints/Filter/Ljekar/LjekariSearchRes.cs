@@ -9,6 +9,7 @@ namespace BaseCureAPI.Endpoints.Filter.Ljekar
         public string? Specijalizacija { get; set; }
         [JsonIgnore]
         public Korisnici Korisnik { get; set; }
+        public int KorisnikId => Korisnik.KorisnikId;
         public string ImePrezime => $"{Korisnik?.Ime} {Korisnik?.Prezime}";
     }
 }
