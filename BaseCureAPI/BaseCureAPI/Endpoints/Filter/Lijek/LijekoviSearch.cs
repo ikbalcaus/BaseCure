@@ -1,5 +1,4 @@
 ﻿using BaseCureAPI.DB;
-using BaseCureAPI.DB.Models;
 using BaseCureAPI.Endpoints.Filter.UstanovaZdravstva;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

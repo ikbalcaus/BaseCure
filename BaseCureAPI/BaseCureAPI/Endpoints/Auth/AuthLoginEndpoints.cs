@@ -176,6 +176,38 @@ namespace BaseCureAPI.Endpoints.Auth
             return Ok(noviToken);
         }
 
+        [HttpPost("reset-password")]
+        public async Task<ActionResult> ResetPassword([FromBody] ResetPasswordRequest request)
+        {
+            if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.NewPassword))
+            {
+                return BadRequest("Email and new password are required.");
+            }
+
+            var user = await _context.Korisnicis.FirstOrDefaultAsync(x => x.MailAdresa == request.Email);
+
+            if (user == null)
+            {
+                return NotFound("Korisnik sa ovom email adresom nije pronađen.");
+            }
+
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(request.NewPassword);
+
+            user.HashLozinke = hashedPassword;
+            _context.Korisnicis.Update(user);
+
+            await _context.SaveChangesAsync();
+
+            return Ok("Šifra uspešno resetovana.");
+        }
+
+        public class ResetPasswordRequest
+        {
+            public string Email { get; set; }
+            public string NewPassword { get; set; }
+        }
+
+
         public class KorisniciDto
         {
             public string IpAdresa { get; set; }

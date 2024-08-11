@@ -28,6 +28,7 @@ namespace BaseCureAPI.DB
         public virtual DbSet<Narudzbe> Narudzbes { get; set; } = null!;
         public virtual DbSet<Osoblje> Osobljes { get; set; } = null!;
         public virtual DbSet<Pacijenti> Pacijentis { get; set; } = null!;
+        public virtual DbSet<Poruke> Porukes { get; set; } = null!;
         public virtual DbSet<Pregledi> Pregledis { get; set; } = null!;
         public virtual DbSet<Recepti> Receptis { get; set; } = null!;
         public virtual DbSet<Terapije> Terapijes { get; set; } = null!;
@@ -276,31 +277,28 @@ namespace BaseCureAPI.DB
                     .ValueGeneratedNever()
                     .HasColumnName("ljekar_id");
 
+                entity.Property(e => e.KorisnikId).HasColumnName("korisnik_id");
+
                 entity.Property(e => e.Opis)
                     .HasMaxLength(255)
                     .HasColumnName("opis");
-
-                entity.Property(e => e.Slika).HasColumnName("slika");
 
                 entity.Property(e => e.Specijalizacija)
                     .HasMaxLength(255)
                     .IsUnicode(false)
                     .HasColumnName("specijalizacija");
 
-                entity.Property(e => e.KorisnikId).HasColumnName("korisnik_id");
-
                 entity.Property(e => e.UstanovaId).HasColumnName("ustanova_id");
 
                 entity.HasOne(d => d.Korisnik)
                     .WithMany(p => p.Ljekaris)
                     .HasForeignKey(d => d.KorisnikId)
-                    .HasConstraintName("FK__Ljekari__korisni__4F7CD00D");
+                    .HasConstraintName("FK__Ljekari__korisni__1B9317B3");
 
                 entity.HasOne(d => d.Ustanova)
                     .WithMany(p => p.Ljekaris)
                     .HasForeignKey(d => d.UstanovaId)
-                    .HasConstraintName("FK__Ljekari__ustanov__5070F446");
-
+                    .HasConstraintName("FK__Ljekari__ustanov__1A9EF37A");
             });
 
             modelBuilder.Entity<Napomene>(entity =>
@@ -402,6 +400,8 @@ namespace BaseCureAPI.DB
                     .ValueGeneratedNever()
                     .HasColumnName("osoblje_id");
 
+                entity.Property(e => e.LjekarId).HasColumnName("ljekar_id");
+
                 entity.Property(e => e.PunoIme)
                     .HasMaxLength(255)
                     .IsUnicode(false)
@@ -445,6 +445,30 @@ namespace BaseCureAPI.DB
                     .WithMany(p => p.Pacijentis)
                     .HasForeignKey(d => d.KorisnikId)
                     .HasConstraintName("FK__Pacijenti__koris__47A6A41B");
+            });
+
+            modelBuilder.Entity<Poruke>(entity =>
+            {
+                entity.HasKey(e => e.PorukaId)
+                    .HasName("PK__Poruke__9D276F6D10459F44");
+
+                entity.ToTable("Poruke");
+
+                entity.Property(e => e.DatumVrijeme)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.HasOne(d => d.Posiljaoc)
+                    .WithMany(p => p.PorukePosiljaocs)
+                    .HasForeignKey(d => d.PosiljaocId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Poruke__Posiljao__308E3499");
+
+                entity.HasOne(d => d.Primaoc)
+                    .WithMany(p => p.PorukePrimaocs)
+                    .HasForeignKey(d => d.PrimaocId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Poruke__PrimaocI__318258D2");
             });
 
             modelBuilder.Entity<Pregledi>(entity =>
