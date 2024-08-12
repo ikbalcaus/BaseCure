@@ -407,8 +407,6 @@ namespace BaseCureAPI.DB
                     .ValueGeneratedNever()
                     .HasColumnName("osoblje_id");
 
-                entity.Property(e => e.LjekarId).HasColumnName("ljekar_id");
-
                 entity.Property(e => e.PunoIme)
                     .HasMaxLength(255)
                     .IsUnicode(false)
