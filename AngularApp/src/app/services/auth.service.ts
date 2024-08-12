@@ -44,4 +44,13 @@ export class AuthService {
     window.localStorage.removeItem("auth-token");
     this.router.navigateByUrl("/");
   }
+
+  public setAlert(type: string, message: string) {
+    this.alertService.setAlert(type, message);
+  }
+
+  checkEmailAndResetPassword(email: string, newPassword: string) {
+    const payload = { email, newPassword };
+    return this.httpClient.post<any>(`${serverSettings.address}/auth/reset-password`, payload);
+}
 }

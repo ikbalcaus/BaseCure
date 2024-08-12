@@ -20,16 +20,17 @@
     </form>
 </div>
 
-
-<div class="modal fade" id="verificationModal" tabindex="-1" role="dialog" aria-labelledby="verificationModalLabel" aria-hidden="true">
+<div *ngIf="isForgotPasswordModalOpen" class="modal" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
+            <button type="button" class="close" (click)="closeForgotPasswordModal()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
             <div class="modal-header">
                 <h5 class="modal-title" id="forgotPasswordModalLabel">{{ 'reset_password' | translate }}</h5>
             </div>
             <div class="modal-body">
-                <!-- <form #verificationForm="ngForm" (submit)="verifyCode(verificationForm.value)"> -->
-                <form>
+                <form #resetPasswordForm="ngForm" (submit)="resetPassword(resetPasswordForm.value)">
                     <div class="form-group">
                         <label for="email">{{ 'email_address' | translate }}:</label>
                         <input type="email" class="form-control" id="email" name="email" autocomplete="off" spellcheck="false" ngModel required>
