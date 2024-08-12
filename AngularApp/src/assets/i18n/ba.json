@@ -68,9 +68,11 @@
     "delete_order": "Izbriši narudžbu",
     "messages": "Poruke",
     "unread_messages": "Nepročitane poruke",
-    "unread_messages_count": "Imate nepročitanih poruka od {{ count }} korisnika",
+    "unread_messages_count": "Imate {{ count }} nepročitanih poruka",
+    "unread_messages_user_count": "Imate nepročitanih poruka od {{ count }} korisnika",
     "read_messages": "Pročitane poruke",
-    "read_messages_count": "Imate pročitanih poruka od {{ count }} korisnika",
+    "read_messages_count": "Imate {{ count }} pročitanih poruka",
+    "read_messages_user_count": "Imate pročitanih poruka od {{ count }} korisnika",
     "message": "Poruka..."
 }
   

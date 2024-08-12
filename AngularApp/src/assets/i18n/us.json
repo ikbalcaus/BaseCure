@@ -68,9 +68,11 @@
     "delete_order": "Delete order",
     "messages": "Messages",
     "unread_messages": "Unread messages",
-    "unread_messages_count": "You have unread messages from {{ count }} user",
+    "unread_messages_count": "You have {{ count }} unread messages",
+    "unread_messages_user_count": "You have unread messages from {{ count }} user",
     "read_messages": "Read messages",
-    "read_messages_count": "You have read messages from {{ count }} user",
+    "read_messages_count": "You have {{ count }} read messages",
+    "read_messages_user_count": "You have read messages from {{ count }} user",
     "message": "Message..."
 }
   

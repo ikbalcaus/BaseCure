@@ -15,7 +15,7 @@ namespace BaseCureAPI.Endpoints.Poruka.GetAllMessagesOfUser
         }
 
         [HttpGet]
-        public ActionResult Get([FromQuery] int korisnikId1, [FromQuery] int korisnikId2)
+        public ActionResult GetAllMessagesOfUser([FromQuery] int korisnikId1, [FromQuery] int korisnikId2)
         {
             var poruke = _context.Porukes
                 .Where(x => (x.PosiljaocId == korisnikId1 && x.PrimaocId == korisnikId2) || (x.PosiljaocId == korisnikId2 && x.PrimaocId == korisnikId1))

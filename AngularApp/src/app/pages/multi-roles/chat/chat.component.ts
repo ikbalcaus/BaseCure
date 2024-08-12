@@ -56,6 +56,7 @@ export class ChatComponent {
     this.httpClient.get<any>(serverSettings.address + "/poruke?korisnikId1=" + this.senderId + "&korisnikId2=" + this.receiverId).subscribe(
       res => this.oldMessages = res
     );
+
     this.chatService.addListeners();
     this.messageSubscription = this.chatService.getMessageObservable().subscribe(({ senderId, message, dateTime }) => {
       if(senderId == this.receiverId) {
