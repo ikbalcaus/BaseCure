@@ -16,6 +16,9 @@ body {
 .btn:active {
     border-color: transparent !important;
 }
+.btn-block {
+    width: 100%;
+}
 .btn-primary, .btn-secondary, .btn-danger {
     box-shadow: 0 2px 4px rgba(0, 0, 0, .075) !important;
     font-weight: 500;
@@ -52,10 +55,4 @@ body {
 .bg-primary {
     background-color: #6464b4 !important;
     color: white;
-}
-.bg-secondary{
-    background-color: #ebebeb !important;
-}
-.btn-block {
-    width: 100%;
 }

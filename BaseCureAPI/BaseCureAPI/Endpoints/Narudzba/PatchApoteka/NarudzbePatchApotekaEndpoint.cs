@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace BaseCureAPI.Endpoints.Narudzba.PutApoteka
+namespace BaseCureAPI.Endpoints.Narudzba.PatchApoteka
 {
     [Route("narudzbe")]
     [ApiController]
@@ -15,7 +15,7 @@ namespace BaseCureAPI.Endpoints.Narudzba.PutApoteka
             _context = context;
         }
 
-        [HttpPut("apoteka/{ustanovaId}")]
+        [HttpPatch("apoteka/{ustanovaId}")]
         public ActionResult UpdateNarudzba([FromRoute] int ustanovaId, [FromQuery] int redniBroj)
         {
             var isSveIsporuceno = true;

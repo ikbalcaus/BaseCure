@@ -9,11 +9,14 @@
             <label>{{ 'password' | translate }}:</label>
             <input type="password" class="form-control" name="lozinka" ngModel>
         </div>
+        <div class="form-group mt-1 ms-1">
+            <a href="#" (click)="openForgotPasswordModal()" class="forgot-password-link">{{ 'forgot_password' | translate }}</a>
+        </div>
         <div class="form-group form-check mt-2">
             <input type="checkbox" id="checkbox-input" class="form-check-input" name="rememberme" ngModel>
             <label for="checkbox-input">{{ 'remember_me' | translate }}</label>
         </div>
-        <button class="btn btn-primary btn-block mt-3">{{ 'continue' | translate }}</button>
+        <button class="btn btn-primary btn-block mt-1">{{ 'continue' | translate }}</button>
     </form>
 </div>
 
@@ -22,19 +25,24 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="verificationModalLabel">Verification Code</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <h5 class="modal-title" id="forgotPasswordModalLabel">{{ 'reset_password' | translate }}</h5>
             </div>
             <div class="modal-body">
                 <!-- <form #verificationForm="ngForm" (submit)="verifyCode(verificationForm.value)"> -->
                 <form>
                     <div class="form-group">
-                        <label for="verificationCode">Enter the verification code received in your email:</label>
-                        <input type="text" class="form-control" id="verificationCode" name="verificationCode" ngModel spellcheck="false" autocomplete="off" required>
+                        <label for="email">{{ 'email_address' | translate }}:</label>
+                        <input type="email" class="form-control" id="email" name="email" autocomplete="off" spellcheck="false" ngModel required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Verify</button>
+                    <div class="form-group">
+                        <label for="newPassword">{{ "new_password" | translate }}:</label>
+                        <input type="password" class="form-control" id="newPassword" name="newPassword" ngModel required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">{{ "confirm_new_password" | translate }}:</label>
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" ngModel required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">{{ 'confirm' | translate }}</button>
                 </form>
             </div>
         </div>

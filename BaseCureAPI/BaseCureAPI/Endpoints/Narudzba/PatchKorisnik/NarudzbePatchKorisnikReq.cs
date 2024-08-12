@@ -1,6 +1,6 @@
-﻿namespace BaseCureAPI.Endpoints.Narudzba.PutKorisnik
+﻿namespace BaseCureAPI.Endpoints.Narudzba.PatchKorisnik
 {
-    public class NarudzbePutKorisnikReq
+    public class NarudzbePatchKorisnikReq
     {
         public string ImePrezime { get; set; }
         public string BrojTelefona { get; set; }

@@ -36,7 +36,7 @@ export class UserCartComponent {
         this.korisnik = res;
         if(res.ime == null) this.korisnik.imePrezime = res.prezime;
         else if(res.prezime == null) this.korisnik.imePrezime = res.ime;
-        else this.korisnik.imePrezime = res.ime + " " + res.prezime
+        else this.korisnik.imePrezime = res.ime + " " + res.prezime;
       }
     );
     this.httpClient.get(serverSettings.address + "/narudzbe/korisnik/" + this.authService.getAuthToken().korisnikId).subscribe(
@@ -82,7 +82,7 @@ export class UserCartComponent {
   }
 
   confirmOrder(formData: any) {
-    this.httpClient.put(serverSettings.address + "/narudzbe/korisnik/" + this.authService.getAuthToken().korisnikId, formData).subscribe(
+    this.httpClient.patch(serverSettings.address + "/narudzbe/korisnik/" + this.authService.getAuthToken().korisnikId, formData).subscribe(
       () => {
         this.ngOnInit();
         this.showModal = false;

@@ -1,48 +1,48 @@
 <div class="container">
     <div class="my-5 main">
         <div class="items">
-        <h4>{{ 'unread_messages' | translate }}</h4>
-        <p>{{ 'unread_messages_count' | translate: { count: countMessages('neprocitano') } }}</p>
-        <hr>
-        <div *ngFor="let i of res">
-            <div class="card border-0" *ngIf="i.status == 'aktivno'">
-            <div class="card-body pt-2">
-                <div class="card-align">
-                <div class="card-column align-items-center justify-content-start">
-                    <div class="ms-1">
-                    <h5>{{i.imePrezime}}</h5>
-                    <p class="small mb-0">{{ 'user_ordered_medications' | translate: { count: i.brojLijekova } }}</p>
-                </div>
-                </div>
-                <div class="card-column align-items-center justify-content-end">
-                    <a class="btn btn-primary" routerLink="/poruke/1">{{ 'view_details' | translate }}</a>
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        </div>
-        <div class="items">
-        <h4>{{ 'read_messages' | translate }}</h4>
-        <p>{{ 'read_messages_count' | translate: { count: countMessages('procitano') } }}</p>
-        <hr>
-        <div *ngFor="let i of res">
-            <div class="card border-0" *ngIf="i.status == 'isporuceno'">
-            <div class="card-body pt-2">
-                <div class="card-align">
-                <div class="card-column align-items-center justify-content-start">
-                    <div class="ms-1">
-                    <h5>{{i.imePrezime}}</h5>
-                    <p class="small mb-0">{{ 'user_ordered_medications' | translate: { count: i.brojLijekova } }}</p>
+            <h4>{{ 'unread_messages' | translate }}</h4>
+            <p>{{ 'unread_messages_count' | translate: { count: countMessages('neprocitano') } }}</p>
+            <hr>
+            <div *ngFor="let i of res">
+                <div class="card border-0" *ngIf="i.status == 'aktivno'">
+                    <div class="card-body pt-2">
+                        <div class="card-align">
+                            <div class="card-column align-items-center justify-content-start">
+                                <div class="ms-1">
+                                    <h5>{{i.imePrezime}}</h5>
+                                    <p class="small mb-0">{{ 'user_ordered_medications' | translate: { count: i.brojLijekova } }}</p>
+                                </div>
+                            </div>
+                            <div class="card-column align-items-center justify-content-end">
+                                <a class="btn btn-primary" routerLink="/poruke/1">{{ 'view_details' | translate }}</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="card-column align-items-center justify-content-end">
-                    <a class="btn btn-primary" routerLink="/poruke/1">{{ 'view_details' | translate }}</a>
-                </div>
-                </div>
-            </div>
             </div>
         </div>
+        <div class="items">
+            <h4>{{ 'read_messages' | translate }}</h4>
+            <p>{{ 'read_messages_count' | translate: { count: countMessages('procitano') } }}</p>
+            <hr>
+            <div *ngFor="let i of res">
+                <div class="card border-0" *ngIf="i.status == 'isporuceno'">
+                    <div class="card-body pt-2">
+                        <div class="card-align">
+                            <div class="card-column align-items-center justify-content-start">
+                                <div class="ms-1">
+                                    <h5>{{i.imePrezime}}</h5>
+                                    <p class="small mb-0">{{ 'user_ordered_medications' | translate: { count: i.brojLijekova } }}</p>
+                                </div>
+                            </div>
+                            <div class="card-column align-items-center justify-content-end">
+                                <a class="btn btn-primary" routerLink="/poruke/1">{{ 'view_details' | translate }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

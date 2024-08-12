@@ -1,4 +1,5 @@
 ﻿using BaseCureAPI.DB;
+using BaseCureAPI.DB.Models;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,12 +28,24 @@ public class ChatHub : Hub
 
     public async Task SendMessageToUser(int posiljaocId, int primaocId, string poruka)
     {
-        var korisnik = await _context.Korisnicis
+        var primaoc = await _context.Korisnicis
             .FirstOrDefaultAsync(k => k.KorisnikId == primaocId);
+        var datumVrijeme = DateTime.Now;
 
-        if (korisnik != null && korisnik.KonekcijskiId != null)
+        var poruke = await _context.Porukes.AddAsync(new Poruke
         {
-            await Clients.Client(korisnik.KonekcijskiId).SendAsync("ReceiveMessage", posiljaocId, poruka);
+            PorukaId = _context.Porukes.Any() ? _context.Porukes.Max(x => x.PorukaId) + 1 : 1,
+            PosiljaocId = posiljaocId,
+            PrimaocId = primaocId,
+            Poruka = poruka,
+            Procitana = false,
+            DatumVrijeme = datumVrijeme,
+        });
+        await _context.SaveChangesAsync();
+
+        if (primaoc != null && primaoc.KonekcijskiId != null)
+        {
+            await Clients.Client(primaoc.KonekcijskiId).SendAsync("ReceiveMessage", posiljaocId, poruka, datumVrijeme);
         }
     }
 }

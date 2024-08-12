@@ -304,8 +304,10 @@ namespace BaseCureAPI.DB
                 entity.HasOne(d => d.Ustanova)
                     .WithMany(p => p.Ljekaris)
                     .HasForeignKey(d => d.UstanovaId)
-                    .HasConstraintName("FK__Ljekari__ustanov__5070F446");
+                    .HasConstraintName("FK__Ljekari__ustanov__1A9EF37A");
 
+
+                entity.Property(e => e.Slika).HasColumnName("slika");
             });
 
             modelBuilder.Entity<Napomene>(entity =>
@@ -450,6 +452,43 @@ namespace BaseCureAPI.DB
                     .WithMany(p => p.Pacijentis)
                     .HasForeignKey(d => d.KorisnikId)
                     .HasConstraintName("FK__Pacijenti__koris__47A6A41B");
+            });
+
+            modelBuilder.Entity<Poruke>(entity =>
+            {
+                entity.HasKey(e => e.PorukaId)
+                    .HasName("PK__Poruke__9D276F6D10459F44");
+
+                entity.ToTable("Poruke");
+
+                entity.Property(e => e.PorukaId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("poruka_id");
+
+                entity.Property(e => e.DatumVrijeme)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())")
+                    .HasColumnName("datum_vrijeme");
+
+                entity.Property(e => e.PosiljaocId).HasColumnName("posiljaoc_id");
+
+                entity.HasOne(d => d.Posiljaoc)
+                    .WithMany(p => p.PorukePosiljaocs)
+                    .HasForeignKey(d => d.PosiljaocId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Poruke__Posiljao__308E3499");
+
+                entity.Property(e => e.PrimaocId).HasColumnName("primaoc_id");
+
+                entity.HasOne(d => d.Primaoc)
+                    .WithMany(p => p.PorukePrimaocs)
+                    .HasForeignKey(d => d.PrimaocId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Poruke__PrimaocI__318258D2");
+
+                entity.Property(e => e.Poruka).HasColumnName("poruka");
+
+                entity.Property(e => e.Procitana).HasColumnName("procitana");
             });
 
             modelBuilder.Entity<Pregledi>(entity =>
