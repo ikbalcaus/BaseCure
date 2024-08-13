@@ -6,8 +6,8 @@
       <form #form="ngForm" (ngSubmit)="AddMedication(form.value)">
         <div class="mx-1">
           <input type="file" id="imageInput" class="form-control mt-2" (change)="onFileSelected($event)">
-          <input class="form-control mt-2" placeholder="{{ 'medication_name' | translate }}" name="naziv" ngModel autocomplete="off">
-          <textarea class="form-control mt-2" rows="3" placeholder="{{ 'medication_description' | translate }}" name="opis" ngModel></textarea>
+          <input class="form-control mt-2" placeholder="{{ 'medication_name' | translate }}" name="naziv" ngModel autocomplete="off" spellcheck="false">
+          <textarea class="form-control mt-2" rows="3" placeholder="{{ 'medication_description' | translate }}" name="opis" spellcheck="false" ngModel></textarea>
           <div class="inline-input-group mt-2">
             <label for="cijena">{{ 'medication_price' | translate }}: </label>
             <input type="number" id="cijena" class="form-control inline-input" name="cijena" ngModel>
