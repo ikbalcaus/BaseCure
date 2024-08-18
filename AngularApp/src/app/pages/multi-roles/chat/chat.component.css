@@ -10,6 +10,7 @@
 .message {
     padding: 10px;
     border-radius: 5px;
+    word-break: break-word;
 }
 .left {
     background-color: white;

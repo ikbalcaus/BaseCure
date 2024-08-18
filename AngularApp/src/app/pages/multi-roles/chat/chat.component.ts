@@ -27,7 +27,7 @@ export class ChatComponent {
   ) {}
 
   private messageSubscription: Subscription | undefined;
-  messageId: number = 0;
+  tempMessageId: number = 0;
   message: string = "";
   senderId: number = this.authService.getAuthToken().korisnikId;
   receiverId: number = Number(this.route.snapshot.paramMap.get("id"));
@@ -91,7 +91,7 @@ export class ChatComponent {
   }
 
   deleteMessage() {
-    this.oldMessages = this.oldMessages.filter(i => i.porukaId != this.messageId);
-    this.httpClient.delete(serverSettings.address + "/poruke/" + this.messageId + "?korisnikId1=" + this.senderId + "&korisnikId2=" + this.receiverId).subscribe();
+    this.oldMessages = this.oldMessages.filter(x => x.porukaId != this.tempMessageId);
+    this.httpClient.delete(serverSettings.address + "/poruke/" + this.tempMessageId + "?korisnikId1=" + this.senderId + "&korisnikId2=" + this.receiverId).subscribe();
   }
 }

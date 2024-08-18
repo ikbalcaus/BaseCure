@@ -10,7 +10,7 @@
                     <div [class]="'date-time mx-1 mb-1 d-flex align-items-center ' + (i.posiljaocId == senderId ? 'justify-content-start' : 'justify-content-end')">
                         <span>{{ formatDateTime(i.datumVrijeme) }}</span>
                         <i *ngIf="i.procitana" class="bi bi-check-all"></i>
-                        &nbsp;<i *ngIf="i.posiljaocId == senderId" class="bi bi-trash" style="cursor: pointer" (click)="messageId = i.porukaId"></i>
+                        &nbsp;<i *ngIf="i.posiljaocId == senderId" class="bi bi-trash" style="cursor: pointer" (click)="tempMessageId = i.porukaId"></i>
                     </div>
                 </div>
                 <div *ngFor="let i of newMessages">
@@ -33,7 +33,7 @@
     </div>
 </div>
 <app-modal
-  *ngIf="messageId"
-  (closeModal)="messageId = 0"
+  *ngIf="tempMessageId"
+  (closeModal)="tempMessageId = 0"
   (onSubmit)="deleteMessage()"
 ></app-modal>
