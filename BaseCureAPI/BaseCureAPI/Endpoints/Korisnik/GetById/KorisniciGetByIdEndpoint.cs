@@ -21,6 +21,8 @@ namespace BaseCureAPI.Endpoints.Korisnik.GetById
         {
             var korisnikEntity = _context.Korisnicis
                 .Include(x => x.Grad)
+                .Include(x => x.Osoblje)
+                    .ThenInclude(x => x.Uloga)
                 .FirstOrDefault(x => x.KorisnikId == id);
 
             if (korisnikEntity == null)
@@ -35,7 +37,8 @@ namespace BaseCureAPI.Endpoints.Korisnik.GetById
                 BrojTelefona = korisnikEntity.BrojTelefona,
                 Adresa = korisnikEntity.Adresa,
                 MailAdresa = korisnikEntity.MailAdresa,
-                Grad = korisnikEntity.Grad?.Naziv
+                Grad = korisnikEntity.Grad?.Naziv,
+                Uloga = korisnikEntity.Osoblje?.Uloga?.Naziv
             };
 
             if (korisnik == null)

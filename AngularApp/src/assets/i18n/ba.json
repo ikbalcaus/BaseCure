@@ -2,6 +2,10 @@
     "login": "Prijavi se",
     "email_address": "Email adresa",
     "password": "Šifra",
+    "forgot_password": "Zaboravili ste šifru?",
+    "reset_password": "Resetuj šifru",
+    "new_password": "Nova šifra",
+    "confirm_new_password": "Potvrdi novu šifru",
     "remember_me": "Zapamti me",
     "continue": "Nastavi",
     "search": "Pretraži",
@@ -63,10 +67,12 @@
     "deliver_order": "Isporuči narudžbu",
     "delete_order": "Izbriši narudžbu",
     "messages": "Poruke",
-    "unread_messages": "Neprocitane poruke",
-    "unread_messages_count": "Imate {{ count }} neprocitanih poruka",
-    "read_messages": "Procitane poruke",
-    "read_messages_count": "Imate {{ count }} procitanih poruka",
+    "unread_messages": "Nepročitane poruke",
+    "unread_messages_count": "Imate {{ count }} nepročitanih poruka",
+    "unread_messages_user_count": "Imate nepročitanih poruka od {{ count }} korisnika",
+    "read_messages": "Pročitane poruke",
+    "read_messages_count": "Imate {{ count }} pročitanih poruka",
+    "read_messages_user_count": "Imate pročitanih poruka od {{ count }} korisnika",
     "message": "Poruka..."
 }
   

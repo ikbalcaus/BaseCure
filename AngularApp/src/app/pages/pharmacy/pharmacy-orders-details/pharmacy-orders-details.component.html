@@ -53,7 +53,7 @@
           <p class="mb-2">{{ sumPrice() + (narudzbe[0].cijenaDostave || 0) }} KM</p>
         </div>
         <button class="btn btn-primary btn-lg btn-block mt-2" (click)="showModalSubmitForm = true">
-          {{ status === 'aktivno' ? ('deliver_order' | translate) : ('delete_order' | translate) }}
+          {{ status == 'aktivno' ? ('deliver_order' | translate) : ('delete_order' | translate) }}
         </button>
       </div>
     </div>

@@ -71,7 +71,7 @@ export class PharmacyOrdersDetailsComponent {
 
   confirmOrder() {
     if(this.status == "aktivno") {
-      this.httpClient.put(serverSettings.address + "/narudzbe/apoteka/" + this.authService.getAuthToken().ustanovaId + "?redniBroj=" + this.redniBroj, null).subscribe(
+      this.httpClient.patch(serverSettings.address + "/narudzbe/apoteka/" + this.authService.getAuthToken().ustanovaId + "?redniBroj=" + this.redniBroj, null).subscribe(
         () => {
           this.ngOnInit();
           this.showModalSubmitForm = false;

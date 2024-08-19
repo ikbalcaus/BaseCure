@@ -72,7 +72,7 @@ export class SetMapComponent {
   }
 
   saveLocation() {
-    this.httpClient.put(serverSettings.address + "/ustanoveZdravstva/latlong/" + this.authService.getAuthToken().ustanovaId, { lat: this.lat, long: this.long }).subscribe(
+    this.httpClient.patch(serverSettings.address + "/ustanoveZdravstva/" + this.authService.getAuthToken().ustanovaId, { lat: this.lat, long: this.long }).subscribe(
       () => {
         this.router.navigateByUrl("/");
         this.alertService.setAlert("success", "Uspješno ste sačuvali lokaciju");

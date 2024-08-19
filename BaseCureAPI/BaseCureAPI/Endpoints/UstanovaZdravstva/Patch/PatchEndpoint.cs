@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BaseCureAPI.Endpoints.UstanovaZdravstva.PutLatLong
+namespace BaseCureAPI.Endpoints.UstanovaZdravstva.Patch
 {
-    [Route("ustanoveZdravstva/latlong")]
+    [Route("ustanoveZdravstva")]
     [ApiController]
     public class UstanoveZdravstvaController : ControllerBase
     {
@@ -15,8 +15,8 @@ namespace BaseCureAPI.Endpoints.UstanovaZdravstva.PutLatLong
             _context = context;
         }
 
-        [HttpPut("{id}")]
-        public ActionResult Put([FromRoute] int id, [FromBody] PutLatLongReq putLatLongReq)
+        [HttpPatch("{id}")]
+        public ActionResult Put([FromRoute] int id, [FromBody] PatchReq putLatLongReq)
         {
             var ustanova = _context.UstanoveZdravstvas.Find(id);
             ustanova.Latitude = putLatLongReq.Lat;

@@ -1,10 +1,25 @@
 <div class="container">
-    <div class="my-4 p-4 main shadow-sm">
+    <h4 class="mt-4 text-end me-2">{{ receiverName }}</h4>
+    <div class="mb-4 p-4 main shadow-sm">
         <form #form="ngForm" (ngSubmit)="sendMessageToUser(form.value.message)">
-            <div class="messages">
-                <div *ngFor="let i of messages">
+            <div id="messages-container" class="messages px-1">
+                <div *ngFor="let i of oldMessages">
+                    <div [class]="'d-flex ' + (i.posiljaocId == senderId ? 'justify-content-start' : 'justify-content-end')">
+                        <div [class]="'message shadow-sm ' + (i.posiljaocId == senderId ? 'left' : 'right')">{{ i.poruka }}</div>
+                    </div>
+                    <div [class]="'date-time mx-1 mb-1 d-flex align-items-center ' + (i.posiljaocId == senderId ? 'justify-content-start' : 'justify-content-end')">
+                        <span>{{ formatDateTime(i.datumVrijeme) }}</span>
+                        <i *ngIf="i.procitana" class="bi bi-check-all"></i>
+                        &nbsp;<i *ngIf="i.posiljaocId == senderId" class="bi bi-trash" style="cursor: pointer" (click)="tempMessageId = i.porukaId"></i>
+                    </div>
+                </div>
+                <div *ngFor="let i of newMessages">
                     <div [class]="'d-flex ' + (i.sender == 'me' ? 'justify-content-start' : 'justify-content-end')">
-                        <div [class]="'message shadow-sm mb-2 ' + (i.sender == 'me' ? 'left' : 'right')">{{ i.message }}</div>
+                        <div [class]="'message shadow-sm ' + (i.sender == 'me' ? 'left' : 'right')">{{ i.message }}</div>
+                    </div>
+                    <div [class]="'date-time mx-1 mb-1 d-flex align-items-center ' + (i.sender == 'me' ? 'justify-content-start' : 'justify-content-end')">
+                        <span>{{ formatDateTime(i.dateTime) }}</span>
+                        <i *ngIf="i.isRead" class="bi bi-check-all"></i>
                     </div>
                 </div>
             </div>
@@ -17,3 +32,8 @@
         </form>
     </div>
 </div>
+<app-modal
+  *ngIf="tempMessageId"
+  (closeModal)="tempMessageId = 0"
+  (onSubmit)="deleteMessage()"
+></app-modal>

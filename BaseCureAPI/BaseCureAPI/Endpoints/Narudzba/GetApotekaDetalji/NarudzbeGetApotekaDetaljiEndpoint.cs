@@ -23,7 +23,7 @@ namespace BaseCureAPI.Endpoints.Narudzba.GetApotekaDetalji
                 .Include(x => x.Grad)
                 .Include(x => x.Korisnik)
                 .Include(x => x.Lijek)
-                .ThenInclude(x => x.Ustanova)
+                    .ThenInclude(x => x.Ustanova)
                 .Where(x => x.Lijek.UstanovaId == ustanovaId && x.Status == status && x.RedniBroj == redniBroj && (x.Status == "aktivno" || x.Status == "isporuceno"))
                 .Select(x => new NarudzbeGetApotekaDetaljiRes
                 {

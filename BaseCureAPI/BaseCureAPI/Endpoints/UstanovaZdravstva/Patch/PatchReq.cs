@@ -1,6 +1,6 @@
-﻿namespace BaseCureAPI.Endpoints.UstanovaZdravstva.PutLatLong
+﻿namespace BaseCureAPI.Endpoints.UstanovaZdravstva.Patch
 {
-    public class PutLatLongReq
+    public class PatchReq
     {
         public double? Lat { get; set; }
         public double? Long { get; set; }

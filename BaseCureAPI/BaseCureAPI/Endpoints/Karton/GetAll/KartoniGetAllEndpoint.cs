@@ -24,7 +24,7 @@ namespace BaseCureAPI.Endpoints.Karton.GetAll
         {
             var kartoni = _context.ZdravstveniKartonis.OrderByDescending(x => x.KartonId)
                 .Include(x => x.Pacijent)
-                .ThenInclude(p => p.Korisnik)
+                    .ThenInclude(x => x.Korisnik)
                 .Select(x => new KartoniGetAllRes()
                 {
                     DatumIzdavanja = x.DatumIzdavanja,

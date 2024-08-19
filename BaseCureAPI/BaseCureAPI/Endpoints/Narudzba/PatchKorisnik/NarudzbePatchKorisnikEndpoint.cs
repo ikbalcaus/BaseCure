@@ -1,7 +1,7 @@
 ﻿using BaseCureAPI.DB;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BaseCureAPI.Endpoints.Narudzba.PutKorisnik
+namespace BaseCureAPI.Endpoints.Narudzba.PatchKorisnik
 {
     [Route("narudzbe")]
     [ApiController]
@@ -14,8 +14,8 @@ namespace BaseCureAPI.Endpoints.Narudzba.PutKorisnik
             _context = context;
         }
 
-        [HttpPut("korisnik/{korisnikId}")]
-        public ActionResult UpdateNarudzba([FromRoute] int korisnikId, [FromBody] NarudzbePutKorisnikReq req)
+        [HttpPatch("korisnik/{korisnikId}")]
+        public ActionResult UpdateNarudzba([FromRoute] int korisnikId, [FromBody] NarudzbePatchKorisnikReq req)
         {
             var narudzbe = _context.Narudzbes.Where(x => x.KorisnikId == korisnikId && x.Status == "neaktivno");
             var grad = _context.Gradovis.SingleOrDefault(x => x.Naziv == req.Grad);

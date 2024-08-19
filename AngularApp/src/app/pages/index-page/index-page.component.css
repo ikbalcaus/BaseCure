@@ -7,12 +7,12 @@
 }
 .login {
     width: 500px;
-    height: 330px;
+    height: 340px;
     background-color: rgba(20, 20, 100, 0.4);
     color: white;
     padding: 20px;
     position: relative;
-    top: 45%;
+    top: 44%;
     left: 75%;
     transform: translate(-75%, -50%);
 }
@@ -124,9 +124,7 @@ label {
     color: white;
     text-decoration: none;
     font-size: 0.9rem;
+    font-weight: 450;
     background-color: transparent;
-}
-
-.forgot-password-link:hover {
-    text-decoration: underline;
+    cursor: pointer;
 }

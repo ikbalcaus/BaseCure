@@ -1,15 +1,16 @@
 .main {
     background-color: #f8f9fa;
     border-radius: 5px;
-    height: calc(100vh - 130px);
+    height: calc(100vh - 170px);
 }
 .messages {
-    height: calc(100vh - 220px);
+    height: calc(100vh - 260px);
     overflow-y: auto;
 }
 .message {
     padding: 10px;
     border-radius: 5px;
+    word-break: break-word;
 }
 .left {
     background-color: white;
@@ -18,10 +19,29 @@
     background-color: #3d8af7;
     color: white;
 }
+.date-time {
+    color: grey;
+}
+.date-time span {
+    font-size: 12px;
+    white-space: pre;
+}
 .message-input {
     display: flex;
     gap: 10px;
 }
 .message-button {
     box-shadow: 0 1px 4px rgba(0, 0, 255, 0.5) !important;
+}
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #bbb;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
 }

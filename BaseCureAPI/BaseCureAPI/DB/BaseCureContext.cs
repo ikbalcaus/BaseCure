@@ -304,6 +304,8 @@ namespace BaseCureAPI.DB
                     .WithMany(p => p.Ljekaris)
                     .HasForeignKey(d => d.UstanovaId)
                     .HasConstraintName("FK__Ljekari__ustanov__1A9EF37A");
+
+                entity.Property(e => e.Slika).HasColumnName("slika");
             });
 
             modelBuilder.Entity<Napomene>(entity =>
@@ -405,8 +407,6 @@ namespace BaseCureAPI.DB
                     .ValueGeneratedNever()
                     .HasColumnName("osoblje_id");
 
-                entity.Property(e => e.LjekarId).HasColumnName("ljekar_id");
-
                 entity.Property(e => e.PunoIme)
                     .HasMaxLength(255)
                     .IsUnicode(false)
@@ -459,9 +459,16 @@ namespace BaseCureAPI.DB
 
                 entity.ToTable("Poruke");
 
+                entity.Property(e => e.PorukaId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("poruka_id");
+
                 entity.Property(e => e.DatumVrijeme)
                     .HasColumnType("datetime")
-                    .HasDefaultValueSql("(getdate())");
+                    .HasDefaultValueSql("(getdate())")
+                    .HasColumnName("datum_vrijeme");
+
+                entity.Property(e => e.PosiljaocId).HasColumnName("posiljaoc_id");
 
                 entity.HasOne(d => d.Posiljaoc)
                     .WithMany(p => p.PorukePosiljaocs)
@@ -469,11 +476,17 @@ namespace BaseCureAPI.DB
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Poruke__Posiljao__308E3499");
 
+                entity.Property(e => e.PrimaocId).HasColumnName("primaoc_id");
+
                 entity.HasOne(d => d.Primaoc)
                     .WithMany(p => p.PorukePrimaocs)
                     .HasForeignKey(d => d.PrimaocId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Poruke__PrimaocI__318258D2");
+
+                entity.Property(e => e.Poruka).HasColumnName("poruka");
+
+                entity.Property(e => e.Procitana).HasColumnName("procitana");
             });
 
             modelBuilder.Entity<Pregledi>(entity =>

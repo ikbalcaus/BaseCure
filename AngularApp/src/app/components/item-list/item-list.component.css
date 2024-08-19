@@ -6,6 +6,9 @@
     width: 100px;
     aspect-ratio: 4/3;
 }
+.item-list-button {
+    width: 180px;
+}
 
 @media (max-width: 767px) {
     .card-img {

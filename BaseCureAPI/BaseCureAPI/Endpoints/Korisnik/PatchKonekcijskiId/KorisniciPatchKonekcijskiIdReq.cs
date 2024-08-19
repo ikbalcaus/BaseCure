@@ -2,6 +2,6 @@
 {
     public class KorisniciPatchKonekcijskiIdReq
     {
-        public string KonekcijskiId { get; set; }
+        public string? KonekcijskiId { get; set; }
     }
 }

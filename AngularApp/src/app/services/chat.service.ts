@@ -14,7 +14,7 @@ export class ChatService {
   ) { this.startConnection() }
 
   private hubConnection: HubConnection | undefined;
-  messageReceived = new Subject<{ senderId: number, message: string }>();
+  messageReceived = new Subject<{ senderId: number, message: string, dateTime: string }>();
 
   private startConnection() {
     this.hubConnection = this.buildHubConnection();
@@ -32,21 +32,15 @@ export class ChatService {
   private updateConnectionId() {
     const userId = this.authService.getAuthToken().korisnikId;
     const connectionId = this.hubConnection?.connectionId;
-    if(userId && connectionId) {
-      this.httpClient.patch(serverSettings.address + "/korisnici/" + userId, { konekcijskiId: connectionId }).subscribe();
-    }
+    this.httpClient.patch(serverSettings.address + "/korisnici/" + userId, { konekcijskiId: connectionId }).subscribe();
   }
 
   addListeners() {
     if(this.hubConnection) {
-      this.hubConnection.on("ReceiveMessage", (senderId: number, message: string) => {
-        this.messageReceived.next({ senderId, message });
+      this.hubConnection.on("ReceiveMessage", (senderId: number, message: string, dateTime: string) => {
+        this.messageReceived.next({ senderId, message, dateTime });
       });
     }
-  }
-
-  getMessageObservable() {
-    return this.messageReceived.asObservable();
   }
 
   sendMessageToUser(receiverId: number, message: string) {
@@ -54,5 +48,14 @@ export class ChatService {
     if(this.hubConnection && receiverId) {
       this.hubConnection.invoke("SendMessageToUser", senderId, receiverId, message)
     }
+  }
+
+  getMessageObservable() {
+    return this.messageReceived.asObservable();
+  }
+
+  removeConnectionId() {
+    const userId = this.authService.getAuthToken().korisnikId;
+    this.httpClient.patch(serverSettings.address + "/korisnici/" + userId, { konekcijskiId: null }).subscribe();
   }
 }
