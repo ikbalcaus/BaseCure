@@ -61,6 +61,10 @@
     "view_details": "View details",
     "user_ordered_medications": "User has ordered {{ count }} medications",
     "deliver_order": "Deliver order",
-    "delete_order": "Delete order"
+    "delete_order": "Delete order",
+    "change_password" : "Change password",
+    "old_password" : "Old password",
+    "new_password" : "New password",
+    "repeat_new_password" : "Repeat new password"
 }
   

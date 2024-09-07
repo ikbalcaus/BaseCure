@@ -26,12 +26,12 @@ namespace BaseCureAPI.Endpoints.Korisnik.Put
             }
 
             var grad = _context.Gradovis.SingleOrDefault(x => x.Naziv == korisnikReq.Grad);
-
             if (grad == null)
             {
                 return BadRequest(new { message = "Grad ne postoji" });
             }
 
+            // Update basic user information
             korisnik.Ime = korisnikReq.Ime;
             korisnik.Prezime = korisnikReq.Prezime;
             korisnik.Grad = grad;
@@ -39,9 +39,27 @@ namespace BaseCureAPI.Endpoints.Korisnik.Put
             korisnik.MailAdresa = korisnikReq.MailAdresa;
             korisnik.BrojTelefona = korisnikReq.BrojTelefona;
 
+            if (!string.IsNullOrWhiteSpace(korisnikReq.OldPassword) &&
+                !string.IsNullOrWhiteSpace(korisnikReq.NewPassword) &&
+                !string.IsNullOrWhiteSpace(korisnikReq.RepeatNewPassword))
+            {
+                if (!BCrypt.Net.BCrypt.Verify(korisnikReq.OldPassword, korisnik.HashLozinke))
+                {
+                    return BadRequest(new { message = "Stara lozinka nije tačna" });
+                }
+
+                if (korisnikReq.NewPassword != korisnikReq.RepeatNewPassword)
+                {
+                    return BadRequest(new { message = "Nova lozinka i ponovljena lozinka se ne podudaraju" });
+                }
+
+                korisnik.HashLozinke = BCrypt.Net.BCrypt.HashPassword(korisnikReq.NewPassword);
+            }
+
             _context.SaveChanges();
 
             return NoContent();
         }
+
     }
 }

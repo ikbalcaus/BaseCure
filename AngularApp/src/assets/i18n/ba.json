@@ -61,6 +61,9 @@
     "view_details": "Pogledaj detalje",
     "user_ordered_medications": "Korisnik je naručio {{ count }} lijekova",
     "deliver_order": "Isporuči narudžbu",
-    "delete_order": "Izbriši narudžbu"
+    "delete_order": "Izbriši narudžbu",
+    "change_password" : "Promijeni šifru",
+    "old_password" : "Stara šifra",
+    "new_password" : "Nova šifra",
+    "repeat_new_password" : "Ponovi novu šifru"
 }
-  

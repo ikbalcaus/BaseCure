@@ -9,43 +9,10 @@
             <label>{{ 'password' | translate }}:</label>
             <input type="password" class="form-control" name="lozinka" ngModel>
         </div>
-        <div class="form-group mt-2">
-            <a href="#" (click)="openForgotPasswordModal()" class="forgot-password-link">Da li ste zaboravili šifru?</a>
-        </div>
         <div class="form-group form-check mt-2">
             <input type="checkbox" id="checkbox-input" class="form-check-input" name="rememberme" ngModel>
             <label for="checkbox-input">{{ 'remember_me' | translate }}</label>
         </div>
         <button class="btn btn-primary btn-block mt-3">{{ 'continue' | translate }}</button>
     </form>
-</div>
-
-<div *ngIf="isForgotPasswordModalOpen" class="modal" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <button type="button" class="close" (click)="closeForgotPasswordModal()" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <div class="modal-header">
-                <h5 class="modal-title" id="forgotPasswordModalLabel">Resetuj šifru</h5>
-            </div>
-            <div class="modal-body">
-                <form #resetPasswordForm="ngForm" (submit)="resetPassword(resetPasswordForm.value)">
-                    <div class="form-group">
-                        <label for="email">Email adresa:</label>
-                        <input type="email" class="form-control" id="email" name="email" ngModel required>
-                    </div>
-                    <div class="form-group">
-                        <label for="newPassword">Nova šifra:</label>
-                        <input type="password" class="form-control" id="newPassword" name="newPassword" ngModel required>
-                    </div>
-                    <div class="form-group">
-                        <label for="confirmPassword">Potvrdi novu šifru:</label>
-                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" ngModel required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Resetuj šifru</button>
-                </form>
-            </div>
-        </div>
-    </div>
 </div>
