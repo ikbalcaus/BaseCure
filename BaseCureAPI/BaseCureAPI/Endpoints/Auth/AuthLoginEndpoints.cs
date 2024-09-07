@@ -86,7 +86,7 @@ namespace BaseCureAPI.Endpoints.Auth
                 return BadRequest("Došlo je do greške na serveru");
             }
 
-            //1- provjera logina
+            // 1- Provjera logina
             var logiraniKorisnik = _context.Korisnicis
                 .Include(x => x.Grad)
                 .Include(x => x.Osoblje)
@@ -94,45 +94,65 @@ namespace BaseCureAPI.Endpoints.Auth
                 .Include(x => x.Osoblje.Ustanova)
                 .FirstOrDefault(x => x.MailAdresa == request.MailAdresa);
 
-            if (logiraniKorisnik == null)
+            if (logiraniKorisnik == null || !BCrypt.Net.BCrypt.Verify(request.Lozinka, logiraniKorisnik.HashLozinke))
             {
-                //pogresan username i password
+                // Pogresan username i password
                 return Unauthorized();
             }
 
-            //2- generisati random string
+            // 2- Generisati random string
             string randomString = TokenGen.Generate(10);
 
-            //3- dodati novi zapis u tabelu AutentifikacijaToken za logiraniKorisnikId i randomString
-            var noviToken = new AuthToken()
+            // Use database transaction to ensure safe insertion without conflicts
+            using (var transaction = _context.Database.BeginTransaction())
             {
-                IpAdresa = Request.HttpContext.Connection.RemoteIpAddress?.ToString(),
-                Vrijednost = randomString,
-                KorisnikId = logiraniKorisnik.KorisnikId,
-                Korisnik = logiraniKorisnik,
-                VrijemeEvidentiranja = DateTime.Now,
-                Code2f = Guid.NewGuid().ToString(),
-            };
+                try
+                {
+                    // 3- Dodati novi zapis u tabelu AuthToken za logiraniKorisnikId i randomString
+                    var noviToken = new AuthToken()
+                    {
+                        IpAdresa = Request.HttpContext.Connection.RemoteIpAddress?.ToString(),
+                        Vrijednost = randomString,
+                        KorisnikId = logiraniKorisnik.KorisnikId,
+                        Korisnik = logiraniKorisnik,
+                        VrijemeEvidentiranja = DateTime.Now,
+                        Code2f = Guid.NewGuid().ToString(),
+                    };
 
-            var resToken = new AuthLoginRes()
-            {
-                IpAdresa = Request.HttpContext.Connection.RemoteIpAddress?.ToString(),
-                Vrijednost = randomString,
-                KorisnikId = logiraniKorisnik.KorisnikId,
-                Korisnik = logiraniKorisnik,
-                VrijemeEvidentiranja = DateTime.Now,
-                Code2f = Guid.NewGuid().ToString(),
-            };
+                    // Fetch the max AuthTokenId inside the transaction
+                    noviToken.AuthTokenId = _context.AuthTokens.Any()
+                        ? _context.AuthTokens.Max(x => x.AuthTokenId) + 1
+                        : 1;
 
-            noviToken.AuthTokenId =
-                _context.AuthTokens.Any() ? _context.AuthTokens.Max(x => x.AuthTokenId) + 1 : 1;
+                    _context.Add(noviToken);
+                    _context.SaveChanges();
 
-            _context.Add(noviToken);
-            _context.SaveChanges();
+                    // Commit the transaction
+                    transaction.Commit();
 
-            //4- vratiti token string
-            return Ok(resToken);
+                    // Create a response token for returning to the user
+                    var resToken = new AuthLoginRes()
+                    {
+                        IpAdresa = Request.HttpContext.Connection.RemoteIpAddress?.ToString(),
+                        Vrijednost = randomString,
+                        KorisnikId = logiraniKorisnik.KorisnikId,
+                        Korisnik = logiraniKorisnik,
+                        VrijemeEvidentiranja = DateTime.Now,
+                        Code2f = noviToken.Code2f, // Same as the one in noviToken
+                    };
+
+                    // 4- Vratiti token string
+                    return Ok(resToken);
+                }
+                catch (Exception ex)
+                {
+                    // Rollback the transaction if there's an error
+                    transaction.Rollback();
+                    return StatusCode(500, $"Došlo je do greške: {ex.Message}");
+                }
+            }
         }
+
 
         [HttpPost("admin-login")]
         public ActionResult AdminLogin([FromBody] AuthLoginReq request)

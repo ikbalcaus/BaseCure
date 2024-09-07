@@ -27,6 +27,11 @@ export class UserDataComponent {
   res: any;
   gradovi: any;
   showModal: boolean = false;
+  passwordChange: any = {
+    oldPassword: '',
+    newPassword: '',
+    repeatNewPassword: ''
+  };
 
   ngOnInit() {
     this.httpClient.get(serverSettings.address + "/korisnici/" + this.authService.getAuthToken().korisnikId).subscribe(
@@ -37,11 +42,21 @@ export class UserDataComponent {
     )
   }
 
-  EditUser(data: any) {
-    this.httpClient.put(serverSettings.address + "/korisnici/" + this.authService.getAuthToken().korisnikId, data).subscribe(
+  EditUser(data: any, passwordChange: any) {
+    if (passwordChange.newPassword && passwordChange.newPassword !== passwordChange.repeatNewPassword) {
+      this.alertService.setAlert("error", "Nove lozinke se ne podudaraju");
+      return;
+    }
+
+    const updateData = { ...data };
+    if (passwordChange.oldPassword && passwordChange.newPassword) {
+      updateData.passwordChange = passwordChange;
+    }
+
+    this.httpClient.put(serverSettings.address + "/korisnici/" + this.authService.getAuthToken().korisnikId, updateData).subscribe(
       () => {
         this.router.navigateByUrl("/");
-        this.alertService.setAlert("success", "Uspješno ste promjenili podatke");
+        this.alertService.setAlert("success", "Uspješno ste promijenili podatke");
       }
     )
   }

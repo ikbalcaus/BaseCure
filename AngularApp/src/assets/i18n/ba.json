@@ -73,6 +73,9 @@
     "read_messages": "Pročitane poruke",
     "read_messages_count": "Imate {{ count }} pročitanih poruka",
     "read_messages_user_count": "Imate pročitanih poruka od {{ count }} korisnika",
-    "message": "Poruka..."
+    "message": "Poruka...",
+    "change_password" : "Promijeni šifru",
+    "old_password" : "Stara šifra",
+    "new_password" : "Nova šifra",
+    "repeat_new_password" : "Ponovi novu šifru"
 }
-  

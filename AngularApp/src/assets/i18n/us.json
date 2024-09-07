@@ -73,6 +73,10 @@
     "read_messages": "Read messages",
     "read_messages_count": "You have {{ count }} read messages",
     "read_messages_user_count": "You have read messages from {{ count }} user",
-    "message": "Message..."
+    "message": "Message...",
+    "change_password" : "Change password",
+    "old_password" : "Old password",
+    "new_password" : "New password",
+    "repeat_new_password" : "Repeat new password"
 }
   
