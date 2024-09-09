@@ -60,6 +60,6 @@
 </div>
 <app-modal
   *ngIf="showModal"
-  (closeModal)="showModal = false"
+  (onClose)="showModal = false"
   (onSubmit)="confirmOrder(form.value)"
 ></app-modal>

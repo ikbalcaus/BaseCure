@@ -12,7 +12,7 @@ export class RedirectService {
   
   canActivate(): boolean {
     if(!this.authService.isLoggedIn()) return true;
-    let role = this.authService.getAuthToken()?.uloga;
+    const role = this.authService.getAuthToken()?.uloga;
     if(role == "korisnik") this.router.navigateByUrl("/pretrazi");
     else if(role == "apoteka") this.router.navigateByUrl("/apoteka/narudzbe");
     else if(role == "bolnica") this.router.navigateByUrl("/ustanova-zdravstva/podaci");

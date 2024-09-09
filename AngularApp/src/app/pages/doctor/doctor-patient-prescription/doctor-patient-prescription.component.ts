@@ -96,7 +96,7 @@ export class DoctorPatientPrescriptionComponent {
     modal?.setAttribute('aria-modal', 'true');
   }
 
-  closeModal() {
+  onClose() {
     const modal = document.getElementById('patientDataModal');
     modal?.classList.remove('show');
     modal?.removeAttribute('style');

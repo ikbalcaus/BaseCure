@@ -27,6 +27,6 @@
 </div>
 <app-modal
   *ngIf="showModal"
-  (closeModal)="showModal = false"
+  (onClose)="showModal = false"
   (onSubmit)="deleteMedication()"
 ></app-modal>

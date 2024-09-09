@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using SendGrid.Helpers.Mail;
 using SendGrid;
 using BCrypt.Net;
+using Microsoft.Identity.Client;
 
 namespace BaseCureAPI.Endpoints.Auth
 {
@@ -94,10 +95,17 @@ namespace BaseCureAPI.Endpoints.Auth
                 .Include(x => x.Osoblje.Ustanova)
                 .FirstOrDefault(x => x.MailAdresa == request.MailAdresa);
 
-            if (logiraniKorisnik == null || !BCrypt.Net.BCrypt.Verify(request.Lozinka, logiraniKorisnik.HashLozinke))
+            try
             {
-                // Pogresan username i password
-                return Unauthorized();
+                if (logiraniKorisnik == null || !BCrypt.Net.BCrypt.Verify(request.Lozinka, logiraniKorisnik.HashLozinke))
+                {
+                    // Pogresan username i password
+                    return Unauthorized();
+                }
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
             }
 
             // 2- Generisati random string
@@ -153,7 +161,6 @@ namespace BaseCureAPI.Endpoints.Auth
             }
         }
 
-
         [HttpPost("admin-login")]
         public ActionResult AdminLogin([FromBody] AuthLoginReq request)
         {
@@ -196,35 +203,51 @@ namespace BaseCureAPI.Endpoints.Auth
             return Ok(noviToken);
         }
 
-        [HttpPost("reset-password")]
-        public async Task<ActionResult> ResetPassword([FromBody] ResetPasswordRequest request)
+        [HttpPost("changePassword")]
+        public ActionResult ResetPassword([FromBody] ChangePasswordReq req)
         {
-            if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.NewPassword))
+            if (string.IsNullOrEmpty(req.StaraSifra) || string.IsNullOrEmpty(req.NovaSifra) || string.IsNullOrEmpty(req.PotvrdiNovuSifru))
             {
-                return BadRequest("Email and new password are required.");
+                return BadRequest(new { message = "Niste unijeli sve podatke"});
             }
 
-            var user = await _context.Korisnicis.FirstOrDefaultAsync(x => x.MailAdresa == request.Email);
-
-            if (user == null)
+            if (req.NovaSifra != req.PotvrdiNovuSifru)
             {
-                return NotFound("Korisnik sa ovom email adresom nije pronađen.");
+                return BadRequest(new { message = "Šifre se podudaraju" });
             }
 
-            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(request.NewPassword);
+            var user = _context.Korisnicis.Find(req.KorisnikId);
 
+            if (!BCrypt.Net.BCrypt.Verify(req.StaraSifra, user.HashLozinke))
+            {
+                return BadRequest(new { message = "Niste unijeli ispravnu šifru" });
+            }
+
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(req.NovaSifra);
             user.HashLozinke = hashedPassword;
             _context.Korisnicis.Update(user);
+            _context.SaveChanges();
 
-            await _context.SaveChangesAsync();
-
-            return Ok("Šifra uspešno resetovana.");
+            return NoContent();
         }
 
-        public class ResetPasswordRequest
+        [HttpPost("generateHash")]
+        public ActionResult GenerateHash([FromBody] GenerateHashReq req)
         {
-            public string Email { get; set; }
-            public string NewPassword { get; set; }
+            return Ok(BCrypt.Net.BCrypt.HashPassword(req.String));
+        }
+
+        public class GenerateHashReq
+        {
+            public string String { get; set; }
+        }
+
+        public class ChangePasswordReq
+        {
+            public int KorisnikId { get; set; }
+            public string StaraSifra {  get; set; }
+            public string NovaSifra { get; set; }
+            public string PotvrdiNovuSifru { get; set; }
         }
 
 

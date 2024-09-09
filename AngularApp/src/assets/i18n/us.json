@@ -2,10 +2,11 @@
     "login": "Login",
     "email_address": "Email address",
     "password": "Password",
-    "forgot_password": "Forgot password?",
+    "change_password" : "Change password",
+    "old_password" : "Old password",
     "new_password": "New password",
-    "reset_password": "Reset password",
     "confirm_new_password": "Confirm new password",
+    "cancel": "Cancel",
     "remember_me": "Remember me",
     "continue": "Continue",
     "search": "Search",
@@ -73,10 +74,6 @@
     "read_messages": "Read messages",
     "read_messages_count": "You have {{ count }} read messages",
     "read_messages_user_count": "You have read messages from {{ count }} user",
-    "message": "Message...",
-    "change_password" : "Change password",
-    "old_password" : "Old password",
-    "new_password" : "New password",
-    "repeat_new_password" : "Repeat new password"
+    "message": "Message..."
 }
   
