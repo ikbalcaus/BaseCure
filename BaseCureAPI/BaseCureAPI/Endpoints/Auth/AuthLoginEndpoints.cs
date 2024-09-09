@@ -213,7 +213,7 @@ namespace BaseCureAPI.Endpoints.Auth
 
             if (req.NovaSifra != req.PotvrdiNovuSifru)
             {
-                return BadRequest(new { message = "Šifre se podudaraju" });
+                return BadRequest(new { message = "Šifre se ne podudaraju" });
             }
 
             var user = _context.Korisnicis.Find(req.KorisnikId);
