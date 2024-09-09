@@ -3,11 +3,11 @@
         <div class="modal-content shadow-lg">
             <div class="modal-header">
                 <h5 class="modal-title">{{ 'confirmMessage' | translate }}</h5>
-                <button type="button" class="btn-close" (click)="closeModalHandler()"></button>
+                <button type="button" class="btn-close" (click)="onCloseHandler()"></button>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" (click)="onSubmitHandler()">{{ 'yes' | translate }}</button>
-                <button type="button" class="btn btn-secondary" (click)="closeModalHandler()">{{ 'no' | translate }}</button>
+                <button type="button" class="btn btn-secondary" (click)="onCloseHandler()">{{ 'no' | translate }}</button>
             </div>
         </div>
     </div>

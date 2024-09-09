@@ -57,7 +57,7 @@ export class SetMapComponent {
       minZoom: 7
     });
     tiles.addTo(this.map);
-    if (this.lat && this.long) L.marker([this.lat, this.long], { icon: this.marker }).addTo(this.map);
+    if(this.lat && this.long) L.marker([this.lat, this.long], { icon: this.marker }).addTo(this.map);
     this.map.on("click", event => {
       this.onMapClick(event);
     });

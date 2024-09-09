@@ -2,10 +2,11 @@
     "login": "Prijavi se",
     "email_address": "Email adresa",
     "password": "Šifra",
-    "forgot_password": "Zaboravili ste šifru?",
-    "reset_password": "Resetuj šifru",
+    "change_password" : "Promijeni šifru",
+    "old_password" : "Stara šifra",
     "new_password": "Nova šifra",
     "confirm_new_password": "Potvrdi novu šifru",
+    "cancel": "Odustani",
     "remember_me": "Zapamti me",
     "continue": "Nastavi",
     "search": "Pretraži",
@@ -73,9 +74,5 @@
     "read_messages": "Pročitane poruke",
     "read_messages_count": "Imate {{ count }} pročitanih poruka",
     "read_messages_user_count": "Imate pročitanih poruka od {{ count }} korisnika",
-    "message": "Poruka...",
-    "change_password" : "Promijeni šifru",
-    "old_password" : "Stara šifra",
-    "new_password" : "Nova šifra",
-    "repeat_new_password" : "Ponovi novu šifru"
+    "message": "Poruka..."
 }

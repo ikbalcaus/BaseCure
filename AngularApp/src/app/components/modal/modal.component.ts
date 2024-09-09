@@ -11,14 +11,14 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class ModalComponent {
   @Output() onSubmit = new EventEmitter();
-  @Output() closeModal = new EventEmitter();
+  @Output() onClose = new EventEmitter();
 
-  closeModalHandler() {
-    this.closeModal.emit();
+  onCloseHandler() {
+    this.onClose.emit();
   }
 
   onSubmitHandler() {
     this.onSubmit.emit();
-    this.closeModal.emit();
+    this.onClose.emit();
   }
 }
