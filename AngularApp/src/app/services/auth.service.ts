@@ -29,6 +29,8 @@ export class AuthService {
   loginUser(authRoute: string, req: any) {
     this.httpClient.post<any>(serverSettings.address + authRoute, req).subscribe(
       res => {
+        console.log(res);
+        
         window.localStorage.setItem("auth-token", JSON.stringify(res));
         if (res.uloga == "korisnik") this.router.navigateByUrl("/pretrazi");
         else if (res.uloga == "apoteka") this.router.navigateByUrl("/apoteka/narudzbe");

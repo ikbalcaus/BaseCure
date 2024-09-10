@@ -37,6 +37,46 @@ namespace BaseCureAPI.Endpoints.Auth
             if (token == null)
                 return Unauthorized();
 
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    var noviToken = new AuthToken()
+                    {
+                        IpAdresa = Request.HttpContext.Connection.RemoteIpAddress?.ToString(),
+                        Vrijednost = token,
+                        KorisnikId = _context.Korisnicis.SingleOrDefault(k => k.MailAdresa == request.MailAdresa).KorisnikId,
+                        Korisnik = await _context.Korisnicis.SingleOrDefaultAsync(k => k.MailAdresa == request.MailAdresa),
+                        VrijemeEvidentiranja = DateTime.Now,
+                        Code2f = Guid.NewGuid().ToString(),
+                    };
+
+                    noviToken.AuthTokenId = _context.AuthTokens.Any() ? _context.AuthTokens.Max(t => t.AuthTokenId) + 1 : 1;
+
+                    _context.AuthTokens.Add(noviToken);
+                    await _context.SaveChangesAsync();
+
+                    transaction.Commit();
+
+                    var response = new AuthLoginRes()
+                    {
+                        Vrijednost = noviToken.Vrijednost,
+                        Code2f = noviToken.Code2f,
+                        KorisnikId = noviToken.KorisnikId,
+                        Korisnik = noviToken.Korisnik,
+                        IpAdresa = noviToken.IpAdresa,
+                        VrijemeEvidentiranja = noviToken.VrijemeEvidentiranja,
+                    };
+
+                    return Ok(new { token = noviToken.Vrijednost, code2f = noviToken.Code2f });
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    return StatusCode(500, $"Došlo je do greške: {ex.Message}");
+                }
+            }
+
             return Ok(new { token });
         }
 
