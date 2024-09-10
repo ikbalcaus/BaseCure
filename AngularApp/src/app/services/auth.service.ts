@@ -55,6 +55,7 @@ export class AuthService {
 
   logoutUser() {
     window.localStorage.removeItem("auth-token");
+    window.sessionStorage.removeItem("auth-token");
     this.router.navigateByUrl("/");
   }
 }
