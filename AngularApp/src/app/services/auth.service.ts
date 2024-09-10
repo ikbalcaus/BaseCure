@@ -48,6 +48,11 @@ export class AuthService {
     );
   }
 
+  checkEmailAndResetPassword(email: string, newPassword: string) {
+    const payload = { email, newPassword };
+    return this.httpClient.post<any>(`${serverSettings.address}/auth/reset-password`, payload);
+  }
+
   logoutUser() {
     window.localStorage.removeItem("auth-token");
     this.router.navigateByUrl("/");

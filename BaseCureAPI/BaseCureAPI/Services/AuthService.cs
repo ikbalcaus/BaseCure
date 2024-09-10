@@ -1,46 +1,65 @@
-﻿using BaseCureAPI.DB;
-using BaseCureAPI.DB.Models;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization.Infrastructure;
+﻿using BaseCureAPI.DB.Models;
+using BaseCureAPI.DB;
+using BaseCureAPI.Services;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using Microsoft.EntityFrameworkCore;
-using System.Text.Json.Serialization;
 
-namespace BaseCureAPI.Services
+public interface IAuthService
 {
-    public class AuthService
+    Task<string> AuthenticateUser(string username, string password);
+    bool IsAuthorized(ClaimsPrincipal user, string role);
+}
+
+public class AuthService : IAuthService
+{
+    private readonly BasecureContext _context;
+    private readonly AuthOptions _authOptions;
+
+    public AuthService(BasecureContext context, IOptions<AuthOptions> authOptions)
     {
-        private readonly BasecureContext _context;
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        _context = context;
+        _authOptions = authOptions.Value;
+    }
 
-        public AuthService(BasecureContext applicationDbContext, IHttpContextAccessor httpContextAccessor)
+    public async Task<string> AuthenticateUser(string mail, string password)
+    {
+        var user = await _context.Korisnicis
+            .Include(k => k.Osoblje)
+            .ThenInclude(o => o.Uloga)
+            .SingleOrDefaultAsync(x => x.MailAdresa == mail);
+
+        if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.HashLozinke))
+            return null;
+
+        return GenerateJwtToken(user);
+    }
+
+    private string GenerateJwtToken(Korisnici user)
+    {
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var key = Encoding.ASCII.GetBytes(_authOptions.Secret);
+
+        var tokenDescriptor = new SecurityTokenDescriptor
         {
-            _context = applicationDbContext;
-            _httpContextAccessor = httpContextAccessor;
-        }
+            Subject = new ClaimsIdentity(new[]
+            {
+                new Claim(ClaimTypes.Name, user.KorisnikId.ToString()),
+                new Claim(ClaimTypes.Role, user.Osoblje?.Uloga?.Naziv ?? "")
+            }),
+            Expires = DateTime.UtcNow.AddMinutes(_authOptions.ExpirationMinutes),
+            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+        };
 
-        public bool IsAuthorized(string role)
-        {
-            string authTokenFromHeader = _httpContextAccessor.HttpContext!.Request.Headers["Auth-Token"];
+        var token = tokenHandler.CreateToken(tokenDescriptor);
+        return tokenHandler.WriteToken(token);
+    }
 
-            if(authTokenFromHeader == "") return false;
-
-            AuthToken? authTokenFromDB = _context.AuthTokens
-                .Include(x => x.Korisnik)
-                .SingleOrDefault(x => x.Vrijednost == authTokenFromHeader);
-
-            return (authTokenFromDB?.Korisnik?.Osoblje.Uloga.Naziv == role); 
-            // Provjeriti da li radi
-        }
-
-        public AuthToken GetAuthInfo()
-        {
-            string authTokenFromHeader = _httpContextAccessor.HttpContext!.Request.Headers["Auth-Token"];
-
-            AuthToken? authTokenFromDB = _context.AuthTokens
-                .Include(x => x.Korisnik)
-                .SingleOrDefault(x => x.Vrijednost == authTokenFromHeader);
-
-            return authTokenFromDB!;
-        }
+    public bool IsAuthorized(ClaimsPrincipal user, string role)
+    {
+        return user.IsInRole(role);
     }
 }
