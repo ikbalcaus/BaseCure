@@ -68,7 +68,7 @@ namespace BaseCureAPI.Endpoints.Auth
                         VrijemeEvidentiranja = noviToken.VrijemeEvidentiranja,
                     };
 
-                    return Ok(new { token = noviToken.Vrijednost, code2f = noviToken.Code2f });
+                    return Ok( response );
                 }
                 catch (Exception ex)
                 {
@@ -76,15 +76,13 @@ namespace BaseCureAPI.Endpoints.Auth
                     return StatusCode(500, $"Došlo je do greške: {ex.Message}");
                 }
             }
-
-            return Ok(new { token });
         }
 
         [HttpPost("verify-code")]
         public IActionResult VerifyCode([FromBody] VerificationRequest request)
         {
             string userEnteredCode = request.VerificationCode;
-            string storedCode = "0000"; // Dummy code for now, should fetch from DB
+            string storedCode = "0000";
 
             if (userEnteredCode == storedCode)
             {
