@@ -61,11 +61,11 @@
 </div>
 <app-modal
   *ngIf="showModalDeleteMedication"
-  (onClose)="showModalDeleteMedication = false"
+  (closeModal)="showModalDeleteMedication = false"
   (onSubmit)="deleteMedication()"
 ></app-modal>
 <app-modal
   *ngIf="showModalSubmitForm"
-  (onClose)="showModalSubmitForm = false"
+  (closeModal)="showModalSubmitForm = false"
   (onSubmit)="confirmOrder()"
 ></app-modal>

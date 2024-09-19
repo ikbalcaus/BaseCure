@@ -34,6 +34,6 @@
 </div>
 <app-modal
   *ngIf="tempMessageId"
-  (onClose)="tempMessageId = 0"
+  (closeModal)="tempMessageId = 0"
   (onSubmit)="deleteMessage()"
 ></app-modal>

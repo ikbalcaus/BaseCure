@@ -2,6 +2,6 @@
 <button id="btn" class="btn btn-primary" (click)="showModal = true">{{ 'save_location' | translate }}</button>
 <app-modal
     *ngIf="showModal"
-    (onClose)="showModal = false"
+    (closeModal)="showModal = false"
     (onSubmit)="saveLocation()"
 ></app-modal>

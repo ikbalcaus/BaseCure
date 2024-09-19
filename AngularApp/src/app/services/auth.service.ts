@@ -14,13 +14,12 @@ export class AuthService {
   ) {}
 
   isLoggedIn() {
-    return window.localStorage.getItem("auth-token") != null || window.sessionStorage.getItem("auth-token") != null;
+    return window.localStorage.getItem("auth-token") != null;
   }
 
   getAuthToken() {
     try {
-      const token = window.localStorage.getItem("auth-token") || window.sessionStorage.getItem("auth-token") || "";
-      return JSON.parse(token);
+      return JSON.parse(window.localStorage.getItem("auth-token") || "");
     }
     catch(error) {
       return null;
@@ -30,19 +29,12 @@ export class AuthService {
   loginUser(authRoute: string, req: any) {
     this.httpClient.post<any>(serverSettings.address + authRoute, req).subscribe(
       res => {
-        if(req.rememberme) {
-          window.localStorage.setItem("auth-token", JSON.stringify(res));
-          window.sessionStorage.removeItem("auth-token");
-        }
-        else {
-          window.localStorage.removeItem("auth-token");
-          window.sessionStorage.setItem("auth-token", JSON.stringify(res));
-        }
-        if(res.uloga == "korisnik") this.router.navigateByUrl("/pretrazi");
-        else if(res.uloga == "apoteka") this.router.navigateByUrl("/apoteka/narudzbe");
-        else if(res.uloga == "bolnica") this.router.navigateByUrl("/ustanova-zdravstva/podaci");
-        else if(res.uloga == "ljekar") this.router.navigateByUrl("/poruke");
-        else if(res.uloga == "admin") this.router.navigateByUrl("/basecure-admin/dashboard");
+        window.localStorage.setItem("auth-token", JSON.stringify(res));
+        if (res.uloga == "korisnik") this.router.navigateByUrl("/pretrazi");
+        else if (res.uloga == "apoteka") this.router.navigateByUrl("/apoteka/narudzbe");
+        else if (res.uloga == "bolnica") this.router.navigateByUrl("/ustanova-zdravstva/podaci");
+        else if (res.uloga == "ljekar") this.router.navigateByUrl("/poruke");
+        else if (res.uloga == "admin") this.router.navigateByUrl("/basecure-admin/dashboard");
       },
       () => this.alertService.setAlert("danger", "Niste unijeli ispravne podatke")
     );
@@ -58,4 +50,17 @@ export class AuthService {
     window.sessionStorage.removeItem("auth-token");
     this.router.navigateByUrl("/");
   }
+<<<<<<< HEAD
 }
+=======
+
+  public setAlert(type: string, message: string) {
+    this.alertService.setAlert(type, message);
+  }
+
+  checkEmailAndResetPassword(email: string, newPassword: string) {
+    const payload = { email, newPassword };
+    return this.httpClient.post<any>(`${serverSettings.address}/auth/reset-password`, payload);
+}
+}
+>>>>>>> parent of cc64a5f (Updated password changing)

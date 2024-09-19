@@ -42,16 +42,11 @@
                 </div>
                 <button class="btn btn-primary btn-block mt-2" (click)="showModal = true">{{ 'confirm' | translate }}</button>
             </form>
-            <div class="btn btn-link change-password-link" (click)="showChangePassword = true">{{ 'change_password' | translate }}</div>
         </div>
     </div>
 </div>
 <app-modal
     *ngIf="showModal"
-    (onClose)="showModal = false"
+    (closeModal)="showModal = false"
     (onSubmit)="EditMedicalInstitution(form.value)"
 ></app-modal>
-<app-change-password
-  *ngIf="showChangePassword"
-  (onClose)="showChangePassword = false"
-></app-change-password>

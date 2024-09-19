@@ -13,11 +13,3 @@
 .form-control, .form-select {
     width: 70%;
 }
-.change-password-link {
-    cursor: pointer;
-    text-decoration: none;
-    margin-top: 5px;
-    position: relative;
-    left: 50%;
-    transform: translate(-50%);
-}

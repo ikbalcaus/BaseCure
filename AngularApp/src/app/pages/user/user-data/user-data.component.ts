@@ -8,12 +8,11 @@ import { Router } from '@angular/router';
 import { AlertService } from '../../../services/alert.service';
 import { ModalComponent } from '../../../components/modal/modal.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { ChangePasswordComponent } from '../../../components/change-password/change-password.component';
 
 @Component({
   selector: 'app-user-data',
   standalone: true,
-  imports: [CommonModule, FormsModule, ModalComponent, ChangePasswordComponent, TranslateModule],
+  imports: [CommonModule, FormsModule, ModalComponent, TranslateModule],
   templateUrl: './user-data.component.html',
   styleUrl: './user-data.component.css'
 })
@@ -28,7 +27,11 @@ export class UserDataComponent {
   res: any;
   gradovi: any;
   showModal: boolean = false;
-  showChangePassword: boolean = false;
+  passwordChange: any = {
+    oldPassword: '',
+    newPassword: '',
+    repeatNewPassword: ''
+  };
 
   ngOnInit() {
     this.httpClient.get(serverSettings.address + "/korisnici/" + this.authService.getAuthToken().korisnikId).subscribe(
@@ -39,8 +42,18 @@ export class UserDataComponent {
     )
   }
 
-  EditUser(data: any) {
-    this.httpClient.put(serverSettings.address + "/korisnici/" + this.authService.getAuthToken().korisnikId, data).subscribe(
+  EditUser(data: any, passwordChange: any) {
+    if (passwordChange.newPassword && passwordChange.newPassword !== passwordChange.repeatNewPassword) {
+      this.alertService.setAlert("error", "Nove lozinke se ne podudaraju");
+      return;
+    }
+
+    const updateData = { ...data };
+    if (passwordChange.oldPassword && passwordChange.newPassword) {
+      updateData.passwordChange = passwordChange;
+    }
+
+    this.httpClient.put(serverSettings.address + "/korisnici/" + this.authService.getAuthToken().korisnikId, updateData).subscribe(
       () => {
         this.router.navigateByUrl("/");
         this.alertService.setAlert("success", "Uspješno ste promijenili podatke");

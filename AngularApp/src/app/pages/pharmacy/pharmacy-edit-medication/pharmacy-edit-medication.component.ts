@@ -47,7 +47,7 @@ export class PharmacyEditMedicationComponent {
 
   onFileSelected(event: any) {
     const input = event.target as HTMLInputElement;
-    if(input.files && input.files[0]) {
+    if (input.files && input.files[0]) {
       const file = input.files[0];
       const reader = new FileReader();
       reader.onload = () => {

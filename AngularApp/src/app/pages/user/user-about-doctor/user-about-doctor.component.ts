@@ -23,7 +23,7 @@ export class UserAboutDoctorComponent {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    if(id) {
+    if (id) {
       this.httpClient.get<any>(`${serverSettings.address}/ljekari/${id}`).subscribe(
         res => {
           this.res = res;

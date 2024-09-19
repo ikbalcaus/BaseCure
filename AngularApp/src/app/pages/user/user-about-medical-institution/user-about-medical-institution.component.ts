@@ -25,7 +25,7 @@ export class UserAboutMedicalInstitutionComponent {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get("id");
-    if(id) {
+    if (id) {
       this.httpClient.get<any>(`${serverSettings.address}/ustanoveZdravstva?id=${id}`).subscribe(
         res => {
           this.res = res;
