@@ -46,7 +46,12 @@ namespace BaseCureAPI.Endpoints.Auth
                         IpAdresa = Request.HttpContext.Connection.RemoteIpAddress?.ToString(),
                         Vrijednost = token,
                         KorisnikId = _context.Korisnicis.SingleOrDefault(k => k.MailAdresa == request.MailAdresa).KorisnikId,
-                        Korisnik = await _context.Korisnicis.SingleOrDefaultAsync(k => k.MailAdresa == request.MailAdresa),
+                        Korisnik = await _context.Korisnicis
+                        .Include(x => x.Grad)
+                            .Include(x => x.Osoblje)
+                            .Include(x => x.Osoblje.Uloga)
+                            .Include(x => x.Osoblje.Ustanova)
+                            .SingleOrDefaultAsync(k => k.MailAdresa == request.MailAdresa),
                         VrijemeEvidentiranja = DateTime.Now,
                         Code2f = Guid.NewGuid().ToString(),
                     };
